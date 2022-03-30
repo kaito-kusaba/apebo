@@ -3,9 +3,9 @@ import RootNavigator from './navigators'
 
 function App() {
   return (
-    <React.Fragment>
+    <div className='container'>
       <RootNavigator />
-    </React.Fragment>
+    </div>
   )
 }
 
