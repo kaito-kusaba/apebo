@@ -1,0 +1,6 @@
+export const FB_AUTH_EMAIL_ALREADY_IN_USE = 'auth/email-already-in-use'
+export const FB_AUTH_INVALID_IMAIL = 'auth/invalid-email'
+export const FB_AUTH_WEAK_PASSWORD = 'auth/weak-password'
+export const FB_AUTH_USER_DISABLED = 'auth/user-disabled'
+export const FB_AUTH_USER_NOT_FOUND = 'auth/user-not-found'
+export const FB_AUTH_WRONG_PSWD = 'auth/wrong-password'
