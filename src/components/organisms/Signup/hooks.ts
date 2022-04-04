@@ -3,7 +3,7 @@ import { auth } from 'assets/firebase'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { useDispatch } from 'react-redux'
 import { actions } from 'components/redux/User'
-import { ErrorCode } from 'constants/index'
+import { getAuthError } from 'utils'
 
 export function useInjection() {
   const [email, setEmail] = useState<string>('')
@@ -20,15 +20,11 @@ export function useInjection() {
 
   const onPressSubmit = useCallback(async () => {
     try {
-      await createUserWithEmailAndPassword(auth, email, password)
+      await createUserWithEmailAndPassword(auth, email, password) 
     } catch (e) {
-      switch (e) {
-        default: {
-          alert('エラーが発生しました。再度お試しください。')
-          return
-        }
-      }
-    } finally {
+      getAuthError(e)
+    }
+     finally {
       const user = auth.currentUser
       dispatch(actions.setUser(user))
     }
