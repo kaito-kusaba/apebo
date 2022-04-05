@@ -7,7 +7,8 @@ export default function RootNavigator() {
   const { user } = useInjection()
   return (
     <div>
-      <Router>{user !== null ? <AppNavigator /> : <AuthNavigator />}</Router>
+      {/* user(firebase.User | null)はサインアウト時nullになる */}
+      <Router>{user ? <AppNavigator /> : <AuthNavigator />}</Router>
     </div>
   )
 }

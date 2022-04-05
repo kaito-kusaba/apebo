@@ -1,5 +1,7 @@
+import { actions } from 'components/redux/User'
 import { initializeApp } from 'firebase/app'
-import { getAuth } from 'firebase/auth'
+import { getAuth, onAuthStateChanged } from 'firebase/auth'
+import { useDispatch } from 'react-redux'
 
 const firebaseConfig = {
     apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -14,3 +16,14 @@ const firebaseConfig = {
 initializeApp(firebaseConfig)
 
 export const auth = getAuth()
+
+onAuthStateChanged(auth, (user) => {
+    const dispatch = useDispatch()
+    if (user) {
+    // User is signed in
+    dispatch(actions.setUser(user))
+  } else {
+    // User is signed out
+    dispatch(actions.clearUser())
+  }
+})

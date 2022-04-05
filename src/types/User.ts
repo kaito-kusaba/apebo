@@ -1,3 +1,3 @@
-import firebase from 'firebase/compat'
+import firebase from 'firebase/auth'
 
-export type User = firebase.UserInfo | null
+export type User = firebase.User | null

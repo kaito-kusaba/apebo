@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { useInjection } from './hooks'
 import './style.css'
 
@@ -21,6 +22,7 @@ export default function Signup() {
         onChange={onChangePassword}
       />
       <input type='submit' value='新規登録' onClick={onPressSubmit} />
+      <p>すでにアカウントをお持ちの方は<Link to="/auth/signin">サインイン</Link></p>
     </div>
   )
 }
