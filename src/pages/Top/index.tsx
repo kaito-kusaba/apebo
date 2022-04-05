@@ -3,7 +3,6 @@ import React from 'react'
 
 export default function TopScreen() {
   return (
-    <div>{auth.currentUser?.email}</div>
-
+    <div>Top Screen user: {auth.currentUser?.email}</div>
   )
 }

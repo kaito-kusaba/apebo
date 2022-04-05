@@ -1,10 +1,12 @@
 import { useCallback, useState } from 'react'
 import { auth } from 'libs/firebase'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
+import { useNavigate } from 'react-router-dom'
 
 export function useInjection() {
   const [email, setEmail] = useState<string>('')
   const [password, setPassword] = useState<string>('')
+  const navigate = useNavigate()
 
   const onChangeEmail = useCallback((e) => {
     setEmail(e.target.value)
@@ -14,8 +16,12 @@ export function useInjection() {
     setPassword(e.target.value)
   }, [])
 
-  const onPressSubmit = useCallback(() => {
-      createUserWithEmailAndPassword(auth, email, password) 
+  const onPressSubmit = useCallback(async () => {
+      try {
+        await createUserWithEmailAndPassword(auth, email, password) 
+      } finally {
+        navigate("/")
+      }
   }, [email, password])
 
   return {
