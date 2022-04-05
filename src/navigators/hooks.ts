@@ -1,8 +1,7 @@
-import { useSelector } from 'react-redux'
-import { RootState } from 'components/redux'
+import { auth } from 'libs/firebase'
 
 export function useInjection() {
-  const { user } = useSelector(({ user }: RootState) => user)
+  const user = auth.currentUser
   return {
     user,
   }
