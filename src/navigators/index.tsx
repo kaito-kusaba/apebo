@@ -5,6 +5,7 @@ import { useInjection } from './hooks'
 
 export default function RootNavigator() {
   const { user } = useInjection()
+  console.log(user)
   return (
     <div>
       <Router>{user !== null ? <AppNavigator /> : <AuthNavigator />}</Router>
