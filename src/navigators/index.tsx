@@ -8,7 +8,8 @@ export default function RootNavigator() {
   console.log(user)
   return (
     <div>
-      <Router>{user !== null ? <AppNavigator /> : <AuthNavigator />}</Router>
+      {/* user(firebase.User | null)はサインアウト時nullになる */}
+      <Router>{user ? <AppNavigator /> : <AuthNavigator />}</Router>
     </div>
   )
 }
