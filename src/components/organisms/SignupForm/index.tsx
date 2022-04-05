@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { useInjection } from './hooks'
 import './style.css'
 
-export default function Signup() {
+export default function SignupForm() {
   const { email, onChangeEmail, password, onChangePassword, onPressSubmit } =
     useInjection()
 
