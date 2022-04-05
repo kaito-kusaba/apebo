@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react'
 import { auth } from 'libs/firebase'
-import { createUserWithEmailAndPassword } from 'firebase/auth'
+import { signInWithEmailAndPassword } from 'firebase/auth'
 
 export function useInjection() {
   const [email, setEmail] = useState<string>('')
@@ -15,7 +15,7 @@ export function useInjection() {
   }, [])
 
   const onPressSubmit = useCallback(() => {
-      createUserWithEmailAndPassword(auth, email, password) 
+      signInWithEmailAndPassword(auth, email, password) 
   }, [email, password])
 
   return {
