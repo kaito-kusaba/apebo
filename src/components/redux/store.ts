@@ -1,4 +1,4 @@
-import { createStore } from 'redux'
+import { combineReducers, createStore } from 'redux'
 import { userReducer as user } from './User'
 import { persistReducer, persistStore } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
@@ -8,7 +8,12 @@ const persistConfig = {
   storage,
 }
 
-const persistedReducer = persistReducer(persistConfig, user)
+const reducers = combineReducers({
+  user,
+})
+
+
+const persistedReducer = persistReducer(persistConfig, reducers)
 
 const store = createStore(persistedReducer)
 export const persistor = persistStore(store)

@@ -1,11 +1,14 @@
+import { User } from 'types/User'
 import { ActionTypes } from './actions'
-import type { User } from 'types/User'
 
 const initialState = {
   user: null,
+  username: '',
 }
-export interface UserStore {
+
+export type UserStore = {
   user: User
+  username: string
 }
 
 /* reducer */
@@ -19,7 +22,13 @@ export const userReducer = (state = initialState, action: any) => {
     }
     case ActionTypes.CLEAR_USER: {
       return {
-        user: null,
+        user: initialState,
+      }
+    }
+    case ActionTypes.SET_USERNAME: {
+      return {
+        ...state,
+        username: action.payload,
       }
     }
     default: {

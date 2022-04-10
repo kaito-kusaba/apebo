@@ -1,7 +1,8 @@
 import { initializeApp } from 'firebase/app'
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
+import 'firebase/app'
 import { actions } from 'components/redux/User'
-import { ThunkDispatch } from 'redux-thunk'
+import store from 'components/redux/store'
 
 const firebaseConfig = {
     apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -17,17 +18,15 @@ initializeApp(firebaseConfig)
 
 export const auth = getAuth()
 
-export const useAppStart = (dispatch: ThunkDispatch<any, any, any>) => {
-    onAuthStateChanged(auth, (user) => {
-        if (user) {
-          // User is signed in
-          dispatch(actions.setUser(user))
-          console.log(`dispatch user ${user.email}`)
-        } else {
-          // User is signed out
-          dispatch(actions.clearUser())
-        }
-    })
-    
-}
+
+onAuthStateChanged(auth, (user) => {
+  const dispatch = store.dispatch
+  if (user) {
+    // User is signed in
+    dispatch(actions.setUser(user))
+  } else {
+    // User is signed out
+    dispatch(actions.clearUser())
+  }
+})
 
