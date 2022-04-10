@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react'
 import { auth } from 'libs/firebase'
-import { signInWithEmailAndPassword } from 'firebase/auth'
+import { browserSessionPersistence, setPersistence, signInWithEmailAndPassword } from 'firebase/auth'
 import { useNavigate } from 'react-router-dom'
 
 export function useInjection() {
@@ -16,13 +16,16 @@ export function useInjection() {
     setPassword(e.target.value)
   }, [])
 
-  const onPressSubmit = useCallback(async () => {
-    try {
-      await signInWithEmailAndPassword(auth, email, password)
-    } finally {
-      navigate('/')
-    }
-      
+  const onPressSubmit = useCallback(() => {
+    setPersistence(auth, browserSessionPersistence).then(() => {
+      return signInWithEmailAndPassword(auth, email, password).then(() => {
+      }).catch((error) => {
+        console.log(`signInError --- ${error}`)
+      }).finally(() => {
+        console.log("navigate")
+        navigate('/')
+      })
+    })
   }, [email, password])
 
   return {
