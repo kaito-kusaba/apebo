@@ -14,31 +14,26 @@ import SetUsernameScreen from 'pages/Attr/Username'
 
 export default function MainNavigator() {
     const { user } = useInjection()
-    if (!user?.email) {
-        return (
-            <Routes>
-                <Route path='/' element={<SigninForm />} />
-                <Route path="/auth/signup" element={<SignupForm />} />
-                <Route path='/auth/signin' element={<SigninForm />} />
-                <Route path='/auth/reset/password' element={<ResetPasswordScreen />} />
-            </Routes>
-        )
-    } else if (user && !user.displayName) {
-        return (
-            <Routes>
-                <Route path='/' element={<SetUsernameScreen />} />
-            </Routes>
-        )
-    } else {
-        return (
-            <Routes>
-                <Route path='/' element={<TopScreen />} />
-                <Route path='/account' element={<AccountScreen />} />
-                <Route path='/account/profile' element={<ProfileScreen />} />
-                <Route path='/notifications' element={<NotificationScreen />} />
-                <Route path='/post/detail/:post_id' element={<PostDetailScreen />} />
-                <Route path='/talk/:room_id' element={<TalkScreen />} />
-            </Routes>
-        )
-    }
+    return (
+        <Routes>
+            {!user || !user.user?.email && (
+                <>
+                    <Route index element={<SigninForm />} />
+                    <Route path="/auth/signup" element={<SignupForm />} />
+                    <Route path='/auth/signin' element={<SigninForm />} />
+                    <Route path='/auth/reset/password' element={<ResetPasswordScreen />} />
+                </>
+            )}
+            {!user.username && (
+                <Route index element={<SetUsernameScreen />} />
+            )}
+            <Route path='/' element={<TopScreen />} />
+            <Route path='/top' element={<TopScreen />} />
+            <Route path='/account' element={<AccountScreen />} />
+            <Route path='/account/profile' element={<ProfileScreen />} />
+            <Route path='/notifications' element={<NotificationScreen />} />
+            <Route path='/post/detail/:post_id' element={<PostDetailScreen />} />
+            <Route path='/talk/:room_id' element={<TalkScreen />} />
+        </Routes>
+    )
 }
