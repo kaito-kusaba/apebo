@@ -7,10 +7,10 @@ import ProfileScreen from 'pages/Account/Profile'
 import NotificationScreen from 'pages/Notification'
 import PostDetailScreen from 'pages/Post/Detail'
 import TalkScreen from 'pages/Talk'
-import SigninForm from 'components/organisms/Forms/SigninForm'
-import SignupForm from 'components/organisms/Forms/SignupForm'
 import ResetPasswordScreen from 'pages/Auth/Reset/Password'
 import SetUsernameScreen from 'pages/Attr/Username'
+import SignupScreen from 'pages/Auth/Signup'
+import SigninScreen from 'pages/Auth/Signin'
 
 export default function MainNavigator() {
     const { user } = useInjection()
@@ -18,9 +18,9 @@ export default function MainNavigator() {
         <Routes>
             {!user || !user.user?.email && (
                 <>
-                    <Route index element={<SigninForm />} />
-                    <Route path="/auth/signup" element={<SignupForm />} />
-                    <Route path='/auth/signin' element={<SigninForm />} />
+                    <Route index element={<SigninScreen />} />
+                    <Route path="/auth/signup" element={<SignupScreen />} />
+                    <Route path='/auth/signin' element={<SigninScreen />} />
                     <Route path='/auth/reset/password' element={<ResetPasswordScreen />} />
                 </>
             )}
