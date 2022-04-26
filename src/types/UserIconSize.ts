@@ -1,0 +1,1 @@
+export type UserIconSize = 40 | 46 | 72

@@ -1,3 +1,3 @@
 import firebase from 'firebase/auth'
 
-export type User = firebase.User | null
+export type User = firebase.User

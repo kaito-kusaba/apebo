@@ -1,0 +1,8 @@
+.icon-container {
+    border-radius: 50%;
+    transition: all .25s;
+}
+
+.icon-container:hover {
+    opacity: 0.8;
+}
