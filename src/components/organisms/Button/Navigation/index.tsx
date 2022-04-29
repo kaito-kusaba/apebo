@@ -1,51 +1,93 @@
 import React, { useCallback, useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import type { NavigationButtonTypes } from 'types/NavigationButtonTypes'
+import { useStyles } from './style'
+import { useLocation, useNavigate } from 'react-router-dom'
+
 import HOME_ACTIVE from 'assets/images/icons/navigation/home_active.png'
 import HOME_DEFAULT from 'assets/images/icons/navigation/home_default.png'
-import SETTINGS_ACTIVE from 'assets/images/icons/navigation/settings_active.png'
-import SETTINGS_DEFAULT from 'assets/images/icons/navigation/settings_default.png'
+import HOME_HOVER from 'assets/images/icons/navigation/home_hover.png'
 import ACCOUNT_ACTIVE from 'assets/images/icons/navigation/account_active.png'
 import ACCOUNT_DEFAULT from 'assets/images/icons/navigation/account_default.png'
+import ACCOUNT_HOVER from 'assets/images/icons/navigation/account_hover.png'
+import POST_ACTIVE from 'assets/images/icons/navigation/post_active.png'
 import POST_DEFAULT from 'assets/images/icons/navigation/post_default.png'
-import { useStyles } from './style'
+import POST_HOVER from 'assets/images/icons/navigation/post_hover.png'
 
 interface Props {
   type: NavigationButtonTypes
 }
 
 export default React.memo(function NavigationButton({ type }: Props) {
-  const [isSelected, setIsSelected] = useState<boolean>(false)
+  const [isSelected, setIsSelected] = useState<number>(0)
+  const [isHovered, setIsHovered] = useState<boolean>(false)
   const [buttonImageSrc, setButtonImageSrc] = useState<string>('')
-  const navigate = useNavigate()
+  const [path, setPath] = useState<string>('')
   const styles = useStyles()
+  const navigate = useNavigate()
+  const location = useLocation()
+  useEffect(() => {
+    switch (location.pathname) {
+      case '/':
+        setIsSelected(0)
+        break
+      case '/account':
+        setIsSelected(1)
+        break
+      case '/post':
+        setIsSelected(2)
+        break
+      default:
+        setIsSelected(0)
+        break
+    }
+  }, [location.pathname])
+
   useEffect(() => {
     switch (type) {
       case 'Home':
-        isSelected ? setButtonImageSrc(HOME_ACTIVE) : setButtonImageSrc(HOME_DEFAULT)
-        navigate('/')
-        break
-      case 'Settings':
-        isSelected ? setButtonImageSrc(SETTINGS_ACTIVE) : setButtonImageSrc(SETTINGS_DEFAULT)
-        navigate('/account/settings')
+        isSelected === 0
+          ? setButtonImageSrc(HOME_ACTIVE)
+          : isHovered
+          ? setButtonImageSrc(HOME_HOVER)
+          : setButtonImageSrc(HOME_DEFAULT)
         break
       case 'Account':
-        isSelected ? setButtonImageSrc(ACCOUNT_ACTIVE) : setButtonImageSrc(ACCOUNT_DEFAULT)
-        navigate('/account')
+        isSelected === 1
+          ? setButtonImageSrc(ACCOUNT_ACTIVE)
+          : isHovered
+          ? setButtonImageSrc(ACCOUNT_HOVER)
+          : setButtonImageSrc(ACCOUNT_DEFAULT)
         break
       case 'Post':
-        setButtonImageSrc(POST_DEFAULT)
-        navigate('/post')
+        isSelected === 2
+          ? setButtonImageSrc(POST_ACTIVE)
+          : isHovered
+          ? setButtonImageSrc(POST_HOVER)
+          : setButtonImageSrc(POST_DEFAULT)
         break
     }
-  }, [isSelected])
+  }, [isSelected, isHovered])
+
+  useEffect(() => {
+    if (type.toLowerCase() === 'home') {
+      setPath('/')
+    } else {
+      setPath(`/${type.toLowerCase()}`)
+    }
+  }, [path])
 
   const onClickNavigationButton = useCallback(() => {
-    setIsSelected(!isSelected)
-  }, [isSelected])
+    navigate(path)
+  }, [path])
+
+  const onMouseToggle = useCallback(() => {
+    setIsHovered(!isHovered)
+  }, [isHovered, setIsHovered])
 
   return (
     <button
+      onMouseEnter={onMouseToggle}
+      onMouseLeave={onMouseToggle}
       onClick={onClickNavigationButton}
       className={`${styles.navigationButton} navigation-buttons navigation-buttons-${type.toLowerCase()}`}>
       <img src={buttonImageSrc} className={styles.navigationButtonImageStyles} alt="" />
