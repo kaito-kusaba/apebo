@@ -8,7 +8,7 @@ export function useStyles() {
     left: 0,
     top: 0,
     height: '100vh',
-    width: 106,
+    width: 88,
     display: 'flex',
     alignItems: 'center',
     flexDirection: 'column',
