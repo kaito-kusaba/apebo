@@ -13,11 +13,11 @@ import TopScreen from 'pages/Top'
 // import SigninScreen from 'pages/Auth/Signin'
 
 export default function MainNavigator() {
-    // const { user } = useInjection()
-    return (
-        <Routes>
-            <Route path="/" element={<TopScreen />} />
-            {/* {!user || !user.user?.email && (
+  // const { user } = useInjection()
+  return (
+    <Routes>
+      <Route path="/" element={<TopScreen />} />
+      {/* {!user || !user.user?.email && (
                 <>
                     <Route index element={<SigninScreen />} />
                     <Route path="/auth/signup" element={<SignupScreen />} />
@@ -35,6 +35,6 @@ export default function MainNavigator() {
             <Route path='/notifications' element={<NotificationScreen />} />
             <Route path='/post/detail/:post_id' element={<PostDetailScreen />} />
             <Route path='/talk/:room_id' element={<TalkScreen />} /> */}
-        </Routes>
-    )
+    </Routes>
+  )
 }

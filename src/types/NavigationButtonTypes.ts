@@ -1,1 +1,1 @@
-export type NavigationButtonTypes = "Home" | "Account" | "Settings" | "Post"
+export type NavigationButtonTypes = 'Home' | 'Account' | 'Post'

@@ -1,51 +1,51 @@
-import type { UserIconSize } from "types/UserIconSize"
-import UNSET40 from "assets/images/icons/user/40_unset.png"
-import UNSET46 from "assets/images/icons/user/46_unset.png"
-import UNSET72 from "assets/images/icons/user/72_unset.png"
-import { useSelector } from "react-redux"
-import { RootState } from "components/redux"
-import { useEffect, useState } from "react"
-import { User } from "types/User"
+import type { UserIconSize } from 'types/UserIconSize'
+import UNSET40 from 'assets/images/icons/user/40_unset.png'
+import UNSET46 from 'assets/images/icons/user/46_unset.png'
+import UNSET72 from 'assets/images/icons/user/72_unset.png'
+import { useSelector } from 'react-redux'
+import { RootState } from 'components/redux'
+import { useEffect, useState } from 'react'
+import { User } from 'types/User'
 
 interface Props {
-    size: UserIconSize
+  size: UserIconSize
 }
 
 export function useInjection({ size }: Props) {
-    const [defaultSrc, setDefaultSrc] = useState<string>('')
-    const [src, setSrc] = useState<string>('')
-    const user: User = useSelector(({ user }: RootState) => user.user)
-    useEffect(() => {
-        switch (size) {
-            case 40: {
-                setDefaultSrc(UNSET40)
-                break
-            }
-            case 46: {
-                setDefaultSrc(UNSET46)
-               break
-            }
-            case 72: {
-                setDefaultSrc(UNSET72)
-                break
-            }
-            default: {
-                setDefaultSrc(UNSET40)
-                break
-            }
-        }
+  const [defaultSrc, setDefaultSrc] = useState<string>('')
+  const [src, setSrc] = useState<string>('')
+  const user: User = useSelector(({ user }: RootState) => user.user)
+  useEffect(() => {
+    switch (size) {
+      case 40: {
+        setDefaultSrc(UNSET40)
+        break
+      }
+      case 46: {
+        setDefaultSrc(UNSET46)
+        break
+      }
+      case 72: {
+        setDefaultSrc(UNSET72)
+        break
+      }
+      default: {
+        setDefaultSrc(UNSET40)
+        break
+      }
+    }
+  }, [size])
 
-    }, [size])
+  useEffect(() => {
+    if (user.photoURL) {
+      setSrc(user.photoURL)
+    } else {
+      setSrc(defaultSrc)
+    }
+  }, [user.photoURL, defaultSrc])
 
-    useEffect(() => {
-        if (user.photoURL) {
-            setSrc(user.photoURL)
-        } else {
-            setSrc(defaultSrc)
-        }
-    }, [user.photoURL, defaultSrc])
-
-    return {
-        src,
-    }    
+  return {
+    src,
+    user,
+  }
 }
