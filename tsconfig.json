@@ -15,8 +15,7 @@
     "isolatedModules": true,
     "noEmit": true,
     "baseUrl": "src",
-    "jsx": "react-jsx",
-    "jsxImportSource": "@emotion/react"
+    "jsx": "react-jsx"
   },
   "include": ["src"]
 }
