@@ -13,8 +13,8 @@ export function useStyles() {
   `
 
   const navigationButtonImageStyles = css`
-    width: 56px;
-    height: 56px;
+    width: 46px;
+    height: 46px;
   `
 
   return {
