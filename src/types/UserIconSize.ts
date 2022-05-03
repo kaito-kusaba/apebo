@@ -1,1 +1,1 @@
-export type UserIconSize = 40 | 46 | 72
+export type UserIconSize = 32 | 40 | 46 | 72
