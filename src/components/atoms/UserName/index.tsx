@@ -3,11 +3,15 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { useStyles } from './style'
 
-export default React.memo(function UserName() {
+interface Props {
+  style?: string
+}
+
+export default React.memo(function UserName({ style }: Props) {
   const styles = useStyles()
   const { user } = useSelector(({ user }: RootState) => user)
   return (
-    <div className={styles.userNameContainerStyle}>
+    <div className={`${styles.userNameContainerStyle} ${style}`}>
       <div className={styles.userName}>[0000] Ringosi{user.displayName}</div>
       <div className={styles.userId}>@userid532423</div>
     </div>
