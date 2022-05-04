@@ -7,6 +7,11 @@
   font-family: 'Noto Sans JP', sans-serif;
 }
 
+body,
+html {
+  background-color: #0c0c0c;
+}
+
 .container {
   width: 100%;
   position: relative;
