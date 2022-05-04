@@ -2,12 +2,12 @@ import { css } from '@emotion/css'
 import { Colors } from 'constant'
 
 export function useStyles() {
-  const postContentDisplayContainerStyle = css`
+  const postContentDisplayStyle = css`
     color: ${Colors.PORPOISE};
-    font-size: 16px;
+    font-size: 14px;
   `
 
   return {
-    postContentDisplayContainerStyle,
+    postContentDisplayStyle,
   }
 }
