@@ -3,7 +3,7 @@ import { Colors } from 'constant'
 
 export function useStyles() {
   const postContentDisplayContainerStyle = css`
-    color: ${Colors.WHITE};
+    color: ${Colors.PORPOISE};
     font-size: 16px;
   `
 
