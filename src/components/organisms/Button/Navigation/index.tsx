@@ -37,7 +37,7 @@ export default React.memo(function NavigationButton({ type }: Props) {
         setIsSelected(2)
         break
       default:
-        setIsSelected(0)
+        setIsSelected(-1)
         break
     }
   }, [location.pathname])
