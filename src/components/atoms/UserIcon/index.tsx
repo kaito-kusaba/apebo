@@ -13,7 +13,7 @@ interface Props {
 export default React.memo(function UserIcon({ size, style }: Props) {
   const { src, user } = useInjection({ size })
   const styles = useStyles()
-  const url = `account/${user.uid}`
+  const url = `/account/${user.uid}`
   return (
     <Link to={url} className={`${styles.iconContainer} ${style}`}>
       <img src={src} width={size} height={size} />
