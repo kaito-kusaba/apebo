@@ -10,7 +10,7 @@ export function useStyles() {
   `
   const header = css`
     display: flex;
-    margin-bottom: 12px;
+    margin: 8px 0 16px 0;
   `
 
   const userName = css`
