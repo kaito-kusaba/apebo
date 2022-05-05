@@ -5,12 +5,10 @@ import ProfileContainer from 'components/organisms/ProfileContainer'
 import { RootState } from 'components/redux'
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-import { useStyles } from './style'
 
 export default React.memo(function AccoutScreen() {
   const { username } = useSelector(({ user }: RootState) => user)
   const [label, setLabel] = useState<string>(username)
-  const styles = useStyles()
 
   useEffect(() => {
     if (!username) {
@@ -19,7 +17,7 @@ export default React.memo(function AccoutScreen() {
   }, [username])
 
   return (
-    <SafeView style={styles.containerStyle}>
+    <SafeView>
       <ScreenLabel label={label} />
       <ProfileContainer />
       <PostContent />
