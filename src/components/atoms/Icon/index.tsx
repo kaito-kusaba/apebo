@@ -1,1 +1,7 @@
 export { default as SettingsIcon } from 'assets/images/icons/settings.png'
+export { default as AccountIcon } from 'assets/images/icons/settings/account.png'
+export { default as AtmarkIcon } from 'assets/images/icons/settings/atmark.png'
+export { default as RightArrowIcon } from 'assets/images/icons/settings/right_arrow.png'
+export { default as PasswordIcon } from 'assets/images/icons/settings/password.png'
+export { default as TermsIcon } from 'assets/images/icons/settings/terms.png'
+export { default as SupportIcon } from 'assets/images/icons/settings/support.png'
