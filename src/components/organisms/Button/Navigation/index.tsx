@@ -12,6 +12,8 @@ import ACCOUNT_HOVER from 'assets/images/icons/navigation/account_hover.png'
 import POST_ACTIVE from 'assets/images/icons/navigation/post_active.png'
 import POST_DEFAULT from 'assets/images/icons/navigation/post_default.png'
 import POST_HOVER from 'assets/images/icons/navigation/post_hover.png'
+import { useDispatch } from 'react-redux'
+import { actions } from 'components/redux/Modal'
 
 interface Props {
   type: NavigationButtonTypes
@@ -24,6 +26,7 @@ export default React.memo(function NavigationButton({ type }: Props) {
   const [path, setPath] = useState<string>('')
   const styles = useStyles()
   const navigate = useNavigate()
+  const dispatch = useDispatch()
   const location = useLocation()
   useEffect(() => {
     switch (location.pathname) {
@@ -77,6 +80,9 @@ export default React.memo(function NavigationButton({ type }: Props) {
   }, [path])
 
   const onClickNavigationButton = useCallback(() => {
+    if (type === 'Post') {
+      dispatch(actions.setModal(true))
+    }
     navigate(path)
   }, [path])
 
