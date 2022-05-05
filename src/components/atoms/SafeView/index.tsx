@@ -1,4 +1,7 @@
+import PostModal from 'components/molecules/Modal/Post'
+import { RootState } from 'components/redux'
 import React from 'react'
+import { useSelector } from 'react-redux'
 import { useStyles } from './style'
 
 interface Props {
@@ -8,5 +11,11 @@ interface Props {
 
 export default React.memo(function SafeView({ children, style }: Props) {
   const styles = useStyles()
-  return <div className={`${styles.safeViewContainer} ${style}`}>{children}</div>
+  const isOpen = useSelector(({ modal }: RootState) => modal.isOpen)
+  return (
+    <div className={`${styles.safeViewContainer} ${style}`}>
+      {isOpen && <PostModal />}
+      {children}
+    </div>
+  )
 })

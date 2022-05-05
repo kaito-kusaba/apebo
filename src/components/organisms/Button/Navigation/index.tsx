@@ -9,7 +9,6 @@ import HOME_HOVER from 'assets/images/icons/navigation/home_hover.png'
 import ACCOUNT_ACTIVE from 'assets/images/icons/navigation/account_active.png'
 import ACCOUNT_DEFAULT from 'assets/images/icons/navigation/account_default.png'
 import ACCOUNT_HOVER from 'assets/images/icons/navigation/account_hover.png'
-import POST_ACTIVE from 'assets/images/icons/navigation/post_active.png'
 import POST_DEFAULT from 'assets/images/icons/navigation/post_default.png'
 import POST_HOVER from 'assets/images/icons/navigation/post_hover.png'
 import { useDispatch } from 'react-redux'
@@ -36,9 +35,6 @@ export default React.memo(function NavigationButton({ type }: Props) {
       case '/account':
         setIsSelected(1)
         break
-      case '/post':
-        setIsSelected(2)
-        break
       default:
         setIsSelected(-1)
         break
@@ -62,11 +58,7 @@ export default React.memo(function NavigationButton({ type }: Props) {
           : setButtonImageSrc(ACCOUNT_DEFAULT)
         break
       case 'Post':
-        isSelected === 2
-          ? setButtonImageSrc(POST_ACTIVE)
-          : isHovered
-          ? setButtonImageSrc(POST_HOVER)
-          : setButtonImageSrc(POST_DEFAULT)
+        isHovered ? setButtonImageSrc(POST_HOVER) : setButtonImageSrc(POST_DEFAULT)
         break
     }
   }, [isSelected, isHovered])
@@ -82,8 +74,9 @@ export default React.memo(function NavigationButton({ type }: Props) {
   const onClickNavigationButton = useCallback(() => {
     if (type === 'Post') {
       dispatch(actions.setModal(true))
+    } else {
+      navigate(path)
     }
-    navigate(path)
   }, [path])
 
   const onMouseToggle = useCallback(() => {
