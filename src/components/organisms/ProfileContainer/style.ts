@@ -15,7 +15,7 @@ export function useStyles() {
 
   const userName = css`
     justify-content: flex-start;
-    margin-left: 24px;
+    margin-left: 16px;
   `
 
   return {
