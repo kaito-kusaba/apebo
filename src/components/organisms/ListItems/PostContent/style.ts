@@ -8,10 +8,18 @@ export function useStyles() {
     display: flex;
     flex-direction: column;
     padding: 16px;
-    border-bottom: 1px solid ${Colors.BLACK_TIE};
+    border: none;
+    outline: none;
+    border-bottom: 1px solid ${Colors.EERIE_BLACK};
+    transition: 0.2s;
+    &:hover {
+      background-color: ${Colors.CHAOS_BLACK};
+      cursor: pointer;
+    }
   `
   const postContentHeader = css`
     display: flex;
+    width: 100%;
     align-items: center;
     justify-content: space-between;
   `
