@@ -5,11 +5,13 @@ import PostContentDisplay from 'components/organisms/PostContentDisplay'
 import React from 'react'
 import { useStyles } from './style'
 import Time from 'components/atoms/Time'
+import { useInjection } from './hooks'
 
 export default React.memo(function PostContent() {
   const styles = useStyles()
+  const { onClickPost } = useInjection()
   return (
-    <div className={styles.postContentContainerStyle}>
+    <button onClick={onClickPost} className={styles.postContentContainerStyle}>
       <div className={styles.postContentHeader}>
         <div className={styles.postContentUser}>
           <UserIcon size={46} style={styles.postContentUserIcon} />
@@ -19,6 +21,6 @@ export default React.memo(function PostContent() {
       </div>
       <PostContentDisplay style={styles.postContentDisplay} />
       <Time />
-    </div>
+    </button>
   )
 })
