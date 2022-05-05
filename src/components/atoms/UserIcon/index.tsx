@@ -8,6 +8,7 @@ interface Props {
   size: UserIconSize
   style?: string
 }
+// TODO: すでに/account/${user.uid}の時は画像を拡大表示する
 
 export default React.memo(function UserIcon({ size, style }: Props) {
   const { src, user } = useInjection({ size })
