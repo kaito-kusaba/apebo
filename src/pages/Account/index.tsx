@@ -7,7 +7,7 @@ import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 
 export default React.memo(function AccoutScreen() {
-  const { username } = useSelector(({ user }: RootState) => user)
+  const { username } = useSelector(({ username }: RootState) => username)
   const [label, setLabel] = useState<string>(username)
 
   useEffect(() => {
