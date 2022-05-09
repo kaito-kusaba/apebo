@@ -11,15 +11,20 @@ import ACCOUNT_DEFAULT from 'assets/images/icons/navigation/account_default.png'
 import ACCOUNT_HOVER from 'assets/images/icons/navigation/account_hover.png'
 import POST_DEFAULT from 'assets/images/icons/navigation/post_default.png'
 import POST_HOVER from 'assets/images/icons/navigation/post_hover.png'
+import SETTINGS_ACTIVE from 'assets/images/icons/navigation/settings_active.png'
+import SETTINGS_HOVER from 'assets/images/icons/navigation/settings_hover.png'
+import SETTINGS_DEFAULT from 'assets/images/icons/navigation/settings_default.png'
+
 import { useDispatch } from 'react-redux'
 import { actions } from 'components/redux/Modal'
 
 interface Props {
   type: NavigationButtonTypes
+  style?: string
 }
 
-export default React.memo(function NavigationButton({ type }: Props) {
-  const [isSelected, setIsSelected] = useState<number>(0)
+export default React.memo(function NavigationButton({ type, style }: Props) {
+  const [isSelected, setIsSelected] = useState<NavigationButtonTypes>('Home')
   const [isHovered, setIsHovered] = useState<boolean>(false)
   const [buttonImageSrc, setButtonImageSrc] = useState<string>('')
   const [path, setPath] = useState<string>('')
@@ -30,13 +35,16 @@ export default React.memo(function NavigationButton({ type }: Props) {
   useEffect(() => {
     switch (location.pathname) {
       case '/':
-        setIsSelected(0)
+        setIsSelected('Home')
         break
       case '/account':
-        setIsSelected(1)
+        setIsSelected('Account')
+        break
+      case '/settings':
+        setIsSelected('Settings')
         break
       default:
-        setIsSelected(-1)
+        setIsSelected('None')
         break
     }
   }, [location.pathname])
@@ -44,14 +52,14 @@ export default React.memo(function NavigationButton({ type }: Props) {
   useEffect(() => {
     switch (type) {
       case 'Home':
-        isSelected === 0
+        isSelected === 'Home'
           ? setButtonImageSrc(HOME_ACTIVE)
           : isHovered
           ? setButtonImageSrc(HOME_HOVER)
           : setButtonImageSrc(HOME_DEFAULT)
         break
       case 'Account':
-        isSelected === 1
+        isSelected === 'Account'
           ? setButtonImageSrc(ACCOUNT_ACTIVE)
           : isHovered
           ? setButtonImageSrc(ACCOUNT_HOVER)
@@ -60,11 +68,18 @@ export default React.memo(function NavigationButton({ type }: Props) {
       case 'Post':
         isHovered ? setButtonImageSrc(POST_HOVER) : setButtonImageSrc(POST_DEFAULT)
         break
+      case 'Settings':
+        isSelected === 'Settings'
+          ? setButtonImageSrc(SETTINGS_ACTIVE)
+          : isHovered
+          ? setButtonImageSrc(SETTINGS_HOVER)
+          : setButtonImageSrc(SETTINGS_DEFAULT)
+        break
     }
   }, [isSelected, isHovered])
 
   useEffect(() => {
-    if (type.toLowerCase() === 'home') {
+    if (type === 'Home') {
       setPath('/')
     } else {
       setPath(`/${type.toLowerCase()}`)
@@ -88,7 +103,7 @@ export default React.memo(function NavigationButton({ type }: Props) {
       onMouseEnter={onMouseToggle}
       onMouseLeave={onMouseToggle}
       onClick={onClickNavigationButton}
-      className={`${styles.navigationButton} navigation-buttons navigation-buttons-${type.toLowerCase()}`}>
+      className={`${styles.navigationButton} ${style} navigation-buttons-${type.toLowerCase()}`}>
       <img src={buttonImageSrc} className={styles.navigationButtonImageStyles} alt="" />
     </button>
   )
