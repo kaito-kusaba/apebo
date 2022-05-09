@@ -8,23 +8,24 @@ export function useInjection() {
   const [password, setPassword] = useState<string>('')
   const navigate = useNavigate()
 
-  const onChangeEmail = useCallback((e) => {
+  const onChangeEmail = useCallback(e => {
     setEmail(e.target.value)
   }, [])
 
-  const onChangePassword = useCallback((e) => {
+  const onChangePassword = useCallback(e => {
     setPassword(e.target.value)
   }, [])
 
   const onPressSubmit = useCallback(() => {
     setPersistence(auth, browserSessionPersistence).then(() => {
-      return signInWithEmailAndPassword(auth, email, password).then(() => {
-      }).catch((error) => {
-        console.log(`signInError --- ${error}`)
-      }).finally(() => {
-        console.log("navigate")
-        navigate('/')
-      })
+      return signInWithEmailAndPassword(auth, email, password)
+        .then(() => {})
+        .catch(error => {
+          console.log(`signInError --- ${error}`)
+        })
+        .finally(() => {
+          navigate('/')
+        })
     })
   }, [email, password])
 
