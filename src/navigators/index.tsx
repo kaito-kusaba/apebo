@@ -4,11 +4,9 @@ import NavigationBar from 'components/organisms/NavigationBar'
 
 export default function RootNavigator() {
   return (
-    <div>
-      <Router>
-        <NavigationBar />
-        <MainNavigator />
-      </Router>
-    </div>
+    <Router>
+      <NavigationBar />
+      <MainNavigator />
+    </Router>
   )
 }
