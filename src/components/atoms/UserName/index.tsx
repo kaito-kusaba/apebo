@@ -13,8 +13,8 @@ export default React.memo(function UserName({ style, hideUid }: Props) {
   const { user } = useSelector(({ user }: RootState) => user)
   return (
     <div className={`${styles.userNameContainerStyle} ${style}`}>
-      <div className={styles.userName}>[0000] Ringosi{user.displayName}</div>
-      {!hideUid && <div className={styles.userId}>@userid532423</div>}
+      <div className={styles.userName}>{user.displayName ? user.displayName : '匿名さん'}</div>
+      {!hideUid && <div className={styles.userId}>@{user.uid ? user.uid : '@anonymous_user'}</div>}
     </div>
   )
 })
