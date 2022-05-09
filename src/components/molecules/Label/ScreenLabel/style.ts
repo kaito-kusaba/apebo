@@ -7,7 +7,6 @@ export function useStyles() {
     padding: 14px 16px;
     background-color: ${Colors.BLACK_WASH};
     display: flex;
-    justify-content: space-between;
     align-items: center;
   `
   const screenLabel = css`
@@ -20,15 +19,9 @@ export function useStyles() {
     font-size: 12px;
   `
 
-  const settingsImg = css`
-    width: 24px;
-    height: 24px;
-  `
-
   return {
     screenLabelContainer,
     screenLabel,
     screenLabelSubTitle,
-    settingsImg,
   }
 }

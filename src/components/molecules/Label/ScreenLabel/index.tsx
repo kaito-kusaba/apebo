@@ -1,6 +1,5 @@
-import { SettingsIcon } from 'components/atoms/Icon'
 import React from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import { useStyles } from './style'
 
 interface Props {
@@ -17,15 +16,13 @@ export default React.memo(function ScreenLabel({ label }: Props) {
           <h1 className={styles.screenLabel}>{label}</h1>
           <span className={styles.screenLabelSubTitle}>件の投稿</span>
         </div>
-        <Link to="/settings">
-          <img src={SettingsIcon} className={styles.settingsImg} />
-        </Link>
+      </div>
+    )
+  } else {
+    return (
+      <div className={styles.screenLabelContainer}>
+        <h1 className={styles.screenLabel}>{label}</h1>
       </div>
     )
   }
-  return (
-    <div className={styles.screenLabelContainer}>
-      <h1 className={styles.screenLabel}>{label}</h1>
-    </div>
-  )
 })
