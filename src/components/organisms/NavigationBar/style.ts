@@ -14,7 +14,16 @@ export function useStyles() {
     alignItems: 'center',
     flexDirection: 'column',
   })
+
+  const settingsButton = css`
+    position: absolute;
+    bottom: 32px;
+    right: 16px;
+    left: 16px;
+  `
+
   return {
     navigationBarStyle,
+    settingsButton,
   }
 }

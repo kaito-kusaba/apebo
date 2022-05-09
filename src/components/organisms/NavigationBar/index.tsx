@@ -13,6 +13,7 @@ export default React.memo(function NavigationBar() {
       <NavigationButton type="Post" />
       <Divider />
       <UserIcon size={40} />
+      <NavigationButton type="Settings" style={styles.settingsButton} />
     </div>
   )
 })
