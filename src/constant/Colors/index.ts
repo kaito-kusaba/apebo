@@ -9,3 +9,6 @@ export const SQUANT = '#666666'
 export const GREY = '#B6B6B6'
 export const PORPOISE = '#DADADA'
 export const WHITE = '#FFFFFF'
+
+// Yellow
+export const YELLOW = 'F5BF00'
