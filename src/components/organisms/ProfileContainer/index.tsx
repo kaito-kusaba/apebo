@@ -9,11 +9,9 @@ import { useStyles } from './style'
 export default React.memo(function ProfileContainer() {
   const styles = useStyles()
   const [bio, setBio] = useState<string>('')
-  const [discordId, setDiscordId] = useState<string>('')
 
   useEffect(() => {
     setBio('基本夜の9時からやってます。Apexの他にも色々なゲームもしてます！気軽にDMして下さい！')
-    setDiscordId('ringosi#0745')
   }, [])
 
   // TODO: fetch datas
@@ -25,7 +23,7 @@ export default React.memo(function ProfileContainer() {
         <UserName style={styles.userName} />
       </div>
       <BioDisplay text={bio} />
-      <DiscordID discordId={discordId} />
+      <DiscordID />
       <FollowFollower follows={222} followers={10000} />
     </div>
   )
