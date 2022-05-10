@@ -11,4 +11,7 @@ export const PORPOISE = '#DADADA'
 export const WHITE = '#FFFFFF'
 
 // Yellow
-export const YELLOW = 'F5BF00'
+export const YELLOW = '#F5BF00'
+
+// Red
+export const RED = '#C0190E'
