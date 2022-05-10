@@ -1,9 +1,5 @@
 import type { SettingsCardType } from 'types/SettingsCardTypes'
-import { AccountIcon } from 'components/atoms/Icon'
-import { AtmarkIcon } from 'components/atoms/Icon'
-import { PasswordIcon } from 'components/atoms/Icon'
-import { TermsIcon } from 'components/atoms/Icon'
-import { SupportIcon } from 'components/atoms/Icon'
+import { AccountIcon, AtmarkIcon, PasswordIcon, TermsIcon, SupportIcon, SignOutIconRed } from 'components/atoms/Icon'
 
 export const SETTINGS_CARD_DATAS: SettingsCardType[] = [
   {
@@ -23,6 +19,7 @@ export const SETTINGS_CARD_DATAS: SettingsCardType[] = [
     icon: PasswordIcon,
     label: 'パスワード',
     subTitle: 'パスワードはいつでも変更できます。',
+    bottom: 32,
   },
   { url: '/app/terms', icon: TermsIcon, label: '利用規約', subTitle: 'GamerPostの利用規約を確認できます。' },
   {
@@ -30,5 +27,13 @@ export const SETTINGS_CARD_DATAS: SettingsCardType[] = [
     icon: SupportIcon,
     label: 'お問い合わせ',
     subTitle: 'どなたでも、お気軽にお問い合わせください。',
+    bottom: 32,
+  },
+  {
+    url: '/auth/signout',
+    icon: SignOutIconRed,
+    label: 'サインアウト',
+    subTitle: null,
+    isSignOut: true,
   },
 ]
