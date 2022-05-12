@@ -8,6 +8,7 @@ export const BLACK_TIE = '#474747'
 export const SQUANT = '#666666'
 export const GREY = '#B6B6B6'
 export const PORPOISE = '#DADADA'
+export const BRAINSTEM_GREY = '#B3B3B3'
 export const WHITE = '#FFFFFF'
 
 // Yellow
@@ -15,3 +16,7 @@ export const YELLOW = '#F5BF00'
 
 // Red
 export const RED = '#C0190E'
+export const INDIAN_RED = '#87120A'
+
+// Green
+export const GREEN = '#1CA36F'
