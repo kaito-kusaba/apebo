@@ -16,7 +16,7 @@ export function useStyles() {
     transition: all ease 0.3s;
     width: 100%;
     margin-bottom: 10px;
-    border-bottom: 1px ${Colors.CHAOS_BLACK} solid;
+    border-bottom: 1px ${Colors.EERIE_BLACK} solid;
     &:focus {
       border-bottom: 1px ${Colors.WHITE} solid;
     }
