@@ -4,6 +4,7 @@ import React, { useEffect } from 'react'
 export default function SignOutScreen() {
   useEffect(() => {
     auth.signOut()
+    window.location.href = '/auth/signin'
   }, [])
   return (
     <div>
