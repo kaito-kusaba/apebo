@@ -8,7 +8,7 @@ interface Props {
 }
 
 export default React.memo(function PasswordInput({ value, onChange, ...props }: Props) {
-  const [hidden, setHidden] = useState<boolean>(false)
+  const [hidden, setHidden] = useState<boolean>(true)
   const styles = useStyles()
 
   const onClick = useCallback(() => {
