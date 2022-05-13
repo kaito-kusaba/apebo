@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useState } from 'react'
 import { updateProfile } from 'firebase/auth'
 import { auth } from 'libs/firebase'
 import { actions } from 'components/redux/UserName'
@@ -10,35 +10,26 @@ export function useInjection() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  useEffect(() => {
-    console.log(name)
-  }, [name])
-
-  const onChangeName = useCallback(
-    e => {
-      setName(e.target.value)
-    },
-    [name],
-  )
+  const onChangeName = useCallback(e => {
+    setName(e.target.value)
+  }, [])
 
   const onClickSubmit = useCallback(() => {
     if (auth.currentUser) {
+      dispatch(actions.setUserName(name))
       updateProfile(auth.currentUser, {
         displayName: name,
       })
         .then(() => {
-          dispatch(actions.setUserName(name))
           console.log(name)
-          navigate('/top')
+          navigate('/')
         })
         .catch(e => {
           alert('プロフィール更新に失敗')
           console.log(e)
         })
-    } else {
-      alert('ユーザーがない')
     }
-  }, [])
+  }, [name])
 
   return {
     name,

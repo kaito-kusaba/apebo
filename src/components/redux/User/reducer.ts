@@ -6,7 +6,7 @@ const initialState = {
 }
 
 export type UserStore = {
-  user: User
+  user: User | null
 }
 
 /* reducer */

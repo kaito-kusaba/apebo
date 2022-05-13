@@ -4,12 +4,15 @@ import { browserSessionPersistence, setPersistence, signInWithEmailAndPassword }
 import { useNavigate } from 'react-router-dom'
 import { ValidationType } from 'types/ValidationType'
 import { validatePassword } from 'utils/validator'
+import { useDispatch } from 'react-redux'
+import { actions } from 'components/redux/User'
 
 export function useInjection() {
   const [email, setEmail] = useState<string>('')
   const [password, setPassword] = useState<string>('')
   const [validation, setValidation] = useState<ValidationType>('blank')
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const onChangeEmail = useCallback(e => {
     setEmail(e.target.value)
@@ -30,12 +33,13 @@ export function useInjection() {
   const onPressSubmit = useCallback(() => {
     setPersistence(auth, browserSessionPersistence).then(() => {
       return signInWithEmailAndPassword(auth, email, password)
-        .then(() => {})
+        .then(userCredential => {
+          const user = userCredential.user
+          dispatch(actions.setUser(user))
+          navigate('/attr/username')
+        })
         .catch(error => {
           console.log(`signInError --- ${error}`)
-        })
-        .finally(() => {
-          navigate('/')
         })
     })
   }, [email, password])
