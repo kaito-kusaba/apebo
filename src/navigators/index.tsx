@@ -7,18 +7,17 @@ import { useInjection } from './hooks'
 
 export default React.memo(function RootNavigator() {
   const { user } = useInjection()
-  if (user.uid) {
+  if (user?.uid) {
     return (
       <Router>
         <NavigationBar />
         <MainNavigator />
       </Router>
     )
-  } else {
-    return (
-      <Router>
-        <AuthNavigator />
-      </Router>
-    )
   }
+  return (
+    <Router>
+      <AuthNavigator />
+    </Router>
+  )
 })

@@ -14,7 +14,7 @@ interface Props {
 export default React.memo(function UserIcon({ size, disabled, style }: Props) {
   const { src, user } = useInjection({ size })
   const styles = useStyles()
-  const url = `/account/${user.uid}`
+  const url = `/account/${user?.uid}`
   if (disabled) {
     return (
       <div className={`${styles.iconContainer} ${style}`}>

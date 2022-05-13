@@ -14,7 +14,7 @@ interface Props {
 export function useInjection({ size }: Props) {
   const [defaultSrc, setDefaultSrc] = useState<string>('')
   const [src, setSrc] = useState<string>('')
-  const user: User = useSelector(({ user }: RootState) => user.user)
+  const user: User | null = useSelector(({ user }: RootState) => user.user)
   useEffect(() => {
     switch (size) {
       case 40: {
@@ -37,12 +37,12 @@ export function useInjection({ size }: Props) {
   }, [size])
 
   useEffect(() => {
-    if (user.photoURL) {
-      setSrc(user.photoURL)
+    if (user?.photoURL) {
+      setSrc(user?.photoURL)
     } else {
       setSrc(defaultSrc)
     }
-  }, [user.photoURL, defaultSrc])
+  }, [user?.photoURL, defaultSrc])
 
   return {
     src,
