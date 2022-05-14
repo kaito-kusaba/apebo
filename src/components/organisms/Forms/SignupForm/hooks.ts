@@ -32,7 +32,11 @@ export function useInjection() {
         .then(userCredential => {
           const user = userCredential.user
           dispatch(actions.setUser(user))
-          navigate('/attr/username')
+          if (user.displayName) {
+            navigate('/')
+          } else {
+            navigate('/attr/username')
+          }
         })
         .catch(error => {
           console.log(`signUpError --- ${error}`)
