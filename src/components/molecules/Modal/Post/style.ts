@@ -68,6 +68,7 @@ export function useStyles() {
   const smileIcon = css`
     width: 25px;
     height: 25px;
+    margin-left: 24px;
   `
 
   return {
