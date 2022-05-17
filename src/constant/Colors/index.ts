@@ -17,6 +17,7 @@ export const YELLOW = '#F5BF00'
 // Red
 export const RED = '#C0190E'
 export const INDIAN_RED = '#87120A'
+export const PINK = '#FF4545'
 
 // Green
 export const GREEN = '#1CA36F'
