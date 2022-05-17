@@ -51,6 +51,24 @@ export function useStyles() {
     font-size: 16px;
     font-weight: 100;
   `
+  const postButton = css`
+    background-color: ${Colors.RED};
+    color: ${Colors.WHITE};
+    font-weight: bold;
+    font-size: 14px;
+    width: 88px;
+    height: 40px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+    &:hover {
+      background-color: ${Colors.PINK};
+    }
+  `
+  const smileIcon = css`
+    width: 25px;
+    height: 25px;
+  `
 
   return {
     modalContainer,
@@ -60,5 +78,7 @@ export function useStyles() {
     textArea,
     textAreaInfoContainer,
     textAreaLength,
+    postButton,
+    smileIcon,
   }
 }
