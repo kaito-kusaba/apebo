@@ -1,5 +1,7 @@
 import { GoogleIcon } from 'components/atoms/Icon'
-import React from 'react'
+import { signInWithRedirect } from 'firebase/auth'
+import { auth, provider } from 'libs/firebase'
+import React, { useCallback } from 'react'
 import { useStyles } from './style'
 
 interface Props {
@@ -8,8 +10,13 @@ interface Props {
 
 export default React.memo(function GoogleAuthButton({ style }: Props) {
   const styles = useStyles()
+
+  const onClick = useCallback(() => {
+    signInWithRedirect(auth, provider)
+  }, [])
+
   return (
-    <button className={`${styles.container} ${style}`}>
+    <button onClick={onClick} className={`${styles.container} ${style}`}>
       <img className={styles.googleIcon} src={GoogleIcon} alt="" />
       <span className={styles.label}>Googleで続ける</span>
     </button>

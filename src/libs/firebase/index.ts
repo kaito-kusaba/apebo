@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app'
-import { getAuth, onAuthStateChanged } from 'firebase/auth'
+import { getAuth, onAuthStateChanged, GoogleAuthProvider } from 'firebase/auth'
 import 'firebase/app'
 import { actions } from 'components/redux/User'
 import store from 'components/redux/store'
@@ -17,6 +17,7 @@ const firebaseConfig = {
 initializeApp(firebaseConfig)
 
 export const auth = getAuth()
+export const provider = new GoogleAuthProvider()
 
 onAuthStateChanged(auth, user => {
   const dispatch = store.dispatch
