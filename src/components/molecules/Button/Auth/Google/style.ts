@@ -11,6 +11,7 @@ export function useStyles() {
     width: 100%;
     height: 48px;
     background-color: transparent;
+    cursor: pointer;
   `
 
   const googleIcon = css`
