@@ -1,7 +1,9 @@
 import { initializeApp } from 'firebase/app'
 import { getAuth, onAuthStateChanged, GoogleAuthProvider } from 'firebase/auth'
 import 'firebase/app'
-import { actions } from 'components/redux/User'
+import { actions as userActions } from 'components/redux/User'
+import { actions as userNameActions } from 'components/redux/UserName'
+import { actions as modalActions } from 'components/redux/Modal'
 import store from 'components/redux/store'
 
 const firebaseConfig = {
@@ -23,9 +25,11 @@ onAuthStateChanged(auth, user => {
   const dispatch = store.dispatch
   if (user) {
     // User is signed in
-    dispatch(actions.setUser(user))
+    dispatch(userActions.setUser(user))
   } else {
     // User is signed out
-    dispatch(actions.clearUser())
+    dispatch(userActions.clearUser())
+    dispatch(userNameActions.clearUserName())
+    dispatch(modalActions.setModal(false))
   }
 })

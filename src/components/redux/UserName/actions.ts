@@ -7,6 +7,6 @@ export const setUserName = (userName: string) => {
   return { type: ActionTypes.SET_USER_NAME, payload: userName }
 }
 
-export const clearUser = () => {
+export const clearUserName = () => {
   return { type: ActionTypes.CLEAR_USER_NAME, payload: null }
 }
