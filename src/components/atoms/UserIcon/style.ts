@@ -8,7 +8,12 @@ export function useStyles() {
     align-items: center;
     justify-content: center;
   `
+  const icon = css`
+    border-radius: 50%;
+  `
+
   return {
     iconContainer,
+    icon,
   }
 }

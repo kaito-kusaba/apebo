@@ -18,13 +18,13 @@ export default React.memo(function UserIcon({ size, disabled, style }: Props) {
   if (disabled) {
     return (
       <div className={`${styles.iconContainer} ${style}`}>
-        <img src={src} width={size} height={size} />
+        <img className={styles.icon} src={src} width={size} height={size} />
       </div>
     )
   } else {
     return (
       <Link to={url} className={`${styles.iconContainer} ${style}`}>
-        <img src={src} width={size} height={size} />
+        <img className={styles.icon} src={src} width={size} height={size} />
       </Link>
     )
   }
