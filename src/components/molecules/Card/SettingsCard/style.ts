@@ -63,6 +63,7 @@ export function useStyles({ bottom, isSignOut }: Props) {
         font-size: 16px;
         font-weight: 500;
         color: ${Colors.WHITE};
+        margin-bottom: 2px;
       `
     }
   }
