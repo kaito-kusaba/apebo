@@ -15,7 +15,6 @@ export function useStyles({ validation }: Props) {
     width: 340px;
     height: 48px;
     letter-spacing: 1px;
-    outline: none;
     border: none;
   `
   const container = () => {

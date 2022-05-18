@@ -37,7 +37,6 @@ export function useStyles() {
     border: none;
     padding: 0 24px;
     width: 100%;
-    outline: none;
     color: ${Colors.PORPOISE};
     font-size: 19px;
     overflow: hidden;

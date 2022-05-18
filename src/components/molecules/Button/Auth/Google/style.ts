@@ -6,7 +6,6 @@ export function useStyles() {
     display: flex;
     align-items: center;
     justify-content: center;
-    outline: none;
     border-radius: 8px;
     border: 1px solid ${Colors.PORPOISE};
     width: 100%;

@@ -9,7 +9,6 @@ export function useStyles() {
     flex-direction: column;
     padding: 16px;
     border: none;
-    outline: none;
     border-bottom: 1px solid ${Colors.EERIE_BLACK};
     transition: 0.2s;
     &:hover {

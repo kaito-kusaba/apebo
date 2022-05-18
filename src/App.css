@@ -12,6 +12,13 @@ html {
   background-color: #0c0c0c;
 }
 
+button,
+input,
+a,
+textarea {
+  outline: none;
+}
+
 .container {
   width: 100%;
   position: relative;

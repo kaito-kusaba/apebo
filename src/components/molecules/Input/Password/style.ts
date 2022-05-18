@@ -10,7 +10,6 @@ export function useStyles() {
     padding: 10px 0 6px 0;
     color: ${Colors.WHITE};
     font-size: 16px;
-    outline: none;
     border: none;
     background-color: transparent;
     transition: all ease 0.3s;
@@ -38,7 +37,6 @@ export function useStyles() {
     justify-content: center;
     background-color: transparent;
     border: none;
-    outline: none;
   `
   return {
     container,

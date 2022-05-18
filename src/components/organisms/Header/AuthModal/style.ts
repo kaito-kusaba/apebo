@@ -13,7 +13,6 @@ export function useStyles() {
   const cancelButton = css`
     position: absolute;
     right: 0px;
-    outline: none;
     border: none;
     background-color: transparent;
     display: flex;
