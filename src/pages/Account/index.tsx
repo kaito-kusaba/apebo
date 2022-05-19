@@ -7,11 +7,11 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 
 export default React.memo(function AccoutScreen() {
-  const { username } = useSelector(({ username }: RootState) => username)
+  const { user } = useSelector(({ user }: RootState) => user)
 
   return (
     <SafeView>
-      <ScreenLabel label={username ? username : '匿名さん'} />
+      <ScreenLabel label={user?.displayName ? user.displayName : '匿名さん'} />
       <ProfileContainer />
       <PostContent />
     </SafeView>

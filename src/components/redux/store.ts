@@ -1,6 +1,5 @@
 import { combineReducers, createStore } from 'redux'
 import { userReducer as user } from './User'
-import { userNameReducer as username } from './UserName'
 import { modalReducer as modal } from './Modal'
 import { timeLineTabReducer as tltab } from './TimeLineTab'
 import { persistReducer, persistStore } from 'redux-persist'
@@ -13,7 +12,6 @@ const persistConfig = {
 
 const reducers = combineReducers({
   user,
-  username,
   modal,
   tltab,
 })

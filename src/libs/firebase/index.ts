@@ -2,7 +2,6 @@ import { initializeApp } from 'firebase/app'
 import { getAuth, onAuthStateChanged, GoogleAuthProvider } from 'firebase/auth'
 import 'firebase/app'
 import { actions as userActions } from 'components/redux/User'
-import { actions as userNameActions } from 'components/redux/UserName'
 import { actions as modalActions } from 'components/redux/Modal'
 import store from 'components/redux/store'
 
@@ -29,7 +28,6 @@ onAuthStateChanged(auth, user => {
   } else {
     // User is signed out
     dispatch(userActions.clearUser())
-    dispatch(userNameActions.clearUserName())
     dispatch(modalActions.setModal(false))
   }
 })

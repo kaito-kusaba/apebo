@@ -1,6 +1,11 @@
 import { useCallback, useEffect, useState } from 'react'
-import { auth } from 'libs/firebase'
-import { browserSessionPersistence, setPersistence, signInWithEmailAndPassword } from 'firebase/auth'
+import { auth, provider } from 'libs/firebase'
+import {
+  browserSessionPersistence,
+  setPersistence,
+  signInWithEmailAndPassword,
+  signInWithRedirect,
+} from 'firebase/auth'
 import { useNavigate } from 'react-router-dom'
 import { ValidationType } from 'types/ValidationType'
 import { validatePassword } from 'utils/validator'
@@ -30,6 +35,12 @@ export function useInjection() {
     console.log('close')
   }, [])
 
+  const onClickGoogleButton = useCallback(() => {
+    signInWithRedirect(auth, provider).then(() => {
+      navigate('/')
+    })
+  }, [])
+
   const onPressSubmit = useCallback(() => {
     setPersistence(auth, browserSessionPersistence).then(() => {
       return signInWithEmailAndPassword(auth, email, password)
@@ -56,5 +67,6 @@ export function useInjection() {
     onPressSubmit,
     onClickCancel,
     validation,
+    onClickGoogleButton,
   }
 }

@@ -14,10 +14,11 @@ export default React.memo(function RootNavigator() {
         <MainNavigator />
       </Router>
     )
+  } else {
+    return (
+      <Router>
+        <AuthNavigator />
+      </Router>
+    )
   }
-  return (
-    <Router>
-      <AuthNavigator />
-    </Router>
-  )
 })

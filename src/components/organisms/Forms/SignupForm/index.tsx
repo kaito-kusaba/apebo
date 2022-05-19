@@ -10,7 +10,16 @@ import AuthButton from 'components/molecules/Button/Auth'
 import GoogleAuthButton from 'components/molecules/Button/Auth/Google'
 
 export default function SignupForm() {
-  const { email, onChangeEmail, password, onChangePassword, onPressSubmit, onClickCancel, validation } = useInjection()
+  const {
+    email,
+    onChangeEmail,
+    password,
+    onChangePassword,
+    onPressSubmit,
+    onClickCancel,
+    validation,
+    onClickGoogleButton,
+  } = useInjection()
   const styles = useStyles()
 
   return (
@@ -20,7 +29,7 @@ export default function SignupForm() {
       <PasswordInput value={password} onChange={onChangePassword} />
       <ValidateLabel validation={validation} style={styles.validationLabel} />
       <AuthButton label="新規登録(無料)" onClick={onPressSubmit} validation={validation} style={styles.signInButton} />
-      <GoogleAuthButton style={styles.googleButton} />
+      <GoogleAuthButton onClick={onClickGoogleButton} style={styles.googleButton} />
       <p className={styles.signUp}>
         すでにアカウントをお持ちの方は
         <br />

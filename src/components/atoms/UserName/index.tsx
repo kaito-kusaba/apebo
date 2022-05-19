@@ -11,11 +11,10 @@ interface Props {
 export default React.memo(function UserName({ style, hideUid }: Props) {
   const styles = useStyles()
   const { user } = useSelector(({ user }: RootState) => user)
-  const { username } = useSelector(({ username }: RootState) => username)
   return (
     <div className={`${styles.userNameContainerStyle} ${style}`}>
-      <div className={styles.userName}>{username ? username : '匿名さん'}</div>
-      {!hideUid && <div className={styles.userId}>@{user?.uid ? user.uid : '@anonymous_user'}</div>}
+      <div className={styles.userName}>{user?.displayName}</div>
+      {!hideUid && <div className={styles.userId}>@{user?.uid ? user.uid : 'anonymous_user'}</div>}
     </div>
   )
 })

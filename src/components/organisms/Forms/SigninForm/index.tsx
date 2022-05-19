@@ -11,7 +11,16 @@ import ValidateLabel from 'components/molecules/Label/ValidateLabel'
 
 export default function SigninForm() {
   const styles = useStyles()
-  const { email, onChangeEmail, password, onChangePassword, onPressSubmit, onClickCancel, validation } = useInjection()
+  const {
+    email,
+    onChangeEmail,
+    password,
+    onChangePassword,
+    onPressSubmit,
+    onClickCancel,
+    validation,
+    onClickGoogleButton,
+  } = useInjection()
 
   return (
     <div className={styles.container}>
@@ -26,7 +35,7 @@ export default function SigninForm() {
         </Link>
       </p>
       <AuthButton label="サインイン" onClick={onPressSubmit} validation={validation} style={styles.signInButton} />
-      <GoogleAuthButton style={styles.googleButton} />
+      <GoogleAuthButton onClick={onClickGoogleButton} style={styles.googleButton} />
       <p className={styles.signUp}>
         アカウントをお持ちでない方は
         <br />
