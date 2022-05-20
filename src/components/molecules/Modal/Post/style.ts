@@ -44,6 +44,9 @@ export function useStyles() {
 
   const textAreaInfoContainer = css`
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px;
   `
   const textAreaLength = css`
     color: ${Colors.GREY};
@@ -58,12 +61,18 @@ export function useStyles() {
     width: 88px;
     height: 40px;
     border-radius: 8px;
+    border: none;
     cursor: pointer;
     transition: 0.2s;
     &:hover {
       background-color: ${Colors.PINK};
     }
   `
+  const yellowButtons = css`
+    display: flex;
+    align-items: center;
+  `
+
   const smileIcon = css`
     width: 24px;
     height: 24px;
@@ -74,8 +83,19 @@ export function useStyles() {
   const addImage = css`
     width: 24px;
     height: 24px;
-    margin-left: 24px;
     cursor: pointer;
+  `
+  const line = css`
+    display: block;
+    margin: 0 18px;
+    height: 24px;
+    width: 1px;
+    background-color: ${Colors.JET};
+  `
+
+  const postButtonContainer = css`
+    display: flex;
+    align-items: center;
   `
 
   return {
@@ -87,7 +107,10 @@ export function useStyles() {
     textAreaInfoContainer,
     textAreaLength,
     postButton,
+    yellowButtons,
     smileIcon,
     addImage,
+    line,
+    postButtonContainer,
   }
 }
