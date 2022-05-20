@@ -1,4 +1,5 @@
 import { SmileIconYellow } from 'components/atoms/Icon'
+import { AddImageIconYellow } from 'components/atoms/Icon'
 import UserIcon from 'components/atoms/UserIcon'
 import UserName from 'components/atoms/UserName'
 import { RootState } from 'components/redux'
@@ -42,9 +43,17 @@ export default React.memo(function PostModal() {
     return ref
   }
 
-  const onClickPostButton = () => {
+  const onClickPostButton = useCallback(() => {
     alert('ボタンおしたぞ')
-  }
+  }, [])
+
+  const onClickAddImage = useCallback(() => {
+    alert('画像をアップロード')
+  }, [])
+
+  const onClickSmileIcon = useCallback(() => {
+    alert('にこちゃんまーく')
+  }, [])
 
   return (
     <Modal
@@ -65,9 +74,13 @@ export default React.memo(function PostModal() {
         ref={textAreaRef}
       />
       <div className={styles.textAreaInfoContainer}>
-        <img className={styles.smileIcon} src={SmileIconYellow} alt="nikochan" />
-        <div>
+        <div className={styles.yellowButtons}>
+          <img className={styles.addImage} src={AddImageIconYellow} alt="" onClick={onClickAddImage} />
+          <img className={styles.smileIcon} src={SmileIconYellow} alt="" onClick={onClickSmileIcon} />
+        </div>
+        <div className={styles.postButtonContainer}>
           <span className={styles.textAreaLength}>{text.length}/200</span>
+          <span className={styles.line} />
           <button onClick={onClickPostButton} className={styles.postButton}>
             投稿
           </button>

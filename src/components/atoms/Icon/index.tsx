@@ -23,3 +23,4 @@ export { default as CancelIconGrey } from 'assets/images/icons/GrayIcons/cancel.
 export { default as CancelIconRed } from 'assets/images/icons/RedIcons/cancel.png'
 export { default as GoogleIcon } from 'assets/images/icons/google.png'
 export { default as SmileIconYellow } from 'assets/images/icons/YellowIcons/smile.png'
+export { default as AddImageIconYellow } from 'assets/images/icons/YellowIcons/Add_Image.png'
