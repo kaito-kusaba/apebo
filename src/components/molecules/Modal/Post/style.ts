@@ -71,7 +71,7 @@ export function useStyles() {
     cursor: pointer;
   `
 
-  const add_Image = css`
+  const addImage = css`
     width: 24px;
     height: 24px;
     margin-left: 24px;
@@ -88,6 +88,6 @@ export function useStyles() {
     textAreaLength,
     postButton,
     smileIcon,
-    add_Image,
+    addImage,
   }
 }

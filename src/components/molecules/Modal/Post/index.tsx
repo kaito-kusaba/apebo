@@ -74,7 +74,7 @@ export default React.memo(function PostModal() {
         ref={textAreaRef}
       />
       <div className={styles.textAreaInfoContainer}>
-        <img className={styles.add_Image} src={AddImageIconYellow} alt="" onClick={onClickAddImage} />
+        <img className={styles.addImage} src={AddImageIconYellow} alt="" onClick={onClickAddImage} />
         <img className={styles.smileIcon} src={SmileIconYellow} alt="" onClick={onClickSmileIcon} />
         <div>
           <span className={styles.textAreaLength}>{text.length}/200</span>
