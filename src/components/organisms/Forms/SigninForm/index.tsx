@@ -20,6 +20,7 @@ export default function SigninForm() {
     onClickCancel,
     validation,
     onClickGoogleButton,
+    errorText,
   } = useInjection()
 
   return (
@@ -28,6 +29,7 @@ export default function SigninForm() {
       <EmailInput value={email} onChange={onChangeEmail} style={styles.emailInput} />
       <PasswordInput value={password} onChange={onChangePassword} />
       <ValidateLabel validation={validation} />
+      <span className={styles.invalid}>{errorText}</span>
       <p className={styles.forgot}>
         パスワードを忘れた方は
         <Link className={styles.forgotLink} to="/auth/forgot/password">

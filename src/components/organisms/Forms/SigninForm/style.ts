@@ -45,6 +45,13 @@ export function useStyles() {
     color: ${Colors.YELLOW};
   `
 
+  const invalid = css`
+    color: ${Colors.RED};
+    font-size: 12px;
+    width: 100%;
+    margin-bottom: 8px;
+  `
+
   return {
     container,
     emailInput,
@@ -54,5 +61,6 @@ export function useStyles() {
     googleButton,
     signUp,
     signUpLink,
+    invalid,
   }
 }

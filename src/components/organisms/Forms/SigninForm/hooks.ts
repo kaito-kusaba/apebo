@@ -16,6 +16,7 @@ export function useInjection() {
   const [email, setEmail] = useState<string>('')
   const [password, setPassword] = useState<string>('')
   const [validation, setValidation] = useState<ValidationType>('blank')
+  const [errorText, setErrorText] = useState<string>('')
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
@@ -54,7 +55,26 @@ export function useInjection() {
           }
         })
         .catch(error => {
-          console.log(`signInError --- ${error}`)
+          //console.log(`signInError --- ${error}`) 確認用
+          switch (error.code) {
+            case 'auth/email-already-in-use':
+              setErrorText('このメールアドレスは既に使用されています。')
+              break
+            case 'auth/invalid-email':
+              setErrorText('このメールアドレスは登録されていません。')
+              break
+            case 'auth/weak-password':
+              setErrorText('パスワードが適切ではありません。')
+              break
+            case 'auth/user-disabled':
+              setErrorText('アカウントが無効です。')
+              break
+            case 'auth/user-not-found':
+              setErrorText('パスワードまたはメールアドレスが違います。')
+              break
+            case 'auth/wrong-password':
+              setErrorText('パスワードまたはメールアドレスが違います。')
+          }
         })
     })
   }, [email, password])
@@ -68,5 +88,6 @@ export function useInjection() {
     onClickCancel,
     validation,
     onClickGoogleButton,
+    errorText,
   }
 }
