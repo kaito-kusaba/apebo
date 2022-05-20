@@ -43,17 +43,17 @@ export default React.memo(function PostModal() {
     return ref
   }
 
-  const onClickPostButton = () => {
+  const onClickPostButton = useCallback(() => {
     alert('ボタンおしたぞ')
-  }
+  }, [])
 
-  const onClickAddImage = () => {
+  const onClickAddImage = useCallback(() => {
     alert('画像をアップロード')
-  }
+  }, [])
 
-  const onClickSmileIcon = () => {
+  const onClickSmileIcon = useCallback(() => {
     alert('にこちゃんまーく')
-  }
+  }, [])
 
   return (
     <Modal
