@@ -74,10 +74,13 @@ export default React.memo(function PostModal() {
         ref={textAreaRef}
       />
       <div className={styles.textAreaInfoContainer}>
-        <img className={styles.addImage} src={AddImageIconYellow} alt="" onClick={onClickAddImage} />
-        <img className={styles.smileIcon} src={SmileIconYellow} alt="" onClick={onClickSmileIcon} />
-        <div>
+        <div className={styles.yellowButtons}>
+          <img className={styles.addImage} src={AddImageIconYellow} alt="" onClick={onClickAddImage} />
+          <img className={styles.smileIcon} src={SmileIconYellow} alt="" onClick={onClickSmileIcon} />
+        </div>
+        <div className={styles.postButtonContainer}>
           <span className={styles.textAreaLength}>{text.length}/200</span>
+          <span className={styles.line} />
           <button onClick={onClickPostButton} className={styles.postButton}>
             投稿
           </button>
