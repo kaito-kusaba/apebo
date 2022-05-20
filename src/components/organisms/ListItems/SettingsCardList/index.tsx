@@ -10,6 +10,7 @@ export default React.memo(function SettingsCardList() {
       {SETTINGS_CARD_DATAS.map(data => {
         return (
           <SettingsCard
+            key={data.label}
             label={data.label}
             subTitle={data.subTitle}
             icon={data.icon}
