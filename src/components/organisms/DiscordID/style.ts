@@ -5,6 +5,7 @@ export function useStyles() {
   const discordIdContainer = css`
     display: flex;
     margin-bottom: 12px;
+    cursor: pointer;
     &:hover {
       text-decoration: underline;
       text-decoration-color: ${Colors.WHITE};
