@@ -65,9 +65,17 @@ export function useStyles() {
     }
   `
   const smileIcon = css`
-    width: 25px;
-    height: 25px;
+    width: 24px;
+    height: 24px;
     margin-left: 24px;
+    cursor: pointer;
+  `
+
+  const addImage = css`
+    width: 24px;
+    height: 24px;
+    margin-left: 24px;
+    cursor: pointer;
   `
 
   return {
@@ -80,5 +88,6 @@ export function useStyles() {
     textAreaLength,
     postButton,
     smileIcon,
+    addImage,
   }
 }
