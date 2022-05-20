@@ -1,4 +1,5 @@
 import { SmileIconYellow } from 'components/atoms/Icon'
+import { AddImageIconYellow } from 'components/atoms/Icon'
 import UserIcon from 'components/atoms/UserIcon'
 import UserName from 'components/atoms/UserName'
 import { RootState } from 'components/redux'
@@ -46,6 +47,14 @@ export default React.memo(function PostModal() {
     alert('ボタンおしたぞ')
   }
 
+  const onClickAddImage = () => {
+    alert('画像をアップロード')
+  }
+
+  const onClickSmileIcon = () => {
+    alert('にこちゃんまーく')
+  }
+
   return (
     <Modal
       isOpen={isOpen}
@@ -65,7 +74,8 @@ export default React.memo(function PostModal() {
         ref={textAreaRef}
       />
       <div className={styles.textAreaInfoContainer}>
-        <img className={styles.smileIcon} src={SmileIconYellow} alt="nikochan" />
+        <img className={styles.add_Image} src={AddImageIconYellow} alt="" onClick={onClickAddImage} />
+        <img className={styles.smileIcon} src={SmileIconYellow} alt="" onClick={onClickSmileIcon} />
         <div>
           <span className={styles.textAreaLength}>{text.length}/200</span>
           <button onClick={onClickPostButton} className={styles.postButton}>
