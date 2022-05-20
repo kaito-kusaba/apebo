@@ -5,6 +5,7 @@ export function useStyles() {
   const discordIdContainer = css`
     display: flex;
     margin-bottom: 12px;
+    cursor: pointer;
   `
   const discordIcon = css`
     width: 24px;
