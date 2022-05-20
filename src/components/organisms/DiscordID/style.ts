@@ -6,6 +6,10 @@ export function useStyles() {
     display: flex;
     margin-bottom: 12px;
     cursor: pointer;
+    &:hover {
+      text-decoration: underline;
+      text-decoration-color: ${Colors.WHITE};
+    }
   `
   const discordIcon = css`
     width: 24px;
