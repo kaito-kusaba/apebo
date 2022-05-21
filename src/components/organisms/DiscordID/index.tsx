@@ -6,11 +6,13 @@ import { CopyToClipboard } from 'react-copy-to-clipboard'
 export default React.memo(function DiscordID() {
   const styles = useStyles()
   return (
-    <CopyToClipboard text="ringosi#2222" onCopy={() => alert('IDをコピーしました')}>
-      <div className={styles.discordIdContainer}>
-        <img src={DISCORD_ICON} alt="" className={styles.discordIcon} />
-        <div className={styles.discordId}>ringosi#2222</div>
-      </div>
-    </CopyToClipboard>
+    <div className={styles.discordIdCopy}>
+      <CopyToClipboard text="ringosi#2222" onCopy={() => alert('IDをコピーしました')}>
+        <div className={styles.discordIdContainer}>
+          <img src={DISCORD_ICON} alt="" className={styles.discordIcon} />
+          <div className={styles.discordId}>ringosi#2222</div>
+        </div>
+      </CopyToClipboard>
+    </div>
   )
 })

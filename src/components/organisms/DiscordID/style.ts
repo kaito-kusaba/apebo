@@ -20,10 +20,14 @@ export function useStyles() {
     color: ${Colors.GREY};
     font-size: 14px;
   `
+  const discordIdCopy = css`
+    display: inline-flex;
+  `
 
   return {
     discordIdContainer,
     discordIcon,
     discordId,
+    discordIdCopy,
   }
 }
