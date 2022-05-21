@@ -4,9 +4,12 @@ import { db } from 'libs/firebase'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { addDoc, collection } from 'firebase/firestore'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 export function useInjection() {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const location = useLocation()
   const { isOpen } = useSelector(({ modal }: RootState) => modal)
   const { user } = useSelector(({ user }: RootState) => user)
   const [text, setText] = useState<string>('')
@@ -43,7 +46,11 @@ export function useInjection() {
           content: text,
           created_at: new Date(),
         }).then(() => {
-          alert('投稿しました。')
+          if (location.pathname === '/') {
+            window.location.reload()
+          } else {
+            navigate('/')
+          }
         })
       } else {
         alert('投稿内容を入力してください。')

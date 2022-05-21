@@ -1,6 +1,6 @@
 import SafeView from 'components/atoms/SafeView'
 import ScreenLabel from 'components/molecules/Label/ScreenLabel'
-import PostContent from 'components/organisms/ListItems/PostContent'
+import PostContentList from 'components/organisms/ListItems/PostContentList'
 import TimeLineTabList from 'components/organisms/ListItems/TimeLineTabList'
 import { auth } from 'libs/firebase'
 import React, { useCallback } from 'react'
@@ -17,10 +17,7 @@ export default React.memo(function TopScreen() {
     <SafeView style={styles.postContainer}>
       <ScreenLabel label="ホーム" />
       <TimeLineTabList />
-      <PostContent />
-      <PostContent />
-      <PostContent />
-      <PostContent />
+      <PostContentList />
       <button onClick={signOut}>ssssssignout</button>
     </SafeView>
   )

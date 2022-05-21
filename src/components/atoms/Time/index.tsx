@@ -1,8 +1,21 @@
+import { Timestamp } from 'firebase/firestore'
 import React from 'react'
 import { useStyles } from './style'
 
-export default React.memo(function Time() {
+interface Props {
+  time: Timestamp
+}
+
+export default React.memo(function Time({ time }: Props) {
   const styles = useStyles()
-  //TODO: 投稿日時を取得して表示
-  return <span className={styles.time}>2022/12/25 21:18</span>
+  const date = time.toDate()
+
+  return (
+    <span className={styles.time}>
+      <span className={styles.date}>{date.toLocaleDateString()}</span>
+      <span>
+        {date.getHours()}:{date.getMinutes()}
+      </span>
+    </span>
+  )
 })

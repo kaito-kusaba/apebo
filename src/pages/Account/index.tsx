@@ -1,6 +1,6 @@
 import SafeView from 'components/atoms/SafeView'
 import ScreenLabel from 'components/molecules/Label/ScreenLabel'
-import PostContent from 'components/organisms/ListItems/PostContent'
+import PostContentList from 'components/organisms/ListItems/PostContentList'
 import ProfileContainer from 'components/organisms/ProfileContainer'
 import { RootState } from 'components/redux'
 import React from 'react'
@@ -13,7 +13,7 @@ export default React.memo(function AccoutScreen() {
     <SafeView>
       <ScreenLabel label={user?.displayName ? user.displayName : '匿名さん'} />
       <ProfileContainer />
-      <PostContent />
+      <PostContentList />
     </SafeView>
   )
 })
