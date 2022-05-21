@@ -5,7 +5,6 @@ import UNSET72 from 'assets/images/icons/user/72_unset.png'
 import { useSelector } from 'react-redux'
 import { RootState } from 'components/redux'
 import { useEffect, useState } from 'react'
-import { User } from 'types/User'
 
 interface Props {
   size: UserIconSize
@@ -14,7 +13,7 @@ interface Props {
 export function useInjection({ size }: Props) {
   const [defaultSrc, setDefaultSrc] = useState<string>('')
   const [src, setSrc] = useState<string>('')
-  const user: User | null = useSelector(({ user }: RootState) => user.user)
+  const { user } = useSelector(({ user }: RootState) => user)
   useEffect(() => {
     switch (size) {
       case 40: {
