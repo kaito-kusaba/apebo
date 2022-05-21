@@ -37,11 +37,17 @@ export function useInjection() {
 
   const onClickPostButton = useCallback(() => {
     try {
-      addDoc(collection(db, 'posts'), {
-        user_id: user!.uid,
-        content: text,
-        created_at: new Date(),
-      })
+      if (text.length > 0) {
+        addDoc(collection(db, 'posts'), {
+          user_id: user!.uid,
+          content: text,
+          created_at: new Date(),
+        }).then(() => {
+          alert('投稿しました。')
+        })
+      } else {
+        alert('投稿内容を入力してください。')
+      }
       dispatch(actions.setModal(false))
     } catch (e) {
       alert('投稿に失敗しました。')
