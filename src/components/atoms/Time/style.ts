@@ -6,8 +6,12 @@ export function useStyles() {
     color: ${Colors.SQUANT};
     font-size: 14px;
   `
+  const date = css`
+    margin-right: 4px;
+  `
 
   return {
     time,
+    date,
   }
 }
