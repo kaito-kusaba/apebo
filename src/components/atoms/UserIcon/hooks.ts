@@ -46,6 +46,8 @@ export function useInjection({ size, uid }: Props) {
       console.log(userSnap.data())
       if (userSnap.data()?.icon) {
         setSrc(userSnap.data()?.icon)
+      } else {
+        setSrc(defaultSrc)
       }
     }
     f()
