@@ -46,9 +46,7 @@ export function useInjection() {
           content: text,
           created_at: new Date(),
         }).then(() => {
-          if (location.pathname === '/') {
-            window.location.reload()
-          } else {
+          if (location.pathname !== '/') {
             navigate('/')
           }
         })
