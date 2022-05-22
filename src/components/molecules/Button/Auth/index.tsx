@@ -8,9 +8,17 @@ interface Props {
   type?: string
   style?: string
   validation: ValidationType
+  onKeyDown?: (e: any) => void
 }
 
-export default React.memo(function AuthButton({ onClick, label, type = 'submit', style, validation }: Props) {
+export default React.memo(function AuthButton({
+  onClick,
+  label,
+  type = 'submit',
+  style,
+  validation,
+  onKeyDown,
+}: Props) {
   const styles = useStyles({ validation })
   return (
     <input
@@ -19,6 +27,7 @@ export default React.memo(function AuthButton({ onClick, label, type = 'submit',
       onClick={onClick}
       value={label}
       className={`${styles.container()} ${style}`}
+      onKeyDown={onKeyDown}
     />
   )
 })

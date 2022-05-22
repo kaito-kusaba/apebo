@@ -16,6 +16,7 @@ export function useInjection() {
   const [email, setEmail] = useState<string>('')
   const [validation, setValidation] = useState<ValidationType>('blank')
   const [password, setPassword] = useState<string>('')
+  const [errorText, setErrorText] = useState<string>('')
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
@@ -26,6 +27,12 @@ export function useInjection() {
   const onChangePassword = useCallback(e => {
     setPassword(e.target.value)
   }, [])
+
+  const enterKeyPress = (e: any) => {
+    if (e.keyCode === 13) {
+      onPressSubmit()
+    }
+  }
 
   useEffect(() => {
     setValidation(validatePassword(password))
@@ -48,7 +55,17 @@ export function useInjection() {
           }
         })
         .catch(error => {
-          console.log(`signUpError --- ${error}`)
+          switch (error.code) {
+            case 'auth/email-already-in-use':
+              setErrorText('このメールアドレスは既に使用されています。')
+              break
+            case 'auth/weak-password':
+              setErrorText('パスワードが適切ではありません。')
+              break
+            case 'auth/user-disabled':
+              setErrorText('アカウントが無効です。')
+              break
+          }
         })
     })
   }, [email, password])
@@ -66,5 +83,7 @@ export function useInjection() {
     onClickCancel,
     validation,
     onClickGoogleButton,
+    enterKeyPress,
+    errorText,
   }
 }

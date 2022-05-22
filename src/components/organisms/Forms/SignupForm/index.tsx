@@ -19,15 +19,18 @@ export default function SignupForm() {
     onClickCancel,
     validation,
     onClickGoogleButton,
+    enterKeyPress,
+    errorText,
   } = useInjection()
   const styles = useStyles()
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} onKeyDown={enterKeyPress}>
       <AuthModalHeader label="新規登録(無料)" onClick={onClickCancel} />
       <EmailInput value={email} onChange={onChangeEmail} style={styles.emailInput} />
       <PasswordInput value={password} onChange={onChangePassword} />
       <ValidateLabel validation={validation} style={styles.validationLabel} />
+      <span className={styles.invalid}>{errorText}</span>
       <AuthButton label="新規登録(無料)" onClick={onPressSubmit} validation={validation} style={styles.signInButton} />
       <GoogleAuthButton onClick={onClickGoogleButton} style={styles.googleButton} />
       <p className={styles.signUp}>
