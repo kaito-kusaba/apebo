@@ -9,8 +9,17 @@ import { useStyles } from './style'
 
 export default React.memo(function PostModal() {
   const styles = useStyles()
-  const { text, isOpen, onChangeText, onClickAddImage, onClickPostButton, onClickSmileIcon, onClose, textAreaRef } =
-    useInjection()
+  const {
+    user,
+    text,
+    isOpen,
+    onChangeText,
+    onClickAddImage,
+    onClickPostButton,
+    onClickSmileIcon,
+    onClose,
+    textAreaRef,
+  } = useInjection()
 
   return (
     <Modal
@@ -20,8 +29,8 @@ export default React.memo(function PostModal() {
       overlayClassName={styles.overlay}
       onRequestClose={onClose}>
       <div className={styles.header}>
-        <UserIcon disabled size={46} style={styles.userIcon} />
-        <UserName />
+        <UserIcon uid={user!.uid} disabled size={46} style={styles.userIcon} />
+        <UserName uid={user!.uid} />
       </div>
       <textarea
         onChange={onChangeText}

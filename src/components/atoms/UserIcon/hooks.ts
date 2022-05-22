@@ -5,15 +5,19 @@ import UNSET72 from 'assets/images/icons/user/72_unset.png'
 import { useSelector } from 'react-redux'
 import { RootState } from 'components/redux'
 import { useEffect, useState } from 'react'
+import { doc, getDoc } from 'firebase/firestore'
+import { db } from 'libs/firebase'
 
 interface Props {
   size: UserIconSize
+  uid: string
 }
 
-export function useInjection({ size }: Props) {
+export function useInjection({ size, uid }: Props) {
   const [defaultSrc, setDefaultSrc] = useState<string>('')
   const [src, setSrc] = useState<string>('')
   const { user } = useSelector(({ user }: RootState) => user)
+
   useEffect(() => {
     switch (size) {
       case 40: {
@@ -36,11 +40,15 @@ export function useInjection({ size }: Props) {
   }, [size])
 
   useEffect(() => {
-    if (user?.photoURL) {
-      setSrc(user?.photoURL)
-    } else {
-      setSrc(defaultSrc)
+    const f = async () => {
+      const userRef = doc(db, 'users', uid)
+      const userSnap = await getDoc(userRef)
+      console.log(userSnap.data())
+      if (userSnap.data()?.icon) {
+        setSrc(userSnap.data()?.icon)
+      }
     }
+    f()
   }, [user?.photoURL, defaultSrc])
 
   return {
