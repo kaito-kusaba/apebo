@@ -5,5 +5,5 @@ import { UserStore } from './User'
 export type RootState = {
   user: UserStore
   modal: ModalStore
-  timelineTab: TimeLineTabStore
+  tab: TimeLineTabStore
 }
