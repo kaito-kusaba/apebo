@@ -5,16 +5,16 @@ import { useStyles } from './style'
 
 interface Props {
   style?: string
-  hideUid?: boolean
+  uid?: string
 }
 
-export default React.memo(function UserName({ style, hideUid }: Props) {
+export default React.memo(function UserName({ style, uid }: Props) {
   const styles = useStyles()
   const { user } = useSelector(({ user }: RootState) => user)
   return (
     <div className={`${styles.userNameContainerStyle} ${style}`}>
       <div className={styles.userName}>{user?.displayName}</div>
-      {!hideUid && <div className={styles.userId}>@{user?.uid ? user.uid : 'anonymous_user'}</div>}
+      <div className={styles.userId}>@{uid ? uid : 'anonymous_user'}</div>
     </div>
   )
 })
