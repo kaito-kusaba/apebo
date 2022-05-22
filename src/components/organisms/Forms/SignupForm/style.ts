@@ -46,6 +46,13 @@ export function useStyles() {
   `
 
   const validationLabel = css`
+    margin-bottom: 8px;
+  `
+
+  const invalid = css`
+    color: ${Colors.RED};
+    font-size: 12px;
+    width: 100%;
     margin-bottom: 32px;
   `
 
@@ -59,5 +66,6 @@ export function useStyles() {
     signUp,
     signUpLink,
     validationLabel,
+    invalid,
   }
 }

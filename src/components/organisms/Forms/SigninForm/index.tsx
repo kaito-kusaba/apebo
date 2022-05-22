@@ -21,13 +21,16 @@ export default function SigninForm() {
     validation,
     onClickGoogleButton,
     errorText,
+    enterKeyPress,
   } = useInjection()
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} onKeyDown={enterKeyPress}>
       <AuthModalHeader label="サインイン" onClick={onClickCancel} />
       <EmailInput value={email} onChange={onChangeEmail} style={styles.emailInput} />
+
       <PasswordInput value={password} onChange={onChangePassword} />
+
       <ValidateLabel validation={validation} />
       <span className={styles.invalid}>{errorText}</span>
       <p className={styles.forgot}>

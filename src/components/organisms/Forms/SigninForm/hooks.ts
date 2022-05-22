@@ -28,6 +28,12 @@ export function useInjection() {
     setPassword(e.target.value)
   }, [])
 
+  const enterKeyPress = (e: any) => {
+    if (e.keyCode === 13) {
+      onPressSubmit()
+    }
+  }
+
   useEffect(() => {
     setValidation(validatePassword(password))
   }, [password])
@@ -89,5 +95,6 @@ export function useInjection() {
     validation,
     onClickGoogleButton,
     errorText,
+    enterKeyPress,
   }
 }
