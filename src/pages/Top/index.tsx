@@ -18,7 +18,7 @@ export default React.memo(function TopScreen() {
       <ScreenLabel label="ホーム" />
       <TimeLineTabList />
       <PostContentList />
-      <button onClick={signOut}>ssssssignout</button>
+      <button onClick={signOut}>signout</button>
     </SafeView>
   )
 })

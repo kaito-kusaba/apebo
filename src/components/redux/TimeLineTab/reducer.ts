@@ -1,21 +1,21 @@
 import { TabButtonTypes } from 'types/TabButtonTypes'
 import { ActionTypes } from './actions'
 
-const initialState = {
-  isChecked: 'All',
+const initialState: TimeLineTabStore = {
+  selected: 'All',
 }
 
 export type TimeLineTabStore = {
-  isChecked: TabButtonTypes
+  selected: TabButtonTypes
 }
 
 /* reducer */
 export const timeLineTabReducer = (state = initialState, action: any) => {
   switch (action.type) {
-    case ActionTypes.SET_CHECKED: {
+    case ActionTypes.SET_SELECTED: {
       return {
         ...state,
-        isChecked: action.payload,
+        selected: action.payload,
       }
     }
     default: {
