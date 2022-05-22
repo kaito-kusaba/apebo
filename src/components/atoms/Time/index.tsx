@@ -9,10 +9,10 @@ interface Props {
 export default React.memo(function Time({ time }: Props) {
   const styles = useStyles()
   const date = time.toDate()
-  const [minutes, setMinutes] = useState<number>(date.getMinutes())
+  const [minutes, setMinutes] = useState<number | string>(date.getMinutes())
   useEffect(() => {
-    if (minutes.toString().length === 1) {
-      setMinutes(Number('0' + minutes))
+    if (minutes.toString().length < 2) {
+      setMinutes('0' + minutes)
     }
   }, [])
 
