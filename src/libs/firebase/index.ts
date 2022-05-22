@@ -3,6 +3,7 @@ import { getAuth, onAuthStateChanged, GoogleAuthProvider } from 'firebase/auth'
 import 'firebase/app'
 import { actions as userActions } from 'components/redux/User'
 import { actions as modalActions } from 'components/redux/Modal'
+import { actions as tabButtonActions } from 'components/redux/TimeLineTab'
 import store from 'components/redux/store'
 
 const firebaseConfig = {
@@ -29,5 +30,6 @@ onAuthStateChanged(auth, user => {
     // User is signed out
     dispatch(userActions.clearUser())
     dispatch(modalActions.setModal(false))
+    dispatch(tabButtonActions.clearSelected())
   }
 })

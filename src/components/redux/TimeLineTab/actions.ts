@@ -1,9 +1,14 @@
 import { TabButtonTypes } from 'types/TabButtonTypes'
 
 export const ActionTypes = {
-  SET_CHECKED: 'TIME_LINE_TAB/SET_CHECKED',
+  SET_SELECTED: 'TIME_LINE_TAB/SET_SELECTED',
+  CLEAR_SELECTED: 'TIME_LINE_TAB/CLEAR_SELECTED',
 } as const
 
-export const setChecked = (isChecked: TabButtonTypes) => {
-  return { type: ActionTypes.SET_CHECKED, payload: isChecked }
+export const setSelected = (selected: TabButtonTypes) => {
+  return { type: ActionTypes.SET_SELECTED, payload: selected }
+}
+
+export const clearSelected = () => {
+  return { type: ActionTypes.CLEAR_SELECTED, payload: 'All' }
 }

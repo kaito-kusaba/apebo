@@ -4,7 +4,7 @@ import { Colors } from 'constant'
 export function useStyles() {
   const screenLabelContainer = css`
     width: 848px;
-    padding: 14px 16px;
+    padding: 24px 24px;
     background-color: ${Colors.BLACK_WASH};
     display: flex;
     align-items: center;

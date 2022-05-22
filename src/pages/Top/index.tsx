@@ -21,7 +21,7 @@ export default React.memo(function TopScreen() {
       <PostContent />
       <PostContent />
       <PostContent />
-      <button onClick={signOut}>ssssssignout</button>
+      <button onClick={signOut}>signout</button>
     </SafeView>
   )
 })
