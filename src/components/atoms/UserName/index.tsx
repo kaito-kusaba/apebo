@@ -1,6 +1,8 @@
+import { RootState } from 'components/redux'
 import { doc, getDoc } from 'firebase/firestore'
 import { db } from 'libs/firebase'
 import React, { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
 import { useStyles } from './style'
 
 interface Props {
@@ -10,14 +12,14 @@ interface Props {
 
 export default React.memo(function UserName({ style, uid }: Props) {
   const styles = useStyles()
-  const [username, setUsername] = useState<string>('')
+  const { user } = useSelector(({ user }: RootState) => user)
+  const [username, setUsername] = useState<string>(user?.displayName!)
 
   //uidでusersを検索する uid => username
   useEffect(() => {
     const f = async () => {
       const userRef = doc(db, 'users', uid)
       const userSnap = await getDoc(userRef)
-      console.log(userSnap.data())
       setUsername(userSnap.data()?.username)
     }
     f()
