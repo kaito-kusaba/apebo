@@ -43,7 +43,6 @@ export function useInjection({ size, uid }: Props) {
     const f = async () => {
       const userRef = doc(db, 'users', uid)
       const userSnap = await getDoc(userRef)
-      console.log(userSnap.data())
       if (userSnap.data()?.icon) {
         setSrc(userSnap.data()?.icon)
       } else {
