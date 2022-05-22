@@ -72,6 +72,7 @@ export function useInjection() {
   }, [])
 
   return {
+    user,
     text,
     isOpen,
     onClose,

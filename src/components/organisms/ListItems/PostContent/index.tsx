@@ -21,7 +21,7 @@ export default React.memo(function PostContent({ uid, content, onClick, time }: 
     <div onClick={onClick} className={styles.postContentContainerStyle}>
       <div className={styles.postContentHeader}>
         <div className={styles.postContentUser}>
-          <UserIcon size={46} style={styles.postContentUserIcon} />
+          <UserIcon uid={uid} size={46} style={styles.postContentUserIcon} />
           <UserName uid={uid} />
         </div>
         <ActionButtonSet />
