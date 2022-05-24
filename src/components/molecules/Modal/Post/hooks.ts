@@ -1,5 +1,6 @@
 import { RootState } from 'components/redux'
-import { actions } from 'components/redux/Modal'
+import { actions as modalActions } from 'components/redux/Modal'
+import { actions as alertActions } from 'components/redux/Alert'
 import { db } from 'libs/firebase'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -16,7 +17,7 @@ export function useInjection() {
   const textAreaRef = useResizeTextArea(text)
 
   const onClose = useCallback(() => {
-    dispatch(actions.setModal(false))
+    dispatch(modalActions.setModal(false))
   }, [])
 
   const onChangeText = useCallback(e => {
@@ -46,20 +47,20 @@ export function useInjection() {
           content: text,
           created_at: new Date(),
         }).then(() => {
-          if (location.pathname === '/') {
-            window.location.reload()
-          } else {
+          if (location.pathname !== '/') {
             navigate('/')
+            dispatch(alertActions.setAlert(true))
           }
         })
       } else {
         alert('投稿内容を入力してください。')
       }
-      dispatch(actions.setModal(false))
+      dispatch(modalActions.setModal(false))
+      dispatch(alertActions.setAlert(true))
     } catch (e) {
       alert('投稿に失敗しました。')
       console.log(e)
-      dispatch(actions.setModal(false))
+      dispatch(modalActions.setModal(false))
     }
   }, [text])
 
