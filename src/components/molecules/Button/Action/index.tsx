@@ -5,11 +5,12 @@ import { useStyles } from './style'
 
 interface Props {
   type: ActionButtonTypes
+  docId: string
 }
 
-export default React.memo(function ActionButton({ type }: Props) {
+export default React.memo(function ActionButton({ type, docId }: Props) {
   const styles = useStyles()
-  const { buttonImageSrc, onMouseToggle, onClickActionButton } = useInjection({ type })
+  const { buttonImageSrc, onMouseToggle, onClickActionButton } = useInjection({ type, docId })
 
   return (
     <button

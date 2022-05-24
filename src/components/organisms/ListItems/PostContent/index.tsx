@@ -12,9 +12,10 @@ interface Props {
   content: string
   onClick: () => void
   time: Timestamp
+  docId: string
 }
 
-export default React.memo(function PostContent({ uid, content, onClick, time }: Props) {
+export default React.memo(function PostContent({ uid, content, onClick, time, docId }: Props) {
   const styles = useStyles()
 
   return (
@@ -24,7 +25,7 @@ export default React.memo(function PostContent({ uid, content, onClick, time }: 
           <UserIcon uid={uid} size={46} style={styles.postContentUserIcon} />
           <UserName uid={uid} />
         </div>
-        <ActionButtonSet />
+        <ActionButtonSet docId={docId} />
       </div>
       <PostContentDisplay content={content} style={styles.postContentDisplay} />
       <Time time={time} />

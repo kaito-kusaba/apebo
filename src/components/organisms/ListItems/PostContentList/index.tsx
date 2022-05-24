@@ -10,6 +10,7 @@ export default React.memo(function PostContentList() {
         return (
           <PostContent
             key={post.id}
+            docId={post.id}
             uid={post.user_id}
             content={post.content}
             time={post.created_at}

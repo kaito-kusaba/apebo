@@ -5,7 +5,11 @@ import { User } from 'types/User'
 import { useSelector } from 'react-redux'
 import { RootState } from 'components/redux'
 
-export default React.memo(function ActionButtonSet() {
+type Props = {
+  docId: string
+}
+
+export default React.memo(function ActionButtonSet({ docId }: Props) {
   const styles = useStyles()
   const { user } = useSelector(({ user }: RootState) => user)
   const [postUser, setPostUser] = useState<User | string>('')
@@ -17,16 +21,16 @@ export default React.memo(function ActionButtonSet() {
   if (user === postUser) {
     return (
       <div className={styles.actionButtonsContainer}>
-        <ActionButton type="Like" />
+        <ActionButton type="Like" docId={docId} />
       </div>
     )
   } else {
     return (
       <div className={styles.actionButtonsContainer}>
-        <ActionButton type="Message" />
-        <ActionButton type="Like" />
-        <ActionButton type="Follow" />
-        <ActionButton type="Other" />
+        <ActionButton type="Message" docId={docId} />
+        <ActionButton type="Like" docId={docId} />
+        <ActionButton type="Follow" docId={docId} />
+        <ActionButton type="Other" docId={docId} />
       </div>
     )
   }
