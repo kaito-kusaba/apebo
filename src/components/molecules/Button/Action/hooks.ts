@@ -10,12 +10,15 @@ import FOLLOW_HOVER from 'assets/images/icons/follow_hover.png'
 import DOTS from 'assets/images/icons/dots.png'
 import { useEffect, useState, useCallback } from 'react'
 import { ActionButtonTypes } from 'types/ActionButtonTypes'
+import { deleteDoc, doc } from 'firebase/firestore'
+import { db } from 'libs/firebase'
 
 interface Props {
   type: ActionButtonTypes
+  docId: string
 }
 
-export function useInjection({ type }: Props) {
+export function useInjection({ type, docId }: Props) {
   const [isHovered, setIsHovered] = useState<boolean>(false)
   const [isSelectedMessage, setIsSelectedMessage] = useState<boolean>(false)
   const [isSelectedLike, setIsSelectedLike] = useState<boolean>(false)
@@ -55,6 +58,10 @@ export function useInjection({ type }: Props) {
     setIsHovered(!isHovered)
   }, [isHovered, setIsHovered])
 
+  const onClickOther = useCallback(async docId => {
+    await deleteDoc(doc(db, 'posts', docId))
+  }, [])
+
   const onClickActionButton = useCallback(() => {
     switch (type) {
       case 'Message':
@@ -65,6 +72,9 @@ export function useInjection({ type }: Props) {
         break
       case 'Follow':
         setIsSelectedFollow(!isSelectedFollow)
+        break
+      case 'Other':
+        onClickOther(docId)
         break
     }
   }, [isSelectedMessage, isSelectedLike, isSelectedFollow])
