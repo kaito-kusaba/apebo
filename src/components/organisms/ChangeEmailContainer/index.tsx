@@ -11,8 +11,8 @@ export default React.memo(function ChangeEmailContainer() {
   return (
     <div className={styles.container} onKeyDown={enterKeyPress}>
       <span className={styles.top}>メールアドレス変更</span>
-      <span className={styles.oldEmail}>現在のメールアドレス</span>
-      <span className={styles.inputOldEmail}>{user?.email}</span>
+      <span className={styles.currentEmail}>現在のメールアドレス</span>
+      <span className={styles.inputCurrentEmail}>{user?.email}</span>
       <span className={styles.newEmail}>
         新しいメールアドレス<span className={styles.errorTextMessage}>{errorText}</span>
       </span>

@@ -26,14 +26,15 @@ export function useStyles({ errorText }: Props) {
     font-weight: 700;
   `
 
-  const oldEmail = css`
+  const currentEmail = css`
     ${baseText}
     color: ${Colors.PORPOISE};
     margin-top: 24px;
   `
 
-  const inputOldEmail = css`
+  const inputCurrentEmail = css`
     ${baseText}
+    font-weight: bold;
     margin-top: 16px;
   `
 
@@ -106,8 +107,8 @@ export function useStyles({ errorText }: Props) {
   return {
     container,
     top,
-    oldEmail,
-    inputOldEmail,
+    currentEmail,
+    inputCurrentEmail,
     newEmail,
     inputNewEmail,
     errorTextMessage,
