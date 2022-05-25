@@ -1,10 +1,9 @@
 import { css } from '@emotion/css'
 
 export function useStyles() {
-  const container = css`
-    width: 680px;
-  `
+  const test = css``
+
   return {
-    container,
+    test,
   }
 }
