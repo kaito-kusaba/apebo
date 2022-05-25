@@ -1133,6 +1133,11 @@
   dependencies:
     "postcss-value-parser" "^4.2.0"
 
+"@emoji-mart/data@^1.0.1":
+  "integrity" "sha512-5X6DbIdyFvSFMfGdPkPd/yxQmtfMptZg5UUSL+afb39SdbPvobJY7VhzGM0IekxjszW3ygxZ2X5mVhy5AqF5vQ=="
+  "resolved" "https://registry.npmjs.org/@emoji-mart/data/-/data-1.0.1.tgz"
+  "version" "1.0.1"
+
 "@emotion/babel-plugin@^11.7.1", "@emotion/babel-plugin@^11.9.2":
   "integrity" "sha512-Pr/7HGH6H6yKgnVFNEj2MVlreu3ADqftqjqwUvDy/OJzKFgxKeTQ+eeUf20FOTuHVkDON2iNa25rAXVYtWJCjw=="
   "resolved" "https://registry.npmjs.org/@emotion/babel-plugin/-/babel-plugin-11.9.2.tgz"
@@ -2222,6 +2227,13 @@
   "version" "3.4.35"
   dependencies:
     "@types/node" "*"
+
+"@types/emoji-mart@^3.0.9":
+  "integrity" "sha512-qdBo/2Y8MXaJ/2spKjDZocuq79GpnOhkwMHnK2GnVFa8WYFgfA+ei6sil3aeWQPCreOKIx9ogPpR5+7MaOqYAA=="
+  "resolved" "https://registry.npmjs.org/@types/emoji-mart/-/emoji-mart-3.0.9.tgz"
+  "version" "3.0.9"
+  dependencies:
+    "@types/react" "*"
 
 "@types/eslint-scope@^3.7.3":
   "integrity" "sha512-PB3ldyrcnAicT35TWPs5IcwKD8S333HMaa2VVv4+wdvebJkjWuW/xESoB8IwRcog8HYVYamb1g/R31Qv5Bx03g=="
@@ -4264,6 +4276,11 @@
   "integrity" "sha512-uDfvUjVrfGJJhymx/kz6prltenw1u7WrCg1oa94zYY8xxVpLLUu045LAT0dhDZdXG58/EpPL/5kA180fQ/qudg=="
   "resolved" "https://registry.npmjs.org/emittery/-/emittery-0.8.1.tgz"
   "version" "0.8.1"
+
+"emoji-mart@^5.0.0":
+  "integrity" "sha512-4O75LxV/RPOrtC9+0qhHhfPgJgW/Kwc4zv15h190liC3vJ/5RVibIrnPlDZ0xqYx0bPVOy3W/QcDTZY+jq1qOw=="
+  "resolved" "https://registry.npmjs.org/emoji-mart/-/emoji-mart-5.0.0.tgz"
+  "version" "5.0.0"
 
 "emoji-regex@^8.0.0":
   "integrity" "sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A=="
