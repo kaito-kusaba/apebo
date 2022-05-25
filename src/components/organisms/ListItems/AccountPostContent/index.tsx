@@ -15,7 +15,7 @@ interface Props {
   docId: string
 }
 
-export default function PostContent({ uid, content, onClick, time, docId }: Props) {
+export default function AccountPostContent({ uid, content, onClick, time, docId }: Props) {
   const styles = useStyles()
   return (
     <div onClick={onClick} className={styles.postContentContainerStyle}>

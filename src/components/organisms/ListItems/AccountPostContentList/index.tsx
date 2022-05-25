@@ -1,14 +1,14 @@
 import React from 'react'
 import { useInjection } from './hooks'
-import PostContent from '../PostContent'
+import AccountPostContent from '../AccountPostContent'
 
-export default React.memo(function PostContentList() {
+export default React.memo(function AccountPostContentList() {
   const { posts, onClick } = useInjection()
   return (
     <>
-      {posts.map(post => {
+      {posts.forEach(post => {
         return (
-          <PostContent
+          <AccountPostContent
             key={post.id}
             docId={post.id}
             uid={post.user_id}
