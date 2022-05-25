@@ -68,23 +68,33 @@ export function useStyles() {
       background-color: ${Colors.PINK};
     }
   `
-  const yellowButtons = css`
+  const buttons = css`
     display: flex;
     align-items: center;
   `
 
-  const smileIcon = css`
-    width: 24px;
-    height: 24px;
-    margin-left: 24px;
+  const imageButton = css`
     cursor: pointer;
+    border: none;
+    display: flex;
+    align-items: center;
+    background-color: transparent;
   `
 
-  const addImage = css`
+  const emojiButton = css`
+    cursor: pointer;
+    border: none;
+    display: flex;
+    align-items: center;
+    margin-left: 24px;
+    background-color: transparent;
+  `
+
+  const icon = css`
     width: 24px;
     height: 24px;
-    cursor: pointer;
   `
+
   const line = css`
     display: block;
     margin: 0 18px;
@@ -107,10 +117,11 @@ export function useStyles() {
     textAreaInfoContainer,
     textAreaLength,
     postButton,
-    yellowButtons,
-    smileIcon,
-    addImage,
+    buttons,
+    icon,
     line,
     postButtonContainer,
+    imageButton,
+    emojiButton,
   }
 }
