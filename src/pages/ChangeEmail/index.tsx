@@ -8,7 +8,7 @@ import ChangeEmailContainer from 'components/organisms/ChangeEmailContainer'
 export default React.memo(function ChangeEmailScreen() {
   const styles = useStyles()
   return (
-    <div className={styles.test}>
+    <div className={styles.container}>
       <SettingsPageContainer left={<SettingsScreen />} right={<ChangeEmailContainer />} />
     </div>
   )

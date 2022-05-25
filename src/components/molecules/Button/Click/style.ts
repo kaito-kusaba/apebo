@@ -2,28 +2,34 @@ import { css } from '@emotion/css'
 import { Colors } from 'constant'
 
 type Props = {
-  clicked?: boolean
+  disabled?: boolean
 }
 
-export function useStyles({ clicked }: Props) {
+export function useStyles({ disabled }: Props) {
   const baseEmailText = css`
     font-size: 14px;
     color: ${Colors.WHITE};
-    width: 242px;
     padding: 10px 93px;
-    margin-left: 310px;
+    margin-top: 48px;
     border: none;
     border-radius: 8px;
     background-color: ${Colors.RED};
     cursor: pointer;
   `
 
+  const container = css`
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  `
+
   const changeEmailButton = () => {
-    if (clicked) {
-      alert('変更しました')
+    if (disabled) {
       return css`
         ${baseEmailText}
-        background-color: ${Colors.RED};
+        background-color: ${Colors.INDIAN_RED};
+        color: ${Colors.BRAINSTEM_GREY};
+        cursor: default;
       `
     } else {
       return css`
@@ -35,5 +41,6 @@ export function useStyles({ clicked }: Props) {
   return {
     baseEmailText,
     changeEmailButton,
+    container,
   }
 }

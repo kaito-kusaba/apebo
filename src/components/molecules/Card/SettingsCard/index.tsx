@@ -5,9 +5,10 @@ import { RightArrowIcon } from 'components/atoms/Icon'
 import { useStyles } from './style'
 
 export default React.memo(function SettingsCard({ url, icon, label, subTitle, bottom, isSignOut }: SettingsCardType) {
-  const styles = useStyles({ bottom, isSignOut })
+  const styles = useStyles({ bottom, isSignOut, url })
+
   return (
-    <Link to={url} className={`${styles.settings} ${styles.settingsCardContainer()}`}>
+    <Link to={url} className={`${styles.settings()} ${styles.settingsCardContainer()}`}>
       <div className={styles.leftContainer}>
         <img className={styles.settingsCardIcon} src={icon} alt="" />
         <div>

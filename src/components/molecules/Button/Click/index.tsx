@@ -3,15 +3,17 @@ import { useStyles } from './style'
 
 type Props = {
   onClick?: () => void
-  clicked?: boolean
+  disabled?: boolean
 }
 
-export default React.memo(function EmailButton({ onClick, clicked }: Props) {
-  const styles = useStyles({ clicked })
+export default React.memo(function EmailButton({ onClick, disabled }: Props) {
+  const styles = useStyles({ disabled })
 
   return (
-    <button className={styles.changeEmailButton()} onClick={onClick}>
-      変更する
-    </button>
+    <div className={styles.container}>
+      <button disabled={disabled} className={styles.changeEmailButton()} onClick={onClick}>
+        変更する
+      </button>
+    </div>
   )
 })
