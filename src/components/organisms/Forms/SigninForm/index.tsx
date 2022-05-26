@@ -29,7 +29,7 @@ export default function SigninForm() {
       <AuthModalHeader label="サインイン" onClick={onClickCancel} />
       <EmailInput value={email} onChange={onChangeEmail} style={styles.emailInput} />
 
-      <PasswordInput type="default" value={password} onChange={onChangePassword} />
+      <PasswordInput errorText={errorText} type="default" value={password} onChange={onChangePassword} />
 
       <ValidateLabel validation={validation} />
       <span className={styles.invalid}>{errorText}</span>
