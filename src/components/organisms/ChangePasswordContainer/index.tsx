@@ -1,0 +1,51 @@
+import React from 'react'
+import { useStyles } from './style'
+import Click from 'components/molecules/Button/Click'
+import { useInjection } from './hooks'
+import Password from 'components/molecules/Input/Password'
+import ValidateLabel from 'components/molecules/Label/ValidateLabel'
+
+export default React.memo(function ChangePasswordContainer() {
+  const {
+    onChangePassword,
+    onClick,
+    onChangePasswordConfirm,
+    password,
+    passwordConfirm,
+    validation,
+    disabled,
+    errorText,
+  } = useInjection()
+  const styles = useStyles({ errorText })
+
+  return (
+    <div className={styles.container}>
+      <span className={styles.top}>パスワード再設定</span>
+      <span className={styles.newPassword}>
+        新しいパスワード<span className={styles.errorTextMessage}>{errorText}</span>
+      </span>
+      <div className={styles.inputContainer}>
+        <Password
+          value={password}
+          onChange={onChangePassword}
+          containerStyle={styles.inputNewPassword}
+          inputStyle={styles.inputStyle()}
+          buttonStyle={styles.buttonStyle}
+          placeholder="新しいパスワードを入力"
+        />
+      </div>
+      <div className={styles.inputContainer}>
+        <Password
+          value={passwordConfirm}
+          onChange={onChangePasswordConfirm}
+          placeholder="新しいパスワードを入力(確認)"
+          containerStyle={styles.inputNewPassword}
+          inputStyle={styles.inputStyle()}
+          buttonStyle={styles.buttonStyle}
+        />
+      </div>
+      <ValidateLabel validation={validation} className={styles.validate} />
+      <Click onClick={onClick} disabled={disabled} />
+    </div>
+  )
+})
