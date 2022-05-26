@@ -39,58 +39,19 @@ export function useStyles({ errorText }: Props) {
   `
 
   const inputNewPassword = css`
-    position: relative;
     margin-top: 16px;
     background-color: ${Colors.CHAOS_BLACK};
     color: ${Colors.SQUANT};
-    transition: all ease 0.3s;
+    transition: all 0.3s;
   `
 
   const validate = css`
     margin-top: 10px;
   `
 
-  const baseInputStyle = css`
-    padding: 14px 16px;
-    border: 1.5px solid ${Colors.EERIE_BLACK};
-    border-radius: 8px;
-    &:focus {
-      border: 1.5px solid ${Colors.PORPOISE};
-      color: ${Colors.WHITE};
-    }
+  const inputPasswordContainer = css`
+    margin: 16px 0 24px 0;
   `
-
-  const buttonStyle = css`
-    display: none;
-  `
-
-  const inputStyle = () => {
-    if (errorText !== '') {
-      return css`
-        ${baseInputStyle}
-        border: 1.5px solid ${Colors.RED};
-      `
-    } else {
-      return css`
-        ${baseInputStyle}
-      `
-    }
-  }
-
-  const inputPasswordConfirm = css`
-    padding: 14px 0 14px 16px;
-    margin-top: 24px;
-    width: 814px;
-    border: 1.5px solid ${Colors.EERIE_BLACK};
-    border-radius: 8px;
-    background-color: ${Colors.CHAOS_BLACK};
-    color: ${Colors.SQUANT};
-  `
-
-  const inputContainer = css`
-    position: relative;
-  `
-
   const baseInfo = css`
     position: absolute;
     width: 24px;
@@ -119,11 +80,8 @@ export function useStyles({ errorText }: Props) {
     errorTextMessage,
     newPassword,
     inputNewPassword,
-    inputPasswordConfirm,
     info,
-    inputStyle,
-    buttonStyle,
-    inputContainer,
     validate,
+    inputPasswordContainer,
   }
 }

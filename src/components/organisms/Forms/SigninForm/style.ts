@@ -11,22 +11,6 @@ export function useStyles() {
     background-color: ${Colors.CHAOS_BLACK};
     border-radius: 12px;
   `
-
-  const passwordInput = css`
-    padding: 10px 0 6px 0;
-    color: ${Colors.WHITE};
-    font-size: 16px;
-    border: none;
-    background-color: transparent;
-    transition: all ease 0.3s;
-    width: 100%;
-    margin-bottom: 10px;
-    border-bottom: 1px ${Colors.EERIE_BLACK} solid;
-    &:focus {
-      border-bottom: 1px ${Colors.WHITE} solid;
-    }
-  `
-
   const forgot = css`
     font-size: 12px;
     color: ${Colors.GREY};
@@ -77,6 +61,5 @@ export function useStyles() {
     signUp,
     signUpLink,
     invalid,
-    passwordInput,
   }
 }

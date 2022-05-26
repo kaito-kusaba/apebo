@@ -24,26 +24,22 @@ export default React.memo(function ChangePasswordContainer() {
       <span className={styles.newPassword}>
         新しいパスワード<span className={styles.errorTextMessage}>{errorText}</span>
       </span>
-      <div className={styles.inputContainer}>
+      <div className={styles.inputPasswordContainer}>
         <Password
+          type="border"
           value={password}
           onChange={onChangePassword}
-          containerStyle={styles.inputNewPassword}
-          inputStyle={styles.inputStyle()}
-          buttonStyle={styles.buttonStyle}
           placeholder="新しいパスワードを入力"
+          errorText={errorText}
         />
       </div>
-      <div className={styles.inputContainer}>
-        <Password
-          value={passwordConfirm}
-          onChange={onChangePasswordConfirm}
-          placeholder="新しいパスワードを入力(確認)"
-          containerStyle={styles.inputNewPassword}
-          inputStyle={styles.inputStyle()}
-          buttonStyle={styles.buttonStyle}
-        />
-      </div>
+      <Password
+        type="border"
+        value={passwordConfirm}
+        onChange={onChangePasswordConfirm}
+        placeholder="新しいパスワードを入力(確認)"
+        errorText={errorText}
+      />
       <ValidateLabel validation={validation} className={styles.validate} />
       <Click onClick={onClick} disabled={disabled} />
     </div>

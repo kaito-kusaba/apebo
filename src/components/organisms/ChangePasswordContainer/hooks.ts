@@ -57,8 +57,8 @@ export function useInjection() {
               clearForm()
               break
             case 'auth/requires-recent-login':
-              clearForm()
               setErrorText('認証情報が古いです。再度サインインしてください。')
+              clearForm()
               break
             case 'auth/weak-password':
               setErrorText('パスワードが適切ではありません。')
