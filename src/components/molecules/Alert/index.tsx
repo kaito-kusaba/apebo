@@ -1,30 +1,56 @@
-import { RootState } from 'components/redux'
-import { actions } from 'components/redux/Alert'
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React, { useState, createContext, useContext, useEffect } from 'react'
+import { createPortal } from 'react-dom'
 import { useStyles } from './style'
 
-type Props = {
-  text: string
-  success: boolean
+export type AlertTypes = 'default' | 'error'
+
+const AlertContext = createContext(({}: { text: string; type?: AlertTypes }) => {})
+AlertContext.displayName = 'AlertContext'
+
+export const useAlert = () => {
+  return useContext(AlertContext)
 }
 
-export default function Alert({ text, success }: Props) {
-  const styles = useStyles({ success })
-  const dispatch = useDispatch()
-  const { isOpen } = useSelector(({ alert }: RootState) => alert)
+export const AlertProvider: React.FC = ({ children }) => {
+  const [showable, setShowable] = useState<boolean>(false)
+  const [AlertText, setAlertText] = useState<string>('')
+  const [AlertType, setAlertType] = useState<AlertTypes>('default')
+
+  type showAlertTypes = { text: string; type?: AlertTypes }
+  const showAlert = ({ text, type = 'default' }: showAlertTypes) => {
+    setAlertText(text)
+    setAlertType(type)
+    setShowable(true)
+  }
 
   useEffect(() => {
-    if (isOpen) {
-      setInterval(() => {
-        dispatch(actions.setAlert(false))
-      }, 7000)
-    }
+    return () => setShowable(false)
   }, [])
 
   return (
+    <AlertContext.Provider value={showAlert}>
+      {children}
+      {createPortal(
+        <Alert visible={showable} AlertType={AlertType}>
+          {AlertText}
+        </Alert>,
+        document.body,
+      )}
+    </AlertContext.Provider>
+  )
+}
+
+type AlertProps = {
+  visible: boolean
+  AlertType: AlertTypes
+  children: string
+}
+
+const Alert: React.FC<AlertProps> = ({ visible, AlertType, children }) => {
+  const styles = useStyles({ visible, AlertType })
+  return (
     <div className={styles.container()}>
-      <span className={styles.text}>{text}</span>
+      <span className={styles.text}>{children}</span>
     </div>
   )
 }
