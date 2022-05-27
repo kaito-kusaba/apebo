@@ -24,7 +24,7 @@ export default function AccountPostContent({ uid, content, onClick, time, docId 
           <UserIcon uid={uid} size={46} style={styles.postContentUserIcon} />
           <UserName uid={uid} />
         </div>
-        <ActionButtonSet docId={docId} />
+        <ActionButtonSet uid={uid} docId={docId} />
       </div>
       <PostContentDisplay content={content} style={styles.postContentDisplay} />
       <Time time={time} />
