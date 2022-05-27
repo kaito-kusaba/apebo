@@ -4,6 +4,7 @@ import Click from 'components/molecules/Button/Click'
 import { useInjection } from './hooks'
 import Password from 'components/molecules/Input/Password'
 import ValidateLabel from 'components/molecules/Label/ValidateLabel'
+import SettingsLabel from 'components/molecules/Label/SettingsLabel'
 
 export default React.memo(function ChangePasswordContainer() {
   const {
@@ -20,7 +21,7 @@ export default React.memo(function ChangePasswordContainer() {
 
   return (
     <div className={styles.container}>
-      <span className={styles.top}>パスワード再設定</span>
+      <SettingsLabel label="パスワード再設定" />
       <span className={styles.newPassword}>
         新しいパスワード<span className={styles.errorTextMessage}>{errorText}</span>
       </span>
