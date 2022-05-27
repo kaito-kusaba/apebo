@@ -9,6 +9,7 @@ import SetUsernameScreen from 'pages/Attr/Username'
 import UpdateProfileScreen from 'pages/UpdateProfile'
 import ChangeEmailScreen from 'pages/ChangeEmail'
 import ChangePasswordScreen from 'pages/ChangePassword'
+import SupportPageScreen from 'pages/Support'
 import TermsScreen from 'pages/terms'
 
 export default function MainNavigator() {
@@ -27,6 +28,7 @@ export default function MainNavigator() {
       <Route path="/account/settings/profile" element={<UpdateProfileScreen />} />
       <Route path="/account/settings/email" element={<ChangeEmailScreen />} />
       <Route path="/account/settings/password" element={<ChangePasswordScreen />} />
+      <Route path="/app/support" element={<SupportPageScreen />} />
       <Route path="/app/terms" element={<TermsScreen />} />
       <Route path="/*" element={<NotFoundScreen />} />
     </Routes>
