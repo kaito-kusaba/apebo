@@ -6,7 +6,7 @@ export default React.memo(function AccountPostContentList() {
   const { posts, onClick } = useInjection()
   return (
     <>
-      {posts.forEach(post => {
+      {posts.map(post => {
         return (
           <AccountPostContent
             key={post.id}
