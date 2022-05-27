@@ -1,16 +1,14 @@
-import SafeView from 'components/atoms/SafeView'
-import React from 'react'
-import { useInjection } from './hooks'
 import { useStyles } from './style'
+import React from 'react'
+import SettingsScreen from 'pages/Settings'
+import SettingsPageContainer from 'components/organisms/SettingsPageContainer'
+import UpdateProfileContainer from 'components/organisms/UpdateProfileContainer'
 
-export default React.memo(function UpdateProfileScreen() {
-  const { newName, onChange, onSubmit } = useInjection()
+export default React.memo(function ChangeEmailScreen() {
   const styles = useStyles()
   return (
-    <SafeView>
-      <p className={styles.label}>ユーザーネーム</p>
-      <input type="text" value={newName} onChange={onChange} />
-      <input type="submit" value={'変更する'} onClick={onSubmit} />
-    </SafeView>
+    <div className={styles.container}>
+      <SettingsPageContainer left={<SettingsScreen />} right={<UpdateProfileContainer />} />
+    </div>
   )
 })
