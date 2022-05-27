@@ -11,7 +11,6 @@ export function useStyles() {
     background-color: ${Colors.CHAOS_BLACK};
     border-radius: 12px;
   `
-
   const forgot = css`
     font-size: 12px;
     color: ${Colors.GREY};

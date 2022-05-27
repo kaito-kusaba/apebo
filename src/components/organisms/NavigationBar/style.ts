@@ -4,6 +4,7 @@ import { NAVIGATION_WIDTH } from 'constant/Width'
 
 export function useStyles() {
   const navigationBarStyle = css({
+    zIndex: 10,
     backgroundColor: Colors.BLACK,
     position: 'fixed',
     left: 0,

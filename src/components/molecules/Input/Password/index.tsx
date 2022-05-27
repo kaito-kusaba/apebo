@@ -2,14 +2,28 @@ import React, { useCallback, useState } from 'react'
 import { useStyles } from './style'
 import { EyeHideIconSquant, EyeIconSquant } from 'components/atoms/Icon'
 
+export type PasswordInputType = 'default' | 'border'
+
 interface Props {
   value: string
   onChange: (e: any) => void
+  type: PasswordInputType
+  placeholder?: string
+  inputStyle?: string
+  errorText?: string
 }
 
-export default React.memo(function PasswordInput({ value, onChange, ...props }: Props) {
+export default React.memo(function PasswordInput({
+  value,
+  onChange,
+  placeholder = 'パスワード',
+  type,
+  inputStyle,
+  errorText,
+  ...props
+}: Props) {
   const [hidden, setHidden] = useState<boolean>(true)
-  const styles = useStyles()
+  const styles = useStyles({ type, errorText })
 
   const onClick = useCallback(() => {
     setHidden(!hidden)
@@ -18,14 +32,14 @@ export default React.memo(function PasswordInput({ value, onChange, ...props }: 
   return (
     <div className={styles.container}>
       <input
-        className={styles.passwordInput}
+        className={`${styles.passwordInput()} ${inputStyle}`}
         value={value}
         onChange={onChange}
         type={hidden ? 'password' : 'text'}
-        placeholder="パスワード"
+        placeholder={placeholder}
         {...props}
       />
-      <button onClick={onClick} className={styles.button}>
+      <button onClick={onClick} className={styles.button()}>
         <img src={hidden ? EyeHideIconSquant : EyeIconSquant} alt="" className={styles.passwordInputImg} />
       </button>
     </div>

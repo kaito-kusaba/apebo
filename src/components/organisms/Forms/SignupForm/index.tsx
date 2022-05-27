@@ -28,7 +28,7 @@ export default function SignupForm() {
     <div className={styles.container} onKeyDown={enterKeyPress}>
       <AuthModalHeader label="新規登録(無料)" onClick={onClickCancel} />
       <EmailInput value={email} onChange={onChangeEmail} style={styles.emailInput} />
-      <PasswordInput value={password} onChange={onChangePassword} />
+      <PasswordInput type="default" value={password} onChange={onChangePassword} />
       <ValidateLabel validation={validation} style={styles.validationLabel} />
       <span className={styles.invalid}>{errorText}</span>
       <AuthButton label="新規登録(無料)" onClick={onPressSubmit} validation={validation} style={styles.signInButton} />
