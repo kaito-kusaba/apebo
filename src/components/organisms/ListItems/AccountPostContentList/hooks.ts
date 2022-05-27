@@ -15,12 +15,12 @@ export function useInjection() {
     const postsCollectionRef = query(collection(db, 'posts'), orderBy('created_at', 'desc'))
     onSnapshot(postsCollectionRef, querySnapshot => {
       querySnapshot.forEach(doc => {
-        if (doc.data().user_id === user!.uid) {
+        if (doc.data().user_id === user?.uid) {
           postsTemp.push({ id: doc.id, ...doc.data() })
         }
       })
+      setPosts(postsTemp)
     })
-    setPosts(postsTemp)
   }, [])
 
   const onClick = useCallback(() => {
