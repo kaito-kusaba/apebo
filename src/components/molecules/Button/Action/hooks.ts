@@ -66,6 +66,7 @@ export function useInjection({ type, docId, uid }: Props) {
   const onClickOther = useCallback(async docId => {
     if (user!.uid === uid) {
       await deleteDoc(doc(db, 'posts', docId))
+      window.location.reload()
     } else {
       alert('miss')
     }
