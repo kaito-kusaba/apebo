@@ -12,13 +12,16 @@ import { useEffect, useState, useCallback } from 'react'
 import { ActionButtonTypes } from 'types/ActionButtonTypes'
 import { deleteDoc, doc } from 'firebase/firestore'
 import { db } from 'libs/firebase'
+import { RootState } from 'components/redux'
+import { useSelector } from 'react-redux'
 
 interface Props {
   type: ActionButtonTypes
   docId: string
+  uid: string
 }
 
-export function useInjection({ type, docId }: Props) {
+export function useInjection({ type, docId, uid }: Props) {
   const [isHovered, setIsHovered] = useState<boolean>(false)
   const [isSelectedMessage, setIsSelectedMessage] = useState<boolean>(false)
   const [isSelectedLike, setIsSelectedLike] = useState<boolean>(false)
@@ -58,8 +61,14 @@ export function useInjection({ type, docId }: Props) {
     setIsHovered(!isHovered)
   }, [isHovered, setIsHovered])
 
+  const { user } = useSelector(({ user }: RootState) => user)
+
   const onClickOther = useCallback(async docId => {
-    await deleteDoc(doc(db, 'posts', docId))
+    if (user!.uid === uid) {
+      await deleteDoc(doc(db, 'posts', docId))
+    } else {
+      alert('miss')
+    }
   }, [])
 
   const onClickActionButton = useCallback(() => {
