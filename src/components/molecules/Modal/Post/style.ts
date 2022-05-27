@@ -13,6 +13,7 @@ export function useStyles() {
     transform: translate(-50%, -50%);
     width: 524px;
     border-radius: 12px;
+    outline: none;
   `
   const overlay = css`
     z-index: 10;

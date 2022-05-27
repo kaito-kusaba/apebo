@@ -1,11 +1,13 @@
 import { css, keyframes } from '@emotion/css'
 import { Colors } from 'constant'
+import { AlertTypes } from './index'
 
 type Props = {
-  success: boolean
+  visible: boolean
+  AlertType: AlertTypes
 }
 
-export function useStyles({ success }: Props) {
+export function useStyles({ visible, AlertType }: Props) {
   const fadeInOut = keyframes`
 	0% {
 		transform: translateY(-10px);
@@ -35,18 +37,31 @@ export function useStyles({ success }: Props) {
     align-items: center;
     animation: ${fadeInOut} 3.5s forwards;
     z-index: 1;
+    border-radius: 8px;
   `
   const container = () => {
-    if (success) {
-      return css`
-        ${baseContainer}
-        background-color: ${Colors.GREEN};
-      `
+    if (AlertType === 'default') {
+      if (visible) {
+        return css`
+          ${baseContainer}
+          background-color: ${Colors.GREEN};
+        `
+      } else {
+        return css`
+          display: none;
+        `
+      }
     } else {
-      return css`
-        ${baseContainer}
-        background-color: ${Colors.RED};
-      `
+      if (visible) {
+        return css`
+          ${baseContainer}
+          background-color: ${Colors.RED};
+        `
+      } else {
+        return css`
+          display: none;
+        `
+      }
     }
   }
 

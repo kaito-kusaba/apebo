@@ -1,11 +1,11 @@
 import { RootState } from 'components/redux'
 import { actions as modalActions } from 'components/redux/Modal'
-import { actions as alertActions } from 'components/redux/Alert'
 import { db } from 'libs/firebase'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { addDoc, collection } from 'firebase/firestore'
 import { useLocation, useNavigate } from 'react-router-dom'
+import { useAlert } from 'components/molecules/Alert'
 
 export function useInjection() {
   const dispatch = useDispatch()
@@ -15,6 +15,7 @@ export function useInjection() {
   const { user } = useSelector(({ user }: RootState) => user)
   const [text, setText] = useState<string>('')
   const textAreaRef = useResizeTextArea(text)
+  const showAlert = useAlert()
 
   const onClose = useCallback(() => {
     dispatch(modalActions.setModal(false))
@@ -49,16 +50,15 @@ export function useInjection() {
         }).then(() => {
           if (location.pathname !== '/') {
             navigate('/')
-            dispatch(alertActions.setAlert(true))
           }
+          showAlert({ text: '投稿に成功しました。' })
         })
       } else {
         alert('投稿内容を入力してください。')
       }
       dispatch(modalActions.setModal(false))
-      dispatch(alertActions.setAlert(true))
     } catch (e) {
-      alert('投稿に失敗しました。')
+      showAlert({ text: '投稿に失敗しました。', type: 'error' })
       console.log(e)
       dispatch(modalActions.setModal(false))
     }
