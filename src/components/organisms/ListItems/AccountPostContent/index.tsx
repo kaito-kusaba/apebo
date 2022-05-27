@@ -15,7 +15,7 @@ interface Props {
   docId: string
 }
 
-export default function PostContent({ uid, content, onClick, time, docId }: Props) {
+export default function AccountPostContent({ uid, content, onClick, time, docId }: Props) {
   const styles = useStyles()
   return (
     <div onClick={onClick} className={styles.postContentContainerStyle}>
@@ -24,7 +24,7 @@ export default function PostContent({ uid, content, onClick, time, docId }: Prop
           <UserIcon uid={uid} size={46} style={styles.postContentUserIcon} />
           <UserName uid={uid} />
         </div>
-        <ActionButtonSet docId={docId} uid={uid} />
+        <ActionButtonSet uid={uid} docId={docId} />
       </div>
       <PostContentDisplay content={content} style={styles.postContentDisplay} />
       <Time time={time} />
