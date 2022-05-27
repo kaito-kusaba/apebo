@@ -14,6 +14,7 @@ import { deleteDoc, doc } from 'firebase/firestore'
 import { db } from 'libs/firebase'
 import { RootState } from 'components/redux'
 import { useSelector } from 'react-redux'
+import { useLocation } from 'react-router-dom'
 
 interface Props {
   type: ActionButtonTypes
@@ -27,6 +28,8 @@ export function useInjection({ type, docId, uid }: Props) {
   const [isSelectedLike, setIsSelectedLike] = useState<boolean>(false)
   const [isSelectedFollow, setIsSelectedFollow] = useState<boolean>(false)
   const [buttonImageSrc, setButtonImageSrc] = useState<string>('')
+  const { user } = useSelector(({ user }: RootState) => user)
+  const location = useLocation()
 
   useEffect(() => {
     switch (type) {
@@ -61,11 +64,12 @@ export function useInjection({ type, docId, uid }: Props) {
     setIsHovered(!isHovered)
   }, [isHovered, setIsHovered])
 
-  const { user } = useSelector(({ user }: RootState) => user)
-
   const onClickOther = useCallback(async docId => {
     if (user!.uid === uid) {
       await deleteDoc(doc(db, 'posts', docId))
+      if (location.pathname === '/account') {
+        window.location.reload()
+      }
     } else {
       alert('miss')
     }
