@@ -24,7 +24,7 @@ export default function PostContent({ uid, content, onClick, time, docId }: Prop
           <UserIcon uid={uid} size={46} style={styles.postContentUserIcon} />
           <UserName uid={uid} />
         </div>
-        <ActionButtonSet docId={docId} />
+        <ActionButtonSet docId={docId} uid={uid} />
       </div>
       <PostContentDisplay content={content} style={styles.postContentDisplay} />
       <Time time={time} />

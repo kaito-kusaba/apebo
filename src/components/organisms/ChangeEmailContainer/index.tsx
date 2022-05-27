@@ -3,6 +3,7 @@ import { useStyles } from './style'
 import Click from 'components/molecules/Button/Click'
 import { useInjection } from './hooks'
 import { InfoIconRed } from 'components/atoms/Icon'
+import SettingsLabel from 'components/molecules/Label/SettingsLabel'
 
 export default React.memo(function ChangeEmailContainer() {
   const { onChangeEmail, onClick, user, errorText, enterKeyPress, disabled } = useInjection()
@@ -10,7 +11,7 @@ export default React.memo(function ChangeEmailContainer() {
 
   return (
     <div className={styles.container} onKeyDown={enterKeyPress}>
-      <span className={styles.top}>メールアドレス変更</span>
+      <SettingsLabel label="メールアドレス変更" />
       <span className={styles.currentEmail}>現在のメールアドレス</span>
       <span className={styles.inputCurrentEmail}>{user?.email}</span>
       <span className={styles.newEmail}>

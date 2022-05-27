@@ -41,9 +41,13 @@ export default React.memo(function PostModal() {
         ref={textAreaRef}
       />
       <div className={styles.textAreaInfoContainer}>
-        <div className={styles.yellowButtons}>
-          <img className={styles.addImage} src={AddImageIconYellow} alt="" onClick={onClickAddImage} />
-          <img className={styles.smileIcon} src={SmileIconYellow} alt="" onClick={onClickSmileIcon} />
+        <div className={styles.buttons}>
+          <button className={styles.imageButton} onClick={onClickAddImage}>
+            <img className={styles.icon} src={AddImageIconYellow} alt="" />
+          </button>
+          <button className={styles.emojiButton} onClick={onClickSmileIcon}>
+            <img className={styles.icon} src={SmileIconYellow} alt="" />
+          </button>
         </div>
         <div className={styles.postButtonContainer}>
           <span className={styles.textAreaLength}>{text.length}/200</span>
