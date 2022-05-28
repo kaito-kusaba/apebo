@@ -5,13 +5,29 @@ import { useStyles } from './style'
 
 interface Props {
   type: ActionButtonTypes
-  docId: string
-  uid: string
+  uid?: string
+  docId?: string
+  onClickOther?: () => void
+  onClickMessage?: () => void
+  onClickLike?: () => void
+  onClickFollow?: () => void
 }
 
-export default React.memo(function ActionButton({ type, docId, uid }: Props) {
+export default React.memo(function ActionButton({
+  type,
+  onClickOther,
+  onClickFollow,
+  onClickLike,
+  onClickMessage,
+}: Props) {
   const styles = useStyles()
-  const { buttonImageSrc, onMouseToggle, onClickActionButton } = useInjection({ type, docId, uid })
+  const { buttonImageSrc, onMouseToggle, onClickActionButton } = useInjection({
+    type,
+    onClickOther,
+    onClickMessage,
+    onClickLike,
+    onClickFollow,
+  })
 
   return (
     <button

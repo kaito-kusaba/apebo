@@ -11,6 +11,7 @@ export function useStyles() {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    position: relative;
   `
   const icon = css`
     display: flex;
@@ -21,9 +22,17 @@ export function useStyles() {
     margin-bottom: 16px;
   `
 
+  const actionButtons = css`
+    display: flex;
+    position: absolute;
+    right: 24px;
+    top: 16px;
+  `
+
   return {
     profileContainer,
     icon,
     playEnvContainer,
+    actionButtons,
   }
 }
