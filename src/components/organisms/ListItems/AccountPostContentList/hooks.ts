@@ -1,13 +1,15 @@
 import { db } from 'libs/firebase'
 import { useCallback, useEffect, useState } from 'react'
 import { collection, DocumentData, onSnapshot, orderBy, query } from 'firebase/firestore'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'components/redux'
+import { actions } from 'components/redux/AccountPost'
 
 export function useInjection() {
-  const [posts, setPosts] = useState<DocumentData[]>([])
-  const { user } = useSelector(({ user }: RootState) => user)
+  const dispatch = useDispatch()
   const postsTemp: DocumentData[] = []
+  const { user } = useSelector(({ user }: RootState) => user)
+  const [posts, setPosts] = useState<DocumentData[]>([])
 
   useEffect(() => {
     const postsCollectionRef = query(collection(db, 'posts'), orderBy('created_at', 'desc'))
@@ -18,6 +20,7 @@ export function useInjection() {
         }
       })
       setPosts(postsTemp)
+      dispatch(actions.setPosts(postsTemp))
     })
   }, [])
 
