@@ -21,6 +21,10 @@ export function useStyles() {
   const discordId = css`
     color: ${Colors.GREY};
     font-size: 14px;
+    overflow: hidden;
+    max-width: calc(340px - (24px * 2) - 18px - 4px);
+    white-space: nowrap;
+    text-overflow: ellipsis;
   `
   const discordIdCopy = css`
     display: inline-flex;
