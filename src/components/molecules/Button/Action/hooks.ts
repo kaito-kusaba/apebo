@@ -1,3 +1,4 @@
+import { useCallback, useEffect, useState } from 'react'
 import LIKE_ACTIVE from 'assets/images/icons/like_active.png'
 import LIKE_DEFAULT from 'assets/images/icons/like_default.png'
 import LIKE_HOVER from 'assets/images/icons/like_hover.png'
@@ -8,28 +9,22 @@ import FOLLOW_ACTIVE from 'assets/images/icons/follow_active.png'
 import FOLLOW_DEFAULT from 'assets/images/icons/follow_default.png'
 import FOLLOW_HOVER from 'assets/images/icons/follow_hover.png'
 import DOTS from 'assets/images/icons/dots.png'
-import { useEffect, useState, useCallback } from 'react'
 import { ActionButtonTypes } from 'types/ActionButtonTypes'
-import { deleteDoc, doc } from 'firebase/firestore'
-import { db } from 'libs/firebase'
-import { RootState } from 'components/redux'
-import { useSelector } from 'react-redux'
-import { useLocation } from 'react-router-dom'
 
-interface Props {
+type Props = {
   type: ActionButtonTypes
-  docId: string
-  uid: string
+  onClickOther?: () => void
+  onClickMessage?: () => void
+  onClickLike?: () => void
+  onClickFollow?: () => void
 }
 
-export function useInjection({ type, docId, uid }: Props) {
-  const [isHovered, setIsHovered] = useState<boolean>(false)
+export function useInjection({ type, onClickOther, onClickMessage, onClickFollow, onClickLike }: Props) {
+  const [buttonImageSrc, setButtonImageSrc] = useState<string>('')
   const [isSelectedMessage, setIsSelectedMessage] = useState<boolean>(false)
   const [isSelectedLike, setIsSelectedLike] = useState<boolean>(false)
   const [isSelectedFollow, setIsSelectedFollow] = useState<boolean>(false)
-  const [buttonImageSrc, setButtonImageSrc] = useState<string>('')
-  const { user } = useSelector(({ user }: RootState) => user)
-  const location = useLocation()
+  const [isHovered, setIsHovered] = useState<boolean>(false)
 
   useEffect(() => {
     switch (type) {
@@ -60,41 +55,33 @@ export function useInjection({ type, docId, uid }: Props) {
     }
   }, [isSelectedMessage, isSelectedLike, isSelectedFollow, isHovered, type])
 
-  const onMouseToggle = useCallback(() => {
-    setIsHovered(!isHovered)
-  }, [isHovered, setIsHovered])
-
-  const onClickOther = useCallback(async docId => {
-    if (user!.uid === uid) {
-      await deleteDoc(doc(db, 'posts', docId))
-      if (location.pathname === '/account') {
-        window.location.reload()
-      }
-    } else {
-      alert('miss')
-    }
-  }, [])
-
   const onClickActionButton = useCallback(() => {
     switch (type) {
       case 'Message':
         setIsSelectedMessage(!isSelectedMessage)
+        onClickMessage!()
         break
       case 'Like':
         setIsSelectedLike(!isSelectedLike)
+        onClickLike!()
         break
       case 'Follow':
         setIsSelectedFollow(!isSelectedFollow)
+        onClickFollow!()
         break
       case 'Other':
-        onClickOther(docId)
+        onClickOther!()
         break
     }
   }, [isSelectedMessage, isSelectedLike, isSelectedFollow])
 
+  const onMouseToggle = useCallback(() => {
+    setIsHovered(!isHovered)
+  }, [isHovered, setIsHovered])
+
   return {
+    onClickActionButton,
     buttonImageSrc,
     onMouseToggle,
-    onClickActionButton,
   }
 }
