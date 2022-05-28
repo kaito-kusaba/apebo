@@ -15,10 +15,10 @@ interface Props {
   docId: string
 }
 
-export default function PostContent({ uid, content, onClick, time, docId }: Props) {
+export default function PostContent({ uid, content, time, docId }: Props) {
   const styles = useStyles()
   return (
-    <div onClick={onClick} className={styles.postContentContainerStyle}>
+    <div className={styles.postContentContainerStyle}>
       <div className={styles.postContentHeader}>
         <div className={styles.postContentUser}>
           <UserIcon uid={uid} size={46} style={styles.postContentUserIcon} />
