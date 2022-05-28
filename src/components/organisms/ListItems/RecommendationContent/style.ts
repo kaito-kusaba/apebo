@@ -12,6 +12,7 @@ export function useStyles() {
     font-size: 16px;
     color: ${Colors.WHITE};
     font-weight: 700;
+    margin-bottom: 16px;
   `
 
   return {

@@ -7,7 +7,7 @@ export default React.memo(function Recommendation() {
 
   return (
     <div className={styles.container}>
-      <span className={styles.label}>最近のおすすめユーザー</span>
+      <div className={styles.label}>最近のおすすめユーザー</div>
       <RecommendationUser />
     </div>
   )

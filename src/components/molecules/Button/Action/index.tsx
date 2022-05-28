@@ -11,6 +11,7 @@ interface Props {
   onClickMessage?: () => void
   onClickLike?: () => void
   onClickFollow?: () => void
+  imgStyle?: string
 }
 
 export default React.memo(function ActionButton({
@@ -19,6 +20,7 @@ export default React.memo(function ActionButton({
   onClickFollow,
   onClickLike,
   onClickMessage,
+  imgStyle,
 }: Props) {
   const styles = useStyles()
   const { buttonImageSrc, onMouseToggle, onClickActionButton } = useInjection({
@@ -38,7 +40,7 @@ export default React.memo(function ActionButton({
       {type === 'Other' ? (
         <img src={buttonImageSrc} className={styles.actionButtonDotsImageStyle} alt="" />
       ) : (
-        <img src={buttonImageSrc} className={styles.actionButtonImageStyle} alt="" />
+        <img src={buttonImageSrc} className={`${styles.actionButtonImageStyle}  ${imgStyle}`} alt="" />
       )}
     </button>
   )

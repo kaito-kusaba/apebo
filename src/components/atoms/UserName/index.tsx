@@ -8,9 +8,10 @@ import { useStyles } from './style'
 interface Props {
   style?: string
   uid: string
+  textStyle?: string
 }
 
-export default React.memo(function UserName({ style, uid }: Props) {
+export default React.memo(function UserName({ style, uid, textStyle }: Props) {
   const styles = useStyles()
   const { user } = useSelector(({ user }: RootState) => user)
   const [username, setUsername] = useState<string>(user?.displayName!)
@@ -26,8 +27,8 @@ export default React.memo(function UserName({ style, uid }: Props) {
 
   return (
     <div className={`${styles.userNameContainerStyle} ${style}`}>
-      <div className={styles.userName}>{username ? username : '匿名さん'}</div>
-      <div className={styles.userId}>@{uid ? uid : 'anonymous_user'}</div>
+      <div className={`${styles.userName} ${textStyle}`}>{username ? username : '匿名さん'}</div>
+      <div className={`${styles.userId} ${textStyle}`}>@{uid ? uid : 'anonymous_user'}</div>
     </div>
   )
 })
