@@ -4,9 +4,10 @@ import UNSET46 from 'assets/images/icons/user/46_unset.png'
 import UNSET72 from 'assets/images/icons/user/72_unset.png'
 import { useSelector } from 'react-redux'
 import { RootState } from 'components/redux'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { doc, getDoc } from 'firebase/firestore'
 import { db } from 'libs/firebase'
+import { useNavigate } from 'react-router-dom'
 
 interface Props {
   size: UserIconSize
@@ -17,6 +18,7 @@ export function useInjection({ size, uid }: Props) {
   const [defaultSrc, setDefaultSrc] = useState<string>('')
   const [src, setSrc] = useState<string>('')
   const { user } = useSelector(({ user }: RootState) => user)
+  const navigate = useNavigate()
 
   useEffect(() => {
     switch (size) {
@@ -52,8 +54,14 @@ export function useInjection({ size, uid }: Props) {
     f()
   }, [user?.photoURL, defaultSrc])
 
+  const onClick = useCallback(e => {
+    e.stopPropagation()
+    navigate(`/account/${uid}`)
+  }, [])
+
   return {
     src,
     user,
+    onClick,
   }
 }
