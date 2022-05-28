@@ -1,11 +1,13 @@
 import React from 'react'
 import { useInjection } from './hooks'
 import AccountPostContent from '../AccountPostContent'
+import { useStyles } from './style'
 
 export default React.memo(function AccountPostContentList() {
   const { posts, onClick } = useInjection()
+  const styles = useStyles()
   return (
-    <>
+    <div className={styles.container}>
       {posts.map(post => {
         return (
           <AccountPostContent
@@ -18,6 +20,6 @@ export default React.memo(function AccountPostContentList() {
           />
         )
       })}
-    </>
+    </div>
   )
 })

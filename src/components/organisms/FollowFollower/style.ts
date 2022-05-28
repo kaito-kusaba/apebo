@@ -19,7 +19,7 @@ export function useStyles() {
   `
   const followFollowerText = css`
     color: ${Colors.SQUANT};
-    font-size: 14px;
+    font-size: 12px;
     margin-right: 22px;
   `
 

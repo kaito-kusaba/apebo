@@ -4,17 +4,19 @@ import { Colors } from 'constant'
 export function useStyles() {
   const discordIdContainer = css`
     display: flex;
-    margin-bottom: 12px;
+    margin-bottom: 8px;
     cursor: pointer;
+    align-items: center;
+    transition: 0.2s;
     &:hover {
       text-decoration: underline;
       text-decoration-color: ${Colors.WHITE};
     }
   `
   const discordIcon = css`
-    width: 24px;
-    height: 24px;
-    margin-right: 8px;
+    width: 18px;
+    height: 18px;
+    margin: 4px 4px 0 0;
   `
   const discordId = css`
     color: ${Colors.GREY};

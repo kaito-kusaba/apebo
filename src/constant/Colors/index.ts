@@ -21,3 +21,6 @@ export const PINK = '#FF4545'
 
 // Green
 export const GREEN = '#1CA36F'
+
+// Blue
+export const SKY_BLUE = '#3AA1FF'

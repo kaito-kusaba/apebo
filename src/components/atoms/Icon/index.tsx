@@ -1,3 +1,4 @@
+// without color
 export { default as SettingsIcon } from 'assets/images/icons/settings.png'
 export { default as AccountIcon } from 'assets/images/icons/settings/account.png'
 export { default as AtmarkIcon } from 'assets/images/icons/settings/atmark.png'
@@ -5,6 +6,14 @@ export { default as RightArrowIcon } from 'assets/images/icons/settings/right_ar
 export { default as PasswordIcon } from 'assets/images/icons/settings/password.png'
 export { default as TermsIcon } from 'assets/images/icons/settings/terms.png'
 export { default as SupportIcon } from 'assets/images/icons/settings/support.png'
+export { default as GoogleIcon } from 'assets/images/icons/google.png'
+export { default as PCIcon } from 'assets/images/icons/user/pc.png'
+export { default as PSIcon } from 'assets/images/icons/user/ps.png'
+export { default as SwitchIcon } from 'assets/images/icons/user/switch.png'
+export { default as XboxIcon } from 'assets/images/icons/user/xbox.png'
+export { default as MobileIcon } from 'assets/images/icons/user/mobile.png'
+
+// with Color
 export { default as WorldIconYellow } from 'assets/images/icons/YellowIcons/world.png'
 export { default as FollowingIconYellow } from 'assets/images/icons/YellowIcons/following.png'
 export { default as StarIconYellow } from 'assets/images/icons/YellowIcons/star.png'
@@ -21,7 +30,8 @@ export { default as CheckIconGreen } from 'assets/images/icons/GreenIcons/check.
 export { default as CheckIconSquant } from 'assets/images/icons/SquantIcons/check.png'
 export { default as CancelIconGrey } from 'assets/images/icons/GrayIcons/cancel.png'
 export { default as CancelIconRed } from 'assets/images/icons/RedIcons/cancel.png'
-export { default as GoogleIcon } from 'assets/images/icons/google.png'
 export { default as SmileIconYellow } from 'assets/images/icons/YellowIcons/smile.png'
 export { default as AddImageIconYellow } from 'assets/images/icons/YellowIcons/Add_Image.png'
 export { default as InfoIconRed } from 'assets/images/icons/RedIcons/info.png'
+export { default as DiscordIconGray } from 'assets/images/icons/GrayIcons/discord.png'
+export { default as LinkIconGray } from 'assets/images/icons/GrayIcons/link.png'

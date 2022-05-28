@@ -5,6 +5,7 @@ export function useStyles() {
   const bioDisplay = css`
     color: ${Colors.PORPOISE};
     margin-bottom: 16px;
+    font-size: 14px;
   `
 
   return {

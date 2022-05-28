@@ -15,7 +15,6 @@ export default React.memo(function UserName({ style, uid }: Props) {
   const { user } = useSelector(({ user }: RootState) => user)
   const [username, setUsername] = useState<string>(user?.displayName!)
 
-  //uidでusersを検索する uid => username
   useEffect(() => {
     const f = async () => {
       const userRef = doc(db, 'users', uid)
@@ -27,7 +26,7 @@ export default React.memo(function UserName({ style, uid }: Props) {
 
   return (
     <div className={`${styles.userNameContainerStyle} ${style}`}>
-      <div className={styles.userName}>{username}</div>
+      <div className={styles.userName}>{username ? username : '匿名さん'}</div>
       <div className={styles.userId}>@{uid ? uid : 'anonymous_user'}</div>
     </div>
   )

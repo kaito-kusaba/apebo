@@ -4,23 +4,26 @@ import { Colors } from 'constant'
 export function useStyles() {
   const profileContainer = css`
     background-color: ${Colors.BLACK_WASH};
-    padding: 8px 16px;
-    width: 848px;
+    padding: 8px 24px;
     margin-bottom: 8px;
-  `
-  const header = css`
+    min-width: 340px;
+    max-width: 340px;
     display: flex;
-    margin: 8px 0 16px 0;
+    flex-direction: column;
+    align-items: flex-start;
+  `
+  const icon = css`
+    display: flex;
+    margin-bottom: 16px;
   `
 
-  const userName = css`
-    justify-content: flex-start;
-    margin-left: 16px;
+  const playEnvContainer = css`
+    margin-bottom: 16px;
   `
 
   return {
     profileContainer,
-    header,
-    userName,
+    icon,
+    playEnvContainer,
   }
 }
