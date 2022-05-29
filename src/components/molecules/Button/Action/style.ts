@@ -8,23 +8,24 @@ export function useStyles() {
     justify-content: center;
     align-items: center;
     border: 0;
+    border-radius: 8px;
     cursor: pointer;
     margin: 0 0 0 14px;
     background-color: ${Colors.BLACK_WASH};
-  `
-
-  const actionButtonImageStyle = css`
-    width: ${BUTTON_SIZE}px;
-    height: ${BUTTON_SIZE}px;
+    &:hover {
+      background-color: ${Colors.CHAOS_BLACK};
+    }
   `
 
   const actionButtonDotsImageStyle = css`
     width: 20px;
     height: 20px;
     transition: all 0.2s;
-    &:hover {
-      opacity: 0.5;
-    }
+  `
+
+  const actionButtonImageStyle = css`
+    width: ${BUTTON_SIZE}px;
+    height: ${BUTTON_SIZE}px;
   `
 
   return {

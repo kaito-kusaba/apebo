@@ -36,7 +36,7 @@ export default React.memo(function ActionButton({
       onMouseEnter={onMouseToggle}
       onMouseLeave={onMouseToggle}
       onClick={onClickActionButton}
-      className={`${styles.actionButton} action-buttons action-buttons-${type.toLowerCase()}`}>
+      className={`${styles.actionButton}`}>
       {type === 'Other' ? (
         <img src={buttonImageSrc} className={styles.actionButtonDotsImageStyle} alt="" />
       ) : (
