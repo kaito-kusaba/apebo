@@ -34,7 +34,7 @@ export function useStyles({ errorText }: Props) {
   const newPassword = css`
     ${baseText}
     font-weight: 500;
-    color: ${Colors.PORPOISE};
+    color: ${Colors.GREY};
     margin-top: 32px;
   `
 
