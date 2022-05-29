@@ -52,10 +52,13 @@ export function useInjection({ size, uid }: Props) {
     }
   }, [uid])
 
-  const onClick = useCallback(e => {
-    e.stopPropagation()
-    navigate(`/account/${uid}`)
-  }, [])
+  const onClick = useCallback(
+    e => {
+      e.stopPropagation()
+      navigate(`/account/${uid}`)
+    },
+    [uid],
+  )
 
   return {
     src,
