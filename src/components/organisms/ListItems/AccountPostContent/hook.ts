@@ -1,7 +1,7 @@
 import { RootState } from 'components/redux'
 import { useCallback } from 'react'
 import { useSelector } from 'react-redux'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 import { deleteDoc, doc } from 'firebase/firestore'
 import { db } from 'libs/firebase'
@@ -13,6 +13,7 @@ type Props = {
 export function useInjection({ uid }: Props) {
   const { user } = useSelector(({ user }: RootState) => user)
   const location = useLocation()
+  const navigate = useNavigate()
 
   const onClickOther = useCallback(async docId => {
     if (user!.uid === uid) {
@@ -25,7 +26,13 @@ export function useInjection({ uid }: Props) {
     }
   }, [])
 
+  const onClickMessage = useCallback(e => {
+    e.stopPropagation()
+    navigate('/talk/:room_id')
+  }, [])
+
   return {
     onClickOther,
+    onClickMessage,
   }
 }

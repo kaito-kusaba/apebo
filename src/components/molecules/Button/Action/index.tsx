@@ -7,10 +7,10 @@ interface Props {
   type: ActionButtonTypes
   uid?: string
   docId?: string
-  onClickOther?: () => void
-  onClickMessage?: () => void
-  onClickLike?: () => void
-  onClickFollow?: () => void
+  onClickOther?: (e: any) => void
+  onClickMessage?: (e: any) => void
+  onClickLike?: (e: any) => void
+  onClickFollow?: (e: any) => void
   imgStyle?: string
 }
 

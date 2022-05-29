@@ -13,10 +13,10 @@ import { ActionButtonTypes } from 'types/ActionButtonTypes'
 
 type Props = {
   type: ActionButtonTypes
-  onClickOther?: () => void
-  onClickMessage?: () => void
-  onClickLike?: () => void
-  onClickFollow?: () => void
+  onClickOther?: (e: any) => void
+  onClickMessage?: (e: any) => void
+  onClickLike?: (e: any) => void
+  onClickFollow?: (e: any) => void
 }
 
 export function useInjection({ type, onClickOther, onClickMessage, onClickFollow, onClickLike }: Props) {
@@ -55,25 +55,28 @@ export function useInjection({ type, onClickOther, onClickMessage, onClickFollow
     }
   }, [isSelectedMessage, isSelectedLike, isSelectedFollow, isHovered, type])
 
-  const onClickActionButton = useCallback(() => {
-    switch (type) {
-      case 'Message':
-        setIsSelectedMessage(!isSelectedMessage)
-        onClickMessage!()
-        break
-      case 'Like':
-        setIsSelectedLike(!isSelectedLike)
-        onClickLike!()
-        break
-      case 'Follow':
-        setIsSelectedFollow(!isSelectedFollow)
-        onClickFollow!()
-        break
-      case 'Other':
-        onClickOther!()
-        break
-    }
-  }, [isSelectedMessage, isSelectedLike, isSelectedFollow])
+  const onClickActionButton = useCallback(
+    e => {
+      switch (type) {
+        case 'Message':
+          setIsSelectedMessage(!isSelectedMessage)
+          onClickMessage!(e)
+          break
+        case 'Like':
+          setIsSelectedLike(!isSelectedLike)
+          onClickLike!(e)
+          break
+        case 'Follow':
+          setIsSelectedFollow(!isSelectedFollow)
+          onClickFollow!(e)
+          break
+        case 'Other':
+          onClickOther!(e)
+          break
+      }
+    },
+    [isSelectedMessage, isSelectedLike, isSelectedFollow],
+  )
 
   const onMouseToggle = useCallback(() => {
     setIsHovered(!isHovered)

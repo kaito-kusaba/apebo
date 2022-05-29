@@ -11,6 +11,7 @@ import ChangeEmailScreen from 'pages/ChangeEmail'
 import ChangePasswordScreen from 'pages/ChangePassword'
 import SupportPageScreen from 'pages/Support'
 import TermsScreen from 'pages/terms'
+import TalkScreen from 'pages/Talk'
 
 export default function MainNavigator() {
   const location = useLocation()
@@ -31,6 +32,7 @@ export default function MainNavigator() {
       <Route path="/app/support" element={<SupportPageScreen />} />
       <Route path="/app/terms" element={<TermsScreen />} />
       <Route path="/*" element={<NotFoundScreen />} />
+      <Route path="/talk/:room_id" element={<TalkScreen />} />
     </Routes>
   )
 }
