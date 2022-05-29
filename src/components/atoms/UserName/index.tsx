@@ -23,7 +23,7 @@ export default React.memo(function UserName({ style, uid, textStyle }: Props) {
       setUsername(userSnap.data()?.username)
     }
     f()
-  }, [])
+  }, [uid])
 
   return (
     <div className={`${styles.userNameContainerStyle} ${style}`}>

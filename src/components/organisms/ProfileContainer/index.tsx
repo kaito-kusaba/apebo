@@ -47,8 +47,8 @@ export default function ProfileContainer() {
   return (
     <div className={styles.profileContainer}>
       <ActionButtons />
-      <UserIcon uid={user!.uid} size={72} style={styles.icon} />
-      <UserName uid={user!.uid} />
+      <UserIcon uid={urlParams.uid ? urlParams.uid : user!.uid} size={72} style={styles.icon} />
+      <UserName uid={urlParams.uid ? urlParams.uid : user!.uid} />
       <PlayEnvLabel containerStyle={styles.playEnvContainer} />
       <BioDisplay text={bio} />
       <DiscordID />

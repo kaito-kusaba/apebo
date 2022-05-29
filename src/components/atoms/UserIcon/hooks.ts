@@ -52,7 +52,7 @@ export function useInjection({ size, uid }: Props) {
       }
     }
     f()
-  }, [user?.photoURL, defaultSrc])
+  }, [user?.photoURL, defaultSrc, uid])
 
   const onClick = useCallback(e => {
     e.stopPropagation()
