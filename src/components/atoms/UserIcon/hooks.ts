@@ -50,7 +50,7 @@ export function useInjection({ size, uid }: Props) {
         break
       }
     }
-  }, [])
+  }, [uid])
 
   const onClick = useCallback(e => {
     e.stopPropagation()
