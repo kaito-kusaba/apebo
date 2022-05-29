@@ -13,7 +13,6 @@ export function useInjection() {
       switch (env) {
         case 'PC':
           imgsTemp.push(PCIcon)
-          console.log(PCIcon)
           break
         case 'PlayStation':
           imgsTemp.push(PSIcon)
