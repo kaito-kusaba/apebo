@@ -11,6 +11,7 @@ import DiscordID from '../DiscordID'
 import FollowFollower from '../FollowFollower'
 import { useStyles } from './style'
 import { useLocation, useParams } from 'react-router-dom'
+import { useInjection } from './hooks'
 
 export default function ProfileContainer() {
   const urlParams = useParams<{ uid: string }>()
@@ -18,6 +19,7 @@ export default function ProfileContainer() {
   const [bio, setBio] = useState<string>('')
   const { user } = useSelector(({ user }: RootState) => user)
   const location = useLocation()
+  const { onClickMessage } = useInjection()
 
   useEffect(() => {
     setBio('基本夜の9時からやってます。Apexの他にも色々なゲームもしてます！気軽にDMして下さい！')
@@ -37,7 +39,7 @@ export default function ProfileContainer() {
     } else {
       return (
         <div className={styles.actionButtons}>
-          <ActionButton type="Message" />
+          <ActionButton type="Message" onClickMessage={onClickMessage} />
           <ActionButton type="Other" />
         </div>
       )
