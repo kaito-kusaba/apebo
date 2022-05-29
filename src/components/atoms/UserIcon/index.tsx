@@ -13,17 +13,17 @@ interface Props {
 
 export default React.memo(function UserIcon({ size, disabled, style, uid }: Props) {
   const { src, onClick } = useInjection({ size, uid })
-  const styles = useStyles()
+  const styles = useStyles({ size })
   if (disabled) {
     return (
       <div className={`${styles.iconContainer} ${style}`}>
-        <img className={styles.icon} src={src} width={size} height={size} />
+        <img className={styles.icon} src={src} alt="" />
       </div>
     )
   } else {
     return (
       <button onClick={onClick} className={`${styles.iconContainer} ${style}`}>
-        <img className={styles.icon} src={src} width={size} height={size} />
+        <img className={styles.icon} src={src} alt="" />
       </button>
     )
   }

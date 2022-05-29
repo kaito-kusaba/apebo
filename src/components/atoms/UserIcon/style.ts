@@ -1,6 +1,10 @@
 import { css } from '@emotion/css'
 
-export function useStyles() {
+type Props = {
+  size: number
+}
+
+export function useStyles({ size }: Props) {
   const iconContainer = css`
     cursor: pointer;
     border: none;
@@ -9,9 +13,14 @@ export function useStyles() {
     display: flex;
     align-items: center;
     justify-content: center;
+    width: ${size}px;
+    height: ${size}px;
   `
   const icon = css`
+    border: 0;
     border-radius: 50%;
+    width: ${size}px;
+    height: ${size}px;
   `
 
   return {

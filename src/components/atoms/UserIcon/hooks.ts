@@ -21,6 +21,17 @@ export function useInjection({ size, uid }: Props) {
   const navigate = useNavigate()
 
   useEffect(() => {
+    console.log('load')
+    const f = async () => {
+      const userRef = doc(db, 'users', uid)
+      const userSnap = await getDoc(userRef)
+      if (userSnap.data()?.icon) {
+        setSrc(userSnap.data()?.icon)
+      } else {
+        setSrc(defaultSrc)
+      }
+    }
+    f()
     switch (size) {
       case 40: {
         setDefaultSrc(UNSET40)
@@ -39,20 +50,7 @@ export function useInjection({ size, uid }: Props) {
         break
       }
     }
-  }, [size])
-
-  useEffect(() => {
-    const f = async () => {
-      const userRef = doc(db, 'users', uid)
-      const userSnap = await getDoc(userRef)
-      if (userSnap.data()?.icon) {
-        setSrc(userSnap.data()?.icon)
-      } else {
-        setSrc(defaultSrc)
-      }
-    }
-    f()
-  }, [user?.photoURL, defaultSrc, uid])
+  }, [])
 
   const onClick = useCallback(e => {
     e.stopPropagation()
