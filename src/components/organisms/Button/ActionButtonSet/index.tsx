@@ -7,10 +7,10 @@ import { RootState } from 'components/redux'
 type Props = {
   docId: string
   uid: string
-  onClickLike?: () => void
-  onClickMessage?: () => void
-  onClickFollow?: () => void
-  onClickOther: () => void
+  onClickLike?: (e: any) => void
+  onClickMessage?: (e: any) => void
+  onClickFollow?: (e: any) => void
+  onClickOther: (e: any) => void
 }
 
 export default React.memo(function ActionButtonSet({
@@ -18,8 +18,8 @@ export default React.memo(function ActionButtonSet({
   uid,
   onClickLike,
   onClickFollow,
-  onClickMessage,
   onClickOther,
+  onClickMessage,
 }: Props) {
   const styles = useStyles()
   const { user } = useSelector(({ user }: RootState) => user)

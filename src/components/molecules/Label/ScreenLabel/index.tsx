@@ -1,20 +1,21 @@
 import React from 'react'
-import { useLocation } from 'react-router-dom'
+import { useInjection } from './hooks'
 import { useStyles } from './style'
 
-interface Props {
-  label: string | null
+type Props = {
+  label?: string
 }
 
 export default React.memo(function ScreenLabel({ label }: Props) {
   const styles = useStyles()
-  const location = useLocation()
-  if (location.pathname === '/account') {
+  const { path, params, username, posts } = useInjection()
+
+  if (path === '/account' || path === `/account/${params.uid}`) {
     return (
       <div className={styles.screenLabelContainer}>
         <div>
-          <h1 className={styles.screenLabel}>{label}</h1>
-          <span className={styles.screenLabelSubTitle}>件の投稿</span>
+          <h1 className={styles.screenLabel}>{username}</h1>
+          <span className={styles.screenLabelSubTitle}>{posts.length}件の投稿</span>
         </div>
       </div>
     )

@@ -18,7 +18,7 @@ interface Props {
 
 export default function AccountPostContent({ uid, content, onClick, time, docId }: Props) {
   const styles = useStyles()
-  const { onClickOther } = useInjection({ uid })
+  const { onClickOther, onClickMessage } = useInjection({ uid })
 
   return (
     <div onClick={onClick} className={styles.postContentContainerStyle}>
@@ -27,7 +27,12 @@ export default function AccountPostContent({ uid, content, onClick, time, docId 
           <UserIcon uid={uid} size={46} style={styles.postContentUserIcon} />
           <UserName uid={uid} />
         </div>
-        <ActionButtonSet onClickOther={() => onClickOther(docId)} uid={uid} docId={docId} />
+        <ActionButtonSet
+          onClickOther={() => onClickOther(docId)}
+          uid={uid}
+          docId={docId}
+          onClickMessage={onClickMessage}
+        />
       </div>
       <PostContentDisplay content={content} style={styles.postContentDisplay} />
       <Time time={time} />

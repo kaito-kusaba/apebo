@@ -7,10 +7,10 @@ interface Props {
   type: ActionButtonTypes
   uid?: string
   docId?: string
-  onClickOther?: () => void
-  onClickMessage?: () => void
-  onClickLike?: () => void
-  onClickFollow?: () => void
+  onClickOther?: (e: any) => void
+  onClickMessage?: (e: any) => void
+  onClickLike?: (e: any) => void
+  onClickFollow?: (e: any) => void
   imgStyle?: string
 }
 
@@ -36,7 +36,7 @@ export default React.memo(function ActionButton({
       onMouseEnter={onMouseToggle}
       onMouseLeave={onMouseToggle}
       onClick={onClickActionButton}
-      className={`${styles.actionButton} action-buttons action-buttons-${type.toLowerCase()}`}>
+      className={`${styles.actionButton}`}>
       {type === 'Other' ? (
         <img src={buttonImageSrc} className={styles.actionButtonDotsImageStyle} alt="" />
       ) : (

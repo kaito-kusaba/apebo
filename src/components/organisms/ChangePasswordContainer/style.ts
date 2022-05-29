@@ -34,7 +34,7 @@ export function useStyles({ errorText }: Props) {
   const newPassword = css`
     ${baseText}
     font-weight: 500;
-    color: ${Colors.PORPOISE};
+    color: ${Colors.GREY};
     margin-top: 32px;
   `
 
@@ -50,7 +50,7 @@ export function useStyles({ errorText }: Props) {
   `
 
   const inputPasswordContainer = css`
-    margin: 16px 0 24px 0;
+    margin: 16px 0;
   `
   const baseInfo = css`
     position: absolute;
