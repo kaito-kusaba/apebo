@@ -15,9 +15,9 @@ export function useInjection() {
   useEffect(() => {
     if (location.pathname === '/account') {
       const f = async () => {
-        const userRef = doc(db, 'users', user!.uid || '匿名さん')
+        const userRef = doc(db, 'users', user!.uid)
         const userSnap = await getDoc(userRef)
-        setUsername(userSnap.data()?.username)
+        setUsername(userSnap.data()?.username || '匿名さん')
       }
       f()
     }
