@@ -8,7 +8,6 @@ import { useInjection } from './hooks'
 import { useStyles } from './style'
 
 export default React.memo(function PostModal() {
-  const styles = useStyles()
   const {
     user,
     text,
@@ -19,7 +18,9 @@ export default React.memo(function PostModal() {
     onClickSmileIcon,
     onClose,
     textAreaRef,
+    disabled,
   } = useInjection()
+  const styles = useStyles({ disabled })
 
   return (
     <Modal
@@ -52,7 +53,7 @@ export default React.memo(function PostModal() {
         <div className={styles.postButtonContainer}>
           <span className={styles.textAreaLength}>{text.length}/200</span>
           <span className={styles.line} />
-          <button onClick={onClickPostButton} className={styles.postButton}>
+          <button onClick={onClickPostButton} className={styles.button()} disabled={disabled}>
             投稿
           </button>
         </div>
