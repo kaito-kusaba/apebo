@@ -35,13 +35,13 @@ export function useStyles({ errorText }: Props) {
   const inputCurrentEmail = css`
     ${baseText}
     font-weight: bold;
-    margin-top: 16px;
+    margin-top: 10px;
   `
 
   const newEmail = css`
     ${baseText}
     color: ${Colors.PORPOISE};
-    margin: 32px 0 16px 0;
+    margin: 32px 0 10px 0;
   `
 
   const errorTextMessage = css`
