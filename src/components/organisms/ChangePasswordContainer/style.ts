@@ -50,7 +50,7 @@ export function useStyles({ errorText }: Props) {
   `
 
   const inputPasswordContainer = css`
-    margin: 10px 0 24px 0;
+    margin: 16px 0;
   `
   const baseInfo = css`
     position: absolute;

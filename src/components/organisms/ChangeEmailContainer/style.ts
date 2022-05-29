@@ -28,7 +28,7 @@ export function useStyles({ errorText }: Props) {
 
   const currentEmail = css`
     ${baseText}
-    color: ${Colors.PORPOISE};
+    color: ${Colors.GREY};
     margin-top: 24px;
   `
 
@@ -40,7 +40,7 @@ export function useStyles({ errorText }: Props) {
 
   const newEmail = css`
     ${baseText}
-    color: ${Colors.PORPOISE};
+    color: ${Colors.GREY};
     margin: 32px 0 10px 0;
   `
 
