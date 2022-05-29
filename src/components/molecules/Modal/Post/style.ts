@@ -1,7 +1,11 @@
 import { css } from '@emotion/css'
 import { Colors } from 'constant'
 
-export function useStyles() {
+type Props = {
+  disabled: boolean
+}
+
+export function useStyles({ disabled }: Props) {
   const modalContainer = css`
     background-color: ${Colors.BLACK_WASH};
     position: absolute;
@@ -55,7 +59,7 @@ export function useStyles() {
     font-size: 16px;
     font-weight: 100;
   `
-  const postButton = css`
+  const baseButton = css`
     background-color: ${Colors.RED};
     color: ${Colors.WHITE};
     font-weight: bold;
@@ -66,9 +70,6 @@ export function useStyles() {
     border: none;
     cursor: pointer;
     transition: 0.2s;
-    &:hover {
-      background-color: ${Colors.PINK};
-    }
   `
   const buttons = css`
     display: flex;
@@ -110,6 +111,24 @@ export function useStyles() {
     align-items: center;
   `
 
+  const button = () => {
+    if (disabled) {
+      return css`
+        ${baseButton}
+        background-color: ${Colors.INDIAN_RED};
+        color: ${Colors.BRAINSTEM_GREY};
+        cursor: default;
+      `
+    } else {
+      return css`
+        ${baseButton}
+        &:hover {
+          background-color: ${Colors.PINK};
+        }
+      `
+    }
+  }
+
   return {
     modalContainer,
     overlay,
@@ -118,12 +137,12 @@ export function useStyles() {
     textArea,
     textAreaInfoContainer,
     textAreaLength,
-    postButton,
     buttons,
     icon,
     line,
     postButtonContainer,
     imageButton,
     emojiButton,
+    button,
   }
 }

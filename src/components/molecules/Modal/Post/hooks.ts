@@ -16,6 +16,7 @@ export function useInjection() {
   const [text, setText] = useState<string>('')
   const textAreaRef = useResizeTextArea(text)
   const showAlert = useAlert()
+  const [disabled, setDisabled] = useState<boolean>(true)
 
   const onClose = useCallback(() => {
     dispatch(modalActions.setModal(false))
@@ -39,6 +40,14 @@ export function useInjection() {
     }, [value])
     return ref
   }
+
+  useEffect(() => {
+    if (text.length <= 0) {
+      setDisabled(true)
+    } else {
+      setDisabled(false)
+    }
+  }, [text])
 
   const onClickPostButton = useCallback(() => {
     try {
@@ -82,5 +91,6 @@ export function useInjection() {
     onClickAddImage,
     onClickSmileIcon,
     textAreaRef,
+    disabled,
   }
 }
