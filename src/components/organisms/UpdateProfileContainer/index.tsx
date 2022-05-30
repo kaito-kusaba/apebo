@@ -12,7 +12,9 @@ export default React.memo(function UpdateProfileScreen() {
     onSubmit,
     onChangeAvater,
     onChangeDelete,
-    text,
+    bio,
+    discordId,
+    website,
     onChangeBio,
     onChangeDiscordId,
     onChangeWebsite,
@@ -36,9 +38,9 @@ export default React.memo(function UpdateProfileScreen() {
         </span>
       </div>
       <ProfileSettingsInput label="ユーザー名" value={newName} onChange={onChangeUserName} />
-      <ProfileSettingsInput label="自己紹介" value={text} onChange={onChangeBio} />
-      <ProfileSettingsInput label="Discord ID" value={text} onChange={onChangeDiscordId} />
-      <ProfileSettingsInput label="ウェブサイト" value={text} onChange={onChangeWebsite} />
+      <ProfileSettingsInput label="自己紹介" value={bio} onChange={onChangeBio} />
+      <ProfileSettingsInput label="Discord ID" value={discordId} onChange={onChangeDiscordId} />
+      <ProfileSettingsInput label="ウェブサイト" value={website} onChange={onChangeWebsite} />
       <div className={styles.onSubmitContainer}>
         <input type="submit" value={'変更する'} onClick={onSubmit} className={styles.changeProfileButton} />
       </div>

@@ -10,7 +10,9 @@ export function useInjection() {
   const { user } = useSelector(({ user }: RootState) => user)
   const [newName, setNewName] = useState<string>(user!.displayName!)
   const dispatch = useDispatch()
-  const [text, setText] = useState<string>('')
+  const [bio, setBio] = useState<string>('')
+  const [discordId, setDiscordId] = useState<string>('')
+  const [website, setWebsite] = useState<string>('')
   const [clicked, setClicked] = useState<boolean>(false)
 
   const onSubmit = useCallback(() => {
@@ -43,15 +45,15 @@ export function useInjection() {
   }, [])
 
   const onChangeBio = useCallback(e => {
-    setText(e.target.value)
+    setBio(e.target.value)
   }, [])
 
   const onChangeDiscordId = useCallback(e => {
-    setText(e.target.value)
+    setDiscordId(e.target.value)
   }, [])
 
   const onChangeWebsite = useCallback(e => {
-    setText(e.target.value)
+    setWebsite(e.target.value)
   }, [])
 
   const onChangeRelease = useCallback(() => {
@@ -65,7 +67,9 @@ export function useInjection() {
     onSubmit,
     onChangeAvater,
     onChangeDelete,
-    text,
+    bio,
+    discordId,
+    website,
     onChangeBio,
     onChangeDiscordId,
     onChangeWebsite,
