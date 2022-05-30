@@ -35,3 +35,8 @@ export { default as AddImageIconYellow } from 'assets/images/icons/YellowIcons/A
 export { default as InfoIconRed } from 'assets/images/icons/RedIcons/info.png'
 export { default as DiscordIconGray } from 'assets/images/icons/GrayIcons/discord.png'
 export { default as LinkIconGray } from 'assets/images/icons/GrayIcons/link.png'
+export { default as PcIconPorpoise } from 'assets/images/icons/PorpoiseIcons/pc.png'
+export { default as MobileIconPorpoise } from 'assets/images/icons/PorpoiseIcons/mobile.png'
+export { default as SwitchIconPorpoise } from 'assets/images/icons/PorpoiseIcons/switch.png'
+export { default as PlayStationIconPorpoise } from 'assets/images/icons/PorpoiseIcons/playstation.png'
+export { default as XboxIconPorpoise } from 'assets/images/icons/PorpoiseIcons/xbox.png'
