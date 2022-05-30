@@ -8,7 +8,7 @@ import Time from 'components/atoms/Time'
 import { Timestamp } from 'firebase/firestore'
 import { useInjection } from './hook'
 
-interface Props {
+type Props = {
   uid: string
   content: string
   onClick: () => void

@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { useStyles } from './style'
 
-interface Props {
+type Props = {
   follows: number
   followers: number
   textStyle?: string

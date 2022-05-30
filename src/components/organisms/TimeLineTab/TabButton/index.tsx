@@ -3,7 +3,7 @@ import { useInjection } from './hooks'
 import type { TabButtonTypes } from 'types/TabButtonTypes'
 import { useStyles } from './style'
 
-interface Props {
+type Props = {
   label: string
   type: TabButtonTypes
   isChecked?: boolean

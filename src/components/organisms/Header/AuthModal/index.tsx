@@ -2,7 +2,7 @@ import { CancelIconGrey } from 'components/atoms/Icon'
 import React from 'react'
 import { useStyles } from './style'
 
-interface Props {
+type Props = {
   label: string
   onClick: () => void
 }

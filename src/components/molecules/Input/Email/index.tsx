@@ -1,7 +1,7 @@
 import React from 'react'
 import { useStyles } from './style'
 
-interface Props {
+type Props = {
   value: string
   onChange: (e: any) => void
   style?: string

@@ -3,7 +3,7 @@ import type { UserIconSize } from 'types/UserIconSize'
 import { useInjection } from './hooks'
 import { useStyles } from './style'
 
-interface Props {
+type Props = {
   size: UserIconSize
   style?: string
   disabled?: boolean
