@@ -7,6 +7,7 @@ import ProfileSettingsInput from 'components/organisms/ProfileSettingsInput'
 
 export default React.memo(function UpdateProfileScreen() {
   const {
+    user,
     newName,
     onChangeUserName,
     onSubmit,
@@ -27,7 +28,7 @@ export default React.memo(function UpdateProfileScreen() {
         <h3 className={styles.inputLabel}>アバター</h3>
         <span className={styles.buttonStyle}>
           <button onClick={onChangeAvater} className={styles.avatarChangeImg}>
-            <UserIcon uid="1" size={72} disabled />
+            <UserIcon uid={user!.uid} size={72} disabled />
           </button>
           <button className={styles.avatarChange} onClick={onChangeAvater}>
             アバター画像を編集
@@ -38,9 +39,9 @@ export default React.memo(function UpdateProfileScreen() {
         </span>
       </div>
       <ProfileSettingsInput label="ユーザー名" value={newName} onChange={onChangeUserName} maxLength={20} />
-      <ProfileSettingsInput label="自己紹介" value={bio} onChange={onChangeBio} maxLength={160} />
-      <ProfileSettingsInput label="Discord ID" value={discordId} onChange={onChangeDiscordId} />
-      <ProfileSettingsInput label="ウェブサイト" value={website} onChange={onChangeWebsite} maxLength={100} />
+      <ProfileSettingsInput label="自己紹介" value={bio} onChange={onChangeBio} maxLength={160} textarea />
+      <ProfileSettingsInput label="Discord ID" value={discordId} onChange={onChangeDiscordId} maxLength={40} />
+      <ProfileSettingsInput label="ウェブサイト" value={website} onChange={onChangeWebsite} maxLength={300} />
       <div className={styles.onSubmitContainer}>
         <input type="submit" value={'変更する'} onClick={onSubmit} className={styles.changeProfileButton} />
       </div>

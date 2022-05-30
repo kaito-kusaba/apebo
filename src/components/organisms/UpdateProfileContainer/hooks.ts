@@ -1,25 +1,50 @@
 import { RootState } from 'components/redux'
 import { actions } from 'components/redux/User'
 import { updateProfile } from 'firebase/auth'
-import { doc, updateDoc } from 'firebase/firestore'
+import { doc, DocumentData, getDoc, updateDoc } from 'firebase/firestore'
 import { auth, db } from 'libs/firebase'
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 export function useInjection() {
-  const { user } = useSelector(({ user }: RootState) => user)
-  const [newName, setNewName] = useState<string>(user!.displayName!)
+  const { user, userData } = useSelector(({ user }: RootState) => user)
   const dispatch = useDispatch()
-  const [bio, setBio] = useState<string>('')
-  const [discordId, setDiscordId] = useState<string>('')
-  const [website, setWebsite] = useState<string>('')
-  const [clicked, setClicked] = useState<boolean>(false)
+  const [fetchData, setFetchData] = useState<DocumentData>()
+  const [newName, setNewName] = useState<string>(userData.username || fetchData?.username || '')
+  const [discordId, setDiscordId] = useState<string>(userData.discordId || fetchData?.discord_id || '')
+  const [bio, setBio] = useState<string>(userData.bio || fetchData?.bio || '')
+  const [website, setWebsite] = useState<string>(userData.website || fetchData?.website || '')
+
+  useEffect(() => {
+    const userRef = doc(db, 'users', user!.uid)
+    const fetchData = async () => {
+      const userSnap = await getDoc(userRef)
+      setFetchData(userSnap.data())
+    }
+    fetchData()
+  }, [user!.uid])
 
   const onSubmit = useCallback(() => {
     const userRef = doc(db, 'users', user!.uid)
     updateDoc(userRef, {
       username: newName,
+      discord_id: discordId,
+      website: website,
+      bio: bio,
     })
+      .then(() => {
+        dispatch(
+          actions.setUserData({
+            username: newName,
+            discordId: discordId,
+            website: website,
+            bio: bio,
+          }),
+        )
+      })
+      .catch(error => {
+        console.log(error)
+      })
     updateProfile(auth.currentUser!, {
       displayName: newName,
     })
@@ -30,11 +55,7 @@ export function useInjection() {
       .catch(error => {
         console.log(error)
       })
-  }, [newName])
-
-  const onChangeUserName = useCallback(e => {
-    setNewName(e.target.value)
-  }, [])
+  }, [newName, discordId, website, bio])
 
   const onChangeAvater = useCallback(() => {
     alert('アバターを編集')
@@ -42,6 +63,10 @@ export function useInjection() {
 
   const onChangeDelete = useCallback(() => {
     alert('アバターを削除')
+  }, [])
+
+  const onChangeUserName = useCallback(e => {
+    setNewName(e.target.value)
   }, [])
 
   const onChangeBio = useCallback(e => {
@@ -56,12 +81,8 @@ export function useInjection() {
     setWebsite(e.target.value)
   }, [])
 
-  const onChangeRelease = useCallback(() => {
-    setClicked(!clicked)
-    alert('clicked')
-  }, [])
-
   return {
+    user,
     newName,
     onChangeUserName,
     onSubmit,
@@ -73,7 +94,5 @@ export function useInjection() {
     onChangeBio,
     onChangeDiscordId,
     onChangeWebsite,
-    clicked,
-    onChangeRelease,
   }
 }
