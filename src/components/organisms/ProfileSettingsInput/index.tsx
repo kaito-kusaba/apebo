@@ -6,10 +6,9 @@ type Props = {
   value: string
   onChange?: (e: any) => void
   maxLength?: number
-  length?: number
 }
 
-export default function ProfileSettingsInput({ label, value, onChange, maxLength, length }: Props) {
+export default function ProfileSettingsInput({ label, value, onChange, maxLength }: Props) {
   const styles = useStyles()
 
   return (
@@ -18,7 +17,7 @@ export default function ProfileSettingsInput({ label, value, onChange, maxLength
         <span className={styles.labelStyle}>{label}</span>
         {label !== 'Discord ID' && (
           <span className={styles.lengthStyle}>
-            {length}/{maxLength}
+            {value.length}/{maxLength}
           </span>
         )}
       </div>
