@@ -37,10 +37,22 @@ export default React.memo(function UpdateProfileScreen() {
           </button>
         </span>
       </div>
-      <ProfileSettingsInput label="ユーザー名" value={newName} onChange={onChangeUserName} />
-      <ProfileSettingsInput label="自己紹介" value={bio} onChange={onChangeBio} />
+      <ProfileSettingsInput
+        label="ユーザー名"
+        value={newName}
+        onChange={onChangeUserName}
+        length={newName.length}
+        maxLength={20}
+      />
+      <ProfileSettingsInput label="自己紹介" value={bio} onChange={onChangeBio} length={bio.length} maxLength={160} />
       <ProfileSettingsInput label="Discord ID" value={discordId} onChange={onChangeDiscordId} />
-      <ProfileSettingsInput label="ウェブサイト" value={website} onChange={onChangeWebsite} />
+      <ProfileSettingsInput
+        label="ウェブサイト"
+        value={website}
+        onChange={onChangeWebsite}
+        length={website.length}
+        maxLength={100}
+      />
       <div className={styles.onSubmitContainer}>
         <input type="submit" value={'変更する'} onClick={onSubmit} className={styles.changeProfileButton} />
       </div>

@@ -14,6 +14,11 @@ export function useStyles() {
     display: flex;
   `
 
+  const labelContainer = css`
+    display: flex;
+    justify-content: space-between;
+  `
+
   const inputStyle = css`
     border: 1.5px solid ${Colors.EERIE_BLACK};
     border-radius: 8px;
@@ -21,12 +26,21 @@ export function useStyles() {
     padding: 14px 0 14px 16px;
     background-color: ${Colors.CHAOS_BLACK};
     color: ${Colors.WHITE};
-    width: 814px;
+    width: 100%;
+  `
+
+  const lengthStyle = css`
+    color: ${Colors.GREY};
+    font-weight: 400;
+    font-size: 12px;
   `
 
   return {
+    labelContainer,
+    length,
     container,
     labelStyle,
     inputStyle,
+    lengthStyle,
   }
 }
