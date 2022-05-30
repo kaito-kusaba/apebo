@@ -12,6 +12,7 @@ export function useStyles({ disabled }: Props) {
     flex-direction: column;
     align-items: center;
     width: 388px;
+    background-color: ${Colors.CHAOS_BLACK};
   `
   const top = css`
     color: ${Colors.WHITE};
