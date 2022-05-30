@@ -28,6 +28,11 @@ export function useStyles() {
     color: ${Colors.WHITE};
     width: 100%;
   `
+  const textAreaStyle = css`
+    ${inputStyle}
+    resize: none;
+    height: 88px;
+  `
 
   const lengthStyle = css`
     color: ${Colors.GREY};
@@ -42,5 +47,6 @@ export function useStyles() {
     labelStyle,
     inputStyle,
     lengthStyle,
+    textAreaStyle,
   }
 }
