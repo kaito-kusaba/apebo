@@ -20,9 +20,78 @@ export function useStyles() {
 
   const label = css``
 
+  const avatar = css`
+    margin-top: 16px;
+  `
+
+  const inputLabel = css`
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    color: ${Colors.GREY};
+    margin-bottom: 16px;
+  `
+
+  const avatarChangeImg = css`
+    border: none;
+    border-radius: 100%;
+  `
+
+  const avatarChange = css`
+    padding: 10px 16px;
+    border-radius: 8px;
+    border: none;
+    background-color: ${Colors.RED};
+    color: ${Colors.WHITE};
+    margin-left: 24px;
+    font-weight: 700;
+    cursor: pointer;
+  `
+
+  const avatarDelete = css`
+    font-size: 14px;
+    font-weight: 500;
+    color: ${Colors.PORPOISE};
+    margin-left: 24px;
+    background-color: ${Colors.CHAOS_BLACK};
+    border: none;
+    cursor: pointer;
+  `
+
+  const buttonStyle = css`
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+  `
+
+  const changeProfileButton = css`
+    font-size: 14px;
+    color: ${Colors.WHITE};
+    padding: 10px 93px;
+    margin-top: 48px;
+    border: none;
+    border-radius: 8px;
+    background-color: ${Colors.RED};
+    cursor: pointer;
+  `
+
+  const onSubmitContainer = css`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  `
+
   return {
     container,
     top,
     label,
+    avatar,
+    avatarChangeImg,
+    inputLabel,
+    avatarChange,
+    avatarDelete,
+    buttonStyle,
+    changeProfileButton,
+    onSubmitContainer,
   }
 }

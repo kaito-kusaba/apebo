@@ -8,12 +8,12 @@ import { useDispatch, useSelector } from 'react-redux'
 
 export function useInjection() {
   const { user } = useSelector(({ user }: RootState) => user)
-  const [newName, setNewName] = useState<string>('')
+  const [newName, setNewName] = useState<string>(user!.displayName!)
   const dispatch = useDispatch()
-
-  const onChange = useCallback(e => {
-    setNewName(e.target.value)
-  }, [])
+  const [bio, setBio] = useState<string>('')
+  const [discordId, setDiscordId] = useState<string>('')
+  const [website, setWebsite] = useState<string>('')
+  const [clicked, setClicked] = useState<boolean>(false)
 
   const onSubmit = useCallback(() => {
     const userRef = doc(db, 'users', user!.uid)
@@ -32,9 +32,48 @@ export function useInjection() {
       })
   }, [newName])
 
+  const onChangeUserName = useCallback(e => {
+    setNewName(e.target.value)
+  }, [])
+
+  const onChangeAvater = useCallback(() => {
+    alert('アバターを編集')
+  }, [])
+
+  const onChangeDelete = useCallback(() => {
+    alert('アバターを削除')
+  }, [])
+
+  const onChangeBio = useCallback(e => {
+    setBio(e.target.value)
+  }, [])
+
+  const onChangeDiscordId = useCallback(e => {
+    setDiscordId(e.target.value)
+  }, [])
+
+  const onChangeWebsite = useCallback(e => {
+    setWebsite(e.target.value)
+  }, [])
+
+  const onChangeRelease = useCallback(() => {
+    setClicked(!clicked)
+    alert('clicked')
+  }, [])
+
   return {
     newName,
-    onChange,
+    onChangeUserName,
     onSubmit,
+    onChangeAvater,
+    onChangeDelete,
+    bio,
+    discordId,
+    website,
+    onChangeBio,
+    onChangeDiscordId,
+    onChangeWebsite,
+    clicked,
+    onChangeRelease,
   }
 }
