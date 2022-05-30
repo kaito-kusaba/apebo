@@ -1,4 +1,4 @@
-import { ProfileLabelTypes } from 'types/ProfileLabelTypes'
+import type { ProfileLabelTypes } from 'types/ProfileLabelTypes'
 import { useStyles } from './style'
 
 type Props = {
