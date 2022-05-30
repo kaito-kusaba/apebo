@@ -9,7 +9,7 @@ import { doc, getDoc } from 'firebase/firestore'
 import { db } from 'libs/firebase'
 import { useNavigate } from 'react-router-dom'
 
-interface Props {
+type Props = {
   size: UserIconSize
   uid: string
 }

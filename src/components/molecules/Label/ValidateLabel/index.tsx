@@ -3,7 +3,7 @@ import React from 'react'
 import { ValidationType } from 'types/ValidationType'
 import { useStyles } from './style'
 
-interface Props {
+type Props = {
   validation: ValidationType
   style?: string
   className?: string

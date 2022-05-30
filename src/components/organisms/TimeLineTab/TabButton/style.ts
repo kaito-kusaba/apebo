@@ -2,7 +2,7 @@ import { css } from '@emotion/css'
 import { Colors } from 'constant'
 import { TabButtonTypes } from 'types/TabButtonTypes'
 
-interface Props {
+type Props = {
   selected: TabButtonTypes
   type: TabButtonTypes
   isHovered: boolean

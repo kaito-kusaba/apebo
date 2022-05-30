@@ -15,7 +15,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import type { TabButtonTypes } from 'types/TabButtonTypes'
 import { actions } from 'components/redux/TimeLineTab'
 
-interface Props {
+type Props = {
   type: TabButtonTypes
 }
 

@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useStyles } from './style'
 
-interface Props {
+type Props = {
   style?: string
   uid: string
   textStyle?: string

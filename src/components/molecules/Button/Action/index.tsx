@@ -3,7 +3,7 @@ import type { ActionButtonTypes } from 'types/ActionButtonTypes'
 import { useInjection } from './hooks'
 import { useStyles } from './style'
 
-interface Props {
+type Props = {
   type: ActionButtonTypes
   uid?: string
   docId?: string
