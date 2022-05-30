@@ -1,7 +1,8 @@
+import { ProfileLabelTypes } from 'types/ProfileLabelTypes'
 import { useStyles } from './style'
 
 type Props = {
-  label: string
+  label: ProfileLabelTypes
   value: string
   onChange?: (e: any) => void
   maxLength?: number
