@@ -7,6 +7,7 @@ import ProfileSettingsInput from 'components/organisms/ProfileSettingsInput'
 
 export default React.memo(function UpdateProfileScreen() {
   const {
+    user,
     newName,
     onChangeUserName,
     onSubmit,
@@ -27,7 +28,7 @@ export default React.memo(function UpdateProfileScreen() {
         <h3 className={styles.inputLabel}>アバター</h3>
         <span className={styles.buttonStyle}>
           <button onClick={onChangeAvater} className={styles.avatarChangeImg}>
-            <UserIcon uid="1" size={72} disabled />
+            <UserIcon uid={user!.uid} size={72} disabled />
           </button>
           <button className={styles.avatarChange} onClick={onChangeAvater}>
             アバター画像を編集

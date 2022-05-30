@@ -82,6 +82,7 @@ export function useInjection() {
   }, [])
 
   return {
+    user,
     newName,
     onChangeUserName,
     onSubmit,
