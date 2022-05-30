@@ -32,6 +32,14 @@ onAuthStateChanged(auth, user => {
         unique_id: user.uid,
         username: user.displayName,
         icon: user.photoURL,
+      }).then(() => {
+        dispatch(
+          userActions.setUserData({
+            uniqueId: user.uid,
+            username: user.displayName!,
+            icon: user.photoURL!,
+          }),
+        )
       })
     } catch (e) {
       alert('エラー発生')
