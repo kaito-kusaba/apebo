@@ -2,7 +2,7 @@ import UserIcon from 'components/atoms/UserIcon'
 import UserName from 'components/atoms/UserName'
 import PlayEnvLabel from 'components/molecules/Label/PlayEnvLabel'
 import { RootState } from 'components/redux'
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback } from 'react'
 import { useSelector } from 'react-redux'
 import AccountURL from '../AccountURL'
 import BioDisplay from '../BioDisplay'
@@ -16,14 +16,9 @@ import { useInjection } from './hooks'
 export default function ProfileContainer() {
   const urlParams = useParams<{ uid: string }>()
   const styles = useStyles()
-  const [bio, setBio] = useState<string>('')
   const { user } = useSelector(({ user }: RootState) => user)
   const location = useLocation()
   const { onClickMessage } = useInjection()
-
-  useEffect(() => {
-    setBio('基本夜の9時からやってます。Apexの他にも色々なゲームもしてます！気軽にDMして下さい！')
-  }, [])
 
   const onClickOther = useCallback(() => {
     alert('プロフィール編集')
@@ -52,7 +47,7 @@ export default function ProfileContainer() {
       <UserIcon uid={urlParams.uid ? urlParams.uid : user!.uid} size={72} style={styles.icon} />
       <UserName uid={urlParams.uid ? urlParams.uid : user!.uid} />
       <PlayEnvLabel containerStyle={styles.playEnvContainer} />
-      <BioDisplay text={bio} />
+      <BioDisplay />
       <DiscordID />
       <AccountURL />
       <FollowFollower follows={222} followers={1000} />

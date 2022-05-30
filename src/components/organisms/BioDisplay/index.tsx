@@ -1,11 +1,10 @@
+import { RootState } from 'components/redux'
 import React from 'react'
+import { useSelector } from 'react-redux'
 import { useStyles } from './style'
 
-type Props = {
-  text: string
-}
-
-export default React.memo(function BioDisplay({ text }: Props) {
+export default React.memo(function BioDisplay() {
   const styles = useStyles()
-  return <div className={styles.bioDisplay}>{text}</div>
+  const { userData } = useSelector(({ user }: RootState) => user)
+  return <div className={styles.bioDisplay}>{userData.bio}</div>
 })
