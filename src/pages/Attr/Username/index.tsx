@@ -1,5 +1,6 @@
 import { useInjection } from './hooks'
 import React from 'react'
+import CharacterCounter from 'components/molecules/Counter'
 import PlayEnvsContentList from 'components/organisms/ListItems/PlayEnvsContentList'
 import { useStyles } from './style'
 
@@ -15,9 +16,7 @@ export default function SetUsernameScreen() {
           <h2 className={styles.label}>ユーザー名</h2>
           <span className={styles.info}>※設定で変更できます</span>
         </div>
-        <span className={styles.counter}>
-          {name.length}/{maxLen}
-        </span>
+        <CharacterCounter length={name.length} maxLength={maxLen} />
       </div>
       <input
         className={styles.input}

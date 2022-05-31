@@ -1,5 +1,6 @@
 import type { ProfileLabelTypes } from 'types/ProfileLabelTypes'
 import { useStyles } from './style'
+import CharacterCounter from 'components/molecules/Counter'
 
 type Props = {
   label: ProfileLabelTypes
@@ -16,9 +17,7 @@ export default function ProfileSettingsInput({ label, value, onChange, maxLength
     <div className={styles.container}>
       <div className={styles.labelContainer}>
         <span className={styles.labelStyle}>{label}</span>
-        <span className={styles.lengthStyle}>
-          {value.length}/{maxLength}
-        </span>
+        <CharacterCounter length={value.length} maxLength={maxLength!} />
       </div>
       {textarea ? (
         <textarea className={styles.textAreaStyle} value={value} onChange={onChange} />

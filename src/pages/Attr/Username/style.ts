@@ -45,12 +45,6 @@ export function useStyles({ disabled }: Props) {
     font-weight: 400;
   `
 
-  const counter = css`
-    color: ${Colors.GREY};
-    font-size: 12px;
-    font-weight: 400;
-  `
-
   const input = css`
     outline: none;
     border: 1px solid ${Colors.EERIE_BLACK};
@@ -142,6 +136,5 @@ export function useStyles({ disabled }: Props) {
     buttonContainer,
     img,
     submit,
-    counter,
   }
 }
