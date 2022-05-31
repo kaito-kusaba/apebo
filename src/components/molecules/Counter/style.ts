@@ -13,15 +13,14 @@ export function useStyles({ size }: Props) {
   `
 
   const length = () => {
+    if (!size)
+      return css`
+        ${baseLength}
+      `
     switch (size) {
-      case 0:
+      case undefined:
         return css`
           ${baseLength}
-        `
-      default:
-        return css`
-          ${baseLength}
-          font-size: ${size}px;
         `
     }
   }
