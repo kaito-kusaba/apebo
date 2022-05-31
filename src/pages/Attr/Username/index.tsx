@@ -1,11 +1,11 @@
 import { useInjection } from './hooks'
 import React from 'react'
 import CharacterCounter from 'components/molecules/Counter'
-
+import PlayEnvsContentList from 'components/organisms/ListItems/PlayEnvsContentList'
 import { useStyles } from './style'
 
 export default function SetUsernameScreen() {
-  const { name, onChangeName, onClickSubmit, maxLen, envs, disabled } = useInjection()
+  const { name, onChangeName, onClickSubmit, maxLen, disabled } = useInjection()
   const styles = useStyles({ disabled })
 
   return (
@@ -32,16 +32,7 @@ export default function SetUsernameScreen() {
           <span className={styles.info}>※設定で変更できます</span>
         </div>
       </div>
-      <div className={styles.buttonContainer}>
-        {envs.map(env => {
-          return (
-            <button className={styles.button}>
-              <img className={styles.img} src={env.icon} alt="" />
-              {env.env}
-            </button>
-          )
-        })}
-      </div>
+      <PlayEnvsContentList />
 
       <input type="submit" value="はじめよう" disabled={disabled} onClick={onClickSubmit} className={styles.submit()} />
     </div>
