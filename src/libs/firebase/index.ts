@@ -1,6 +1,6 @@
 import { initializeApp } from 'firebase/app'
 import { getAuth, onAuthStateChanged, GoogleAuthProvider } from 'firebase/auth'
-import { doc, getFirestore, setDoc } from 'firebase/firestore'
+import { getFirestore } from 'firebase/firestore'
 import 'firebase/app'
 import { actions as userActions } from 'components/redux/User'
 import { actions as modalActions } from 'components/redux/Modal'
@@ -26,25 +26,6 @@ export const provider = new GoogleAuthProvider()
 onAuthStateChanged(auth, user => {
   const dispatch = store.dispatch
   if (user) {
-    // User is signed in
-    try {
-      setDoc(doc(db, 'users', user.uid), {
-        unique_id: user.uid,
-        username: user.displayName,
-        icon: user.photoURL,
-      }).then(() => {
-        dispatch(
-          userActions.setUserData({
-            uniqueId: user.uid,
-            username: user.displayName!,
-            icon: user.photoURL!,
-          }),
-        )
-      })
-    } catch (e) {
-      alert('エラー発生')
-    }
-
     dispatch(userActions.setUser(user))
   } else {
     // User is signed out
