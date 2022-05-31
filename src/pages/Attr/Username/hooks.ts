@@ -5,20 +5,7 @@ import { actions } from 'components/redux/User'
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { RootState } from 'components/redux'
-import {
-  PcIconPorpoise,
-  XboxIconPorpoise,
-  PlayStationIconPorpoise,
-  SwitchIconPorpoise,
-  MobileIconPorpoise,
-} from 'components/atoms/Icon'
-import type { PlayEnvTypes } from 'types/PlayEnvTypes'
 import { doc, updateDoc } from 'firebase/firestore'
-
-type PlayEnvsObjectTypes = {
-  env: PlayEnvTypes
-  icon: string
-}
 
 export function useInjection() {
   const [name, setName] = useState<string>('')
@@ -28,14 +15,6 @@ export function useInjection() {
   const [disabled, setDisabled] = useState<boolean>(true)
 
   const maxLen = 20
-  const envs: PlayEnvsObjectTypes[] = [
-    { env: 'PC', icon: PcIconPorpoise },
-    { env: 'PlayStation', icon: PlayStationIconPorpoise },
-    { env: 'Xbox', icon: XboxIconPorpoise },
-    { env: 'Switch', icon: SwitchIconPorpoise },
-    { env: 'Mobile', icon: MobileIconPorpoise },
-  ]
-
   useEffect(() => {
     setDisabled(!(name.length > 0) || false)
   }, [name])
@@ -82,7 +61,6 @@ export function useInjection() {
     user,
     navigate,
     maxLen,
-    envs,
     disabled,
   }
 }
