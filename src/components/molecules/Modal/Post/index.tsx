@@ -6,6 +6,7 @@ import React from 'react'
 import Modal from 'react-modal'
 import { useInjection } from './hooks'
 import { useStyles } from './style'
+import CharacterCounter from 'components/molecules/Counter'
 
 export default React.memo(function PostModal() {
   const {
@@ -51,7 +52,7 @@ export default React.memo(function PostModal() {
           </button>
         </div>
         <div className={styles.postButtonContainer}>
-          <span className={styles.textAreaLength}>{text.length}/200</span>
+          <CharacterCounter maxLength={200} length={text} style={styles.counter} />
           <span className={styles.line} />
           <button onClick={onClickPostButton} className={styles.button()} disabled={disabled}>
             投稿

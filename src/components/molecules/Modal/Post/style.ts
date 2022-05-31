@@ -54,10 +54,10 @@ export function useStyles({ disabled }: Props) {
     align-items: center;
     padding: 24px;
   `
-  const textAreaLength = css`
+  const counter = css`
     color: ${Colors.GREY};
     font-size: 16px;
-    font-weight: 100;
+    font-weight: 400;
   `
   const baseButton = css`
     background-color: ${Colors.RED};
@@ -136,7 +136,7 @@ export function useStyles({ disabled }: Props) {
     userIcon,
     textArea,
     textAreaInfoContainer,
-    textAreaLength,
+    counter,
     buttons,
     icon,
     line,
