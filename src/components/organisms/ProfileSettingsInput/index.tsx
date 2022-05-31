@@ -17,7 +17,7 @@ export default function ProfileSettingsInput({ label, value, onChange, maxLength
     <div className={styles.container}>
       <div className={styles.labelContainer}>
         <span className={styles.labelStyle}>{label}</span>
-        <CharacterCounter length={value} maxLength={maxLength!} />
+        <CharacterCounter length={value.length} maxLength={maxLength!} />
       </div>
       {textarea ? (
         <textarea className={styles.textAreaStyle} value={value} onChange={onChange} />

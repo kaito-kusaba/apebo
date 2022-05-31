@@ -3,16 +3,16 @@ import { useStyles } from './style'
 
 type Props = {
   maxLength: number
-  length: string
-  style?: string
+  length: number
+  size?: number
 }
 
-export default React.memo(function CharacterCounter({ maxLength, length, style }: Props) {
-  const styles = useStyles()
+export default React.memo(function CharacterCounter({ maxLength, length, size }: Props) {
+  const styles = useStyles({ size })
   return (
     <div>
-      <span className={`${styles.length} ${style}`}>
-        {length.length}/{maxLength}
+      <span className={styles.length()}>
+        {length}/{maxLength}
       </span>
     </div>
   )

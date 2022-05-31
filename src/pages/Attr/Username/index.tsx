@@ -16,7 +16,7 @@ export default function SetUsernameScreen() {
           <h2 className={styles.label}>ユーザー名</h2>
           <span className={styles.info}>※設定で変更できます</span>
         </div>
-        <CharacterCounter length={name} maxLength={maxLen} />
+        <CharacterCounter length={name.length} maxLength={maxLen} />
       </div>
       <input
         className={styles.input}

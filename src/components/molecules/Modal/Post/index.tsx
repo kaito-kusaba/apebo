@@ -52,7 +52,7 @@ export default React.memo(function PostModal() {
           </button>
         </div>
         <div className={styles.postButtonContainer}>
-          <CharacterCounter maxLength={200} length={text} style={styles.counter} />
+          <CharacterCounter maxLength={200} length={text.length} size={16} />
           <span className={styles.line} />
           <button onClick={onClickPostButton} className={styles.button()} disabled={disabled}>
             投稿
