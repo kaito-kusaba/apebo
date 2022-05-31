@@ -37,7 +37,7 @@ export default React.memo(function PostModal() {
       <textarea
         onChange={onChangeText}
         maxLength={200}
-        placeholder="今からカジュアルで遊びませんか？あと2人募集中です！"
+        placeholder="今からカジュアルで遊びませんか？&#13;あと2人募集中です！"
         className={styles.textArea}
         value={text}
         ref={textAreaRef}
