@@ -8,7 +8,7 @@ export default function PlayEnvsContentList() {
   return (
     <div className={styles.buttonContainer}>
       {envs.map(env => {
-        return <PlayEnvsContent envs={env.env!} icon={env.icon} />
+        return <PlayEnvsContent env={env.env!} icon={env.icon} />
       })}
     </div>
   )
