@@ -18,6 +18,7 @@ export default React.memo(function PostModal() {
     onClickPostButton,
     onClickSmileIcon,
     onClose,
+    onKeyDown,
     textAreaRef,
     disabled,
   } = useInjection()
@@ -41,6 +42,7 @@ export default React.memo(function PostModal() {
         className={styles.textArea}
         value={text}
         ref={textAreaRef}
+        onKeyDown={onKeyDown}
       />
       <div className={styles.textAreaInfoContainer}>
         <div className={styles.buttons}>
