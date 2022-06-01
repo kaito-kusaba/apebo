@@ -28,7 +28,7 @@ export default React.memo(function AccountURL() {
   return (
     <div className={styles.container}>
       <img className={styles.img} src={LinkIconGray} alt="" />
-      <a href={userData.website} target="_blank" rel="noopener" className={styles.url}>
+      <a href={userData.website || data?.website} target="_blank" rel="noreferrer" className={styles.url}>
         {location.pathname === '/account' ? userData.website : data?.website}
       </a>
     </div>
