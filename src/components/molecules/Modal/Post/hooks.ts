@@ -81,6 +81,17 @@ export function useInjection() {
     alert('にこちゃんまーく')
   }, [])
 
+  const onKeyDown = useCallback(
+    e => {
+      if (e.ctrlKey) {
+        if (e.keyCode === 13) {
+          onClickPostButton()
+        }
+      }
+    },
+    [text],
+  )
+
   return {
     user,
     text,
@@ -90,6 +101,7 @@ export function useInjection() {
     onClickPostButton,
     onClickAddImage,
     onClickSmileIcon,
+    onKeyDown,
     textAreaRef,
     disabled,
   }
