@@ -15,7 +15,7 @@ export default React.memo(function TabButton({ label, type }: Props) {
   return (
     <button onClick={onClick} onMouseEnter={onMouseToggle} onMouseLeave={onMouseToggle} className={styles.button()}>
       <img src={img} alt="" className={styles.img} />
-      <span id="tabLabel" className={styles.label()}>
+      <span id="tabLabel" className={`${styles.label()} ${styles.vip()}`}>
         {label}
       </span>
       {isHovered && type !== selected && <span className={styles.underline} />}
