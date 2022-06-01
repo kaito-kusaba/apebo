@@ -8,9 +8,10 @@ type Props = {
   onChange?: (e: any) => void
   maxLength?: number
   textarea?: boolean
+  placeholder?: string
 }
 
-export default function ProfileSettingsInput({ label, value, onChange, maxLength, textarea }: Props) {
+export default function ProfileSettingsInput({ label, value, onChange, maxLength, textarea, placeholder }: Props) {
   const styles = useStyles()
 
   return (
@@ -22,7 +23,7 @@ export default function ProfileSettingsInput({ label, value, onChange, maxLength
       {textarea ? (
         <textarea className={styles.textAreaStyle} value={value} onChange={onChange} />
       ) : (
-        <input className={styles.inputStyle} type="text" value={value} onChange={onChange} />
+        <input placeholder={placeholder} className={styles.inputStyle} type="text" value={value} onChange={onChange} />
       )}
     </div>
   )
