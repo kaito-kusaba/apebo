@@ -24,7 +24,7 @@ export function useStyles({ selected, type, isHovered }: Props) {
   const label = () => {
     if (selected === type) {
       return css`
-        color: ${Colors.PORPOISE};
+        color: ${type === 'Vip' ? Colors.YELLOW : Colors.PORPOISE};
       `
     } else if (isHovered) {
       return css`
@@ -36,6 +36,15 @@ export function useStyles({ selected, type, isHovered }: Props) {
       `
     }
   }
+
+  const vip = () => {
+    if (type === 'Vip') {
+      return css`
+        letter-spacing: 1px;
+      `
+    }
+  }
+
   const button = () => {
     //選択状態
     if (selected === type) {
@@ -56,6 +65,7 @@ export function useStyles({ selected, type, isHovered }: Props) {
   const img = css`
     width: 18px;
     height: 18px;
+    margin-right: 4px;
   `
   const underline = css`
     position: absolute;
@@ -80,5 +90,6 @@ export function useStyles({ selected, type, isHovered }: Props) {
     img,
     underline,
     selectedUnderline,
+    vip,
   }
 }
