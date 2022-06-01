@@ -85,6 +85,7 @@ export function useInjection() {
     e => {
       if (e.ctrlKey) {
         if (e.keyCode === 13) {
+          e.preventDefault()
           onClickPostButton()
         }
       }
