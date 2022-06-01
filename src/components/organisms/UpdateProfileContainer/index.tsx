@@ -31,7 +31,7 @@ export default React.memo(function UpdateProfileScreen() {
             <UserIcon uid={user!.uid} size={72} disabled />
           </button>
           <button className={styles.avatarChange} onClick={onChangeAvater}>
-            アバター画像を編集
+            アバター画像を変更
           </button>
           <button className={styles.avatarDelete} onClick={onChangeDelete}>
             アバター画像を削除

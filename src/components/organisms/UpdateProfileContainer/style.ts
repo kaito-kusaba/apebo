@@ -41,8 +41,8 @@ export function useStyles() {
     padding: 10px 16px;
     border-radius: 8px;
     border: none;
-    background-color: ${Colors.RED};
-    color: ${Colors.WHITE};
+    background-color: ${Colors.YELLOW};
+    color: ${Colors.BLACK};
     margin-left: 24px;
     font-weight: 700;
     cursor: pointer;
