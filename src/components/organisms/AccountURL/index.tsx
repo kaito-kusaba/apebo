@@ -1,17 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { LinkIconGray } from 'components/atoms/Icon'
 import { useStyles } from './style'
-import { useSelector } from 'react-redux'
-import { RootState } from 'components/redux'
-import { useLocation, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { doc, DocumentData, getDoc } from 'firebase/firestore'
 import { db } from 'libs/firebase'
 
 export default React.memo(function AccountURL() {
   const styles = useStyles()
-  const { userData } = useSelector(({ user }: RootState) => user)
   const params = useParams()
-  const location = useLocation()
   const [data, setData] = useState<DocumentData>()
 
   const fetchUserData = async () => {
@@ -28,8 +24,8 @@ export default React.memo(function AccountURL() {
   return (
     <div className={styles.container}>
       <img className={styles.img} src={LinkIconGray} alt="" />
-      <a href={userData.website || data?.website} target="_blank" rel="noreferrer" className={styles.url}>
-        {location.pathname === '/account' ? userData.website : data?.website}
+      <a href={data?.website} target="_blank" rel="noreferrer" className={styles.url}>
+        {data?.website}
       </a>
     </div>
   )
