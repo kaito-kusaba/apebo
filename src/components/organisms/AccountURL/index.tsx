@@ -4,11 +4,14 @@ import { useStyles } from './style'
 import { useParams } from 'react-router-dom'
 import { doc, DocumentData, getDoc } from 'firebase/firestore'
 import { db } from 'libs/firebase'
+import { useSelector } from 'react-redux'
+import { RootState } from 'components/redux'
 
 export default React.memo(function AccountURL() {
   const styles = useStyles()
   const params = useParams()
   const [data, setData] = useState<DocumentData>()
+  const { userData } = useSelector(({ user }: RootState) => user)
 
   const fetchUserData = async () => {
     if (params.uid) {
@@ -24,8 +27,8 @@ export default React.memo(function AccountURL() {
   return (
     <div className={styles.container}>
       <img className={styles.img} src={LinkIconGray} alt="" />
-      <a href={data?.website} target="_blank" rel="noreferrer" className={styles.url}>
-        {data?.website}
+      <a href={params.uid ? data?.website : userData.website} target="_blank" rel="noreferrer" className={styles.url}>
+        {params.uid ? data?.website : userData.website}
       </a>
     </div>
   )
