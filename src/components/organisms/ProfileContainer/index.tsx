@@ -50,7 +50,7 @@ export default function ProfileContainer() {
       <BioDisplay />
       <DiscordID />
       <AccountURL />
-      <FollowFollower follows={222} followers={1000} />
+      <FollowFollower />
     </div>
   )
 }

@@ -18,7 +18,7 @@ type Props = {
 
 export default function PostContent({ uid, content, time, docId, onClick }: Props) {
   const styles = useStyles()
-  const { onClickOther, onClickMessage } = useInjection({ uid })
+  const { onClickOther, onClickMessage, onClickFollow } = useInjection({ uid })
   return (
     <div onClick={onClick} className={styles.postContentContainerStyle}>
       <div className={styles.postContentHeader}>
@@ -31,6 +31,7 @@ export default function PostContent({ uid, content, time, docId, onClick }: Prop
           docId={docId}
           uid={uid}
           onClickMessage={onClickMessage}
+          onClickFollow={onClickFollow}
         />
       </div>
       <PostContentDisplay content={content} style={styles.postContentDisplay} />
