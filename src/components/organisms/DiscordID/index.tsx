@@ -26,13 +26,20 @@ export default React.memo(function DiscordID() {
     fetchUserData()
   }, [])
 
+  const DiscordImg: React.VFC = () => {
+    if (data?.discord_id || userData.discordId) {
+      return <img src={DiscordIconGray} alt="" className={styles.discordIcon} />
+    }
+    return <></>
+  }
+
   return (
     <div className={styles.discordIdCopy}>
       <CopyToClipboard
         text={params.uid ? data?.discord_id : userData.discordId}
         onCopy={() => alert('IDをコピーしました')}>
         <div className={styles.discordIdContainer}>
-          <img src={DiscordIconGray} alt="" className={styles.discordIcon} />
+          <DiscordImg />
           <div className={styles.discordId}>{params.uid ? data?.discord_id : userData.discordId}</div>
         </div>
       </CopyToClipboard>
