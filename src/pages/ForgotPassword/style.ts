@@ -41,7 +41,7 @@ export function useStyles({ disabled }: Props) {
     margin: 16px 0 24px 0;
   `
 
-  const mailAddress = css`
+  const emailAddressLabel = css`
     font-size: 14px;
     color: ${Colors.PORPOISE};
     font-weight: 500;
@@ -100,15 +100,13 @@ export function useStyles({ disabled }: Props) {
     }
   }
 
-  const forgotPasswordButton = css``
   return {
     container,
-    forgotPasswordButton,
     top,
     label,
     img,
     topLabel,
-    mailAddress,
+    emailAddressLabel,
     emailInput,
     submit,
     errorMsg,

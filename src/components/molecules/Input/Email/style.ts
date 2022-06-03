@@ -13,9 +13,10 @@ export function useStyles({ type }: Props) {
     font-size: 16px;
     border: none;
     background-color: transparent;
-    transition: all ease 0.3s;
     width: 100%;
-    color: ${Colors.SQUANT};
+    &::placeholder {
+      color: ${Colors.SQUANT};
+    }
   `
 
   const inputBorderStyle = () => {
@@ -23,6 +24,7 @@ export function useStyles({ type }: Props) {
       case 'default':
         return css`
           border-bottom: 1px ${Colors.EERIE_BLACK} solid;
+          color: ${Colors.WHITE};
           &:focus {
             border-bottom: 1px ${Colors.WHITE} solid;
           }

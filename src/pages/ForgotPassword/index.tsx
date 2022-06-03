@@ -1,6 +1,6 @@
 import React from 'react'
 import { useStyles } from './style'
-import { LeftArrowIconWhite } from 'components/atoms/Icon'
+import { LeftArrowIconWhite } from 'components/atoms/Icon/'
 import EmailInput from 'components/molecules/Input/Email'
 import { useInjection } from './hooks'
 
@@ -17,7 +17,7 @@ export default React.memo(function ForgotPasswordScreen() {
         <p>入力されたメールアドレスにパスワード再設定専用フォームのリンクが送信されます</p>
       </div>
       <div className={styles.emailLabel}>
-        <p className={styles.mailAddress}>メールアドレス</p>
+        <p className={styles.emailAddressLabel}>メールアドレス</p>
         <p className={styles.errorMsg}>{errorText}</p>
       </div>
       <EmailInput
@@ -28,7 +28,7 @@ export default React.memo(function ForgotPasswordScreen() {
         placeholder="メールアドレスを入力"
       />
       <button className={styles.submit()} onClick={onPressSubmit} disabled={disabled}>
-        設定用リンクを送信
+        再設定用リンクを送信
       </button>
     </div>
   )
