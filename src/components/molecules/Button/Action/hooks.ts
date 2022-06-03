@@ -10,21 +10,27 @@ import FOLLOW_DEFAULT from 'assets/images/icons/follow_default.png'
 import FOLLOW_HOVER from 'assets/images/icons/follow_hover.png'
 import DOTS from 'assets/images/icons/dots.png'
 import { ActionButtonTypes } from 'types/ActionButtonTypes'
-
+import { useDispatch, useSelector } from 'react-redux'
+import { RootState } from 'components/redux'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { arrayRemove, arrayUnion, deleteDoc, doc, updateDoc } from 'firebase/firestore'
+import { db } from 'libs/firebase'
+import { actions } from 'components/redux/User'
 type Props = {
   type: ActionButtonTypes
-  onClickOther?: (e: any) => void
-  onClickMessage?: (e: any) => void
-  onClickLike?: (e: any) => void
-  onClickFollow?: (e: any) => void
+  docId?: string
+  uid?: string
 }
 
-export function useInjection({ type, onClickOther, onClickMessage, onClickFollow, onClickLike }: Props) {
+export function useInjection({ type, uid, docId }: Props) {
+  const navigate = useNavigate()
   const [buttonImageSrc, setButtonImageSrc] = useState<string>('')
   const [isSelectedMessage, setIsSelectedMessage] = useState<boolean>(false)
   const [isSelectedLike, setIsSelectedLike] = useState<boolean>(false)
-  const [isSelectedFollow, setIsSelectedFollow] = useState<boolean>(false)
   const [isHovered, setIsHovered] = useState<boolean>(false)
+  const { user, userData } = useSelector(({ user }: RootState) => user)
+  const location = useLocation()
+  const dispatch = useDispatch()
 
   useEffect(() => {
     switch (type) {
@@ -43,7 +49,7 @@ export function useInjection({ type, onClickOther, onClickMessage, onClickFollow
           : setButtonImageSrc(LIKE_DEFAULT)
         break
       case 'Follow':
-        isSelectedFollow
+        userData.follows?.includes(uid!)
           ? setButtonImageSrc(FOLLOW_ACTIVE)
           : isHovered
           ? setButtonImageSrc(FOLLOW_HOVER)
@@ -53,34 +59,72 @@ export function useInjection({ type, onClickOther, onClickMessage, onClickFollow
         setButtonImageSrc(DOTS)
         break
     }
-  }, [isSelectedMessage, isSelectedLike, isSelectedFollow, isHovered, type])
+  }, [isSelectedLike, isHovered, userData.follows])
 
   const onClickActionButton = useCallback(
     e => {
       switch (type) {
         case 'Message':
           setIsSelectedMessage(!isSelectedMessage)
-          onClickMessage!(e)
+          e.stopPropagation()
+          navigate('/talk/:room_id')
           break
         case 'Like':
           setIsSelectedLike(!isSelectedLike)
-          onClickLike!(e)
           break
         case 'Follow':
-          setIsSelectedFollow(!isSelectedFollow)
-          onClickFollow!(e)
+          onClickFollow()
           break
         case 'Other':
-          onClickOther!(e)
+          onClickOther()
           break
       }
     },
-    [isSelectedMessage, isSelectedLike, isSelectedFollow],
+    [isSelectedLike],
   )
 
   const onMouseToggle = useCallback(() => {
     setIsHovered(!isHovered)
-  }, [isHovered, setIsHovered])
+  }, [isHovered])
+
+  const onClickFollow = useCallback(() => {
+    if (user?.uid !== uid) {
+      const friendUserRef = doc(db, 'users', uid!)
+      const myRef = doc(db, 'users', user!.uid)
+      if (!userData.follows?.includes(uid!)) {
+        updateDoc(friendUserRef, {
+          followers: arrayUnion(user?.uid),
+        })
+        updateDoc(myRef, {
+          follows: arrayUnion(uid),
+        })
+      } else {
+        dispatch(
+          actions.setUserData({
+            follows: userData.follows.filter(follow => user?.uid !== follow),
+          }),
+        )
+        updateDoc(friendUserRef, {
+          followers: arrayRemove(user?.uid),
+        })
+        updateDoc(myRef, {
+          follows: arrayRemove(uid),
+        })
+      }
+    }
+  }, [userData.follows])
+
+  const onClickOther = useCallback(async () => {
+    if (user!.uid === uid) {
+      await deleteDoc(doc(db, 'posts', docId!))
+      if (location.pathname === '/account') {
+        window.location.reload()
+      }
+    } else {
+      //TODO: ポップアップ表示
+      alert('miss')
+    }
+  }, [])
 
   return {
     onClickActionButton,

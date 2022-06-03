@@ -6,7 +6,6 @@ import React from 'react'
 import { useStyles } from './style'
 import Time from 'components/atoms/Time'
 import { Timestamp } from 'firebase/firestore'
-import { useInjection } from './hooks'
 
 type Props = {
   uid: string
@@ -18,7 +17,6 @@ type Props = {
 
 export default function PostContent({ uid, content, time, docId, onClick }: Props) {
   const styles = useStyles()
-  const { onClickOther, onClickMessage, onClickFollow } = useInjection({ uid })
   return (
     <div onClick={onClick} className={styles.postContentContainerStyle}>
       <div className={styles.postContentHeader}>
@@ -26,13 +24,7 @@ export default function PostContent({ uid, content, time, docId, onClick }: Prop
           <UserIcon uid={uid} size={46} style={styles.postContentUserIcon} />
           <UserName uid={uid} />
         </div>
-        <ActionButtonSet
-          onClickOther={() => onClickOther(docId)}
-          docId={docId}
-          uid={uid}
-          onClickMessage={onClickMessage}
-          onClickFollow={onClickFollow}
-        />
+        <ActionButtonSet docId={docId} uid={uid} />
       </div>
       <PostContentDisplay content={content} style={styles.postContentDisplay} />
       <Time time={time} />
