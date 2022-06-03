@@ -21,12 +21,19 @@ export default React.memo(function AccountURL() {
     }
   }
 
+  const WebsiteImg: React.VFC = () => {
+    if (data?.website || userData.website) {
+      return <img src={LinkIconGray} alt="" className={styles.img} />
+    }
+    return <></>
+  }
+
   useEffect(() => {
     fetchUserData()
   }, [])
   return (
     <div className={styles.container}>
-      <img className={styles.img} src={LinkIconGray} alt="" />
+      <WebsiteImg />
       <a href={params.uid ? data?.website : userData.website} target="_blank" rel="noreferrer" className={styles.url}>
         {params.uid ? data?.website : userData.website}
       </a>
