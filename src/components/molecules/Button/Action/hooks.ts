@@ -13,7 +13,7 @@ import { ActionButtonTypes } from 'types/ActionButtonTypes'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'components/redux'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { arrayRemove, arrayUnion, deleteDoc, doc, updateDoc } from 'firebase/firestore'
+import { arrayRemove, arrayUnion, deleteDoc, doc, getDoc, updateDoc } from 'firebase/firestore'
 import { db } from 'libs/firebase'
 import { actions } from 'components/redux/User'
 type Props = {
@@ -91,28 +91,56 @@ export function useInjection({ type, uid, docId }: Props) {
     if (user?.uid !== uid) {
       const friendUserRef = doc(db, 'users', uid!)
       const myRef = doc(db, 'users', user!.uid)
+
       if (!userData.follows?.includes(uid!)) {
+        //フォロワー
         updateDoc(friendUserRef, {
           followers: arrayUnion(user?.uid),
+        }).then(async () => {
+          const snap = await getDoc(friendUserRef)
+          dispatch(
+            actions.setUserData({
+              followers: snap.data()?.followers,
+            }),
+          )
         })
+        //フォロー
         updateDoc(myRef, {
           follows: arrayUnion(uid),
+        }).then(async () => {
+          const snap = await getDoc(myRef)
+          dispatch(
+            actions.setUserData({
+              follows: snap.data()?.follows,
+            }),
+          )
         })
       } else {
-        dispatch(
-          actions.setUserData({
-            follows: userData.follows.filter(follow => user?.uid !== follow),
-          }),
-        )
+        //フォロワー解除
         updateDoc(friendUserRef, {
           followers: arrayRemove(user?.uid),
+        }).then(async () => {
+          const snap = await getDoc(friendUserRef)
+          dispatch(
+            actions.setUserData({
+              followers: snap.data()?.followers,
+            }),
+          )
         })
+        //フォロー解除
         updateDoc(myRef, {
           follows: arrayRemove(uid),
+        }).then(async () => {
+          const snap = await getDoc(myRef)
+          dispatch(
+            actions.setUserData({
+              follows: snap.data()?.follows,
+            }),
+          )
         })
       }
     }
-  }, [userData.follows])
+  }, [userData.follows, userData.followers])
 
   const onClickOther = useCallback(async () => {
     if (user!.uid === uid) {
