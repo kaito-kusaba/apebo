@@ -37,6 +37,8 @@ const fetchUserData = async (uid: string) => {
         bio: data.bio,
         website: data.website,
         discordId: data.discord_id,
+        follows: data.follows,
+        followers: data.followers,
       }),
     )
   }

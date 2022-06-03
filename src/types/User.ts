@@ -9,4 +9,6 @@ export type UserData = {
   discordId?: string
   website?: string
   bio?: string
+  follows?: string[]
+  followers?: string[]
 }
