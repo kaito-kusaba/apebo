@@ -39,10 +39,13 @@ export function useInjection() {
         //TODO: https://firebase.google.com/docs/reference/js/v8/firebase.auth.Auth ここ見て必要そうなエラーコードあったら増やしていく。
         switch (error.code) {
           case 'auth/invalid-email':
-            setErrorText('このメールアドレスは無効です。')
+            setErrorText('このメールアドレスは無効です')
             break
           case 'auth/user-not-found':
-            setErrorText('このメールアドレスは使用されていません。')
+            setErrorText('このメールアドレスは使用されていません')
+            break
+          default:
+            showAlert({ type: 'error', text: '時間をおいて再度お試しください' })
             break
         }
       })
