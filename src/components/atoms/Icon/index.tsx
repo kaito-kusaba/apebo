@@ -40,3 +40,4 @@ export { default as MobileIconPorpoise } from 'assets/images/icons/PorpoiseIcons
 export { default as SwitchIconPorpoise } from 'assets/images/icons/PorpoiseIcons/switch.png'
 export { default as PlayStationIconPorpoise } from 'assets/images/icons/PorpoiseIcons/playstation.png'
 export { default as XboxIconPorpoise } from 'assets/images/icons/PorpoiseIcons/xbox.png'
+export { default as LeftArrowIconWhite } from 'assets/images/icons/WhiteIcons/left_arrow.png'

@@ -27,7 +27,13 @@ export default function SigninForm() {
   return (
     <div className={styles.container} onKeyDown={enterKeyPress}>
       <AuthModalHeader label="サインイン" onClick={onClickCancel} />
-      <EmailInput value={email} onChange={onChangeEmail} style={styles.emailInput} />
+      <EmailInput
+        type="default"
+        value={email}
+        onChange={onChangeEmail}
+        style={styles.emailInput}
+        placeholder="メールアドレス"
+      />
 
       <PasswordInput errorText={errorText} type="default" value={password} onChange={onChangePassword} />
 
@@ -35,7 +41,7 @@ export default function SigninForm() {
       <span className={styles.invalid}>{errorText}</span>
       <p className={styles.forgot}>
         パスワードを忘れた方は
-        <Link className={styles.forgotLink} to="/auth/forgot/password">
+        <Link to="/auth/forgot/password" className={styles.forgotLink}>
           こちら
         </Link>
       </p>

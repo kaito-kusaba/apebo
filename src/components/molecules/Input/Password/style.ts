@@ -31,6 +31,9 @@ export function useStyles({ type, errorText }: Props) {
             &:focus {
               border-bottom: 1px ${Colors.WHITE} solid;
             }
+            &::placeholder {
+              color: ${Colors.SQUANT};
+            }
           `
         case 'border':
           return css`

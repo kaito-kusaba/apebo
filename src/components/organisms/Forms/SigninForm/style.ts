@@ -22,6 +22,9 @@ export function useStyles() {
     font-weight: bold;
     font-size: 12px;
     text-decoration: underline;
+    background-color: ${Colors.CHAOS_BLACK};
+    border: none;
+    cursor: pointer;
   `
 
   const emailInput = css`
