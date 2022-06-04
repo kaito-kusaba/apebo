@@ -57,7 +57,7 @@ export function useStyles({ disabled }: Props) {
     font-size: 12px;
     font-weight: 400;
     color: ${Colors.RED};
-    margin-left: 16px;
+    margin-left: 6px;
   `
 
   const emailInput = css`

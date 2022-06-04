@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import { getAuth, sendPasswordResetEmail } from 'firebase/auth'
 import { useNavigate } from 'react-router-dom'
+import { useAlert } from 'components/molecules/Alert'
 
 export function useInjection() {
   const [email, setEmail] = useState<string>('')
@@ -8,6 +9,7 @@ export function useInjection() {
   const [errorText, setErrorText] = useState<string>('')
   const [disabled, setDisabled] = useState<boolean>(true)
   const navigate = useNavigate()
+  const showAlert = useAlert()
 
   const onClickBackButton = useCallback(() => {
     navigate('/auth/signin')
@@ -31,20 +33,29 @@ export function useInjection() {
     }
     sendPasswordResetEmail(auth, email, actionCodeSettings)
       .then(() => {
-        alert('メールを送信。')
+        showAlert({ text: 'メールに再設定用リンクを送信しました' })
       })
       .catch(error => {
         //TODO: https://firebase.google.com/docs/reference/js/v8/firebase.auth.Auth ここ見て必要そうなエラーコードあったら増やしていく。
         switch (error.code) {
           case 'auth/invalid-email':
-            setErrorText('このメールアドレスは無効です。')
+            setErrorText('このメールアドレスは無効です')
             break
           case 'auth/user-not-found':
-            setErrorText('このメールアドレスは使用されていません。')
+            setErrorText('このメールアドレスは使用されていません')
+            break
+          default:
+            showAlert({ type: 'error', text: '時間をおいて再度お試しください' })
             break
         }
       })
   }, [email])
+
+  const onKeyDown = useCallback(e => {
+    if (e.keyCode === 13) {
+      onPressSubmit()
+    }
+  }, [])
 
   return {
     email,
@@ -53,5 +64,6 @@ export function useInjection() {
     errorText,
     disabled,
     onClickBackButton,
+    onKeyDown,
   }
 }

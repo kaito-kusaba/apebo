@@ -68,7 +68,6 @@ export function useInjection() {
       dispatch(modalActions.setModal(false))
     } catch (e) {
       showAlert({ text: '投稿に失敗しました。', type: 'error' })
-      console.log(e)
       dispatch(modalActions.setModal(false))
     }
   }, [text])
