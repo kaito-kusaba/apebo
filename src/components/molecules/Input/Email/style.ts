@@ -1,6 +1,6 @@
 import { css } from '@emotion/css'
 import { Colors } from 'constant'
-import { EmailInputType } from '.'
+import type { EmailInputType } from '.'
 
 type Props = {
   type: EmailInputType
@@ -14,6 +14,7 @@ export function useStyles({ type }: Props) {
     border: none;
     background-color: transparent;
     width: 100%;
+    transition: all 0.3s;
     &::placeholder {
       color: ${Colors.SQUANT};
     }

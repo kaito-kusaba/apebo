@@ -1,6 +1,6 @@
 import React from 'react'
 import { useStyles } from './style'
-import { LeftArrowIconWhite } from 'components/atoms/Icon/'
+import { LeftArrowIconWhite } from 'components/atoms/Icon'
 import EmailInput from 'components/molecules/Input/Email'
 import { useInjection } from './hooks'
 
