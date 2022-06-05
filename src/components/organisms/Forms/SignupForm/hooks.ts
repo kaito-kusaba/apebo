@@ -3,6 +3,7 @@ import { auth, provider } from 'libs/firebase'
 import {
   browserSessionPersistence,
   createUserWithEmailAndPassword,
+  sendEmailVerification,
   setPersistence,
   signInWithRedirect,
 } from 'firebase/auth'
@@ -48,6 +49,7 @@ export function useInjection() {
         .then(userCredential => {
           const user = userCredential.user
           dispatch(actions.setUser(user))
+          sendEmailVerification(user)
           if (user.displayName) {
             navigate('/')
           } else {

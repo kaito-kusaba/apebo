@@ -5,9 +5,10 @@ import { AlertTypes } from './index'
 type Props = {
   visible: boolean
   AlertType: AlertTypes
+  animationTime?: number
 }
 
-export function useStyles({ visible, AlertType }: Props) {
+export function useStyles({ visible, AlertType, animationTime = 3.5 }: Props) {
   const fadeInOut = keyframes`
 	0% {
 		transform: translateY(-10px);
@@ -35,7 +36,7 @@ export function useStyles({ visible, AlertType }: Props) {
     display: flex;
     justify-content: center;
     align-items: center;
-    animation: ${fadeInOut} 3.5s forwards;
+    animation: ${fadeInOut} ${animationTime}s forwards;
     z-index: 1;
     border-radius: 8px;
   `
