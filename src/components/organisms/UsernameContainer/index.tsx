@@ -4,7 +4,7 @@ import CharacterCounter from 'components/molecules/Counter'
 import PlayEnvsContentList from 'components/organisms/ListItems/PlayEnvsContentList'
 import { useStyles } from './style'
 
-export default function SetUsernameScreen() {
+export default function SetUsernameContainer() {
   const { name, onChangeName, onClickSubmit, maxLen, disabled } = useInjection()
   const styles = useStyles({ disabled })
 

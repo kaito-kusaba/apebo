@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { RootState } from 'components/redux'
 import { doc, updateDoc } from 'firebase/firestore'
+import { useAlert } from 'components/molecules/Alert'
 
 export function useInjection() {
   const [name, setName] = useState<string>('')
@@ -13,8 +14,16 @@ export function useInjection() {
   const navigate = useNavigate()
   const { user } = useSelector(({ user }: RootState) => user)
   const [disabled, setDisabled] = useState<boolean>(true)
+  const showAlert = useAlert()
 
   const maxLen = 20
+
+  useEffect(() => {
+    if (!user?.emailVerified) {
+      showAlert({ text: '確認用メールを送信しました', animationTime: 5 })
+    }
+  }, [])
+
   useEffect(() => {
     setDisabled(!(name.length > 0) || false)
   }, [name])
