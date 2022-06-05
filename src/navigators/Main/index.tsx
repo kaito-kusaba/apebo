@@ -5,7 +5,7 @@ import AccountScreen from 'pages/Account'
 import SettingsScreen from 'pages/Settings'
 import SignOutScreen from 'pages/Auth/SignOut'
 import NotFoundScreen from 'pages/NotFound'
-import SetUsernameScreen from 'pages/Attr/UserName'
+import SetUserNameScreen from 'pages/Attr/UserName'
 import UpdateProfileScreen from 'pages/UpdateProfile'
 import ChangeEmailScreen from 'pages/ChangeEmail'
 import ChangePasswordScreen from 'pages/ChangePassword'
@@ -25,7 +25,7 @@ export default function MainNavigator() {
       <Route path="/settings" element={<SettingsScreen />} />
       <Route path="/account/:uid/" element={<AccountScreen />} />
       <Route path="/auth/signout" element={<SignOutScreen />} />
-      <Route path="/attr/username" element={<SetUsernameScreen />} />
+      <Route path="/attr/username" element={<SetUserNameScreen />} />
       <Route path="/account/settings/profile" element={<UpdateProfileScreen />} />
       <Route path="/account/settings/email" element={<ChangeEmailScreen />} />
       <Route path="/account/settings/password" element={<ChangePasswordScreen />} />
