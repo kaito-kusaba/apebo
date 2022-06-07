@@ -17,13 +17,13 @@ export default React.memo(function AccoutScreen() {
     const userRef = doc(db, 'users', params.uid!)
     const userSnap = await getDoc(userRef)
     if (!userSnap.data()?.uid.include(params.uid)) {
-      navigate('/account/notfound')
+      navigate('/account/not-found')
     }
   }
 
   useEffect(() => {
     checkUserData()
-  })
+  }, [])
 
   return (
     <SafeView>
