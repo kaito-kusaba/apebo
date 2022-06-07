@@ -25,6 +25,7 @@ export default React.memo(function AccoutScreen() {
     checkUserData()
   }, [])
 
+  window.scroll({ top: 0 })
   return (
     <SafeView>
       <ScreenLabel />
