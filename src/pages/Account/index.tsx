@@ -7,6 +7,7 @@ import RecommendationContent from 'components/organisms/ListItems/Recommendation
 import React from 'react'
 
 export default React.memo(function AccoutScreen() {
+  window.scroll({ top: 0 })
   return (
     <SafeView>
       <ScreenLabel />
