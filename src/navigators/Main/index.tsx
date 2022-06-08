@@ -12,6 +12,7 @@ import ChangePasswordScreen from 'pages/ChangePassword'
 import SupportPageScreen from 'pages/Support'
 import TermsScreen from 'pages/terms'
 import TalkScreen from 'pages/Talk'
+import AccountNotFoundScreen from 'pages/AccountNotFound'
 
 export default function MainNavigator() {
   const location = useLocation()
@@ -24,6 +25,7 @@ export default function MainNavigator() {
       <Route path="/account" element={<AccountScreen />} />
       <Route path="/settings" element={<SettingsScreen />} />
       <Route path="/account/:uid/" element={<AccountScreen />} />
+      <Route path="/account/not-found/" element={<AccountNotFoundScreen />} />
       <Route path="/auth/signout" element={<SignOutScreen />} />
       <Route path="/attr/username" element={<SetUserNameScreen />} />
       <Route path="/account/settings/profile" element={<UpdateProfileScreen />} />
