@@ -3,12 +3,15 @@ import React from 'react'
 import SettingsScreen from 'pages/Settings'
 import SettingsPageContainer from 'components/organisms/SettingsPageContainer'
 import UpdateProfileContainer from 'components/organisms/UpdateProfileContainer'
+import { AlertProvider } from 'components/molecules/Alert'
 
 export default React.memo(function ChangeEmailScreen() {
   const styles = useStyles()
   return (
     <div className={styles.container}>
-      <SettingsPageContainer left={<SettingsScreen />} right={<UpdateProfileContainer />} />
+      <AlertProvider>
+        <SettingsPageContainer left={<SettingsScreen />} right={<UpdateProfileContainer />} />
+      </AlertProvider>
     </div>
   )
 })

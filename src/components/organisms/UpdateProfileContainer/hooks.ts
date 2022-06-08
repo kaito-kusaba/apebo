@@ -1,3 +1,4 @@
+import { useAlert } from 'components/molecules/Alert'
 import { RootState } from 'components/redux'
 import { actions } from 'components/redux/User'
 import { updateProfile } from 'firebase/auth'
@@ -14,6 +15,7 @@ export function useInjection() {
   const [discordId, setDiscordId] = useState<string>(userData.discordId || fetchData?.discord_id || '')
   const [bio, setBio] = useState<string>(userData.bio || fetchData?.bio || '')
   const [website, setWebsite] = useState<string>(userData.website || fetchData?.website || '')
+  const showAlert = useAlert()
 
   useEffect(() => {
     const userRef = doc(db, 'users', user!.uid)
@@ -50,7 +52,7 @@ export function useInjection() {
     })
       .then(() => {
         dispatch(actions.setUser(auth.currentUser!))
-        alert('プロフィールを更新しました。')
+        showAlert({ text: 'プロフィールを更新しました。' })
       })
       .catch(error => {
         console.log(error)

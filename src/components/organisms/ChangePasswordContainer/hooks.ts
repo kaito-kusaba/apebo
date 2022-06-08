@@ -5,6 +5,7 @@ import { updatePassword } from 'firebase/auth'
 import { auth } from 'libs/firebase'
 import { validatePassword } from 'utils/validator'
 import { ValidationType } from 'types/ValidationType'
+import { useAlert } from 'components/molecules/Alert'
 
 export function useInjection() {
   const [password, setPassword] = useState<string>('')
@@ -13,6 +14,7 @@ export function useInjection() {
   const [passwordConfirm, setPasswordConfirm] = useState<string>('')
   const [validation, setValidation] = useState<ValidationType>('blank')
   const [disabled, setDisabled] = useState<boolean>(false)
+  const showAlert = useAlert()
 
   useEffect(() => {
     if (password.length > 5 && passwordConfirm.length > 5) {
@@ -43,8 +45,8 @@ export function useInjection() {
     if (password === passwordConfirm) {
       updatePassword(auth.currentUser!, password)
         .then(() => {
-          alert('パスワードを変更しました。')
           setErrorText('')
+          showAlert({ text: 'パスワードを変更しました。' })
         })
         .catch((e: any) => {
           switch (e.code) {
