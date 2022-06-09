@@ -11,10 +11,12 @@ import DiscordID from '../DiscordID'
 import FollowFollower from '../FollowFollower'
 import { useStyles } from './style'
 import { useLocation, useParams } from 'react-router-dom'
+import { useInjection } from './hooks'
 
 export default function ProfileContainer() {
-  const urlParams = useParams<{ uid: string }>()
   const styles = useStyles()
+  const { onClick, followed } = useInjection()
+  const urlParams = useParams<{ uid: string }>()
   const { user } = useSelector(({ user }: RootState) => user)
   const location = useLocation()
 
@@ -45,6 +47,13 @@ export default function ProfileContainer() {
       <DiscordID />
       <AccountURL />
       <FollowFollower />
+      {followed ? (
+        <></>
+      ) : (
+        <button onClick={onClick} className={styles.followButton}>
+          フォローする
+        </button>
+      )}
     </div>
   )
 }
