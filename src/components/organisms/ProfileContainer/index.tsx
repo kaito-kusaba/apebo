@@ -1,6 +1,6 @@
 import UserIcon from 'components/atoms/UserIcon'
 import UserName from 'components/atoms/UserName'
-import PlayEnvLabel from 'components/molecules/Label/PlayEnvLabel'
+import PlatformLabel from 'components/molecules/Label/PlatformLabel'
 import { RootState } from 'components/redux'
 import React from 'react'
 import { useSelector } from 'react-redux'
@@ -40,7 +40,7 @@ export default function ProfileContainer() {
       <ActionButtons />
       <UserIcon uid={urlParams.uid ? urlParams.uid : user!.uid} size={72} style={styles.icon} />
       <UserName uid={urlParams.uid ? urlParams.uid : user!.uid} />
-      <PlayEnvLabel containerStyle={styles.playEnvContainer} />
+      <PlatformLabel containerStyle={styles.PlatformContainer} />
       <BioDisplay />
       <DiscordID />
       <AccountURL />
