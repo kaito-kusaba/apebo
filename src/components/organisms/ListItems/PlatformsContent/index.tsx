@@ -1,18 +1,18 @@
 import { useStyles } from './style'
 
 type Props = {
-  platform: string
+  platform: string | null
   icon: string
+  onClick: () => void
+  style?: string
 }
 
-export default function PlatformsContent({ platform, icon }: Props) {
+export default function PlatformsContent({ platform, icon, onClick, style }: Props) {
   const styles = useStyles()
   return (
-    <div>
-      <button className={styles.button}>
-        <img className={styles.img} src={icon} alt="" />
-        {platform}
-      </button>
-    </div>
+    <button className={`${styles.button} ${style}`} onClick={onClick}>
+      <img className={styles.img} src={icon} alt="" />
+      {platform}
+    </button>
   )
 }

@@ -8,18 +8,20 @@ import {
 } from 'components/atoms/Icon'
 
 type PlatformsObjectTypes = {
+  id: number
   platform: PlatformTypes
   icon: string
 }
 
 export function useInjection() {
   const platforms: PlatformsObjectTypes[] = [
-    { platform: 'PC', icon: PcIconPorpoise },
-    { platform: 'PlayStation', icon: PlayStationIconPorpoise },
-    { platform: 'Xbox', icon: XboxIconPorpoise },
-    { platform: 'Switch', icon: SwitchIconPorpoise },
-    { platform: 'Mobile', icon: MobileIconPorpoise },
+    { id: 0, platform: 'PC', icon: PcIconPorpoise },
+    { id: 1, platform: 'PlayStation', icon: PlayStationIconPorpoise },
+    { id: 2, platform: 'Xbox', icon: XboxIconPorpoise },
+    { id: 3, platform: 'Switch', icon: SwitchIconPorpoise },
+    { id: 4, platform: 'Mobile', icon: MobileIconPorpoise },
   ]
+
   return {
     platforms,
   }
