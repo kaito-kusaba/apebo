@@ -1,5 +1,5 @@
 import { RootState } from 'components/redux'
-import { doc, getDoc } from 'firebase/firestore'
+import { doc, DocumentReference, getDoc } from 'firebase/firestore'
 import { db } from 'libs/firebase'
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
@@ -17,21 +17,16 @@ export default React.memo(function FollowFollower({ textStyle, containerStyle }:
   const params = useParams()
   const [followers, setFollowers] = useState<number>(0)
   const [follows, setFollows] = useState<number>(0)
+  const [ref, setRef] = useState<DocumentReference>(doc(db, 'users', user!.uid))
 
   const fetchUserData = async () => {
     if (params.uid) {
-      const userRef = doc(db, 'users', params.uid)
-      const userSnap = await getDoc(userRef)
-      const data = userSnap.data()
-      setFollowers(data?.followers.length)
-      setFollows(data?.follows.length)
-    } else {
-      const userRef = doc(db, 'users', user!.uid)
-      const userSnap = await getDoc(userRef)
-      const data = userSnap.data()
-      setFollowers(data?.followers.length)
-      setFollows(data?.follows.length)
+      setRef(doc(db, 'users', params.uid))
     }
+    const userSnap = await getDoc(ref)
+    const data = userSnap.data()
+    setFollowers(data?.followers ? data?.followers.length : 0)
+    setFollows(data?.follows ? data?.follows.length : 0)
   }
 
   useEffect(() => {

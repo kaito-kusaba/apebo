@@ -1,5 +1,4 @@
 import { useCallback, useState, useEffect } from 'react'
-import { updateProfile } from 'firebase/auth'
 import { auth, db } from 'libs/firebase'
 import { actions } from 'components/redux/User'
 import { useSelector, useDispatch } from 'react-redux'
@@ -8,7 +7,11 @@ import { RootState } from 'components/redux'
 import { doc, updateDoc } from 'firebase/firestore'
 import { useAlert } from 'components/molecules/Alert'
 
-export function useInjection() {
+type Props = {
+  checkedIds: number[]
+}
+
+export function useInjection({ checkedIds }: Props) {
   const [name, setName] = useState<string>('')
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -32,30 +35,27 @@ export function useInjection() {
     setName(e.target.value)
   }, [])
 
-  const onClickSubmit = useCallback(() => {
+  const onClickSubmit = useCallback(async () => {
     const userRef = doc(db, 'users', user!.uid)
     if (auth.currentUser) {
-      updateProfile(auth.currentUser, {
-        displayName: name,
-      })
-      updateDoc(userRef, {
+      await updateDoc(userRef, {
         username: name,
-        //TODO: PlayEnvsも追加
+        platforms: checkedIds,
       })
         .then(() => {
           dispatch(
             actions.setUserData({
               username: name,
+              platforms: checkedIds,
             }),
           )
           navigate('/')
         })
-        .catch(e => {
-          alert('プロフィール更新に失敗')
-          console.log(e)
+        .catch(() => {
+          showAlert({ text: 'プロフィール更新に失敗', animationTime: 5 })
         })
     }
-  }, [name])
+  }, [name, checkedIds])
 
   useEffect(() => {
     if (user?.displayName) {

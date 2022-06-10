@@ -11,4 +11,5 @@ export type UserData = {
   bio?: string
   follows?: string[]
   followers?: string[]
+  platforms?: number[]
 }

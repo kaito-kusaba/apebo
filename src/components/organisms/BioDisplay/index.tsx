@@ -26,8 +26,8 @@ export default React.memo(function BioDisplay() {
   }, [])
 
   if (location.pathname === '/account') {
-    return <div className={styles.bioDisplay}>{userData.bio}</div>
+    return <pre className={styles.bioDisplay}>{userData.bio}</pre>
   } else {
-    return <div className={styles.bioDisplay}>{data?.bio}</div>
+    return <pre className={styles.bioDisplay}>{data?.bio}</pre>
   }
 })

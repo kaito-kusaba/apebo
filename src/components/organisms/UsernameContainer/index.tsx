@@ -1,11 +1,13 @@
 import { useInjection } from './hooks'
 import React from 'react'
 import CharacterCounter from 'components/molecules/Counter'
-import PlayEnvsContentList from 'components/organisms/ListItems/PlayEnvsContentList'
+import PlatformsContentList from '../ListItems/PlatformsContentList'
 import { useStyles } from './style'
+import { useCheckedMap } from 'components/contexts'
 
 export default function SetUsernameContainer() {
-  const { name, onChangeName, onClickSubmit, maxLen, disabled } = useInjection()
+  const [checks, checkedIds, setChecked] = useCheckedMap()
+  const { name, onChangeName, onClickSubmit, maxLen, disabled } = useInjection({ checkedIds })
   const styles = useStyles({ disabled })
 
   return (
@@ -13,7 +15,7 @@ export default function SetUsernameContainer() {
       <h1 className={styles.top}>プロフィール設定</h1>
       <div className={styles.labelContainer}>
         <div className={styles.flexbox}>
-          <h2 className={styles.label}>ユーザー名</h2>
+          <h2 className={styles.label}>ユーザー名（必須）</h2>
           <span className={styles.info}>※設定で変更できます</span>
         </div>
         <CharacterCounter length={name.length} maxLength={maxLen} />
@@ -32,7 +34,7 @@ export default function SetUsernameContainer() {
           <span className={styles.info}>※設定で変更できます</span>
         </div>
       </div>
-      <PlayEnvsContentList />
+      <PlatformsContentList checks={checks} setChecked={setChecked} />
 
       <input type="submit" value="はじめよう" disabled={disabled} onClick={onClickSubmit} className={styles.submit()} />
     </div>
