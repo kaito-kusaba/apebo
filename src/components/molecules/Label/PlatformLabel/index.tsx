@@ -7,8 +7,8 @@ type Props = {
   textStyle?: string
 }
 
-export default function PlayEnvLabel({ containerStyle, textStyle }: Props) {
-  const { envs, imgs } = useInjection()
+export default function PlatformLabel({ containerStyle, textStyle }: Props) {
+  const { platforms, imgs } = useInjection()
   const styles = useStyles()
 
   return (
@@ -18,15 +18,15 @@ export default function PlayEnvLabel({ containerStyle, textStyle }: Props) {
           return <img key={img} src={img} alt="" className={styles.img} />
         })}
       </div>
-      {envs.map(env => {
+      {platforms.map(platform => {
         return (
-          <span key={env} className={`${styles.text} ${textStyle}`}>
-            {env}
-            <span className={styles.slash}>{!envs[envs.length] && '/'}</span>
+          <span key={platform} className={`${styles.text} ${textStyle}`}>
+            {platform}
+            <span className={styles.slash}>{!platforms[platforms.length] && '/'}</span>
           </span>
         )
       })}
-      <span className={`${styles.text} ${textStyle}`}>{envs.length > 0 && 'でプレイできます'}</span>
+      <span className={`${styles.text} ${textStyle}`}>{platforms.length > 0 && 'でプレイできます'}</span>
     </div>
   )
 }

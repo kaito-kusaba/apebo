@@ -1,7 +1,7 @@
 import { useInjection } from './hooks'
 import React from 'react'
 import CharacterCounter from 'components/molecules/Counter'
-import PlayEnvsContentList from 'components/organisms/ListItems/PlayEnvsContentList'
+import PlatformsContentList from '../ListItems/PlatformsContentList'
 import { useStyles } from './style'
 
 export default function SetUsernameContainer() {
@@ -32,7 +32,7 @@ export default function SetUsernameContainer() {
           <span className={styles.info}>※設定で変更できます</span>
         </div>
       </div>
-      <PlayEnvsContentList />
+      <PlatformsContentList />
 
       <input type="submit" value="はじめよう" disabled={disabled} onClick={onClickSubmit} className={styles.submit()} />
     </div>

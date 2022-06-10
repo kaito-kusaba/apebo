@@ -1,17 +1,17 @@
 import { useStyles } from './style'
 
 type Props = {
-  env: string
+  platform: string
   icon: string
 }
 
-export default function PlayEnvsContent({ env, icon }: Props) {
+export default function PlatformsContent({ platform, icon }: Props) {
   const styles = useStyles()
   return (
     <div>
       <button className={styles.button}>
         <img className={styles.img} src={icon} alt="" />
-        {env}
+        {platform}
       </button>
     </div>
   )
