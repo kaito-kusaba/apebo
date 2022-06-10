@@ -1,4 +1,3 @@
-import { useAlert } from 'components/molecules/Alert'
 import { RootState } from 'components/redux'
 import { actions } from 'components/redux/User'
 import { doc, DocumentData, getDoc, updateDoc } from 'firebase/firestore'
@@ -14,7 +13,6 @@ export function useInjection() {
   const [discordId, setDiscordId] = useState<string>(userData.discordId || fetchData?.discord_id || '')
   const [bio, setBio] = useState<string>(userData.bio || fetchData?.bio || '')
   const [website, setWebsite] = useState<string>(userData.website || fetchData?.website || '')
-  const showAlert = useAlert()
 
   useEffect(() => {
     const userRef = doc(db, 'users', user!.uid)
