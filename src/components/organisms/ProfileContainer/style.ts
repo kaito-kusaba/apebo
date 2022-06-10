@@ -18,7 +18,7 @@ export function useStyles() {
     margin-bottom: 16px;
   `
 
-  const playEnvContainer = css`
+  const PlatformContainer = css`
     margin-bottom: 16px;
   `
 
@@ -44,7 +44,7 @@ export function useStyles() {
   return {
     profileContainer,
     icon,
-    playEnvContainer,
+    PlatformContainer,
     actionButtons,
     followButton,
   }

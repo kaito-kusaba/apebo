@@ -1,6 +1,6 @@
 import { initializeApp } from 'firebase/app'
-import { getAuth, onAuthStateChanged, GoogleAuthProvider } from 'firebase/auth'
-import { doc, getDoc, getFirestore } from 'firebase/firestore'
+import { getAuth, onAuthStateChanged, GoogleAuthProvider, getRedirectResult } from 'firebase/auth'
+import { doc, getDoc, getFirestore, setDoc } from 'firebase/firestore'
 import 'firebase/app'
 import { actions as userActions } from 'components/redux/User'
 import { actions as modalActions } from 'components/redux/Modal'
@@ -39,15 +39,32 @@ const fetchUserData = async (uid: string) => {
         discordId: data.discord_id,
         follows: data.follows,
         followers: data.followers,
+        platforms: data.platforms,
       }),
     )
   }
+}
+
+const getRedirectWithGoogle = async () => {
+  getRedirectResult(auth).then(res => {
+    if (res?.user) {
+      const user = res.user
+      const data = {
+        unique_id: user.uid,
+        username: user.displayName,
+        icon: user.photoURL,
+      }
+      dispatch(userActions.setUser(user))
+      setDoc(doc(db, 'users', user.uid), data)
+    }
+  })
 }
 
 onAuthStateChanged(auth, user => {
   if (user) {
     // User is signed in
     fetchUserData(user.uid)
+    getRedirectWithGoogle()
     dispatch(userActions.setUser(user))
   } else {
     // User is signed out

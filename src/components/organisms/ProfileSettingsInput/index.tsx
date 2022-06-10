@@ -21,9 +21,16 @@ export default function ProfileSettingsInput({ label, value, onChange, maxLength
         <CharacterCounter length={value.length} maxLength={maxLength!} />
       </div>
       {textarea ? (
-        <textarea className={styles.textAreaStyle} value={value} onChange={onChange} />
+        <textarea className={styles.textAreaStyle} value={value} onChange={onChange} maxLength={maxLength!} />
       ) : (
-        <input placeholder={placeholder} className={styles.inputStyle} type="text" value={value} onChange={onChange} />
+        <input
+          placeholder={placeholder}
+          className={styles.inputStyle}
+          type="text"
+          value={value}
+          onChange={onChange}
+          maxLength={maxLength!}
+        />
       )}
     </div>
   )

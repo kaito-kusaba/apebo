@@ -1,8 +1,7 @@
 import { RootState } from 'components/redux'
 import { actions } from 'components/redux/User'
-import { updateProfile } from 'firebase/auth'
 import { doc, DocumentData, getDoc, updateDoc } from 'firebase/firestore'
-import { auth, db } from 'libs/firebase'
+import { db } from 'libs/firebase'
 import { useCallback, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -41,15 +40,6 @@ export function useInjection() {
             bio: bio,
           }),
         )
-      })
-      .catch(error => {
-        console.log(error)
-      })
-    updateProfile(auth.currentUser!, {
-      displayName: newName,
-    })
-      .then(() => {
-        dispatch(actions.setUser(auth.currentUser!))
         alert('プロフィールを更新しました。')
       })
       .catch(error => {

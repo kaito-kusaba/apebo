@@ -45,7 +45,7 @@ export default React.memo(function UpdateProfileScreen() {
         label="ウェブサイト"
         value={website}
         onChange={onChangeWebsite}
-        maxLength={300}
+        maxLength={100}
         placeholder="https://example.com"
       />
       <div className={styles.onSubmitContainer}>
