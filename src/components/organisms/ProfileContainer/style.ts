@@ -38,7 +38,11 @@ export function useStyles() {
     border-radius: 8px;
     border: none;
     margin-top: 24px;
+    transition: 0.2s;
     cursor: pointer;
+    &:hover {
+      background-color: ${Colors.PINK};
+    }
   `
 
   return {
