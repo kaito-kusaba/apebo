@@ -15,8 +15,9 @@ import SETTINGS_ACTIVE from 'assets/images/icons/navigation/settings_active.png'
 import SETTINGS_HOVER from 'assets/images/icons/navigation/settings_hover.png'
 import SETTINGS_DEFAULT from 'assets/images/icons/navigation/settings_default.png'
 
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { actions } from 'components/redux/Modal'
+import { RootState } from 'components/redux'
 
 type Props = {
   type: NavigationButtonTypes
@@ -32,6 +33,8 @@ export default React.memo(function NavigationButton({ type, style }: Props) {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const location = useLocation()
+  const { user } = useSelector(({ user }: RootState) => user)
+
   useEffect(() => {
     switch (location.pathname) {
       case '/':
@@ -97,6 +100,12 @@ export default React.memo(function NavigationButton({ type, style }: Props) {
   const onMouseToggle = useCallback(() => {
     setIsHovered(!isHovered)
   }, [isHovered, setIsHovered])
+
+  useEffect(() => {
+    if (location.pathname === '/account/' + user!.uid) {
+      setIsSelected('Account')
+    }
+  }, [location])
 
   return (
     <button
