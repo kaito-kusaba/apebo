@@ -46,16 +46,22 @@ const fetchUserData = async (uid: string) => {
 }
 
 const getRedirectWithGoogle = async () => {
-  getRedirectResult(auth).then(res => {
+  getRedirectResult(auth).then(async res => {
+    // INFO: ログイン・新規登録するたびにデータが上書きされてしまう。
+    // 新規登録時のみ(中身がないときだけ)データを追加して、それ以外は何も加えない
     if (res?.user) {
-      const user = res.user
-      const data = {
-        unique_id: user.uid,
-        username: user.displayName,
-        icon: user.photoURL,
+      const myRef = doc(db, 'users', res.user.uid)
+      const mySnap = await getDoc(myRef)
+      if (!mySnap.data()?.unique_id) {
+        const user = res.user
+        const data = {
+          unique_id: user.uid,
+          username: user.displayName,
+          icon: user.photoURL,
+        }
+        dispatch(userActions.setUser(user))
+        setDoc(doc(db, 'users', user.uid), data)
       }
-      dispatch(userActions.setUser(user))
-      setDoc(doc(db, 'users', user.uid), data)
     }
   })
 }
