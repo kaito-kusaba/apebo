@@ -2,7 +2,7 @@ import { GoogleIcon } from 'components/atoms/Icon'
 import React from 'react'
 import { useStyles } from './style'
 
-interface Props {
+type Props = {
   onClick: () => void
   style?: string
 }

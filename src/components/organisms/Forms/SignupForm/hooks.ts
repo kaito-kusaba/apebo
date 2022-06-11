@@ -1,8 +1,9 @@
 import { useCallback, useEffect, useState } from 'react'
-import { auth, provider } from 'libs/firebase'
+import { auth, db, provider } from 'libs/firebase'
 import {
   browserSessionPersistence,
   createUserWithEmailAndPassword,
+  sendEmailVerification,
   setPersistence,
   signInWithRedirect,
 } from 'firebase/auth'
@@ -11,6 +12,7 @@ import { useDispatch } from 'react-redux'
 import { actions } from 'components/redux/User'
 import { validatePassword } from 'utils/validator'
 import { ValidationType } from 'types/ValidationType'
+import { doc, setDoc } from 'firebase/firestore'
 
 export function useInjection() {
   const [email, setEmail] = useState<string>('')
@@ -47,7 +49,14 @@ export function useInjection() {
       return createUserWithEmailAndPassword(auth, email, password)
         .then(userCredential => {
           const user = userCredential.user
+          const data = {
+            unique_id: user.uid,
+            username: user.displayName,
+            icon: user.photoURL,
+          }
           dispatch(actions.setUser(user))
+          setDoc(doc(db, 'users', user.uid), data)
+          sendEmailVerification(user)
           if (user.displayName) {
             navigate('/')
           } else {

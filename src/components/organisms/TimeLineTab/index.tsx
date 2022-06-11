@@ -9,7 +9,7 @@ export default React.memo(function TimeLineTab() {
     <div className={styles.tabContainer}>
       <TabButton type="All" label="全体" isChecked={true} />
       <TabButton type="Following" label="フォロー中" isChecked={true} />
-      <TabButton type="Star" label="スター" isChecked={true} />
+      <TabButton type="Vip" label="VIP" isChecked={true} />
     </div>
   )
 })

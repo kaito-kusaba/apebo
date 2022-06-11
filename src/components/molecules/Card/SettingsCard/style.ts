@@ -2,7 +2,7 @@ import { css } from '@emotion/css'
 import { Colors } from 'constant'
 import { useLocation } from 'react-router-dom'
 
-interface Props {
+type Props = {
   bottom?: number
   isSignOut?: boolean
   url?: string

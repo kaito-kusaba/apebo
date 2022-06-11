@@ -5,13 +5,14 @@ import AccountScreen from 'pages/Account'
 import SettingsScreen from 'pages/Settings'
 import SignOutScreen from 'pages/Auth/SignOut'
 import NotFoundScreen from 'pages/NotFound'
-import SetUsernameScreen from 'pages/Attr/Username'
+import SetUserNameScreen from 'pages/Attr/SetUserName'
 import UpdateProfileScreen from 'pages/UpdateProfile'
 import ChangeEmailScreen from 'pages/ChangeEmail'
 import ChangePasswordScreen from 'pages/ChangePassword'
 import SupportPageScreen from 'pages/Support'
 import TermsScreen from 'pages/terms'
 import TalkScreen from 'pages/Talk'
+import AccountNotFoundScreen from 'pages/AccountNotFound'
 
 export default function MainNavigator() {
   const location = useLocation()
@@ -23,9 +24,10 @@ export default function MainNavigator() {
       <Route index element={<TopScreen />} />
       <Route path="/account" element={<AccountScreen />} />
       <Route path="/settings" element={<SettingsScreen />} />
-      <Route path="/account/:uid" element={<AccountScreen />} />
+      <Route path="/account/:uid/" element={<AccountScreen />} />
+      <Route path="/account/not-found/" element={<AccountNotFoundScreen />} />
       <Route path="/auth/signout" element={<SignOutScreen />} />
-      <Route path="/attr/username" element={<SetUsernameScreen />} />
+      <Route path="/attr/username" element={<SetUserNameScreen />} />
       <Route path="/account/settings/profile" element={<UpdateProfileScreen />} />
       <Route path="/account/settings/email" element={<ChangeEmailScreen />} />
       <Route path="/account/settings/password" element={<ChangePasswordScreen />} />

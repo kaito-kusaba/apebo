@@ -2,7 +2,7 @@ import React from 'react'
 import { ValidationType } from 'types/ValidationType'
 import { useStyles } from './style'
 
-interface Props {
+type Props = {
   onClick: () => void
   label: string
   type?: string

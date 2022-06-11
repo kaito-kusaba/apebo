@@ -15,7 +15,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import type { TabButtonTypes } from 'types/TabButtonTypes'
 import { actions } from 'components/redux/TimeLineTab'
 
-interface Props {
+type Props = {
   type: TabButtonTypes
 }
 
@@ -44,8 +44,8 @@ export function useInjection({ type }: Props) {
           ? setImg(FollowingIconGray)
           : setImg(FollowingIconSquant)
         break
-      case 'Star':
-        selected === 'Star' ? setImg(StarIconYellow) : isHovered ? setImg(StarIconGray) : setImg(StarIconSquant)
+      case 'Vip':
+        selected === 'Vip' ? setImg(StarIconYellow) : isHovered ? setImg(StarIconGray) : setImg(StarIconSquant)
         break
     }
   })

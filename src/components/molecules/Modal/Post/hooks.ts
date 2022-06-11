@@ -16,6 +16,7 @@ export function useInjection() {
   const [text, setText] = useState<string>('')
   const textAreaRef = useResizeTextArea(text)
   const showAlert = useAlert()
+  const [disabled, setDisabled] = useState<boolean>(true)
 
   const onClose = useCallback(() => {
     dispatch(modalActions.setModal(false))
@@ -40,6 +41,14 @@ export function useInjection() {
     return ref
   }
 
+  useEffect(() => {
+    if (text.length <= 0) {
+      setDisabled(true)
+    } else {
+      setDisabled(false)
+    }
+  }, [text])
+
   const onClickPostButton = useCallback(() => {
     try {
       if (text.length > 0) {
@@ -59,7 +68,6 @@ export function useInjection() {
       dispatch(modalActions.setModal(false))
     } catch (e) {
       showAlert({ text: '投稿に失敗しました。', type: 'error' })
-      console.log(e)
       dispatch(modalActions.setModal(false))
     }
   }, [text])
@@ -72,6 +80,18 @@ export function useInjection() {
     alert('にこちゃんまーく')
   }, [])
 
+  const onKeyDown = useCallback(
+    e => {
+      if (e.ctrlKey) {
+        if (e.keyCode === 13) {
+          e.preventDefault()
+          onClickPostButton()
+        }
+      }
+    },
+    [text],
+  )
+
   return {
     user,
     text,
@@ -81,6 +101,8 @@ export function useInjection() {
     onClickPostButton,
     onClickAddImage,
     onClickSmileIcon,
+    onKeyDown,
     textAreaRef,
+    disabled,
   }
 }

@@ -2,7 +2,7 @@ import { css } from '@emotion/css'
 import { Colors } from 'constant'
 import { ValidationType } from 'types/ValidationType'
 
-interface Props {
+type Props = {
   validation: ValidationType
 }
 

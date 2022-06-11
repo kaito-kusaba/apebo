@@ -1,1 +1,1 @@
-export type TabButtonTypes = 'All' | 'Following' | 'Star'
+export type TabButtonTypes = 'All' | 'Following' | 'Vip'

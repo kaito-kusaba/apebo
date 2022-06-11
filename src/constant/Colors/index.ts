@@ -18,9 +18,12 @@ export const YELLOW = '#F5BF00'
 export const RED = '#C0190E'
 export const INDIAN_RED = '#87120A'
 export const PINK = '#FF4545'
+export const ENCARNADO = '#FF0302'
 
 // Green
 export const GREEN = '#1CA36F'
+export const KIWI_GREEN = '#8DD83D'
 
 // Blue
 export const SKY_BLUE = '#3AA1FF'
+export const APNEA_DIVE = '#234EBB'

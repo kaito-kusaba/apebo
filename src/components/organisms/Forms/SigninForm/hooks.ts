@@ -61,7 +61,6 @@ export function useInjection() {
           }
         })
         .catch(error => {
-          //console.log(`signInError --- ${error}`) 確認用
           switch (error.code) {
             case 'auth/email-already-in-use':
               setErrorText('このメールアドレスは既に使用されています。')

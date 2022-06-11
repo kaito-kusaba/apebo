@@ -4,7 +4,7 @@ import { EyeHideIconSquant, EyeIconSquant } from 'components/atoms/Icon'
 
 export type PasswordInputType = 'default' | 'border'
 
-interface Props {
+type Props = {
   value: string
   onChange: (e: any) => void
   type: PasswordInputType

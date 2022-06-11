@@ -6,9 +6,9 @@ import React from 'react'
 import Modal from 'react-modal'
 import { useInjection } from './hooks'
 import { useStyles } from './style'
+import CharacterCounter from 'components/molecules/Counter'
 
 export default React.memo(function PostModal() {
-  const styles = useStyles()
   const {
     user,
     text,
@@ -18,8 +18,11 @@ export default React.memo(function PostModal() {
     onClickPostButton,
     onClickSmileIcon,
     onClose,
+    onKeyDown,
     textAreaRef,
+    disabled,
   } = useInjection()
+  const styles = useStyles({ disabled })
 
   return (
     <Modal
@@ -35,10 +38,11 @@ export default React.memo(function PostModal() {
       <textarea
         onChange={onChangeText}
         maxLength={200}
-        placeholder="今から一緒にゲームしない？"
+        placeholder="今からカジュアルで遊びませんか？&#13;あと2人募集中です！"
         className={styles.textArea}
         value={text}
         ref={textAreaRef}
+        onKeyDown={onKeyDown}
       />
       <div className={styles.textAreaInfoContainer}>
         <div className={styles.buttons}>
@@ -50,9 +54,9 @@ export default React.memo(function PostModal() {
           </button>
         </div>
         <div className={styles.postButtonContainer}>
-          <span className={styles.textAreaLength}>{text.length}/200</span>
+          <CharacterCounter maxLength={200} length={text.length} size={16} />
           <span className={styles.line} />
-          <button onClick={onClickPostButton} className={styles.postButton}>
+          <button onClick={onClickPostButton} className={styles.button()} disabled={disabled}>
             投稿
           </button>
         </div>

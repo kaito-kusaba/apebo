@@ -10,21 +10,27 @@ import FOLLOW_DEFAULT from 'assets/images/icons/follow_default.png'
 import FOLLOW_HOVER from 'assets/images/icons/follow_hover.png'
 import DOTS from 'assets/images/icons/dots.png'
 import { ActionButtonTypes } from 'types/ActionButtonTypes'
-
+import { useDispatch, useSelector } from 'react-redux'
+import { RootState } from 'components/redux'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { arrayRemove, arrayUnion, deleteDoc, doc, getDoc, updateDoc } from 'firebase/firestore'
+import { db } from 'libs/firebase'
+import { actions } from 'components/redux/User'
 type Props = {
   type: ActionButtonTypes
-  onClickOther?: (e: any) => void
-  onClickMessage?: (e: any) => void
-  onClickLike?: (e: any) => void
-  onClickFollow?: (e: any) => void
+  docId?: string
+  uid?: string
 }
 
-export function useInjection({ type, onClickOther, onClickMessage, onClickFollow, onClickLike }: Props) {
+export function useInjection({ type, uid, docId }: Props) {
+  const navigate = useNavigate()
   const [buttonImageSrc, setButtonImageSrc] = useState<string>('')
   const [isSelectedMessage, setIsSelectedMessage] = useState<boolean>(false)
   const [isSelectedLike, setIsSelectedLike] = useState<boolean>(false)
-  const [isSelectedFollow, setIsSelectedFollow] = useState<boolean>(false)
   const [isHovered, setIsHovered] = useState<boolean>(false)
+  const { user, userData } = useSelector(({ user }: RootState) => user)
+  const location = useLocation()
+  const dispatch = useDispatch()
 
   useEffect(() => {
     switch (type) {
@@ -43,7 +49,7 @@ export function useInjection({ type, onClickOther, onClickMessage, onClickFollow
           : setButtonImageSrc(LIKE_DEFAULT)
         break
       case 'Follow':
-        isSelectedFollow
+        userData.follows?.includes(uid!)
           ? setButtonImageSrc(FOLLOW_ACTIVE)
           : isHovered
           ? setButtonImageSrc(FOLLOW_HOVER)
@@ -53,34 +59,100 @@ export function useInjection({ type, onClickOther, onClickMessage, onClickFollow
         setButtonImageSrc(DOTS)
         break
     }
-  }, [isSelectedMessage, isSelectedLike, isSelectedFollow, isHovered, type])
+  }, [isSelectedLike, isHovered, userData.follows])
 
   const onClickActionButton = useCallback(
     e => {
       switch (type) {
         case 'Message':
           setIsSelectedMessage(!isSelectedMessage)
-          onClickMessage!(e)
+          e.stopPropagation()
+          navigate('/talk/:room_id')
           break
         case 'Like':
           setIsSelectedLike(!isSelectedLike)
-          onClickLike!(e)
           break
         case 'Follow':
-          setIsSelectedFollow(!isSelectedFollow)
-          onClickFollow!(e)
+          onClickFollow()
           break
         case 'Other':
-          onClickOther!(e)
+          onClickOther()
           break
       }
     },
-    [isSelectedMessage, isSelectedLike, isSelectedFollow],
+    [isSelectedLike],
   )
 
   const onMouseToggle = useCallback(() => {
     setIsHovered(!isHovered)
-  }, [isHovered, setIsHovered])
+  }, [isHovered])
+
+  const onClickFollow = useCallback(() => {
+    if (user?.uid !== uid) {
+      const friendUserRef = doc(db, 'users', uid!)
+      const myRef = doc(db, 'users', user!.uid)
+
+      if (!userData.follows?.includes(uid!)) {
+        //フォロワー
+        updateDoc(friendUserRef, {
+          followers: arrayUnion(user?.uid),
+        }).then(async () => {
+          const snap = await getDoc(friendUserRef)
+          dispatch(
+            actions.setUserData({
+              followers: snap.data()?.followers,
+            }),
+          )
+        })
+        //フォロー
+        updateDoc(myRef, {
+          follows: arrayUnion(uid),
+        }).then(async () => {
+          const snap = await getDoc(myRef)
+          dispatch(
+            actions.setUserData({
+              follows: snap.data()?.follows,
+            }),
+          )
+        })
+      } else {
+        //フォロワー解除
+        updateDoc(friendUserRef, {
+          followers: arrayRemove(user?.uid),
+        }).then(async () => {
+          const snap = await getDoc(friendUserRef)
+          dispatch(
+            actions.setUserData({
+              followers: snap.data()?.followers,
+            }),
+          )
+        })
+        //フォロー解除
+        updateDoc(myRef, {
+          follows: arrayRemove(uid),
+        }).then(async () => {
+          const snap = await getDoc(myRef)
+          dispatch(
+            actions.setUserData({
+              follows: snap.data()?.follows,
+            }),
+          )
+        })
+      }
+    }
+  }, [userData.follows, userData.followers])
+
+  const onClickOther = useCallback(async () => {
+    if (user!.uid === uid) {
+      await deleteDoc(doc(db, 'posts', docId!))
+      if (location.pathname === '/account') {
+        window.location.reload()
+      }
+    } else {
+      //TODO: ポップアップ表示
+      alert('miss')
+    }
+  }, [])
 
   return {
     onClickActionButton,

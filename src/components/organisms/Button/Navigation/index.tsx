@@ -18,7 +18,7 @@ import SETTINGS_DEFAULT from 'assets/images/icons/navigation/settings_default.pn
 import { useDispatch } from 'react-redux'
 import { actions } from 'components/redux/Modal'
 
-interface Props {
+type Props = {
   type: NavigationButtonTypes
   style?: string
 }

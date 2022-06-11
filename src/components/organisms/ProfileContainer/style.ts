@@ -18,7 +18,7 @@ export function useStyles() {
     margin-bottom: 16px;
   `
 
-  const playEnvContainer = css`
+  const PlatformContainer = css`
     margin-bottom: 16px;
   `
 
@@ -29,10 +29,27 @@ export function useStyles() {
     top: 16px;
   `
 
+  const followButton = css`
+    padding: 10px 104px;
+    font-size: 14px;
+    font-weight: 700;
+    color: ${Colors.WHITE};
+    background-color: ${Colors.RED};
+    border-radius: 8px;
+    border: none;
+    margin-top: 24px;
+    transition: 0.2s;
+    cursor: pointer;
+    &:hover {
+      background-color: ${Colors.PINK};
+    }
+  `
+
   return {
     profileContainer,
     icon,
-    playEnvContainer,
+    PlatformContainer,
     actionButtons,
+    followButton,
   }
 }

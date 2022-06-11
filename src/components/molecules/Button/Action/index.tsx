@@ -3,32 +3,19 @@ import type { ActionButtonTypes } from 'types/ActionButtonTypes'
 import { useInjection } from './hooks'
 import { useStyles } from './style'
 
-interface Props {
+type Props = {
   type: ActionButtonTypes
   uid?: string
   docId?: string
-  onClickOther?: (e: any) => void
-  onClickMessage?: (e: any) => void
-  onClickLike?: (e: any) => void
-  onClickFollow?: (e: any) => void
   imgStyle?: string
 }
 
-export default React.memo(function ActionButton({
-  type,
-  onClickOther,
-  onClickFollow,
-  onClickLike,
-  onClickMessage,
-  imgStyle,
-}: Props) {
+export default React.memo(function ActionButton({ type, imgStyle, uid, docId }: Props) {
   const styles = useStyles()
   const { buttonImageSrc, onMouseToggle, onClickActionButton } = useInjection({
     type,
-    onClickOther,
-    onClickMessage,
-    onClickLike,
-    onClickFollow,
+    docId,
+    uid,
   })
 
   return (

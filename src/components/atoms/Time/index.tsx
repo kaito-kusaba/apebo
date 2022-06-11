@@ -2,7 +2,7 @@ import { Timestamp } from 'firebase/firestore'
 import React, { useEffect, useState } from 'react'
 import { useStyles } from './style'
 
-interface Props {
+type Props = {
   time: Timestamp
 }
 
