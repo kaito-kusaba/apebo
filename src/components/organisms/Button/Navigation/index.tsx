@@ -43,6 +43,9 @@ export default React.memo(function NavigationButton({ type, style }: Props) {
       case '/account':
         setIsSelected('Account')
         break
+      case '/account/' + user!.uid:
+        setIsSelected('Account')
+        break
       case '/settings':
         setIsSelected('Settings')
         break
@@ -100,12 +103,6 @@ export default React.memo(function NavigationButton({ type, style }: Props) {
   const onMouseToggle = useCallback(() => {
     setIsHovered(!isHovered)
   }, [isHovered, setIsHovered])
-
-  useEffect(() => {
-    if (location.pathname === '/account/' + user!.uid) {
-      setIsSelected('Account')
-    }
-  }, [location])
 
   return (
     <button
