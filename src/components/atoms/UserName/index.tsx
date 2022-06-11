@@ -25,8 +25,8 @@ export default React.memo(function UserName({ style, uid, textStyle }: Props) {
     const snap = await getDoc(ref)
     const data = snap.data()
     setUsername(data?.username)
-    const unAvailablePath = '/account' || '/account/'
-    if (location.pathname !== unAvailablePath) {
+    const unAvailablePath = location.pathname.match(/account/)
+    if (!unAvailablePath) {
       await setPlatforms(data?.platforms || [])
     }
   }
