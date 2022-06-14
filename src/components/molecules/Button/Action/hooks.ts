@@ -13,7 +13,7 @@ import { ActionButtonTypes } from 'types/ActionButtonTypes'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'components/redux'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { arrayRemove, arrayUnion, deleteDoc, doc, getDoc, updateDoc } from 'firebase/firestore'
+import { arrayRemove, arrayUnion, deleteDoc, doc, updateDoc } from 'firebase/firestore'
 import { db } from 'libs/firebase'
 import { actions } from 'components/redux/User'
 type Props = {
@@ -33,33 +33,35 @@ export function useInjection({ type, uid, docId }: Props) {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    switch (type) {
-      case 'Message':
-        isSelectedMessage
-          ? setButtonImageSrc(MESSAGE_ACTIVE)
-          : isHovered
-          ? setButtonImageSrc(MESSAGE_HOVER)
-          : setButtonImageSrc(MESSAGE_DEFAULT)
-        break
-      case 'Like':
-        isSelectedLike
-          ? setButtonImageSrc(LIKE_ACTIVE)
-          : isHovered
-          ? setButtonImageSrc(LIKE_HOVER)
-          : setButtonImageSrc(LIKE_DEFAULT)
-        break
-      case 'Follow':
-        userData.follows?.includes(uid!)
-          ? setButtonImageSrc(FOLLOW_ACTIVE)
-          : isHovered
-          ? setButtonImageSrc(FOLLOW_HOVER)
-          : setButtonImageSrc(FOLLOW_DEFAULT)
-        break
-      case 'Other':
-        setButtonImageSrc(DOTS)
-        break
+    if (uid) {
+      switch (type) {
+        case 'Message':
+          isSelectedMessage
+            ? setButtonImageSrc(MESSAGE_ACTIVE)
+            : isHovered
+            ? setButtonImageSrc(MESSAGE_HOVER)
+            : setButtonImageSrc(MESSAGE_DEFAULT)
+          break
+        case 'Like':
+          isSelectedLike
+            ? setButtonImageSrc(LIKE_ACTIVE)
+            : isHovered
+            ? setButtonImageSrc(LIKE_HOVER)
+            : setButtonImageSrc(LIKE_DEFAULT)
+          break
+        case 'Follow':
+          userData.follows?.includes(uid)
+            ? setButtonImageSrc(FOLLOW_ACTIVE)
+            : isHovered
+            ? setButtonImageSrc(FOLLOW_HOVER)
+            : setButtonImageSrc(FOLLOW_DEFAULT)
+          break
+        case 'Other':
+          setButtonImageSrc(DOTS)
+          break
+      }
     }
-  }, [isSelectedLike, isHovered, userData.follows])
+  }, [isSelectedLike, isHovered])
 
   const onClickActionButton = useCallback(
     e => {
@@ -87,60 +89,47 @@ export function useInjection({ type, uid, docId }: Props) {
     setIsHovered(!isHovered)
   }, [isHovered])
 
-  const onClickFollow = useCallback(() => {
-    if (user?.uid !== uid) {
-      const friendUserRef = doc(db, 'users', uid!)
-      const myRef = doc(db, 'users', user!.uid)
+  const onClickFollow = () => {
+    const follows = userData.follows || []
+    if (user && uid && user.uid !== uid) {
+      const friendUserRef = doc(db, 'users', uid)
+      const myRef = doc(db, 'users', user.uid)
 
-      if (!userData.follows?.includes(uid!)) {
-        //フォロワー
-        updateDoc(friendUserRef, {
-          followers: arrayUnion(user?.uid),
-        }).then(async () => {
-          const snap = await getDoc(friendUserRef)
-          dispatch(
-            actions.setUserData({
-              followers: snap.data()?.followers,
-            }),
-          )
-        })
-        //フォロー
+      if (!follows.includes(uid)) {
+        //フォローする
+        follows?.push(uid)
+        console.log('pushed:' + follows)
+        dispatch(
+          actions.setUserData({
+            follows: follows,
+          }),
+        )
         updateDoc(myRef, {
           follows: arrayUnion(uid),
-        }).then(async () => {
-          const snap = await getDoc(myRef)
-          dispatch(
-            actions.setUserData({
-              follows: snap.data()?.follows,
-            }),
-          )
+        })
+        updateDoc(friendUserRef, {
+          followers: arrayUnion(user.uid),
         })
       } else {
-        //フォロワー解除
-        updateDoc(friendUserRef, {
-          followers: arrayRemove(user?.uid),
-        }).then(async () => {
-          const snap = await getDoc(friendUserRef)
-          dispatch(
-            actions.setUserData({
-              followers: snap.data()?.followers,
-            }),
-          )
+        //フォローを外す
+        const _follows = follows.filter(function (partner_uid) {
+          return partner_uid !== uid
         })
-        //フォロー解除
+        console.log('after removed:' + _follows)
+        dispatch(
+          actions.setUserData({
+            follows: _follows,
+          }),
+        )
         updateDoc(myRef, {
           follows: arrayRemove(uid),
-        }).then(async () => {
-          const snap = await getDoc(myRef)
-          dispatch(
-            actions.setUserData({
-              follows: snap.data()?.follows,
-            }),
-          )
+        })
+        updateDoc(friendUserRef, {
+          followers: arrayRemove(user.uid),
         })
       }
     }
-  }, [userData.follows, userData.followers])
+  }
 
   const onClickOther = useCallback(async () => {
     if (user!.uid === uid) {
