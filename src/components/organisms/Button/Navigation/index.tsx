@@ -40,10 +40,7 @@ export default React.memo(function NavigationButton({ type, style }: Props) {
       case '/':
         setIsSelected('Home')
         break
-      case '/account':
-        setIsSelected('Account')
-        break
-      case '/account/' + user!.uid:
+      case `/account/${user!.uid}`:
         setIsSelected('Account')
         break
       case '/settings':
@@ -90,7 +87,7 @@ export default React.memo(function NavigationButton({ type, style }: Props) {
         setPath('/')
         break
       case 'Account':
-        setPath('/account/' + user!.uid)
+        setPath(`/account/${user!.uid}`)
         break
       default:
         setPath(`/${type.toLowerCase()}`)
