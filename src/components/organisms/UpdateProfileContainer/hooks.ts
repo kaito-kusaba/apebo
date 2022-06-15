@@ -6,7 +6,11 @@ import { db } from 'libs/firebase'
 import { useCallback, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-export function useInjection() {
+type Props = {
+  checkedIds: number[]
+}
+
+export function useInjection({ checkedIds }: Props) {
   const { user, userData } = useSelector(({ user }: RootState) => user)
   const dispatch = useDispatch()
   const [fetchData, setFetchData] = useState<DocumentData>()
@@ -25,13 +29,14 @@ export function useInjection() {
     fetchData()
   }, [user!.uid])
 
-  const onSubmit = useCallback(() => {
+  const onSubmit = useCallback(async () => {
     const userRef = doc(db, 'users', user!.uid)
-    updateDoc(userRef, {
+    await updateDoc(userRef, {
       username: newName,
       discord_id: discordId,
       website: website,
       bio: bio,
+      platforms: checkedIds,
     })
       .then(() => {
         dispatch(
@@ -40,6 +45,7 @@ export function useInjection() {
             discordId: discordId,
             website: website,
             bio: bio,
+            platforms: checkedIds,
           }),
         )
         showAlert({ text: 'プロフィールを更新しました。' })
@@ -47,7 +53,7 @@ export function useInjection() {
       .catch(error => {
         console.log(error)
       })
-  }, [newName, discordId, website, bio])
+  }, [newName, discordId, website, bio, checkedIds])
 
   const onChangeAvater = useCallback(() => {
     alert('アバターを編集')
