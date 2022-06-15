@@ -15,7 +15,7 @@ export function useInjection({ checkedIds }: Props) {
   const [name, setName] = useState<string>('')
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const { user } = useSelector(({ user }: RootState) => user)
+  const { user, userData } = useSelector(({ user }: RootState) => user)
   const [disabled, setDisabled] = useState<boolean>(true)
   const showAlert = useAlert()
 
@@ -51,14 +51,15 @@ export function useInjection({ checkedIds }: Props) {
           )
           navigate('/')
         })
-        .catch(() => {
+        .catch(e => {
+          console.log(e.code)
           showAlert({ text: 'プロフィール更新に失敗', animationTime: 5 })
         })
     }
   }, [name, checkedIds])
 
   useEffect(() => {
-    if (user?.displayName) {
+    if (user?.displayName && userData.platforms) {
       navigate('/')
     }
   }, [user])
