@@ -35,7 +35,6 @@ export default function SetUsernameContainer() {
         </div>
       </div>
       <PlatformsContentList checks={checks} setChecked={setChecked} />
-
       <input type="submit" value="はじめよう" disabled={disabled} onClick={onClickSubmit} className={styles.submit()} />
     </div>
   )

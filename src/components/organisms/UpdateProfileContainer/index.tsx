@@ -4,8 +4,11 @@ import React from 'react'
 import { useInjection } from './hooks'
 import { useStyles } from './style'
 import ProfileSettingsInput from 'components/organisms/ProfileSettingsInput'
+import PlatformsContentList from '../ListItems/PlatformsContentList'
+import { useCheckedMap } from 'components/contexts'
 
 export default React.memo(function UpdateProfileScreen() {
+  const [checks, checkedIds, setChecked] = useCheckedMap()
   const {
     user,
     newName,
@@ -19,7 +22,7 @@ export default React.memo(function UpdateProfileScreen() {
     onChangeBio,
     onChangeDiscordId,
     onChangeWebsite,
-  } = useInjection()
+  } = useInjection({ checkedIds })
   const styles = useStyles()
   return (
     <div className={styles.container}>
@@ -48,6 +51,8 @@ export default React.memo(function UpdateProfileScreen() {
         maxLength={100}
         placeholder="https://example.com"
       />
+      <span className={styles.platformLabel}>プレイ環境</span>
+      <PlatformsContentList checks={checks} setChecked={setChecked} />
       <div className={styles.onSubmitContainer}>
         <input type="submit" value={'変更する'} onClick={onSubmit} className={styles.changeProfileButton} />
       </div>
