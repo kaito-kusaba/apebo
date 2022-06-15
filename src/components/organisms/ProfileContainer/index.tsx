@@ -21,7 +21,7 @@ export default function ProfileContainer() {
   const location = useLocation()
 
   const ActionButtons: React.VFC = () => {
-    if (location.pathname === '/account' || user?.uid === urlParams.uid) {
+    if (location.pathname === `/account/${user!.uid}`) {
       return (
         <div className={styles.actionButtons}>
           <ActionButton type="Other" />

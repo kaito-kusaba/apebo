@@ -14,7 +14,7 @@ export function useInjection() {
   }, [])
 
   const f = async () => {
-    if (location.pathname !== '/account' && params.uid !== user!.uid) {
+    if (location.pathname !== `/account/${user!.uid}`) {
       if (!userData.follows?.includes(params.uid!)) {
         setFollowed(false)
       } else {

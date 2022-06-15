@@ -8,7 +8,7 @@ import { useStyles } from './style'
 
 export default React.memo(function BioDisplay() {
   const styles = useStyles()
-  const { userData } = useSelector(({ user }: RootState) => user)
+  const { user, userData } = useSelector(({ user }: RootState) => user)
   const params = useParams()
   const location = useLocation()
   const [data, setData] = useState<DocumentData>()
@@ -25,7 +25,7 @@ export default React.memo(function BioDisplay() {
     fetchUserData()
   }, [])
 
-  if (location.pathname === '/account') {
+  if (location.pathname === `/account/${user!.uid}`) {
     return <pre className={styles.bioDisplay}>{userData.bio}</pre>
   } else {
     return <pre className={styles.bioDisplay}>{data?.bio}</pre>
