@@ -51,7 +51,7 @@ export default React.memo(function UpdateProfileScreen() {
         maxLength={100}
         placeholder="https://example.com"
       />
-      <span>プレイスタイル</span>
+      <span className={styles.platformLabel}>プレイ環境</span>
       <PlatformsContentList checks={checks} setChecked={setChecked} />
       <div className={styles.onSubmitContainer}>
         <input type="submit" value={'変更する'} onClick={onSubmit} className={styles.changeProfileButton} />
