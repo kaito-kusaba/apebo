@@ -11,7 +11,7 @@ export function useInjection() {
   const [platforms, setPlatforms] = useState<number[]>([])
 
   const fetchPlatforms = async () => {
-    const uid = params.uid ? params.uid : user!.uid
+    const uid = params.uid ?? user!.uid
     const ref = doc(db, 'users', uid)
     const mySnap = await getDoc(ref)
     await setPlatforms(mySnap.data()?.platforms || [])

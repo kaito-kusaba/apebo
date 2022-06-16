@@ -38,14 +38,14 @@ export default React.memo(function UserName({ style, uid, textStyle }: Props) {
   return (
     <div className={`${styles.userNameContainerStyle} ${style}`}>
       <div className={`${styles.userName} ${textStyle}`}>
-        <span>{username ? username : '匿名さん'}</span>
+        <span>{username ?? '匿名さん'}</span>
         <div className={styles.platformImageContainer}>
           {platforms.map(platform => {
             return <img key={platform} src={PlatformImageArray[platform]} className={styles.platformImage} alt="" />
           }, [])}
         </div>
       </div>
-      <div className={`${styles.userId} ${textStyle}`}>@{uid ? uid : 'anonymous_user'}</div>
+      <div className={`${styles.userId} ${textStyle}`}>@{uid}</div>
     </div>
   )
 })
