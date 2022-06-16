@@ -1,5 +1,5 @@
 import React from 'react'
-import DIVIDER from 'assets/images/icons/navigation/Divider.png'
+import { DIVIDER } from '../Icon'
 import { useStyles } from './style'
 
 export default React.memo(function Divider() {

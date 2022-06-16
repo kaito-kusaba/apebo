@@ -1,13 +1,11 @@
 import type { UserIconSize } from 'types/UserIconSize'
-import UNSET40 from 'assets/images/icons/user/40_unset.png'
-import UNSET46 from 'assets/images/icons/user/46_unset.png'
-import UNSET72 from 'assets/images/icons/user/72_unset.png'
 import { useSelector } from 'react-redux'
 import { RootState } from 'components/redux'
 import { useCallback, useEffect, useState } from 'react'
 import { doc, getDoc } from 'firebase/firestore'
 import { db } from 'libs/firebase'
 import { useNavigate } from 'react-router-dom'
+import { UNSET40, UNSET46, UNSET72 } from '../Icon'
 
 type Props = {
   size: UserIconSize

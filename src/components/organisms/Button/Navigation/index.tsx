@@ -3,21 +3,22 @@ import type { NavigationButtonTypes } from 'types/NavigationButtonTypes'
 import { useStyles } from './style'
 import { useLocation, useNavigate } from 'react-router-dom'
 
-import HOME_ACTIVE from 'assets/images/icons/navigation/home_active.png'
-import HOME_DEFAULT from 'assets/images/icons/navigation/home_default.png'
-import HOME_HOVER from 'assets/images/icons/navigation/home_hover.png'
-import ACCOUNT_ACTIVE from 'assets/images/icons/navigation/account_active.png'
-import ACCOUNT_DEFAULT from 'assets/images/icons/navigation/account_default.png'
-import ACCOUNT_HOVER from 'assets/images/icons/navigation/account_hover.png'
-import POST_DEFAULT from 'assets/images/icons/navigation/post_default.png'
-import POST_HOVER from 'assets/images/icons/navigation/post_hover.png'
-import SETTINGS_ACTIVE from 'assets/images/icons/navigation/settings_active.png'
-import SETTINGS_HOVER from 'assets/images/icons/navigation/settings_hover.png'
-import SETTINGS_DEFAULT from 'assets/images/icons/navigation/settings_default.png'
-
 import { useDispatch, useSelector } from 'react-redux'
 import { actions } from 'components/redux/Modal'
 import { RootState } from 'components/redux'
+import {
+  ACCOUNT_ACTIVE,
+  ACCOUNT_DEFAULT,
+  ACCOUNT_HOVER,
+  HOME_ACTIVE,
+  HOME_DEFAULT,
+  HOME_HOVER,
+  POST_DEFAULT,
+  POST_HOVER,
+  SETTINGS_ACTIVE,
+  SETTINGS_DEFAULT,
+  SETTINGS_HOVER,
+} from 'components/atoms/Icon'
 
 type Props = {
   type: NavigationButtonTypes
