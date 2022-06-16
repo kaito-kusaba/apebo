@@ -16,7 +16,7 @@ import { useInjection } from './hooks'
 export default function ProfileContainer() {
   const styles = useStyles()
   const { onClick, followed } = useInjection()
-  const urlParams = useParams<{ uid: string }>()
+  const params = useParams<{ uid: string }>()
   const { user } = useSelector(({ user }: RootState) => user)
   const location = useLocation()
 
@@ -24,14 +24,14 @@ export default function ProfileContainer() {
     if (location.pathname === `/account/${user!.uid}`) {
       return (
         <div className={styles.actionButtons}>
-          <ActionButton type="Other" />
+          <ActionButton type="ProfileOther" buttonStyle={styles.otherButton} imgStyle={styles.otherImg} />
         </div>
       )
     } else {
       return (
         <div className={styles.actionButtons}>
-          <ActionButton type="Message" />
-          <ActionButton type="Other" />
+          <ActionButton type="ProfileMessage" imgStyle={styles.messageImg} buttonStyle={styles.messageButton} />
+          <ActionButton type="ProfileOther" buttonStyle={styles.otherButton} imgStyle={styles.otherImg} />
         </div>
       )
     }
@@ -40,8 +40,8 @@ export default function ProfileContainer() {
   return (
     <div className={styles.profileContainer}>
       <ActionButtons />
-      <UserIcon uid={urlParams.uid ? urlParams.uid : user!.uid} size={72} style={styles.icon} />
-      <UserName uid={urlParams.uid ? urlParams.uid : user!.uid} />
+      <UserIcon uid={params.uid ? params.uid : user!.uid} size={72} style={styles.icon} />
+      <UserName uid={params.uid ? params.uid : user!.uid} />
       <PlatformLabel containerStyle={styles.PlatformContainer} />
       <BioDisplay />
       <DiscordID />

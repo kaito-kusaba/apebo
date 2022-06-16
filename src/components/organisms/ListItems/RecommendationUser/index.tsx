@@ -14,7 +14,7 @@ export default React.memo(function RecommendationUser() {
         <UserName uid={'iOq1QZovRKSty3QIWbbes45njdP2'} textStyle={styles.userName} />
       </div>
       <span className={styles.actionButton}>
-        <ActionButton type="Follow" imgStyle={styles.img} />
+        <ActionButton type="Follow" imgStyle={styles.img} uid={'iOq1QZovRKSty3QIWbbes45njdP2'} />
       </span>
     </div>
   )

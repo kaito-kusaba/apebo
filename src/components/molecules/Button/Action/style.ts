@@ -3,12 +3,13 @@ import { Colors } from 'constant'
 
 export function useStyles() {
   const BUTTON_SIZE = 32
+
   const actionButton = css`
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 0;
     border-radius: 8px;
+    border: none;
     cursor: pointer;
     margin: 0 0 0 14px;
     background-color: ${Colors.BLACK_WASH};
@@ -20,6 +21,7 @@ export function useStyles() {
   const actionButtonDotsImageStyle = css`
     width: 20px;
     height: 20px;
+    margin: 10px;
     transition: all 0.2s;
   `
 
