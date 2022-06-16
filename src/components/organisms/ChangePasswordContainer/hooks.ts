@@ -17,11 +17,7 @@ export function useInjection() {
   const showAlert = useAlert()
 
   useEffect(() => {
-    if (password.length > 5 && passwordConfirm.length > 5) {
-      setDisabled(false)
-    } else {
-      setDisabled(true)
-    }
+    setDisabled(!(password.length > 5 && passwordConfirm.length > 5) || false)
   }, [password, passwordConfirm])
 
   useEffect(() => {
