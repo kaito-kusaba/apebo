@@ -43,9 +43,7 @@ export function useInjection() {
   }, [])
 
   const onClickGoogleButton = useCallback(() => {
-    signInWithRedirect(auth, provider).then(() => {
-      navigate('/')
-    })
+    signInWithRedirect(auth, provider)
   }, [])
 
   const onPressSubmit = useCallback(() => {
