@@ -42,11 +42,7 @@ export function useInjection() {
   }
 
   useEffect(() => {
-    if (text.length <= 0) {
-      setDisabled(true)
-    } else {
-      setDisabled(false)
-    }
+    setDisabled(!(text.length > 0) || false)
   }, [text])
 
   const onClickPostButton = useCallback(() => {

@@ -13,11 +13,7 @@ export function useInjection() {
   const showAlert = useAlert()
 
   useEffect(() => {
-    if (email.length > 4) {
-      setDisabled(false)
-    } else {
-      setDisabled(true)
-    }
+    setDisabled(!(email.length > 4) || false)
   }, [email])
 
   const onChangeEmail = useCallback(e => {

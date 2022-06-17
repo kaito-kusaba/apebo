@@ -60,7 +60,10 @@ const getRedirectWithGoogle = async () => {
           icon: user.photoURL,
         }
         dispatch(userActions.setUser(user))
-        setDoc(doc(db, 'users', user.uid), data)
+        await setDoc(doc(db, 'users', user.uid), data)
+        if (!mySnap.data()?.platforms) {
+          window.location.href = '/attr/username'
+        }
       }
     }
   })

@@ -22,8 +22,9 @@ export default React.memo(function UpdateProfileScreen() {
     onChangeBio,
     onChangeDiscordId,
     onChangeWebsite,
+    disabled,
   } = useInjection({ checkedIds })
-  const styles = useStyles()
+  const styles = useStyles({ disabled })
   return (
     <div className={styles.container}>
       <SettingsLabel label="プロフィール" />
@@ -54,7 +55,13 @@ export default React.memo(function UpdateProfileScreen() {
       <span className={styles.platformLabel}>プレイ環境</span>
       <PlatformsContentList checks={checks} setChecked={setChecked} />
       <div className={styles.onSubmitContainer}>
-        <input type="submit" value={'変更する'} onClick={onSubmit} className={styles.changeProfileButton} />
+        <input
+          type="submit"
+          value={'変更する'}
+          onClick={onSubmit}
+          className={styles.changeProfileButton()}
+          disabled={disabled}
+        />
       </div>
     </div>
   )
