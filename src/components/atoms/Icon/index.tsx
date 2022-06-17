@@ -20,7 +20,7 @@ export { default as WorldIconYellow } from 'assets/images/icons/YellowIcons/worl
 export { default as FollowingIconYellow } from 'assets/images/icons/YellowIcons/following.png'
 export { default as StarIconYellow } from 'assets/images/icons/YellowIcons/star.png'
 export { default as SmileIconYellow } from 'assets/images/icons/YellowIcons/smile.png'
-export { default as AddImageIconYellow } from 'assets/images/icons/YellowIcons/Add_Image.png'
+export { default as AddImageIconYellow } from 'assets/images/icons/YellowIcons/add_Image.png'
 
 //GrayIcons
 export { default as WorldIconGray } from 'assets/images/icons/GrayIcons/world.png'
@@ -81,4 +81,4 @@ export { default as POST_HOVER } from 'assets/images/icons/navigation/post_hover
 export { default as SETTINGS_ACTIVE } from 'assets/images/icons/navigation/settings_active.png'
 export { default as SETTINGS_DEFAULT } from 'assets/images/icons/navigation/settings_default.png'
 export { default as SETTINGS_HOVER } from 'assets/images/icons/navigation/settings_hover.png'
-export { default as DIVIDER } from 'assets/images/icons/navigation/Divider.png'
+export { default as DIVIDER } from 'assets/images/icons/navigation/divider.png'
