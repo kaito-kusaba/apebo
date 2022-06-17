@@ -1,10 +1,10 @@
-import { useAlert } from 'components/molecules/Alert'
 import { RootState } from 'components/redux'
 import { actions } from 'components/redux/User'
 import { doc, DocumentData, getDoc, updateDoc } from 'firebase/firestore'
 import { db } from 'libs/firebase'
 import { useCallback, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 
 type Props = {
   checkedIds: number[]
@@ -18,8 +18,8 @@ export function useInjection({ checkedIds }: Props) {
   const [discordId, setDiscordId] = useState<string>(userData.discordId || fetchData?.discord_id || '')
   const [bio, setBio] = useState<string>(userData.bio || fetchData?.bio || '')
   const [website, setWebsite] = useState<string>(userData.website || fetchData?.website || '')
-  const showAlert = useAlert()
   const [disabled, setDisabled] = useState<boolean>(false)
+  const navigate = useNavigate()
 
   useEffect(() => {
     const userRef = doc(db, 'users', user!.uid)
@@ -53,7 +53,7 @@ export function useInjection({ checkedIds }: Props) {
             platforms: checkedIds,
           }),
         )
-        showAlert({ text: 'プロフィールを更新しました。' })
+        navigate(`/account/${user!.uid}`)
       })
       .catch(error => {
         console.log(error)
