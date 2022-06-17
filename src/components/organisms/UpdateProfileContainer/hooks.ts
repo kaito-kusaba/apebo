@@ -18,6 +18,7 @@ export function useInjection({ checkedIds }: Props) {
   const [discordId, setDiscordId] = useState<string>(userData.discordId || fetchData?.discord_id || '')
   const [bio, setBio] = useState<string>(userData.bio || fetchData?.bio || '')
   const [website, setWebsite] = useState<string>(userData.website || fetchData?.website || '')
+  const [disabled, setDisabled] = useState<boolean>(false)
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -28,6 +29,10 @@ export function useInjection({ checkedIds }: Props) {
     }
     fetchData()
   }, [user!.uid])
+
+  useEffect(() => {
+    setDisabled(!(newName.length > 0) || false)
+  }, [newName])
 
   const onSubmit = useCallback(async () => {
     const userRef = doc(db, 'users', user!.uid)
@@ -91,6 +96,7 @@ export function useInjection({ checkedIds }: Props) {
     website,
     onChangeBio,
     onChangeDiscordId,
+    disabled,
     onChangeWebsite,
   }
 }

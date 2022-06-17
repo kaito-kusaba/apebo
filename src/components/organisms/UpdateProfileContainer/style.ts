@@ -1,7 +1,11 @@
 import { css } from '@emotion/css'
 import { Colors } from 'constant'
 
-export function useStyles() {
+type Props = {
+  disabled: boolean
+}
+
+export function useStyles({ disabled }: Props) {
   const container = css`
     display: flex;
     flex-direction: column;
@@ -64,7 +68,7 @@ export function useStyles() {
     margin-bottom: 8px;
   `
 
-  const changeProfileButton = css`
+  const baseChangeProfileButton = css`
     font-size: 14px;
     color: ${Colors.WHITE};
     padding: 10px 93px;
@@ -74,6 +78,20 @@ export function useStyles() {
     background-color: ${Colors.RED};
     cursor: pointer;
   `
+
+  const changeProfileButton = () => {
+    if (!disabled) {
+      return css`
+        ${baseChangeProfileButton}
+      `
+    } else {
+      return css`
+        ${baseChangeProfileButton}
+        cursor: default;
+        background-color: ${Colors.INDIAN_RED};
+      `
+    }
+  }
 
   const onSubmitContainer = css`
     display: flex;
