@@ -1,4 +1,5 @@
 import { CheckedMap } from 'components/contexts/useCheckedMap'
+import React, { useEffect } from 'react'
 import PlatformsContent from '../PlatformsContent'
 import { useInjection } from './hooks'
 import { useStyles, getStyles } from './style'
@@ -10,7 +11,14 @@ type Props = {
 
 export default function PlatformsContentList({ checks, setChecked }: Props) {
   const styles = useStyles()
-  const { platforms } = useInjection()
+  const { platforms, userData } = useInjection()
+
+  useEffect(() => {
+    let map: { [key: number]: boolean } = {}
+    userData.platforms?.forEach(id => (map[id] = true))
+
+    setChecked(map)
+  }, [])
 
   return (
     <div className={styles.buttonContainer}>

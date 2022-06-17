@@ -134,7 +134,7 @@ export function useInjection({ type, uid, docId }: Props) {
   const onClickOther = useCallback(async () => {
     if (user!.uid === uid) {
       await deleteDoc(doc(db, 'posts', docId!))
-      if (location.pathname === '/account') {
+      if (location.pathname === `/account/${user!.uid}`) {
         window.location.reload()
       }
     } else {

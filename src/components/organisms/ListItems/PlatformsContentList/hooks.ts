@@ -6,6 +6,8 @@ import {
   SwitchIconPorpoise,
   MobileIconPorpoise,
 } from 'components/atoms/Icon'
+import { useSelector } from 'react-redux'
+import { RootState } from 'components/redux'
 
 type PlatformsObjectTypes = {
   id: number
@@ -14,6 +16,7 @@ type PlatformsObjectTypes = {
 }
 
 export function useInjection() {
+  const { userData } = useSelector(({ user }: RootState) => user)
   const platforms: PlatformsObjectTypes[] = [
     { id: 0, platform: 'PC', icon: PcIconPorpoise },
     { id: 1, platform: 'PlayStation', icon: PlayStationIconPorpoise },
@@ -24,5 +27,6 @@ export function useInjection() {
 
   return {
     platforms,
+    userData,
   }
 }

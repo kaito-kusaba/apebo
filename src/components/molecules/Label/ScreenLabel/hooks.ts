@@ -13,7 +13,7 @@ export function useInjection() {
   const [username, setUsername] = useState<string>('')
 
   useEffect(() => {
-    if (location.pathname === '/account') {
+    if (location.pathname === `/account/${user!.uid}`) {
       const f = async () => {
         const userRef = doc(db, 'users', user!.uid)
         const userSnap = await getDoc(userRef)
