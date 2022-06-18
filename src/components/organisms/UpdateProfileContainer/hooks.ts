@@ -7,10 +7,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
 type Props = {
-  checkedIds: number[]
+  platformCheckedIds: number[]
+  playStyleCheckedIds: number[]
+  genderCheckedIds: number[]
 }
 
-export function useInjection({ checkedIds }: Props) {
+export function useInjection({ platformCheckedIds, playStyleCheckedIds, genderCheckedIds }: Props) {
   const { user, userData } = useSelector(({ user }: RootState) => user)
   const dispatch = useDispatch()
   const [fetchData, setFetchData] = useState<DocumentData>()
@@ -41,7 +43,9 @@ export function useInjection({ checkedIds }: Props) {
       discord_id: discordId,
       website: website,
       bio: bio,
-      platforms: checkedIds,
+      platforms: platformCheckedIds,
+      play_style: playStyleCheckedIds,
+      gender: genderCheckedIds,
     })
       .then(() => {
         dispatch(
@@ -50,7 +54,9 @@ export function useInjection({ checkedIds }: Props) {
             discordId: discordId,
             website: website,
             bio: bio,
-            platforms: checkedIds,
+            platforms: platformCheckedIds,
+            play_style: playStyleCheckedIds,
+            gender: genderCheckedIds,
           }),
         )
         navigate(`/account/${user!.uid}`)
@@ -58,7 +64,7 @@ export function useInjection({ checkedIds }: Props) {
       .catch(error => {
         console.log(error)
       })
-  }, [newName, discordId, website, bio, checkedIds])
+  }, [newName, discordId, website, bio, platformCheckedIds, playStyleCheckedIds])
 
   const onChangeAvater = useCallback(() => {
     alert('アバターを編集')

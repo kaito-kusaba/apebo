@@ -57,6 +57,10 @@ export { default as CheckIconGreen } from 'assets/images/icons/GreenIcons/check.
 
 //WhiteIcons
 export { default as LeftArrowIconWhite } from 'assets/images/icons/WhiteIcons/left_arrow.png'
+export { default as EnjoyIconWhite } from 'assets/images/icons/WhiteIcons/enjoy.png'
+export { default as HeavyIconWhite } from 'assets/images/icons/WhiteIcons/heavy.png'
+export { default as FemaleIconWhite } from 'assets/images/icons/WhiteIcons/female.png'
+export { default as MaleIconWhite } from 'assets/images/icons/WhiteIcons/male.png'
 
 //ActionButtonIcons
 export { default as FOLLOW_ACTIVE } from 'assets/images/icons/ActionButtonIcons/follow_active.png'

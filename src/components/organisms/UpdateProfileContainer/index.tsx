@@ -6,9 +6,14 @@ import { useStyles } from './style'
 import ProfileSettingsInput from 'components/organisms/ProfileSettingsInput'
 import PlatformsContentList from '../ListItems/PlatformsContentList'
 import { useCheckedMap } from 'components/contexts'
+import PlaystyleContainer from '../PlaystyleContainer'
+import GenderContainer from '../GenderContainer'
 
 export default React.memo(function UpdateProfileScreen() {
-  const [checks, checkedIds, setChecked] = useCheckedMap()
+  const [platformChecks, platformCheckedIds, setPlatformChecked] = useCheckedMap()
+  const [playStyleChecks, playStyleCheckedIds, setPlayStyleChecked] = useCheckedMap()
+  const [genderChecks, genderCheckedIds, setGenderChecked] = useCheckedMap()
+
   const {
     user,
     newName,
@@ -23,7 +28,7 @@ export default React.memo(function UpdateProfileScreen() {
     onChangeDiscordId,
     onChangeWebsite,
     disabled,
-  } = useInjection({ checkedIds })
+  } = useInjection({ platformCheckedIds, playStyleCheckedIds, genderCheckedIds })
   const styles = useStyles({ disabled })
   return (
     <div className={styles.container}>
@@ -52,8 +57,9 @@ export default React.memo(function UpdateProfileScreen() {
         maxLength={100}
         placeholder="https://example.com"
       />
-      <span className={styles.platformLabel}>プレイ環境</span>
-      <PlatformsContentList checks={checks} setChecked={setChecked} />
+      <PlatformsContentList checks={platformChecks} setChecked={setPlatformChecked} />
+      <PlaystyleContainer checks={playStyleChecks} setChecked={setPlayStyleChecked} />
+      <GenderContainer checks={genderChecks} setChecked={setGenderChecked} />
       <div className={styles.onSubmitContainer}>
         <input
           type="submit"
