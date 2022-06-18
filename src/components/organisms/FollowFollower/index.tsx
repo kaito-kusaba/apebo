@@ -1,9 +1,9 @@
 import { RootState } from 'components/redux'
-import { doc, DocumentReference, getDoc } from 'firebase/firestore'
+import { doc, getDoc } from 'firebase/firestore'
 import { db } from 'libs/firebase'
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useLocation, useParams } from 'react-router-dom'
 import { useStyles } from './style'
 
 type Props = {
@@ -13,25 +13,28 @@ type Props = {
 
 export default React.memo(function FollowFollower({ textStyle, containerStyle }: Props) {
   const styles = useStyles()
-  const { user } = useSelector(({ user }: RootState) => user)
+  const { user, userData } = useSelector(({ user }: RootState) => user)
   const params = useParams()
   const [followers, setFollowers] = useState<number>(0)
   const [follows, setFollows] = useState<number>(0)
-  const [ref, setRef] = useState<DocumentReference>(doc(db, 'users', user!.uid))
+  const location = useLocation()
 
   const fetchUserData = async () => {
-    if (params.uid) {
-      setRef(doc(db, 'users', params.uid))
+    if (params.uid === user!.uid) {
+      setFollowers(userData.followers ? userData.followers.length : 0)
+      setFollows(userData.follows ? userData.follows.length : 0)
+    } else {
+      const userRef = doc(db, 'users', params.uid!)
+      const userSnap = await getDoc(userRef)
+      const data = userSnap.data()
+      setFollowers(data?.followers ? data?.followers.length : 0)
+      setFollows(data?.follows ? data?.follows.length : 0)
     }
-    const userSnap = await getDoc(ref)
-    const data = userSnap.data()
-    setFollowers(data?.followers ? data?.followers.length : 0)
-    setFollows(data?.follows ? data?.follows.length : 0)
   }
 
   useEffect(() => {
     fetchUserData()
-  }, [])
+  }, [location.pathname])
 
   return (
     <div className={`${styles.followFollowerContainer} ${containerStyle}`}>
