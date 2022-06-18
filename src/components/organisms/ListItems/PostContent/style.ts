@@ -11,9 +11,9 @@ export function useStyles() {
     border: none;
     border-bottom: 1px solid ${Colors.EERIE_BLACK};
     transition: 0.2s;
+    cursor: pointer;
     &:hover {
       background-color: ${Colors.CHAOS_BLACK};
-      cursor: pointer;
     }
   `
   const postContentHeader = css`
