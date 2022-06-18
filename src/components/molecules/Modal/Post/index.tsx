@@ -1,5 +1,4 @@
-import { SmileIconYellow } from 'components/atoms/Icon'
-import { AddImageIconYellow } from 'components/atoms/Icon'
+import { SmileIconYellow, AddImageIconYellow } from 'components/atoms/Icon'
 import UserIcon from 'components/atoms/UserIcon'
 import UserName from 'components/atoms/UserName'
 import React from 'react'

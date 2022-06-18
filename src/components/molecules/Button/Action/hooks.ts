@@ -1,14 +1,4 @@
 import { useCallback, useEffect, useState } from 'react'
-import LIKE_ACTIVE from 'assets/images/icons/like_active.png'
-import LIKE_DEFAULT from 'assets/images/icons/like_default.png'
-import LIKE_HOVER from 'assets/images/icons/like_hover.png'
-import MESSAGE_ACTIVE from 'assets/images/icons/message_active.png'
-import MESSAGE_DEFAULT from 'assets/images/icons/message_default.png'
-import MESSAGE_HOVER from 'assets/images/icons/message_hover.png'
-import FOLLOW_ACTIVE from 'assets/images/icons/follow_active.png'
-import FOLLOW_DEFAULT from 'assets/images/icons/follow_default.png'
-import FOLLOW_HOVER from 'assets/images/icons/follow_hover.png'
-import DOTS from 'assets/images/icons/dots.png'
 import { ActionButtonTypes } from 'types/ActionButtonTypes'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'components/redux'
@@ -16,6 +6,20 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { arrayRemove, arrayUnion, deleteDoc, doc, updateDoc } from 'firebase/firestore'
 import { db } from 'libs/firebase'
 import { actions } from 'components/redux/User'
+import {
+  DotsIconGray,
+  FOLLOW_ACTIVE,
+  FOLLOW_DEFAULT,
+  FOLLOW_HOVER,
+  LIKE_ACTIVE,
+  LIKE_DEFAULT,
+  LIKE_HOVER,
+  MessageIconGray,
+  MESSAGE_ACTIVE,
+  MESSAGE_DEFAULT,
+  MESSAGE_HOVER,
+} from 'components/atoms/Icon'
+
 type Props = {
   type: ActionButtonTypes
   docId?: string
@@ -57,7 +61,16 @@ export function useInjection({ type, uid, docId }: Props) {
             : setButtonImageSrc(FOLLOW_DEFAULT)
           break
         case 'Other':
-          setButtonImageSrc(DOTS)
+          setButtonImageSrc(DotsIconGray)
+          break
+      }
+    } else {
+      switch (type) {
+        case 'ProfileMessage':
+          setButtonImageSrc(MessageIconGray)
+          break
+        case 'ProfileOther':
+          setButtonImageSrc(DotsIconGray)
           break
       }
     }
@@ -79,6 +92,14 @@ export function useInjection({ type, uid, docId }: Props) {
           break
         case 'Other':
           onClickOther()
+          break
+        case 'ProfileMessage':
+          setIsSelectedMessage(!isSelectedMessage)
+          e.stopPropagation()
+          navigate('/talk/:room_id')
+          break
+        case 'ProfileOther':
+          onClickProfileOther()
           break
       }
     },
@@ -141,6 +162,10 @@ export function useInjection({ type, uid, docId }: Props) {
       //TODO: ポップアップ表示
       alert('miss')
     }
+  }, [])
+
+  const onClickProfileOther = useCallback(() => {
+    alert('３点リーダー')
   }, [])
 
   return {

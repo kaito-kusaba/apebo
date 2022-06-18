@@ -1,1 +1,1 @@
-export type ActionButtonTypes = 'Message' | 'Like' | 'Follow' | 'Other'
+export type ActionButtonTypes = 'Message' | 'Like' | 'Follow' | 'Other' | 'ProfileMessage' | 'ProfileOther'

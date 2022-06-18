@@ -45,11 +45,37 @@ export function useStyles() {
     }
   `
 
+  const otherButton = css`
+    border: 1px solid ${Colors.EERIE_BLACK};
+    margin: 10px 24px 10px 10px;
+    padding: 10px;
+  `
+
+  const messageImg = css`
+    width: 20px;
+    height: 20px;
+  `
+
+  const messageButton = css`
+    border: 1px solid ${Colors.EERIE_BLACK};
+    margin: 10px 0;
+    padding: 10px;
+  `
+
+  const otherImg = css`
+    width: 20px;
+    height: 20px;
+  `
+
   return {
     profileContainer,
     icon,
     PlatformContainer,
     actionButtons,
     followButton,
+    otherButton,
+    messageImg,
+    otherImg,
+    messageButton,
   }
 }
