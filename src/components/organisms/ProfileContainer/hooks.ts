@@ -27,7 +27,7 @@ export function useInjection() {
 
   useEffect(() => {
     f()
-  }, [])
+  }, [location])
 
   return {
     onClick,

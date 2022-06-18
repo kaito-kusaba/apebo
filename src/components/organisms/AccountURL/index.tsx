@@ -1,42 +1,47 @@
 import React, { useEffect, useState } from 'react'
 import { LinkIconGray } from 'components/atoms/Icon'
 import { useStyles } from './style'
-import { useParams } from 'react-router-dom'
-import { doc, DocumentData, getDoc } from 'firebase/firestore'
+import { doc, getDoc } from 'firebase/firestore'
 import { db } from 'libs/firebase'
 import { useSelector } from 'react-redux'
 import { RootState } from 'components/redux'
+import { useLocation, useParams } from 'react-router-dom'
 
 export default React.memo(function AccountURL() {
   const styles = useStyles()
-  const params = useParams()
-  const [data, setData] = useState<DocumentData>()
   const { userData } = useSelector(({ user }: RootState) => user)
+  const [website, setWebsite] = useState<string | undefined>(userData.website)
+  const params = useParams()
+  const location = useLocation()
 
   const fetchUserData = async () => {
-    if (params.uid) {
-      const userRef = doc(db, 'users', params.uid)
+    if (params.uid === userData.uniqueId) {
+      setWebsite(userData.website)
+    } else {
+      const userRef = doc(db, 'users', params.uid!)
       const userSnap = await getDoc(userRef)
-      setData(userSnap.data())
+      setWebsite(userSnap.data()?.website)
     }
   }
 
   const WebsiteImg: React.VFC = () => {
-    if (data?.website || userData.website) {
-      return <img src={LinkIconGray} alt="" className={styles.img} />
-    }
-    return <></>
+    return <img src={LinkIconGray} alt="" className={styles.img} />
   }
 
   useEffect(() => {
     fetchUserData()
-  }, [])
-  return (
-    <div className={styles.container}>
-      <WebsiteImg />
-      <a href={params.uid ? data?.website : userData.website} target="_blank" rel="noreferrer" className={styles.url}>
-        {params.uid ? data?.website : userData.website}
-      </a>
-    </div>
-  )
+  }, [location.pathname])
+
+  if (website) {
+    return (
+      <div className={styles.container}>
+        <WebsiteImg />
+        <a href={website} target="_blank" rel="noreferrer" className={styles.url}>
+          {website}
+        </a>
+      </div>
+    )
+  } else {
+    return <></>
+  }
 })

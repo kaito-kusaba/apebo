@@ -15,19 +15,26 @@ type Props = {
 
 export default React.memo(function UserName({ style, uid, textStyle }: Props) {
   const styles = useStyles()
-  const { user } = useSelector(({ user }: RootState) => user)
+  const { user, userData } = useSelector(({ user }: RootState) => user)
   const [username, setUsername] = useState<string>(user?.displayName!)
   const [platforms, setPlatforms] = useState<number[]>([])
   const location = useLocation()
 
   const fetchDatas = async () => {
-    const ref = doc(db, 'users', uid)
-    const snap = await getDoc(ref)
-    const data = snap.data()
-    setUsername(data?.username)
     const unAvailablePath = location.pathname.match(/account/)
-    if (!unAvailablePath) {
-      await setPlatforms(data?.platforms || [])
+    if (uid === userData.uniqueId) {
+      setUsername(userData.username!)
+      if (!unAvailablePath) {
+        setPlatforms(userData.platforms || [])
+      }
+    } else {
+      const ref = doc(db, 'users', uid)
+      const snap = await getDoc(ref)
+      const data = snap.data()
+      setUsername(data?.username)
+      if (!unAvailablePath) {
+        setPlatforms(data?.platforms || [])
+      }
     }
   }
 

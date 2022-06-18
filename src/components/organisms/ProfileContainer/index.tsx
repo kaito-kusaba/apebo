@@ -12,6 +12,7 @@ import FollowFollower from '../FollowFollower'
 import { useStyles } from './style'
 import { useLocation, useParams } from 'react-router-dom'
 import { useInjection } from './hooks'
+import { AlertProvider } from 'components/molecules/Alert'
 
 export default function ProfileContainer() {
   const styles = useStyles()
@@ -38,22 +39,24 @@ export default function ProfileContainer() {
   }
 
   return (
-    <div className={styles.profileContainer}>
-      <ActionButtons />
-      <UserIcon uid={urlParams.uid ? urlParams.uid : user!.uid} size={72} style={styles.icon} />
-      <UserName uid={urlParams.uid ? urlParams.uid : user!.uid} />
-      <PlatformLabel containerStyle={styles.PlatformContainer} />
-      <BioDisplay />
-      <DiscordID />
-      <AccountURL />
-      <FollowFollower />
-      {followed ? (
-        <></>
-      ) : (
-        <button onClick={onClick} className={styles.followButton}>
-          フォローする
-        </button>
-      )}
-    </div>
+    <AlertProvider>
+      <div className={styles.profileContainer}>
+        <ActionButtons />
+        <UserIcon uid={urlParams.uid ? urlParams.uid : user!.uid} size={72} style={styles.icon} />
+        <UserName uid={urlParams.uid ? urlParams.uid : user!.uid} />
+        <PlatformLabel containerStyle={styles.PlatformContainer} />
+        <BioDisplay />
+        <DiscordID />
+        <AccountURL />
+        <FollowFollower />
+        {followed ? (
+          <></>
+        ) : (
+          <button onClick={onClick} className={styles.followButton}>
+            フォローする
+          </button>
+        )}
+      </div>
+    </AlertProvider>
   )
 }
