@@ -15,7 +15,7 @@ type Props = {
 export function useInjection({ size, uid }: Props) {
   const [defaultSrc, setDefaultSrc] = useState<string>('')
   const [src, setSrc] = useState<string>('')
-  const { user } = useSelector(({ user }: RootState) => user)
+  const { user, userData } = useSelector(({ user }: RootState) => user)
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -38,12 +38,20 @@ export function useInjection({ size, uid }: Props) {
       }
     }
     const f = async () => {
-      const userRef = doc(db, 'users', uid)
-      const userSnap = await getDoc(userRef)
-      if (userSnap.data()?.icon) {
-        setSrc(userSnap.data()?.icon)
+      if (uid === userData.uniqueId) {
+        if (userData.icon) {
+          setSrc(userData.icon)
+        } else {
+          setSrc(defaultSrc)
+        }
       } else {
-        setSrc(defaultSrc)
+        const userRef = doc(db, 'users', uid)
+        const userSnap = await getDoc(userRef)
+        if (userSnap.data()?.icon) {
+          setSrc(userSnap.data()?.icon)
+        } else {
+          setSrc(defaultSrc)
+        }
       }
     }
     f()

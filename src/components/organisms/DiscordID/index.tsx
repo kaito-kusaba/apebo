@@ -2,47 +2,51 @@ import React, { useEffect, useState } from 'react'
 import { useStyles } from './style'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { DiscordIconGray } from 'components/atoms/Icon'
-import { useParams } from 'react-router-dom'
-import { doc, DocumentData, getDoc } from 'firebase/firestore'
+import { doc, getDoc } from 'firebase/firestore'
 import { db } from 'libs/firebase'
 import { useSelector } from 'react-redux'
 import { RootState } from 'components/redux'
+import { useLocation, useParams } from 'react-router-dom'
+import { useAlert } from 'components/molecules/Alert'
 
 export default React.memo(function DiscordID() {
   const styles = useStyles()
-  const params = useParams()
-  const [data, setData] = useState<DocumentData>()
   const { userData } = useSelector(({ user }: RootState) => user)
+  const [discordId, setDiscordId] = useState<string | undefined>(userData.discordId)
+  const params = useParams()
+  const location = useLocation()
+  const showAlert = useAlert()
 
   const fetchUserData = async () => {
-    if (params.uid) {
-      const userRef = doc(db, 'users', params.uid)
+    if (!(params.uid === userData.uniqueId)) {
+      const userRef = doc(db, 'users', params.uid!)
       const userSnap = await getDoc(userRef)
-      setData(userSnap.data())
+      setDiscordId(userSnap.data()?.discord_id)
+    } else {
+      setDiscordId(userData.discordId)
     }
   }
 
   useEffect(() => {
     fetchUserData()
-  }, [])
+  }, [location.pathname])
 
   const DiscordImg: React.VFC = () => {
-    if (data?.discord_id || userData.discordId) {
-      return <img src={DiscordIconGray} alt="" className={styles.discordIcon} />
-    }
-    return <></>
+    return <img src={DiscordIconGray} alt="" className={styles.discordIcon} />
   }
 
-  return (
-    <div className={styles.discordIdCopy}>
-      <CopyToClipboard
-        text={params.uid ? data?.discord_id : userData.discordId}
-        onCopy={() => alert('IDをコピーしました')}>
-        <div className={styles.discordIdContainer}>
-          <DiscordImg />
-          <div className={styles.discordId}>{params.uid ? data?.discord_id : userData.discordId}</div>
-        </div>
-      </CopyToClipboard>
-    </div>
-  )
+  if (discordId) {
+    return (
+      <div className={styles.discordIdCopy}>
+        <CopyToClipboard text={discordId} onCopy={() => showAlert({ text: 'IDをコピーしました' })}>
+          <div className={styles.discordIdContainer}>
+            <DiscordImg />
+            <div className={styles.discordId}>{discordId}</div>
+          </div>
+        </CopyToClipboard>
+      </div>
+    )
+  } else {
+    return <></>
+  }
 })
