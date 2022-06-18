@@ -40,6 +40,7 @@ const fetchUserData = async (uid: string) => {
         follows: data.follows,
         followers: data.followers,
         platforms: data.platforms,
+        talk_rooms: data.talk_rooms,
       }),
     )
   }

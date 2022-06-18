@@ -12,4 +12,5 @@ export type UserData = {
   follows?: string[]
   followers?: string[]
   platforms?: number[]
+  talk_rooms?: string[]
 }

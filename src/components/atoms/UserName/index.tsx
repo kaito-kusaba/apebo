@@ -11,9 +11,10 @@ type Props = {
   style?: string
   uid: string
   textStyle?: string
+  hasUid?: boolean
 }
 
-export default React.memo(function UserName({ style, uid, textStyle }: Props) {
+export default React.memo(function UserName({ style, uid, textStyle, hasUid = true }: Props) {
   const styles = useStyles()
   const { user } = useSelector(({ user }: RootState) => user)
   const [username, setUsername] = useState<string>(user?.displayName!)
@@ -45,7 +46,7 @@ export default React.memo(function UserName({ style, uid, textStyle }: Props) {
           }, [])}
         </div>
       </div>
-      <div className={`${styles.userId} ${textStyle}`}>@{uid ? uid : 'anonymous_user'}</div>
+      {hasUid && <div className={`${styles.userId} ${textStyle}`}>@{uid ? uid : 'anonymous_user'}</div>}
     </div>
   )
 })

@@ -2,7 +2,6 @@ import { useCallback, useEffect, useState } from 'react'
 import LIKE_ACTIVE from 'assets/images/icons/like_active.png'
 import LIKE_DEFAULT from 'assets/images/icons/like_default.png'
 import LIKE_HOVER from 'assets/images/icons/like_hover.png'
-import MESSAGE_ACTIVE from 'assets/images/icons/message_active.png'
 import MESSAGE_DEFAULT from 'assets/images/icons/message_default.png'
 import MESSAGE_HOVER from 'assets/images/icons/message_hover.png'
 import FOLLOW_ACTIVE from 'assets/images/icons/follow_active.png'
@@ -16,6 +15,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { arrayRemove, arrayUnion, deleteDoc, doc, updateDoc } from 'firebase/firestore'
 import { db } from 'libs/firebase'
 import { actions } from 'components/redux/User'
+
 type Props = {
   type: ActionButtonTypes
   docId?: string
@@ -25,7 +25,6 @@ type Props = {
 export function useInjection({ type, uid, docId }: Props) {
   const navigate = useNavigate()
   const [buttonImageSrc, setButtonImageSrc] = useState<string>('')
-  const [isSelectedMessage, setIsSelectedMessage] = useState<boolean>(false)
   const [isSelectedLike, setIsSelectedLike] = useState<boolean>(false)
   const [isHovered, setIsHovered] = useState<boolean>(false)
   const { user, userData } = useSelector(({ user }: RootState) => user)
@@ -36,11 +35,7 @@ export function useInjection({ type, uid, docId }: Props) {
     if (uid) {
       switch (type) {
         case 'Message':
-          isSelectedMessage
-            ? setButtonImageSrc(MESSAGE_ACTIVE)
-            : isHovered
-            ? setButtonImageSrc(MESSAGE_HOVER)
-            : setButtonImageSrc(MESSAGE_DEFAULT)
+          isHovered ? setButtonImageSrc(MESSAGE_HOVER) : setButtonImageSrc(MESSAGE_DEFAULT)
           break
         case 'Like':
           isSelectedLike
@@ -67,9 +62,8 @@ export function useInjection({ type, uid, docId }: Props) {
     e => {
       switch (type) {
         case 'Message':
-          setIsSelectedMessage(!isSelectedMessage)
           e.stopPropagation()
-          navigate('/talk/:room_id')
+          onClickMessage()
           break
         case 'Like':
           setIsSelectedLike(!isSelectedLike)
@@ -88,6 +82,8 @@ export function useInjection({ type, uid, docId }: Props) {
   const onMouseToggle = useCallback(() => {
     setIsHovered(!isHovered)
   }, [isHovered])
+
+  const onClickMessage = useCallback(() => {}, [])
 
   const onClickFollow = () => {
     const follows = userData.follows || []

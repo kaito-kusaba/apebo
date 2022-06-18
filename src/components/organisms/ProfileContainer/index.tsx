@@ -19,9 +19,11 @@ export default function ProfileContainer() {
   const urlParams = useParams<{ uid: string }>()
   const { user } = useSelector(({ user }: RootState) => user)
   const location = useLocation()
+  const path = location.pathname
+  const isSingle = path.match(/account/) || user?.uid === urlParams.uid
 
   const ActionButtons: React.VFC = () => {
-    if (location.pathname === '/account' || user?.uid === urlParams.uid) {
+    if (isSingle) {
       return (
         <div className={styles.actionButtons}>
           <ActionButton type="Other" />

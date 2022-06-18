@@ -7,6 +7,8 @@ export function useStyles() {
     display: flex;
     flex-direction: column;
     color: ${Colors.WHITE};
+    width: 100%;
+    height: 100vh;
   `
 
   const input = css`

@@ -16,7 +16,7 @@ export function useStyles() {
   `
 
   const input = css`
-    background-color: ${Colors.SQUANT};
+    background-color: ${Colors.EERIE_BLACK};
     border: none;
     outline: none;
     color: ${Colors.WHITE};
@@ -26,7 +26,7 @@ export function useStyles() {
     padding: 12px 56px 12px 16px;
     font-size: 16px;
     &::placeholder {
-      color: ${Colors.GREY};
+      color: ${Colors.SQUANT};
     }
   `
 

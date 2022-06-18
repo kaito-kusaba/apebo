@@ -28,7 +28,7 @@ export function useInjection({ uid }: Props) {
 
   const onClickMessage = useCallback(e => {
     e.stopPropagation()
-    navigate('/talk/:room_id')
+    navigate(`/talk/${uid}`)
   }, [])
 
   return {

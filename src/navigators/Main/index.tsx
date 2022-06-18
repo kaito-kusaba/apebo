@@ -34,7 +34,7 @@ export default function MainNavigator() {
       <Route path="/app/support" element={<SupportPageScreen />} />
       <Route path="/app/terms" element={<TermsScreen />} />
       <Route path="/*" element={<NotFoundScreen />} />
-      <Route path="/talk/:room_id" element={<TalkScreen />} />
+      <Route path="/talk/:uid" element={<TalkScreen />} />
     </Routes>
   )
 }
