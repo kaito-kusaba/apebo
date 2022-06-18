@@ -61,6 +61,7 @@ export { default as EnjoyIconWhite } from 'assets/images/icons/WhiteIcons/enjoy.
 export { default as HeavyIconWhite } from 'assets/images/icons/WhiteIcons/heavy.png'
 export { default as FemaleIconWhite } from 'assets/images/icons/WhiteIcons/female.png'
 export { default as MaleIconWhite } from 'assets/images/icons/WhiteIcons/male.png'
+export { default as AddIconWhite } from 'assets/images/icons/WhiteIcons/add.png'
 
 //ActionButtonIcons
 export { default as FOLLOW_ACTIVE } from 'assets/images/icons/ActionButtonIcons/follow_active.png'
@@ -86,3 +87,8 @@ export { default as SETTINGS_ACTIVE } from 'assets/images/icons/navigation/setti
 export { default as SETTINGS_DEFAULT } from 'assets/images/icons/navigation/settings_default.png'
 export { default as SETTINGS_HOVER } from 'assets/images/icons/navigation/settings_hover.png'
 export { default as DIVIDER } from 'assets/images/icons/navigation/divider.png'
+
+//genders
+export { default as FEMALE } from 'assets/images/icons/genders/female.png'
+export { default as MALE } from 'assets/images/icons/genders/male.png'
+export { default as CUSTOM } from 'assets/images/icons/genders/custom.png'

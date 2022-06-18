@@ -14,7 +14,7 @@ export default function GenderContainer({ checks, setChecked }: Props) {
 
   useEffect(() => {
     let map: { [key: number]: boolean } = {}
-    userData.platforms?.forEach(id => (map[id] = true))
+    userData.genders?.forEach(id => (map[id] = true))
 
     setChecked(map)
   }, [])
@@ -28,7 +28,10 @@ export default function GenderContainer({ checks, setChecked }: Props) {
           const index = item.id
           const tagStyle = getStyles({ index, checked })
           return (
-            <button className={tagStyle.button()} onClick={() => setChecked({ [item.id]: !checks[item.id] })}>
+            <button
+              key={index}
+              className={tagStyle.button()}
+              onClick={() => setChecked({ [item.id]: !checks[item.id] })}>
               <img src={item.icon} alt="" className={styles.buttonImg} />
               {item.gender}
             </button>

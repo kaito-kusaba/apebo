@@ -44,8 +44,8 @@ export function useInjection({ platformCheckedIds, playStyleCheckedIds, genderCh
       website: website,
       bio: bio,
       platforms: platformCheckedIds,
-      play_style: playStyleCheckedIds,
-      gender: genderCheckedIds,
+      play_styles: playStyleCheckedIds,
+      genders: genderCheckedIds,
     })
       .then(() => {
         dispatch(
@@ -55,8 +55,8 @@ export function useInjection({ platformCheckedIds, playStyleCheckedIds, genderCh
             website: website,
             bio: bio,
             platforms: platformCheckedIds,
-            play_style: playStyleCheckedIds,
-            gender: genderCheckedIds,
+            playStyles: playStyleCheckedIds,
+            genders: genderCheckedIds,
           }),
         )
         navigate(`/account/${user!.uid}`)
@@ -64,7 +64,7 @@ export function useInjection({ platformCheckedIds, playStyleCheckedIds, genderCh
       .catch(error => {
         console.log(error)
       })
-  }, [newName, discordId, website, bio, platformCheckedIds, playStyleCheckedIds])
+  }, [newName, discordId, website, bio, platformCheckedIds, playStyleCheckedIds, genderCheckedIds])
 
   const onChangeAvater = useCallback(() => {
     alert('アバターを編集')
