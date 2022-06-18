@@ -14,6 +14,9 @@ export { default as MobileIcon } from 'assets/images/icons/user/mobile.png'
 export { default as UNSET40 } from 'assets/images/icons/user/40_unset.png'
 export { default as UNSET46 } from 'assets/images/icons/user/46_unset.png'
 export { default as UNSET72 } from 'assets/images/icons/user/72_unset.png'
+export { default as HEAVYICON } from 'assets/images/icons/user/heavy.png'
+export { default as ENJOYICON } from 'assets/images/icons/user/enjoy.png'
+export { default as CUSTOMICON } from 'assets/images/icons/user/custom.png'
 
 //YellowIcons
 export { default as WorldIconYellow } from 'assets/images/icons/YellowIcons/world.png'

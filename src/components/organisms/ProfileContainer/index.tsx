@@ -42,7 +42,7 @@ export default function ProfileContainer() {
     <AlertProvider>
       <div className={styles.profileContainer}>
         <ActionButtons />
-        <UserIcon uid={params.uid ? params.uid : user!.uid} size={72} style={styles.icon} />
+        <UserIcon uid={params.uid ? params.uid : user!.uid} size={72} style={styles.icon} disabled hasPlayStyle />
         <UserName uid={params.uid ? params.uid : user!.uid} hasGender />
         <PlatformLabel containerStyle={styles.PlatformContainer} />
         <BioDisplay />
