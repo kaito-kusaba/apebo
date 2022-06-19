@@ -1,6 +1,6 @@
-import SettingsPageContainer from 'components/organisms/SettingsPageContainer'
+import SettingsPageContainer from 'components/organisms/Containers/SettingsPageContainer'
 import SettingsScreen from 'pages/Settings'
-import TermsContainer from 'components/organisms/TermsContainer'
+import TermsContainer from 'components/organisms/Containers/TermsContainer'
 import { useStyles } from './style'
 import React from 'react'
 

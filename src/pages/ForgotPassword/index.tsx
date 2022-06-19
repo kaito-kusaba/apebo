@@ -1,5 +1,5 @@
 import React from 'react'
-import ForgotPasswordContainer from 'components/organisms/ForgotPasswordContainer'
+import ForgotPasswordContainer from 'components/organisms/Containers/ForgotPasswordContainer'
 import { AlertProvider } from 'components/molecules/Alert'
 
 export default function ForgotPasswordScreen() {
