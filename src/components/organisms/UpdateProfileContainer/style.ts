@@ -89,6 +89,7 @@ export function useStyles({ disabled }: Props) {
         ${baseChangeProfileButton}
         cursor: default;
         background-color: ${Colors.INDIAN_RED};
+        color: ${Colors.BRAINSTEM_GREY};
       `
     }
   }
