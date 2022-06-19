@@ -9,15 +9,27 @@ type Props = {
   maxLength?: number
   textarea?: boolean
   placeholder?: string
+  errorMessage?: string
 }
 
-export default function ProfileSettingsInput({ label, value, onChange, maxLength, textarea, placeholder }: Props) {
-  const styles = useStyles()
+export default function ProfileSettingsInput({
+  label,
+  value,
+  onChange,
+  maxLength,
+  textarea,
+  placeholder,
+  errorMessage,
+}: Props) {
+  const styles = useStyles({ errorMessage, value })
 
   return (
     <div className={styles.container}>
       <div className={styles.labelContainer}>
-        <span className={styles.labelStyle}>{label}</span>
+        <span className={styles.labelStyle}>
+          {label}
+          {value.length < 1 && errorMessage && <span className={styles.errorText}>{errorMessage}</span>}
+        </span>
         <CharacterCounter length={value.length} maxLength={maxLength!} />
       </div>
       {textarea ? (
@@ -25,7 +37,7 @@ export default function ProfileSettingsInput({ label, value, onChange, maxLength
       ) : (
         <input
           placeholder={placeholder}
-          className={styles.inputStyle}
+          className={styles.inputStyle()}
           type="text"
           value={value}
           onChange={onChange}

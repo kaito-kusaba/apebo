@@ -1,7 +1,12 @@
 import { css } from '@emotion/css'
 import { Colors } from 'constant'
 
-export function useStyles() {
+type Props = {
+  value: string
+  errorMessage?: string
+}
+
+export function useStyles({ value, errorMessage }: Props) {
   const container = css`
     margin-top: 24px;
   `
@@ -19,7 +24,14 @@ export function useStyles() {
     justify-content: space-between;
   `
 
-  const inputStyle = css`
+  const errorText = css`
+    font-size: 14px;
+    color: ${Colors.RED};
+    font-weight: 300;
+    margin-left: 16px;
+  `
+
+  const baseInput = css`
     border: 1.5px solid ${Colors.EERIE_BLACK};
     border-radius: 8px;
     display: flex;
@@ -27,9 +39,22 @@ export function useStyles() {
     background-color: ${Colors.CHAOS_BLACK};
     color: ${Colors.WHITE};
     width: 100%;
+    transition: all 0.2s;
   `
+  const inputStyle = () => {
+    if (value.length < 1 && errorMessage) {
+      return css`
+        ${baseInput}
+        border: 1.5px solid ${Colors.RED};
+      `
+    }
+    return css`
+      ${baseInput}
+    `
+  }
+
   const textAreaStyle = css`
-    ${inputStyle}
+    ${inputStyle()}
     resize: none;
     height: 88px;
   `
@@ -48,5 +73,6 @@ export function useStyles() {
     inputStyle,
     lengthStyle,
     textAreaStyle,
+    errorText,
   }
 }
