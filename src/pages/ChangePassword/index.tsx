@@ -1,8 +1,8 @@
-import SettingsPageContainer from 'components/organisms/SettingsPageContainer'
+import SettingsPageContainer from 'components/organisms/Containers/SettingsPageContainer'
 import SettingsScreen from 'pages/Settings'
 import React from 'react'
 import { useStyles } from './style'
-import ChangePasswordContainer from 'components/organisms/ChangePasswordContainer'
+import ChangePasswordContainer from 'components/organisms/Containers/ChangePasswordContainer'
 import { AlertProvider } from 'components/molecules/Alert'
 
 export default React.memo(function ChangePasswordScreen() {
