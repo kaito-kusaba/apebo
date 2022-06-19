@@ -102,11 +102,7 @@ export function useInjection({ size, uid, hasPlayStyle }: Props) {
     } else {
       fetchUserData()
     }
-    if (location.pathname.match(/account/)) {
-      setIsAccountPage(true)
-    } else {
-      setIsAccountPage(false)
-    }
+    setIsAccountPage(location.pathname.match(/account/) ? true : false)
   }, [])
 
   const onClick = useCallback(
