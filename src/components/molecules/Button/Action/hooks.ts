@@ -153,7 +153,7 @@ export function useInjection({ type, uid, docId }: Props) {
     }
   }
 
-  const onClickOther = useCallback(async e => {
+  const onClickOther = useCallback(e => {
     if (userData.uniqueId === uid) {
       dispatch(
         actionSheetActions.setActionSheetData({
@@ -205,6 +205,7 @@ export function useInjection({ type, uid, docId }: Props) {
         }),
       )
     }
+    dispatch(actionSheetActions.setActionSheetOpen(true))
   }, [])
 
   return {

@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react'
-import { TrashIconRed, InfoIconGray } from 'components/atoms/Icon'
+import { TrashIconRed, InfoIconGray, MenuIconWhite } from 'components/atoms/Icon'
 import { useStyles } from './style'
 import Modal from 'react-modal'
 import { useDispatch, useSelector } from 'react-redux'
@@ -8,6 +8,7 @@ import { actions } from 'components/redux/ActionSheet'
 import { deleteDoc, doc } from 'firebase/firestore'
 import { db } from 'libs/firebase'
 import { useAlert } from '../Alert'
+import { useNavigate } from 'react-router-dom'
 
 export default function ActionSheet() {
   const [image, setImage] = useState<string>(InfoIconGray)
@@ -17,6 +18,7 @@ export default function ActionSheet() {
   const dispatch = useDispatch()
   const styles = useStyles({ x: actionSheet.data.x, y: actionSheet.data.y, type: actionSheet.data.type })
   const showAlert = useAlert()
+  const navigate = useNavigate()
 
   useEffect(() => {
     switch (actionSheet.data.type) {
@@ -28,6 +30,13 @@ export default function ActionSheet() {
         setImage(TrashIconRed)
         setText('投稿を削除')
         break
+      case 'myPage':
+        setImage(MenuIconWhite)
+        setText('プロフィールを編集')
+        break
+      case 'othersPage':
+        setImage(InfoIconGray)
+        setText('ユーザーを報告')
     }
   }, [])
 
@@ -45,6 +54,14 @@ export default function ActionSheet() {
         onDelete()
         dispatch(actions.setActionSheetOpen(false))
         showAlert({ text: '投稿を削除しました' })
+        break
+      case 'myPage':
+        navigate('/account/settings/profile')
+        dispatch(actions.setActionSheetOpen(false))
+        break
+      case 'othersPage':
+        showAlert({ text: 'ユーザーが運営に報告されました' })
+        dispatch(actions.setActionSheetOpen(false))
         break
     }
   }, [])

@@ -67,6 +67,7 @@ export { default as HeavyIconWhite } from 'assets/images/icons/WhiteIcons/heavy.
 export { default as FemaleIconWhite } from 'assets/images/icons/WhiteIcons/female.png'
 export { default as MaleIconWhite } from 'assets/images/icons/WhiteIcons/male.png'
 export { default as AddIconWhite } from 'assets/images/icons/WhiteIcons/add.png'
+export { default as MenuIconWhite } from 'assets/images/icons/WhiteIcons/menu.png'
 
 //ActionButtonIcons
 export { default as FOLLOW_ACTIVE } from 'assets/images/icons/ActionButtonIcons/follow_active.png'

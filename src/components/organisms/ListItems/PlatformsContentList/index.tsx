@@ -22,7 +22,6 @@ export default function PlatformsContentList({ checks, setChecked }: Props) {
 
   return (
     <div>
-      <span className={styles.platformLabel}>プレイ環境</span>
       <div className={styles.buttonContainer}>
         {platforms.map(item => {
           const checked = checks[item.id]

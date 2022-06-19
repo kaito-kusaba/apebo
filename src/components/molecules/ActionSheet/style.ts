@@ -36,6 +36,14 @@ export function useStyles({ x, y, type }: Props) {
         return css`
           color: ${Colors.RED};
         `
+      case 'myPage':
+        return css`
+          color: ${Colors.PORPOISE};
+        `
+      case 'othersPage':
+        return css`
+          color: ${Colors.PORPOISE};
+        `
     }
   }
 
