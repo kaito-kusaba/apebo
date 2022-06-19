@@ -47,7 +47,13 @@ export default React.memo(function UpdateProfileScreen() {
           </button>
         </span>
       </div>
-      <ProfileSettingsInput label="ユーザー名" value={newName} onChange={onChangeUserName} maxLength={20} />
+      <ProfileSettingsInput
+        label="ユーザー名"
+        value={newName}
+        onChange={onChangeUserName}
+        maxLength={20}
+        errorMessage="ユーザー名を入力してください"
+      />
       <ProfileSettingsInput label="自己紹介" value={bio} onChange={onChangeBio} maxLength={160} textarea />
       <ProfileSettingsInput label="Discord ID" value={discordId} onChange={onChangeDiscordId} maxLength={40} />
       <ProfileSettingsInput
