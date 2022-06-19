@@ -14,6 +14,7 @@ export function useStyles() {
     display: flex;
     align-items: center;
   `
+
   const userId = css`
     color: ${Colors.SQUANT};
     font-size: 14px;
@@ -29,11 +30,24 @@ export function useStyles() {
     align-items: center;
   `
 
+  const genderImageContainer = css`
+    margin-left: 8px;
+    display: flex;
+    align-items: center;
+  `
+
+  const genderImage = css`
+    width: 24px;
+    height: 24px;
+  `
+
   return {
     userNameContainerStyle,
     userName,
     userId,
     platformImage,
     platformImageContainer,
+    genderImage,
+    genderImageContainer,
   }
 }

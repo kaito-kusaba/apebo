@@ -2,10 +2,13 @@ import { css } from '@emotion/css'
 
 type Props = {
   size: number
+  disable: boolean
+  isAccountPage: boolean
 }
 
-export function useStyles({ size }: Props) {
+export function useStyles({ size, disable, isAccountPage }: Props) {
   const iconContainer = css`
+    position: relative;
     cursor: pointer;
     border: none;
     border-radius: 50%;
@@ -23,8 +26,41 @@ export function useStyles({ size }: Props) {
     height: ${size}px;
   `
 
+  const playStyle = () => {
+    if (isAccountPage) {
+      if (disable) {
+        return css`
+          display: none;
+        `
+      } else {
+        return css`
+          position: absolute;
+          width: 28px;
+          height: 28px;
+          right: -4px;
+          bottom: -4px;
+        `
+      }
+    } else {
+      if (disable) {
+        return css`
+          display: none;
+        `
+      } else {
+        return css`
+          position: absolute;
+          width: 24px;
+          height: 24px;
+          right: -4px;
+          bottom: -4px;
+        `
+      }
+    }
+  }
+
   return {
     iconContainer,
     icon,
+    playStyle,
   }
 }

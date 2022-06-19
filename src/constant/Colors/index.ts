@@ -27,3 +27,6 @@ export const KIWI_GREEN = '#8DD83D'
 // Blue
 export const SKY_BLUE = '#3AA1FF'
 export const APNEA_DIVE = '#234EBB'
+
+//Orange
+export const ORANGE = '#E48900'

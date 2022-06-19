@@ -21,21 +21,24 @@ export default function PlatformsContentList({ checks, setChecked }: Props) {
   }, [])
 
   return (
-    <div className={styles.buttonContainer}>
-      {platforms.map(item => {
-        const checked = checks[item.id]
-        const index = item.id
-        const tagStyle = getStyles({ index, checked })
-        return (
-          <PlatformsContent
-            platform={item.platform}
-            icon={item.icon}
-            key={item.id}
-            style={tagStyle.button()}
-            onClick={() => setChecked({ [item.id]: !checks[item.id] })}
-          />
-        )
-      })}
+    <div>
+      <span className={styles.platformLabel}>プレイ環境</span>
+      <div className={styles.buttonContainer}>
+        {platforms.map(item => {
+          const checked = checks[item.id]
+          const index = item.id
+          const tagStyle = getStyles({ index, checked })
+          return (
+            <PlatformsContent
+              platform={item.platform}
+              icon={item.icon}
+              key={item.id}
+              style={tagStyle.button()}
+              onClick={() => setChecked({ [item.id]: !checks[item.id] })}
+            />
+          )
+        })}
+      </div>
     </div>
   )
 }

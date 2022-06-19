@@ -8,22 +8,26 @@ type Props = {
   style?: string
   disabled?: boolean
   uid: string
+  hasPlayStyle?: boolean
 }
 // TODO: すでに/account/${user.uid}の時は画像を拡大表示する
 
-export default React.memo(function UserIcon({ size, disabled, style, uid }: Props) {
-  const { src, onClick } = useInjection({ size, uid })
-  const styles = useStyles({ size })
+export default React.memo(function UserIcon({ size, disabled, style, uid, hasPlayStyle }: Props) {
+  const { src, onClick, playStyleImg, disable, isAccountPage } = useInjection({ size, uid, hasPlayStyle })
+  const styles = useStyles({ size, disable, isAccountPage })
+
   if (disabled) {
     return (
       <div className={`${styles.iconContainer} ${style}`}>
         <img className={styles.icon} src={src} alt="" />
+        {hasPlayStyle && <img className={styles.playStyle()} src={playStyleImg} alt="" />}
       </div>
     )
   } else {
     return (
       <button onClick={onClick} className={`${styles.iconContainer} ${style}`}>
         <img className={styles.icon} src={src} alt="" />
+        {hasPlayStyle && <img className={styles.playStyle()} src={playStyleImg} alt="" />}
       </button>
     )
   }
