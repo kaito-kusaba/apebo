@@ -57,6 +57,7 @@ export default React.memo(function UpdateProfileScreen() {
         maxLength={100}
         placeholder="https://example.com"
       />
+      <p className={styles.platformLabel}>プラットフォーム</p>
       <PlatformsContentList checks={platformChecks} setChecked={setPlatformChecked} />
       <PlaystyleContainer checks={playStyleChecks} setChecked={setPlayStyleChecked} />
       <GenderContainer checks={genderChecks} setChecked={setGenderChecked} />

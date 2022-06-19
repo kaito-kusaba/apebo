@@ -99,6 +99,13 @@ export function useStyles({ disabled }: Props) {
     align-items: center;
   `
 
+  const platformLabel = css`
+    font-size: 14px;
+    font-weight: 500;
+    color: ${Colors.GREY};
+    margin-top: 27px;
+  `
+
   return {
     container,
     top,
@@ -111,5 +118,6 @@ export function useStyles({ disabled }: Props) {
     buttonStyle,
     changeProfileButton,
     onSubmitContainer,
+    platformLabel,
   }
 }

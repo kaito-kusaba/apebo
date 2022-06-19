@@ -8,7 +8,11 @@ type GetStyleProps = {
 
 export function useStyles() {
   const labelContainer = css`
-    margin-top: 37px;
+    display: flex;
+    font-size: 14px;
+    font-weight: 500;
+    color: ${Colors.GREY};
+    margin-top: 38px;
   `
 
   const buttonContainer = css`
