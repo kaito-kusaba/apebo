@@ -4,7 +4,7 @@ import { Colors } from 'constant'
 type Props = {
   x?: number
   y?: number
-  type?: 'report' | 'delete'
+  type?: 'report' | 'delete' | 'myPage' | 'othersPage'
 }
 
 export function useStyles({ x, y, type }: Props) {
@@ -35,6 +35,14 @@ export function useStyles({ x, y, type }: Props) {
       case 'delete':
         return css`
           color: ${Colors.RED};
+        `
+      case 'myPage':
+        return css`
+          color: ${Colors.PORPOISE};
+        `
+      case 'othersPage':
+        return css`
+          color: ${Colors.PORPOISE};
         `
     }
   }

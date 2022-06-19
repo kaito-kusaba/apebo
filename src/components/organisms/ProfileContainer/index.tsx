@@ -25,14 +25,24 @@ export default function ProfileContainer() {
     if (location.pathname === `/account/${user!.uid}`) {
       return (
         <div className={styles.actionButtons}>
-          <ActionButton type="ProfileOther" buttonStyle={styles.otherButton} imgStyle={styles.otherImg} />
+          <ActionButton
+            type="ProfileOther"
+            buttonStyle={styles.otherButton}
+            imgStyle={styles.otherImg}
+            uid={params.uid}
+          />
         </div>
       )
     } else {
       return (
         <div className={styles.actionButtons}>
           <ActionButton type="ProfileMessage" imgStyle={styles.messageImg} buttonStyle={styles.messageButton} />
-          <ActionButton type="ProfileOther" buttonStyle={styles.otherButton} imgStyle={styles.otherImg} />
+          <ActionButton
+            type="ProfileOther"
+            buttonStyle={styles.otherButton}
+            imgStyle={styles.otherImg}
+            uid={params.uid}
+          />
         </div>
       )
     }

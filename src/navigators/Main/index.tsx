@@ -21,7 +21,6 @@ export default function MainNavigator() {
   return (
     <Routes>
       <Route index element={<TopScreen />} />
-      <Route path="/account" element={<AccountScreen />} />
       <Route path="/account/:uid/" element={<AccountScreen />} />
       <Route path="/account/not-found/" element={<AccountNotFoundScreen />} />
       <Route path="/auth/signout" element={<SignOutScreen />} />
