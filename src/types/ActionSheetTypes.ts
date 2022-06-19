@@ -1,6 +1,6 @@
 export type ActionSheetTypes = {
   x?: number
   y?: number
-  type?: 'report' | 'delete'
+  type?: 'report' | 'delete' | 'myPage' | 'othersPage'
   docId?: string
 }

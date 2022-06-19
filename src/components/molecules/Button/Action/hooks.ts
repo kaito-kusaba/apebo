@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { ActionButtonTypes } from 'types/ActionButtonTypes'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'components/redux'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { arrayRemove, arrayUnion, doc, updateDoc } from 'firebase/firestore'
 import { db } from 'libs/firebase'
 import { actions } from 'components/redux/User'
@@ -35,6 +35,7 @@ export function useInjection({ type, uid, docId }: Props) {
   const [isHovered, setIsHovered] = useState<boolean>(false)
   const { user, userData } = useSelector(({ user }: RootState) => user)
   const dispatch = useDispatch()
+  const params = useParams()
 
   useEffect(() => {
     if (uid) {
@@ -63,14 +64,14 @@ export function useInjection({ type, uid, docId }: Props) {
         case 'Other':
           setButtonImageSrc(DotsIconGray)
           break
+        case 'ProfileOther':
+          setButtonImageSrc(DotsIconGray)
+          break
       }
     } else {
       switch (type) {
         case 'ProfileMessage':
           setButtonImageSrc(MessageIconGray)
-          break
-        case 'ProfileOther':
-          setButtonImageSrc(DotsIconGray)
           break
       }
     }
@@ -99,7 +100,7 @@ export function useInjection({ type, uid, docId }: Props) {
           navigate('/talk/:room_id')
           break
         case 'ProfileOther':
-          onClickProfileOther()
+          onClickProfileOther(e)
           break
       }
     },
@@ -184,8 +185,26 @@ export function useInjection({ type, uid, docId }: Props) {
     // }
   }, [])
 
-  const onClickProfileOther = useCallback(() => {
-    alert('３点リーダー')
+  const onClickProfileOther = useCallback(e => {
+    if (userData.uniqueId === params.uid) {
+      dispatch(
+        actionSheetActions.setActionSheetData({
+          x: e.clientX,
+          y: e.clientY,
+          type: 'myPage',
+          docId: docId,
+        }),
+      )
+    } else {
+      dispatch(
+        actionSheetActions.setActionSheetData({
+          x: e.clientX,
+          y: e.clientY,
+          type: 'othersPage',
+          docId: docId,
+        }),
+      )
+    }
   }, [])
 
   return {

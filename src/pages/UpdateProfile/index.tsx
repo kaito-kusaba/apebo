@@ -7,6 +7,7 @@ import { AlertProvider } from 'components/molecules/Alert'
 
 export default React.memo(function ChangeEmailScreen() {
   const styles = useStyles()
+  window.scroll({ top: 0 })
   return (
     <div className={styles.container}>
       <AlertProvider>
