@@ -1,3 +1,4 @@
+import ActionSheet from 'components/molecules/ActionSheet'
 import PostModal from 'components/molecules/Modal/Post'
 import { RootState } from 'components/redux'
 import React from 'react'
@@ -11,10 +12,12 @@ interface Props {
 
 export default React.memo(function SafeView({ children, style }: Props) {
   const styles = useStyles()
-  const isOpen = useSelector(({ modal }: RootState) => modal.isOpen)
+  const { isOpen } = useSelector(({ modal }: RootState) => modal)
+  const { visible } = useSelector(({ actionSheet }: RootState) => actionSheet)
   return (
     <div className={`${styles.safeViewContainer} ${style}`}>
       {isOpen && <PostModal />}
+      {visible && <ActionSheet />}
       {children}
     </div>
   )

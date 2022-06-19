@@ -4,6 +4,7 @@ import { modalReducer as modal } from './Modal'
 import { alertReducer as alert } from './Alert'
 import { timeLineTabReducer as tab } from './TimeLineTab'
 import { accountPostsReducer as accountPosts } from './AccountPost'
+import { actionSheetReducer as actionSheet } from './ActionSheet'
 import { persistReducer, persistStore } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 
@@ -18,6 +19,7 @@ const reducers = combineReducers({
   tab,
   alert,
   accountPosts,
+  actionSheet,
 })
 
 const persistedReducer = persistReducer(persistConfig, reducers)

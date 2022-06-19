@@ -2,10 +2,11 @@ import { useCallback, useEffect, useState } from 'react'
 import { ActionButtonTypes } from 'types/ActionButtonTypes'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'components/redux'
-import { useLocation, useNavigate } from 'react-router-dom'
-import { arrayRemove, arrayUnion, deleteDoc, doc, updateDoc } from 'firebase/firestore'
+import { useNavigate } from 'react-router-dom'
+import { arrayRemove, arrayUnion, doc, updateDoc } from 'firebase/firestore'
 import { db } from 'libs/firebase'
 import { actions } from 'components/redux/User'
+import { actions as actionSheetActions } from 'components/redux/ActionSheet'
 import {
   DotsIconGray,
   FOLLOW_ACTIVE,
@@ -33,7 +34,6 @@ export function useInjection({ type, uid, docId }: Props) {
   const [isSelectedLike, setIsSelectedLike] = useState<boolean>(false)
   const [isHovered, setIsHovered] = useState<boolean>(false)
   const { user, userData } = useSelector(({ user }: RootState) => user)
-  const location = useLocation()
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -91,7 +91,7 @@ export function useInjection({ type, uid, docId }: Props) {
           onClickFollow()
           break
         case 'Other':
-          onClickOther()
+          onClickOther(e)
           break
         case 'ProfileMessage':
           setIsSelectedMessage(!isSelectedMessage)
@@ -152,16 +152,36 @@ export function useInjection({ type, uid, docId }: Props) {
     }
   }
 
-  const onClickOther = useCallback(async () => {
-    if (user!.uid === uid) {
-      await deleteDoc(doc(db, 'posts', docId!))
-      if (location.pathname === `/account/${user!.uid}`) {
-        window.location.reload()
-      }
+  const onClickOther = useCallback(async e => {
+    if (userData.uniqueId === uid) {
+      dispatch(
+        actionSheetActions.setActionSheetData({
+          x: e.clientX,
+          y: e.clientY,
+          type: 'delete',
+          docId: docId,
+        }),
+      )
     } else {
-      //TODO: ポップアップ表示
-      alert('miss')
+      dispatch(
+        actionSheetActions.setActionSheetData({
+          x: e.clientX,
+          y: e.clientY,
+          type: 'report',
+          docId: docId,
+        }),
+      )
     }
+    dispatch(actionSheetActions.setActionSheetOpen(true))
+    // if (user!.uid === uid) {
+    //   await deleteDoc(doc(db, 'posts', docId!))
+    //   if (location.pathname === `/account/${user!.uid}`) {
+    //     window.location.reload()
+    //   }
+    // } else {
+    //   //TODO: ポップアップ表示
+    //   alert('miss')
+    // }
   }, [])
 
   const onClickProfileOther = useCallback(() => {

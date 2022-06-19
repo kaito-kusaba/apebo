@@ -34,6 +34,7 @@ export { default as DiscordIconGray } from 'assets/images/icons/GrayIcons/discor
 export { default as LinkIconGray } from 'assets/images/icons/GrayIcons/link.png'
 export { default as MessageIconGray } from 'assets/images/icons/GrayIcons/message.png'
 export { default as DotsIconGray } from 'assets/images/icons/GrayIcons/dots.png'
+export { default as InfoIconGray } from 'assets/images/icons/GrayIcons/info.png'
 
 //SquantIcons
 export { default as WorldIconSquant } from 'assets/images/icons/SquantIcons/world.png'
@@ -54,6 +55,7 @@ export { default as XboxIconPorpoise } from 'assets/images/icons/PorpoiseIcons/x
 export { default as SignOutIconRed } from 'assets/images/icons/RedIcons/signout.png'
 export { default as InfoIconRed } from 'assets/images/icons/RedIcons/info.png'
 export { default as CancelIconRed } from 'assets/images/icons/RedIcons/cancel.png'
+export { default as TrashIconRed } from 'assets/images/icons/RedIcons/trash.png'
 
 //GreenIcons
 export { default as CheckIconGreen } from 'assets/images/icons/GreenIcons/check.png'
