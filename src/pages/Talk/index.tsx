@@ -1,8 +1,8 @@
 import SafeView from 'components/atoms/SafeView'
 import ScreenLabel from 'components/molecules/Label/ScreenLabel'
 import TalkPageContainer from 'components/organisms/ListItems/TalkPageContainer'
-import ProfileContainer from 'components/organisms/ProfileContainer'
-import TalkContainer from 'components/organisms/TalkContainer'
+import ProfileContainer from 'components/organisms/Containers/ProfileContainer'
+import TalkContainer from 'components/organisms/Containers/TalkContainer'
 import { useStyles } from './style'
 
 export default function TalkScreen() {

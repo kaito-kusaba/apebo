@@ -1,7 +1,7 @@
 import UserIcon from 'components/atoms/UserIcon'
 import UserName from 'components/atoms/UserName'
 import ActionButtonSet from 'components/organisms/Button/ActionButtonSet'
-import PostContentDisplay from 'components/organisms/PostContentDisplay'
+import PostContentDisplay from 'components/organisms/Displays/PostContentDisplay'
 import React from 'react'
 import { useStyles } from './style'
 import Time from 'components/atoms/Time'

@@ -1,7 +1,7 @@
 import { useInjection } from './hooks'
 import React from 'react'
 import CharacterCounter from 'components/molecules/Counter'
-import PlatformsContentList from '../ListItems/PlatformsContentList'
+import PlatformsContentList from '../../ListItems/PlatformsContentList'
 import { useStyles } from './style'
 import { useCheckedMap } from 'components/contexts'
 
