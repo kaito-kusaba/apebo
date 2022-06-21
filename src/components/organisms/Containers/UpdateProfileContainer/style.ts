@@ -11,8 +11,7 @@ export function useStyles({ disabled }: Props) {
     flex-direction: column;
     color: ${Colors.WHITE};
     background-color: ${Colors.CHAOS_BLACK};
-    padding: 0px 24px;
-    height: 100vh;
+    padding: 0px 24px 48px 24px;
   `
 
   const top = css`
@@ -89,6 +88,7 @@ export function useStyles({ disabled }: Props) {
         ${baseChangeProfileButton}
         cursor: default;
         background-color: ${Colors.INDIAN_RED};
+        color: ${Colors.BRAINSTEM_GREY};
       `
     }
   }
