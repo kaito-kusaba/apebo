@@ -36,9 +36,9 @@ export function useStyles() {
 const baseButton = css`
   display: flex;
   align-items: center;
-  color: ${Colors.WHITE};
+  color: ${Colors.PORPOISE};
   font-size: 14px;
-  font-weight: 700;
+  font-weight: 400;
   padding: 6px 16px;
   background-color: ${Colors.EERIE_BLACK};
   border: none;
@@ -55,11 +55,13 @@ export function getStyles({ index, checked }: GetStyleProps) {
           return css`
             ${baseButton}
             background-color: ${Colors.GREEN};
+            color: ${Colors.WHITE};
           `
         case 1:
           return css`
             ${baseButton}
             background-color: ${Colors.RED};
+            color: ${Colors.WHITE};
           `
       }
     } else {

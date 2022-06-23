@@ -50,6 +50,11 @@ export { default as MobileIconPorpoise } from 'assets/images/icons/PorpoiseIcons
 export { default as SwitchIconPorpoise } from 'assets/images/icons/PorpoiseIcons/switch.png'
 export { default as PlayStationIconPorpoise } from 'assets/images/icons/PorpoiseIcons/playstation.png'
 export { default as XboxIconPorpoise } from 'assets/images/icons/PorpoiseIcons/xbox.png'
+export { default as EnjoyIconPorpoise } from 'assets/images/icons/PorpoiseIcons/enjoy.png'
+export { default as HeavyIconPorpoise } from 'assets/images/icons/PorpoiseIcons/heavy.png'
+export { default as MaleIconPorpoise } from 'assets/images/icons/PorpoiseIcons/male.png'
+export { default as FemaleIconPorpoise } from 'assets/images/icons/PorpoiseIcons/female.png'
+export { default as AddIconPorpoise } from 'assets/images/icons/PorpoiseIcons/add.png'
 
 //RedIcons
 export { default as SignOutIconRed } from 'assets/images/icons/RedIcons/signout.png'
@@ -68,6 +73,11 @@ export { default as FemaleIconWhite } from 'assets/images/icons/WhiteIcons/femal
 export { default as MaleIconWhite } from 'assets/images/icons/WhiteIcons/male.png'
 export { default as AddIconWhite } from 'assets/images/icons/WhiteIcons/add.png'
 export { default as MenuIconWhite } from 'assets/images/icons/WhiteIcons/menu.png'
+export { default as PcIconWhite } from 'assets/images/icons/WhiteIcons/pc.png'
+export { default as PlayStationIconWhite } from 'assets/images/icons/WhiteIcons/play_station.png'
+export { default as XboxIconWhite } from 'assets/images/icons/WhiteIcons/xbox.png'
+export { default as SwitchIconWhite } from 'assets/images/icons/WhiteIcons/switch.png'
+export { default as MobileIconWhite } from 'assets/images/icons/WhiteIcons/mobile.png'
 
 //ActionButtonIcons
 export { default as FOLLOW_ACTIVE } from 'assets/images/icons/ActionButtonIcons/follow_active.png'
