@@ -7,7 +7,7 @@ export function useStyles() {
     width: 814px;
     display: flex;
     flex-direction: column;
-    padding: 16px;
+    padding: 16px 24px;
     border: none;
     border-bottom: 1px solid ${Colors.EERIE_BLACK};
     transition: 0.2s;
