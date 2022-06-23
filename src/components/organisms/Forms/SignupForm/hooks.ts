@@ -8,11 +8,13 @@ import {
   signInWithRedirect,
 } from 'firebase/auth'
 import { useNavigate } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { actions } from 'components/redux/User'
+import { actions as modalActions } from 'components/redux/Modal'
 import { validatePassword } from 'utils/validator'
 import { ValidationType } from 'types/ValidationType'
 import { doc, setDoc } from 'firebase/firestore'
+import { RootState } from 'components/redux'
 
 export function useInjection() {
   const [email, setEmail] = useState<string>('')
@@ -21,6 +23,7 @@ export function useInjection() {
   const [errorText, setErrorText] = useState<string>('')
   const navigate = useNavigate()
   const dispatch = useDispatch()
+  const { isOpenSignup } = useSelector(({ modal }: RootState) => modal)
 
   const onChangeEmail = useCallback(e => {
     setEmail(e.target.value)
@@ -79,8 +82,13 @@ export function useInjection() {
     })
   }, [email, password])
 
-  const onClickCancel = useCallback(() => {
-    console.log('close')
+  const onCloseModal = useCallback(() => {
+    dispatch(modalActions.setSignUpModal(false))
+  }, [])
+
+  const onClickSignIn = useCallback(() => {
+    dispatch(modalActions.setSignUpModal(false))
+    dispatch(modalActions.setSignInModal(true))
   }, [])
 
   return {
@@ -89,10 +97,12 @@ export function useInjection() {
     onChangeEmail,
     onChangePassword,
     onPressSubmit,
-    onClickCancel,
     validation,
     onClickGoogleButton,
     enterKeyPress,
     errorText,
+    isOpenSignup,
+    onCloseModal,
+    onClickSignIn,
   }
 }

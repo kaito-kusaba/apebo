@@ -9,14 +9,17 @@ import {
 import { useNavigate } from 'react-router-dom'
 import { ValidationType } from 'types/ValidationType'
 import { validatePassword } from 'utils/validator'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { actions } from 'components/redux/User'
+import { actions as modalActions } from 'components/redux/Modal'
+import { RootState } from 'components/redux'
 
 export function useInjection() {
   const [email, setEmail] = useState<string>('')
   const [password, setPassword] = useState<string>('')
   const [validation, setValidation] = useState<ValidationType>('blank')
   const [errorText, setErrorText] = useState<string>('')
+  const { isOpenSignin } = useSelector(({ modal }: RootState) => modal)
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
@@ -37,10 +40,6 @@ export function useInjection() {
   useEffect(() => {
     setValidation(validatePassword(password))
   }, [password])
-
-  const onClickCancel = useCallback(() => {
-    console.log('close')
-  }, [])
 
   const onClickGoogleButton = useCallback(() => {
     signInWithRedirect(auth, provider)
@@ -82,16 +81,35 @@ export function useInjection() {
     })
   }, [email, password])
 
+  const onCloseModal = useCallback(() => {
+    dispatch(modalActions.setSignInModal(false))
+  }, [])
+
+  const onClickSignUp = useCallback(() => {
+    dispatch(modalActions.setSignInModal(false))
+    dispatch(modalActions.setPasswordResetModal(false))
+    dispatch(modalActions.setSignUpModal(true))
+  }, [])
+
+  const onClickForgotPassword = useCallback(() => {
+    dispatch(modalActions.setSignInModal(false))
+    dispatch(modalActions.setSignUpModal(false))
+    dispatch(modalActions.setPasswordResetModal(true))
+  }, [])
+
   return {
     email,
     password,
     onChangeEmail,
     onChangePassword,
     onPressSubmit,
-    onClickCancel,
     validation,
     onClickGoogleButton,
     errorText,
     enterKeyPress,
+    onCloseModal,
+    isOpenSignin,
+    onClickSignUp,
+    onClickForgotPassword,
   }
 }

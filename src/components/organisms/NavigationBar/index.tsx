@@ -5,6 +5,7 @@ import Divider from 'components/atoms/Divider'
 
 export default React.memo(function NavigationBar() {
   const styles = useStyles()
+
   return (
     <div className={styles.navigationBarStyle()}>
       <NavigationButton type="Home" />

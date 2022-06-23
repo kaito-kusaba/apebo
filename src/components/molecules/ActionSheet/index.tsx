@@ -5,6 +5,7 @@ import Modal from 'react-modal'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'components/redux'
 import { actions } from 'components/redux/ActionSheet'
+import { actions as modalActions } from 'components/redux/Modal'
 import { deleteDoc, doc } from 'firebase/firestore'
 import { db } from 'libs/firebase'
 import { useAlert } from '../Alert'
@@ -14,7 +15,7 @@ export default function ActionSheet() {
   const [image, setImage] = useState<string>(InfoIconGray)
   const [text, setText] = useState<string>('投稿を運営に報告')
   const actionSheet = useSelector(({ actionSheet }: RootState) => actionSheet)
-  const { userData } = useSelector(({ user }: RootState) => user)
+  const { user, userData } = useSelector(({ user }: RootState) => user)
   const dispatch = useDispatch()
   const styles = useStyles({ x: actionSheet.data.x, y: actionSheet.data.y, type: actionSheet.data.type })
   const showAlert = useAlert()
@@ -47,8 +48,14 @@ export default function ActionSheet() {
   const onClick = useCallback(() => {
     switch (actionSheet.data.type) {
       case 'report':
-        showAlert({ text: '投稿が運営に報告されました' })
-        dispatch(actions.setActionSheetOpen(false))
+        if (user?.uid) {
+          showAlert({ text: '投稿が運営に報告されました' })
+          dispatch(actions.setActionSheetOpen(false))
+        } else {
+          dispatch(modalActions.setSignInModal(true))
+          dispatch(actions.setActionSheetOpen(false))
+        }
+
         break
       case 'delete':
         onDelete()

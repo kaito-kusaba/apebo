@@ -29,7 +29,6 @@ export default React.memo(function NavigationButton({ type, style }: Props) {
   const [isSelected, setIsSelected] = useState<NavigationButtonTypes>('Home')
   const [isHovered, setIsHovered] = useState<boolean>(false)
   const [buttonImageSrc, setButtonImageSrc] = useState<string>('')
-  const [path, setPath] = useState<string>('')
   const styles = useStyles()
   const navigate = useNavigate()
   const dispatch = useDispatch()
@@ -82,29 +81,36 @@ export default React.memo(function NavigationButton({ type, style }: Props) {
     }
   }, [isSelected, isHovered])
 
-  useEffect(() => {
+  const onClickNavigationButton = useCallback(() => {
     switch (type) {
       case 'Home':
-        setPath('/')
+        navigate('/')
         break
       case 'Account':
-        setPath(`/account/${user!.uid}`)
+        if (user?.uid) {
+          navigate(`/account/${user!.uid}`)
+        } else {
+          dispatch(actions.setSignInModal(true))
+        }
+        break
+      case 'Post':
+        if (user?.uid) {
+          dispatch(actions.setModal(true))
+        } else {
+          dispatch(actions.setSignInModal(true))
+        }
         break
       case 'Settings':
-        setPath(`/account/settings/profile`)
+        if (user?.uid) {
+          navigate(`/account/settings/profile`)
+        } else {
+          dispatch(actions.setSignInModal(true))
+        }
         break
       default:
-        setPath(`/${type.toLowerCase()}`)
+        break
     }
-  }, [path])
-
-  const onClickNavigationButton = useCallback(() => {
-    if (type === 'Post') {
-      dispatch(actions.setModal(true))
-    } else {
-      navigate(path)
-    }
-  }, [path])
+  }, [])
 
   const onMouseToggle = useCallback(() => {
     setIsHovered(!isHovered)

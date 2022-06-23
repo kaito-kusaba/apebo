@@ -1,18 +1,23 @@
 import { useCallback, useEffect, useState } from 'react'
 import { getAuth, sendPasswordResetEmail } from 'firebase/auth'
-import { useNavigate } from 'react-router-dom'
 import { useAlert } from 'components/molecules/Alert'
+import { useDispatch, useSelector } from 'react-redux'
+import { RootState } from 'components/redux'
+import { actions } from 'components/redux/Modal'
 
 export function useInjection() {
   const [email, setEmail] = useState<string>('')
   const auth = getAuth()
   const [errorText, setErrorText] = useState<string>('')
   const [disabled, setDisabled] = useState<boolean>(true)
-  const navigate = useNavigate()
+  const dispatch = useDispatch()
   const showAlert = useAlert()
+  const { isOpenPasswordReset } = useSelector(({ modal }: RootState) => modal)
 
   const onClickBackButton = useCallback(() => {
-    navigate('/auth/signin')
+    dispatch(actions.setPasswordResetModal(false))
+    dispatch(actions.setSignUpModal(false))
+    dispatch(actions.setSignInModal(true))
   }, [])
 
   useEffect(() => {
@@ -53,6 +58,10 @@ export function useInjection() {
     }
   }, [])
 
+  const onCloseModal = useCallback(() => {
+    dispatch(actions.setPasswordResetModal(false))
+  }, [])
+
   return {
     email,
     onChangeEmail,
@@ -61,5 +70,7 @@ export function useInjection() {
     disabled,
     onClickBackButton,
     onKeyDown,
+    isOpenPasswordReset,
+    onCloseModal,
   }
 }

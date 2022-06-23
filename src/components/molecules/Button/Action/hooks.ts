@@ -6,6 +6,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { arrayRemove, arrayUnion, doc, updateDoc } from 'firebase/firestore'
 import { db } from 'libs/firebase'
 import { actions } from 'components/redux/User'
+import { actions as modalActions } from 'components/redux/Modal'
 import { actions as actionSheetActions } from 'components/redux/ActionSheet'
 import {
   DotsIconGray,
@@ -81,22 +82,29 @@ export function useInjection({ type, uid, docId }: Props) {
     e => {
       switch (type) {
         case 'Message':
-          setIsSelectedMessage(!isSelectedMessage)
           e.stopPropagation()
-          navigate('/talk/:room_id')
+          if (user?.uid) {
+            setIsSelectedMessage(!isSelectedMessage)
+            navigate('/talk/:room_id')
+          } else {
+            dispatch(modalActions.setSignInModal(true))
+          }
           break
         case 'Like':
+          e.stopPropagation()
           setIsSelectedLike(!isSelectedLike)
           break
         case 'Follow':
+          e.stopPropagation()
           onClickFollow()
           break
         case 'Other':
+          e.stopPropagation()
           onClickOther(e)
           break
         case 'ProfileMessage':
-          setIsSelectedMessage(!isSelectedMessage)
           e.stopPropagation()
+          setIsSelectedMessage(!isSelectedMessage)
           navigate('/talk/:room_id')
           break
         case 'ProfileOther':
@@ -174,15 +182,6 @@ export function useInjection({ type, uid, docId }: Props) {
       )
     }
     dispatch(actionSheetActions.setActionSheetOpen(true))
-    // if (user!.uid === uid) {
-    //   await deleteDoc(doc(db, 'posts', docId!))
-    //   if (location.pathname === `/account/${user!.uid}`) {
-    //     window.location.reload()
-    //   }
-    // } else {
-    //   //TODO: ポップアップ表示
-    //   alert('miss')
-    // }
   }, [])
 
   const onClickProfileOther = useCallback(e => {

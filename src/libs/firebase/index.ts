@@ -77,6 +77,8 @@ onAuthStateChanged(auth, user => {
     fetchUserData(user.uid)
     getRedirectWithGoogle()
     dispatch(userActions.setUser(user))
+    dispatch(modalActions.setSignInModal(false))
+    dispatch(modalActions.setSignUpModal(false))
   } else {
     // User is signed out
     dispatch(userActions.clearUser())

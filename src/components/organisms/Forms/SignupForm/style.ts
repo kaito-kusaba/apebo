@@ -10,6 +10,23 @@ export function useStyles() {
     padding: 16px 24px;
     background-color: ${Colors.CHAOS_BLACK};
     border-radius: 12px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    right: auto;
+    bottom: auto;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    outline: none;
+  `
+  const overlay = css`
+    z-index: 10;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.4);
   `
 
   const forgot = css`
@@ -43,6 +60,10 @@ export function useStyles() {
   `
   const signUpLink = css`
     color: ${Colors.YELLOW};
+    border: none;
+    outline: none;
+    background-color: transparent;
+    cursor: pointer;
   `
 
   const validationLabel = css`
@@ -58,6 +79,7 @@ export function useStyles() {
 
   return {
     container,
+    overlay,
     emailInput,
     forgot,
     forgotLink,
