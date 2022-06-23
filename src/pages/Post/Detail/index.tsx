@@ -1,4 +1,5 @@
 import SafeView from 'components/atoms/SafeView'
+import { AlertProvider } from 'components/molecules/Alert'
 import ScreenLabel from 'components/molecules/Label/ScreenLabel'
 import PostDetailContainer from 'components/organisms/Containers/PostDetailContainer'
 import PostDetailPageContainer from 'components/organisms/Containers/PostDetailPageContainer'
@@ -13,14 +14,16 @@ export default React.memo(function PostDetailScreen() {
   window.scroll({ top: 0 })
   return (
     <div className={styles.container}>
-      <SafeView>
-        <ScreenLabel />
-        <PostDetailPageContainer
-          left={<PostDetailProfileContainer />}
-          center={<PostDetailContainer />}
-          right={<RecommendationContent />}
-        />
-      </SafeView>
+      <AlertProvider>
+        <SafeView>
+          <ScreenLabel />
+          <PostDetailPageContainer
+            left={<PostDetailProfileContainer />}
+            center={<PostDetailContainer />}
+            right={<RecommendationContent />}
+          />
+        </SafeView>
+      </AlertProvider>
     </div>
   )
 })

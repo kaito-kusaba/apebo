@@ -72,13 +72,9 @@ export { default as MenuIconWhite } from 'assets/images/icons/WhiteIcons/menu.pn
 //ActionButtonIcons
 export { default as FOLLOW_ACTIVE } from 'assets/images/icons/ActionButtonIcons/follow_active.png'
 export { default as FOLLOW_DEFAULT } from 'assets/images/icons/ActionButtonIcons/follow_default.png'
-export { default as FOLLOW_HOVER } from 'assets/images/icons/ActionButtonIcons/follow_hover.png'
 export { default as LIKE_ACTIVE } from 'assets/images/icons/ActionButtonIcons/like_active.png'
 export { default as LIKE_DEFAULT } from 'assets/images/icons/ActionButtonIcons/like_default.png'
-export { default as LIKE_HOVER } from 'assets/images/icons/ActionButtonIcons/like_hover.png'
-export { default as MESSAGE_ACTIVE } from 'assets/images/icons/ActionButtonIcons/message_active.png'
-export { default as MESSAGE_DEFAULT } from 'assets/images/icons/ActionButtonIcons/message_default.png'
-export { default as MESSAGE_HOVER } from 'assets/images/icons/ActionButtonIcons/message_hover.png'
+export { default as MESSAGE } from 'assets/images/icons/ActionButtonIcons/message.png'
 
 //Navigation
 export { default as HOME_ACTIVE } from 'assets/images/icons/navigation/home_active.png'

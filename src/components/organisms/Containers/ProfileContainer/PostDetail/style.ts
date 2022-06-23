@@ -5,7 +5,6 @@ export function useStyles() {
   const profileContainer = css`
     background-color: ${Colors.BLACK_WASH};
     padding: 16px 24px;
-    margin-bottom: 8px;
     min-width: 340px;
     max-width: 340px;
     display: flex;
