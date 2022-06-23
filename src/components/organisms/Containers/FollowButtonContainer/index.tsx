@@ -12,12 +12,10 @@ export default function FollowButton({ uid }: Props) {
 
   return (
     <div className={styles.container}>
-      {!followed ? (
+      {!followed && (
         <button className={styles.followButton} onClick={onClick}>
           フォローする
         </button>
-      ) : (
-        <></>
       )}
     </div>
   )
