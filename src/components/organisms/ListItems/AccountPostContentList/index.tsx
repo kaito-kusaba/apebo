@@ -4,7 +4,7 @@ import AccountPostContent from '../AccountPostContent'
 import { useStyles } from './style'
 
 export default React.memo(function AccountPostContentList() {
-  const { posts, onClick } = useInjection()
+  const { posts } = useInjection()
   const styles = useStyles()
   return (
     <div className={styles.container}>
@@ -16,7 +16,6 @@ export default React.memo(function AccountPostContentList() {
             uid={post.user_id}
             content={post.content}
             time={post.created_at}
-            onClick={onClick}
           />
         )
       })}

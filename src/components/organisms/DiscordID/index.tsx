@@ -6,20 +6,23 @@ import { doc, getDoc } from 'firebase/firestore'
 import { db } from 'libs/firebase'
 import { useSelector } from 'react-redux'
 import { RootState } from 'components/redux'
-import { useLocation, useParams } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import { useAlert } from 'components/molecules/Alert'
 
-export default React.memo(function DiscordID() {
+type Props = {
+  uid: string
+}
+
+export default React.memo(function DiscordID({ uid }: Props) {
   const styles = useStyles()
   const { userData } = useSelector(({ user }: RootState) => user)
   const [discordId, setDiscordId] = useState<string | undefined>(userData.discordId)
-  const params = useParams()
   const location = useLocation()
   const showAlert = useAlert()
 
   const fetchUserData = async () => {
-    if (!(params.uid === userData.uniqueId)) {
-      const userRef = doc(db, 'users', params.uid!)
+    if (!(uid === userData.uniqueId)) {
+      const userRef = doc(db, 'users', uid)
       const userSnap = await getDoc(userRef)
       setDiscordId(userSnap.data()?.discord_id)
     } else {

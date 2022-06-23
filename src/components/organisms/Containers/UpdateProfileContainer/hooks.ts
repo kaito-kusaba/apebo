@@ -23,13 +23,14 @@ export function useInjection({ platformCheckedIds, playStyleCheckedIds, genderCh
   const [disabled, setDisabled] = useState<boolean>(false)
   const navigate = useNavigate()
 
-  useEffect(() => {
+  const fetchUserData = async () => {
     const userRef = doc(db, 'users', user!.uid)
-    const fetchData = async () => {
-      const userSnap = await getDoc(userRef)
-      setFetchData(userSnap.data())
-    }
-    fetchData()
+    const userSnap = await getDoc(userRef)
+    setFetchData(userSnap.data())
+  }
+
+  useEffect(() => {
+    fetchUserData()
   }, [user!.uid])
 
   useEffect(() => {

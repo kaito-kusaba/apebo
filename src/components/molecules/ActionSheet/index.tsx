@@ -72,6 +72,8 @@ export default function ActionSheet() {
       //自分のアカウントページに居た場合はリロードする
       if (location.pathname === `/account/${userData.uniqueId}`) {
         window.location.reload()
+      } else if (location.pathname === `/post`) {
+        navigate(-1)
       }
     }
   }, [])

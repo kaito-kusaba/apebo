@@ -81,25 +81,29 @@ export function useInjection({ type, uid, docId }: Props) {
     e => {
       switch (type) {
         case 'Message':
-          setIsSelectedMessage(!isSelectedMessage)
           e.stopPropagation()
+          setIsSelectedMessage(!isSelectedMessage)
           navigate('/talk/:room_id')
           break
         case 'Like':
+          e.stopPropagation()
           setIsSelectedLike(!isSelectedLike)
           break
         case 'Follow':
+          e.stopPropagation()
           onClickFollow()
           break
         case 'Other':
+          e.stopPropagation()
           onClickOther(e)
           break
         case 'ProfileMessage':
-          setIsSelectedMessage(!isSelectedMessage)
           e.stopPropagation()
+          setIsSelectedMessage(!isSelectedMessage)
           navigate('/talk/:room_id')
           break
         case 'ProfileOther':
+          e.stopPropagation()
           onClickProfileOther(e)
           break
       }

@@ -4,7 +4,7 @@ import { Colors } from 'constant'
 export function useStyles() {
   const profileContainer = css`
     background-color: ${Colors.BLACK_WASH};
-    padding: 8px 24px;
+    padding: 16px 24px;
     margin-bottom: 8px;
     min-width: 340px;
     max-width: 340px;
@@ -26,7 +26,7 @@ export function useStyles() {
     display: flex;
     position: absolute;
     right: 24px;
-    top: 16px;
+    top: 8px;
   `
 
   const followButton = css`
