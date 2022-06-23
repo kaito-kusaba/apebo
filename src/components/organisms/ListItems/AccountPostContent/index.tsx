@@ -6,16 +6,17 @@ import React from 'react'
 import { useStyles } from './style'
 import Time from 'components/atoms/Time'
 import { Timestamp } from 'firebase/firestore'
+import { useInjection } from './hook'
 
 type Props = {
   uid: string
   content: string
-  onClick: () => void
   time: Timestamp
   docId: string
 }
 
-export default function AccountPostContent({ uid, content, onClick, time, docId }: Props) {
+export default function AccountPostContent({ uid, content, time, docId }: Props) {
+  const { onClick } = useInjection({ docId, uid })
   const styles = useStyles()
 
   return (

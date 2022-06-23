@@ -1,4 +1,3 @@
-import { DotsIconGray } from 'components/atoms/Icon'
 import React from 'react'
 import type { ActionButtonTypes } from 'types/ActionButtonTypes'
 import { useInjection } from './hooks'
@@ -26,11 +25,7 @@ export default React.memo(function ActionButton({ type, imgStyle, uid, docId, bu
       onMouseLeave={onMouseToggle}
       onClick={onClickActionButton}
       className={`${styles.actionButton} ${buttonStyle}`}>
-      {type === 'Other' ? (
-        <img src={DotsIconGray} className={styles.actionButtonDotsImageStyle} alt="" />
-      ) : (
-        <img src={buttonImageSrc} className={`${styles.actionButtonImageStyle}  ${imgStyle}`} alt="" />
-      )}
+      <img src={buttonImageSrc} className={`${styles.actionButtonImageStyle}  ${imgStyle}`} alt="" />
     </button>
   )
 })

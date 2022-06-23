@@ -12,6 +12,7 @@ import SupportPageScreen from 'pages/Support'
 import TermsScreen from 'pages/terms'
 import TalkScreen from 'pages/Talk'
 import AccountNotFoundScreen from 'pages/AccountNotFound'
+import PostDetailScreen from 'pages/Post/Detail'
 
 export default function MainNavigator() {
   const location = useLocation()
@@ -31,7 +32,8 @@ export default function MainNavigator() {
       <Route path="/app/support" element={<SupportPageScreen />} />
       <Route path="/app/terms" element={<TermsScreen />} />
       <Route path="/*" element={<NotFoundScreen />} />
-      <Route path="/talk/:room_id" element={<TalkScreen />} />
+      <Route path="/talk/:roomId" element={<TalkScreen />} />
+      <Route path="/post" element={<PostDetailScreen />} />
     </Routes>
   )
 }

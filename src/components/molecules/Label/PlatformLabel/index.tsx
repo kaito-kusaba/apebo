@@ -6,10 +6,11 @@ import { useStyles } from './style'
 type Props = {
   containerStyle?: string
   textStyle?: string
+  uid: string
 }
 
-export default function PlatformLabel({ containerStyle, textStyle = '' }: Props) {
-  const { platforms } = useInjection()
+export default function PlatformLabel({ containerStyle, textStyle = '', uid }: Props) {
+  const { platforms } = useInjection({ uid })
   const styles = useStyles()
 
   return (

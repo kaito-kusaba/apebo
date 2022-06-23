@@ -2,7 +2,7 @@ import { css } from '@emotion/css'
 import { Colors } from 'constant'
 
 export function useStyles() {
-  const BUTTON_SIZE = 32
+  const BUTTON_SIZE = 18
 
   const actionButton = css`
     display: flex;
@@ -11,17 +11,18 @@ export function useStyles() {
     border-radius: 8px;
     border: none;
     cursor: pointer;
-    margin: 0 0 0 14px;
-    background-color: ${Colors.BLACK_WASH};
+    margin: 0 0 0 16px;
+    width: 32px;
+    height: 32px;
+    background-color: transparent;
     &:hover {
-      background-color: ${Colors.CHAOS_BLACK};
+      background-color: ${Colors.JET};
     }
   `
 
   const actionButtonDotsImageStyle = css`
-    width: 20px;
-    height: 20px;
-    margin: 10px;
+    width: 18px;
+    height: 18px;
     transition: all 0.2s;
   `
 

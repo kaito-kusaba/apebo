@@ -1,16 +1,11 @@
 import { useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-type Props = {
-  docId: string
-  uid: string
-}
-
-export function useInjection({ docId, uid }: Props) {
+export function useInjection() {
   const navigate = useNavigate()
 
   const onClick = useCallback(() => {
-    navigate(`/post?user=${uid}&doc=${docId}`)
+    navigate(-1)
   }, [])
 
   return {
