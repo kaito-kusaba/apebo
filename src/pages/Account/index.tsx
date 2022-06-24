@@ -13,7 +13,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 export default React.memo(function AccoutScreen() {
   const params = useParams()
   const navigate = useNavigate()
-  const f = async () => {
+  const fetchUserData = async () => {
     const userRef = doc(db, 'users', params.uid!)
     const userSnap = await getDoc(userRef)
     if (!userSnap.data()) {
@@ -22,7 +22,7 @@ export default React.memo(function AccoutScreen() {
   }
 
   useEffect(() => {
-    f()
+    fetchUserData()
   }, [])
 
   window.scroll({ top: 0 })
