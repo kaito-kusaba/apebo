@@ -4,10 +4,27 @@ import AccountPageContainer from 'components/organisms/Containers/AccountPageCon
 import AccountPostContentList from 'components/organisms/ListItems/AccountPostContentList'
 import ProfileContainer from 'components/organisms/Containers/ProfileContainer/Account'
 import RecommendationContent from 'components/organisms/ListItems/RecommendationContent'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { AlertProvider } from 'components/molecules/Alert'
+import { doc, getDoc } from 'firebase/firestore'
+import { db } from 'libs/firebase'
+import { useNavigate, useParams } from 'react-router-dom'
 
 export default React.memo(function AccoutScreen() {
+  const params = useParams()
+  const navigate = useNavigate()
+  const fetchUserData = async () => {
+    const userRef = doc(db, 'users', params.uid!)
+    const userSnap = await getDoc(userRef)
+    if (!userSnap.data()) {
+      navigate('/account/not-found')
+    }
+  }
+
+  useEffect(() => {
+    fetchUserData()
+  }, [])
+
   window.scroll({ top: 0 })
   return (
     <AlertProvider>
