@@ -7,12 +7,31 @@ type Props = {
 
 export function useStyles({ disabled }: Props) {
   const container = css`
-    color: ${Colors.PORPOISE};
     width: 388px;
-    background-color: ${Colors.CHAOS_BLACK};
-    border-radius: 12px;
-    padding: 0 24px;
     height: 451px;
+    display: flex;
+    flex-direction: column;
+    padding: 0 24px;
+    background-color: ${Colors.CHAOS_BLACK};
+    color: ${Colors.PORPOISE};
+    border-radius: 12px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    right: auto;
+    bottom: auto;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    outline: none;
+  `
+  const overlay = css`
+    z-index: 10;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.4);
   `
 
   const top = css`
@@ -102,6 +121,7 @@ export function useStyles({ disabled }: Props) {
 
   return {
     container,
+    overlay,
     top,
     label,
     img,

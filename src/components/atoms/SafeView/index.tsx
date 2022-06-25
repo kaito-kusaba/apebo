@@ -1,8 +1,10 @@
 import ActionSheet from 'components/molecules/ActionSheet'
 import PostModal from 'components/molecules/Modal/Post'
-import { RootState } from 'components/redux'
+import ForgotPasswordModal from 'components/organisms/Containers/ForgotPasswordContainer'
+import AttrModal from 'components/organisms/Containers/UsernameContainer'
+import SigninModal from 'components/organisms/Forms/SigninForm'
+import SignupModal from 'components/organisms/Forms/SignupForm'
 import React from 'react'
-import { useSelector } from 'react-redux'
 import { useStyles } from './style'
 
 interface Props {
@@ -12,12 +14,14 @@ interface Props {
 
 export default React.memo(function SafeView({ children, style }: Props) {
   const styles = useStyles()
-  const { isOpen } = useSelector(({ modal }: RootState) => modal)
-  const { visible } = useSelector(({ actionSheet }: RootState) => actionSheet)
   return (
     <div className={`${styles.safeViewContainer} ${style}`}>
-      {isOpen && <PostModal />}
-      {visible && <ActionSheet />}
+      <PostModal />
+      <SigninModal />
+      <SignupModal />
+      <ForgotPasswordModal />
+      <AttrModal />
+      <ActionSheet />
       {children}
     </div>
   )

@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import { arrayRemove, arrayUnion, doc, updateDoc } from 'firebase/firestore'
 import { db } from 'libs/firebase'
 import { actions } from 'components/redux/User'
+import { actions as modalActions } from 'components/redux/Modal'
 import { actions as actionSheetActions } from 'components/redux/ActionSheet'
 import {
   DotsIconGray,
@@ -65,8 +66,12 @@ export function useInjection({ type, uid, docId }: Props) {
       switch (type) {
         case 'Message':
           e.stopPropagation()
-          setIsSelectedMessage(!isSelectedMessage)
-          navigate('/talk/:room_id')
+          if (user?.uid) {
+            setIsSelectedMessage(!isSelectedMessage)
+            navigate('/talk/:room_id')
+          } else {
+            dispatch(modalActions.setSignInModal(true))
+          }
           break
         case 'Like':
           e.stopPropagation()
@@ -161,15 +166,6 @@ export function useInjection({ type, uid, docId }: Props) {
       )
     }
     dispatch(actionSheetActions.setActionSheetOpen(true))
-    // if (user!.uid === uid) {
-    //   await deleteDoc(doc(db, 'posts', docId!))
-    //   if (location.pathname === `/account/${user!.uid}`) {
-    //     window.location.reload()
-    //   }
-    // } else {
-    //   //TODO: ポップアップ表示
-    //   alert('miss')
-    // }
   }, [])
 
   const onClickProfileOther = useCallback(e => {

@@ -17,6 +17,7 @@ export default React.memo(function RootNavigator() {
   } else {
     return (
       <Router>
+        <NavigationBar />
         <AuthNavigator />
       </Router>
     )
