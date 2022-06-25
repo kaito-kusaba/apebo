@@ -39,7 +39,7 @@ export default function ActionSheet() {
         setImage(InfoIconGray)
         setText('ユーザーを報告')
     }
-  }, [])
+  }, [actionSheet.data.type])
 
   const onClickOverlay = useCallback(() => {
     dispatch(actions.setActionSheetOpen(false))
@@ -70,7 +70,7 @@ export default function ActionSheet() {
         showAlert({ text: 'ユーザーが運営に報告されました' })
         break
     }
-  }, [])
+  }, [actionSheet.data.type, user?.uid])
 
   const onDelete = useCallback(async () => {
     if (actionSheet.data.docId) {
@@ -82,7 +82,7 @@ export default function ActionSheet() {
         navigate(-1)
       }
     }
-  }, [])
+  }, [actionSheet.data.docId])
 
   return (
     <Modal
