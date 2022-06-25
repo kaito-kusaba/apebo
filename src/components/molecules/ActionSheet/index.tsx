@@ -59,7 +59,6 @@ export default function ActionSheet() {
       case 'delete':
         onDelete()
         dispatch(actions.setActionSheetOpen(false))
-        showAlert({ text: '投稿を削除しました' })
         break
       case 'myPage':
         dispatch(actions.setActionSheetOpen(false))
@@ -74,7 +73,9 @@ export default function ActionSheet() {
 
   const onDelete = useCallback(async () => {
     if (actionSheet.data.docId) {
-      await deleteDoc(doc(db, 'posts', actionSheet.data.docId))
+      await deleteDoc(doc(db, 'posts', actionSheet.data.docId)).then(() => {
+        showAlert({ text: '投稿を削除しました' })
+      })
       //自分のアカウントページに居た場合はリロードする
       if (location.pathname === `/account/${userData.uniqueId}`) {
         window.location.reload()
@@ -82,7 +83,7 @@ export default function ActionSheet() {
         navigate(-1)
       }
     }
-  }, [actionSheet.data.docId])
+  }, [actionSheet.data, user?.uid])
 
   return (
     <Modal
