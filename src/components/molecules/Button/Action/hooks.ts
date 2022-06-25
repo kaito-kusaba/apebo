@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { ActionButtonTypes } from 'types/ActionButtonTypes'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'components/redux'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { arrayRemove, arrayUnion, doc, updateDoc } from 'firebase/firestore'
 import { db } from 'libs/firebase'
 import { actions } from 'components/redux/User'
@@ -12,14 +12,10 @@ import {
   DotsIconGray,
   FOLLOW_ACTIVE,
   FOLLOW_DEFAULT,
-  FOLLOW_HOVER,
   LIKE_ACTIVE,
   LIKE_DEFAULT,
-  LIKE_HOVER,
   MessageIconGray,
-  MESSAGE_ACTIVE,
-  MESSAGE_DEFAULT,
-  MESSAGE_HOVER,
+  MESSAGE,
 } from 'components/atoms/Icon'
 
 type Props = {
@@ -36,31 +32,18 @@ export function useInjection({ type, uid, docId }: Props) {
   const [isHovered, setIsHovered] = useState<boolean>(false)
   const { user, userData } = useSelector(({ user }: RootState) => user)
   const dispatch = useDispatch()
-  const params = useParams()
 
   useEffect(() => {
     if (uid) {
       switch (type) {
         case 'Message':
-          isSelectedMessage
-            ? setButtonImageSrc(MESSAGE_ACTIVE)
-            : isHovered
-            ? setButtonImageSrc(MESSAGE_HOVER)
-            : setButtonImageSrc(MESSAGE_DEFAULT)
+          setButtonImageSrc(MESSAGE)
           break
         case 'Like':
-          isSelectedLike
-            ? setButtonImageSrc(LIKE_ACTIVE)
-            : isHovered
-            ? setButtonImageSrc(LIKE_HOVER)
-            : setButtonImageSrc(LIKE_DEFAULT)
+          isSelectedLike ? setButtonImageSrc(LIKE_ACTIVE) : setButtonImageSrc(LIKE_DEFAULT)
           break
         case 'Follow':
-          userData.follows?.includes(uid)
-            ? setButtonImageSrc(FOLLOW_ACTIVE)
-            : isHovered
-            ? setButtonImageSrc(FOLLOW_HOVER)
-            : setButtonImageSrc(FOLLOW_DEFAULT)
+          userData.follows?.includes(uid) ? setButtonImageSrc(FOLLOW_ACTIVE) : setButtonImageSrc(FOLLOW_DEFAULT)
           break
         case 'Other':
           setButtonImageSrc(DotsIconGray)
@@ -108,6 +91,7 @@ export function useInjection({ type, uid, docId }: Props) {
           navigate('/talk/:room_id')
           break
         case 'ProfileOther':
+          e.stopPropagation()
           onClickProfileOther(e)
           break
       }
@@ -185,7 +169,7 @@ export function useInjection({ type, uid, docId }: Props) {
   }, [])
 
   const onClickProfileOther = useCallback(e => {
-    if (userData.uniqueId === params.uid) {
+    if (userData.uniqueId === uid) {
       dispatch(
         actionSheetActions.setActionSheetData({
           x: e.clientX,

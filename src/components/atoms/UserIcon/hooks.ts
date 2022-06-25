@@ -20,7 +20,7 @@ export function useInjection({ size, uid, hasPlayStyle }: Props) {
   const navigate = useNavigate()
   const [playStyleImg, setPlayStyleImg] = useState<string>('')
   const [disable, setDisable] = useState<boolean>(false)
-  const [isAccountPage, setIsAccountPage] = useState<boolean>(false)
+  const [isNotPostScreen, setIsNotPostScreen] = useState<boolean>(false)
   const location = useLocation()
 
   useEffect(() => {
@@ -102,7 +102,7 @@ export function useInjection({ size, uid, hasPlayStyle }: Props) {
     } else {
       fetchUserData()
     }
-    setIsAccountPage(location.pathname.match(/account/) ? true : false)
+    setIsNotPostScreen(location.pathname.match(/account/) || location.pathname.match(/post/) ? true : false)
   }, [])
 
   const onClick = useCallback(
@@ -119,6 +119,6 @@ export function useInjection({ size, uid, hasPlayStyle }: Props) {
     onClick,
     playStyleImg,
     disable,
-    isAccountPage,
+    isNotPostScreen,
   }
 }

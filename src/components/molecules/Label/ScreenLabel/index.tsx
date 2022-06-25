@@ -8,9 +8,9 @@ type Props = {
 
 export default React.memo(function ScreenLabel({ label }: Props) {
   const styles = useStyles()
-  const { path, params, username, posts } = useInjection()
+  const { username, posts } = useInjection()
 
-  if (path === `/account/${params.uid}`) {
+  if (username) {
     return (
       <div className={styles.screenLabelContainer}>
         <div>

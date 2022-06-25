@@ -1,5 +1,5 @@
 import { db } from 'libs/firebase'
-import { useCallback, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { collection, DocumentData, onSnapshot, orderBy, query } from 'firebase/firestore'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'components/redux'
@@ -31,10 +31,7 @@ export function useInjection() {
     })
   }, [params.uid, user?.uid])
 
-  const onClick = useCallback(() => {}, [])
-
   return {
     posts,
-    onClick,
   }
 }

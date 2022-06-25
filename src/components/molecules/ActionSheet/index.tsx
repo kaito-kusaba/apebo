@@ -55,7 +55,6 @@ export default function ActionSheet() {
           dispatch(modalActions.setSignInModal(true))
           dispatch(actions.setActionSheetOpen(false))
         }
-
         break
       case 'delete':
         onDelete()
@@ -63,12 +62,12 @@ export default function ActionSheet() {
         showAlert({ text: '投稿を削除しました' })
         break
       case 'myPage':
-        navigate('/account/settings/profile')
         dispatch(actions.setActionSheetOpen(false))
+        navigate('/account/settings/profile')
         break
       case 'othersPage':
-        showAlert({ text: 'ユーザーが運営に報告されました' })
         dispatch(actions.setActionSheetOpen(false))
+        showAlert({ text: 'ユーザーが運営に報告されました' })
         break
     }
   }, [])
@@ -79,6 +78,8 @@ export default function ActionSheet() {
       //自分のアカウントページに居た場合はリロードする
       if (location.pathname === `/account/${userData.uniqueId}`) {
         window.location.reload()
+      } else if (location.pathname === `/post`) {
+        navigate(-1)
       }
     }
   }, [])

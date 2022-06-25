@@ -3,10 +3,10 @@ import { css } from '@emotion/css'
 type Props = {
   size: number
   disable: boolean
-  isAccountPage: boolean
+  isNotPostScreen: boolean
 }
 
-export function useStyles({ size, disable, isAccountPage }: Props) {
+export function useStyles({ size, disable, isNotPostScreen }: Props) {
   const iconContainer = css`
     position: relative;
     cursor: pointer;
@@ -27,7 +27,7 @@ export function useStyles({ size, disable, isAccountPage }: Props) {
   `
 
   const playStyle = () => {
-    if (isAccountPage) {
+    if (isNotPostScreen) {
       if (disable) {
         return css`
           display: none;

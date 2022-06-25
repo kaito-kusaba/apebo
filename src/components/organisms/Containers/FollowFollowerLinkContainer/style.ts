@@ -10,7 +10,7 @@ export function useStyles() {
     color: ${Colors.WHITE};
     font-weight: bold;
     font-size: 14px;
-    margin-right: 6px;
+    margin-right: 8px;
     transition: all 0.2s;
     &:hover {
       opacity: 0.6;

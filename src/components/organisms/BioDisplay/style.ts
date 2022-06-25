@@ -6,6 +6,7 @@ export function useStyles() {
     color: ${Colors.PORPOISE};
     margin-bottom: 16px;
     font-size: 14px;
+    white-space: pre-wrap;
   `
 
   return {

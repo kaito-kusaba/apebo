@@ -24,10 +24,10 @@ export default React.memo(function UserName({ style, uid, textStyle, hasGender }
   const [genders, setGenders] = useState<number[]>([])
 
   const fetchDatas = async () => {
-    const unAvailablePath = location.pathname.match(/account/)
+    const isUnAvailable = location.pathname.match(/account/) || location.pathname.match(/post/)
     if (uid === userData.uniqueId) {
       setUsername(userData.username!)
-      if (!unAvailablePath) {
+      if (!isUnAvailable) {
         setPlatforms(userData.platforms || [])
       }
       if (hasGender) {
@@ -38,7 +38,7 @@ export default React.memo(function UserName({ style, uid, textStyle, hasGender }
       const snap = await getDoc(ref)
       const data = snap.data()
       setUsername(data?.username)
-      if (!unAvailablePath) {
+      if (!isUnAvailable) {
         setPlatforms(data?.platforms || [])
       }
       if (hasGender) {

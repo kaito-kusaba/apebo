@@ -3,28 +3,28 @@ import { doc, getDoc } from 'firebase/firestore'
 import { db } from 'libs/firebase'
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-import { Link, useLocation, useParams } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { useStyles } from './style'
 
 type Props = {
   textStyle?: string
   containerStyle?: string
+  uid: string
 }
 
-export default React.memo(function FollowFollower({ textStyle, containerStyle }: Props) {
+export default React.memo(function FollowFollower({ textStyle, containerStyle, uid }: Props) {
   const styles = useStyles()
   const { user, userData } = useSelector(({ user }: RootState) => user)
-  const params = useParams()
   const [followers, setFollowers] = useState<number>(0)
   const [follows, setFollows] = useState<number>(0)
   const location = useLocation()
 
   const fetchUserData = async () => {
-    if (params.uid === user!.uid) {
+    if (uid === user!.uid) {
       setFollowers(userData.followers ? userData.followers.length : 0)
       setFollows(userData.follows ? userData.follows.length : 0)
     } else {
-      const userRef = doc(db, 'users', params.uid!)
+      const userRef = doc(db, 'users', uid)
       const userSnap = await getDoc(userRef)
       const data = userSnap.data()
       setFollowers(data?.followers ? data?.followers.length : 0)

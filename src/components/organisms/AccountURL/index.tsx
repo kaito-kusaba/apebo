@@ -5,20 +5,23 @@ import { doc, getDoc } from 'firebase/firestore'
 import { db } from 'libs/firebase'
 import { useSelector } from 'react-redux'
 import { RootState } from 'components/redux'
-import { useLocation, useParams } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 
-export default React.memo(function AccountURL() {
+type Props = {
+  uid: string
+}
+
+export default React.memo(function AccountURL({ uid }: Props) {
   const styles = useStyles()
   const { userData } = useSelector(({ user }: RootState) => user)
   const [website, setWebsite] = useState<string | undefined>(userData.website)
-  const params = useParams()
   const location = useLocation()
 
   const fetchUserData = async () => {
-    if (params.uid === userData.uniqueId) {
+    if (uid === userData.uniqueId) {
       setWebsite(userData.website)
     } else {
-      const userRef = doc(db, 'users', params.uid!)
+      const userRef = doc(db, 'users', uid)
       const userSnap = await getDoc(userRef)
       setWebsite(userSnap.data()?.website)
     }
