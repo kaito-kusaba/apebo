@@ -53,6 +53,8 @@ export function useInjection() {
           content: text,
           created_at: new Date(),
         }).then(() => {
+          // INFO: 投稿時は内容初期化する
+          setText('')
           if (location.pathname !== '/') {
             navigate('/')
           }
