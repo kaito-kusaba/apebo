@@ -75,11 +75,19 @@ export function useInjection({ type, uid, docId }: Props) {
           break
         case 'Like':
           e.stopPropagation()
-          setIsSelectedLike(!isSelectedLike)
+          if (user?.uid) {
+            setIsSelectedLike(!isSelectedLike)
+          } else {
+            dispatch(modalActions.setSignInModal(true))
+          }
           break
         case 'Follow':
           e.stopPropagation()
-          onClickFollow()
+          if (user?.uid) {
+            onClickFollow()
+          } else {
+            dispatch(modalActions.setSignInModal(true))
+          }
           break
         case 'Other':
           e.stopPropagation()
@@ -87,12 +95,20 @@ export function useInjection({ type, uid, docId }: Props) {
           break
         case 'ProfileMessage':
           e.stopPropagation()
-          setIsSelectedMessage(!isSelectedMessage)
-          navigate('/talk/:room_id')
+          if (user?.uid) {
+            setIsSelectedMessage(!isSelectedMessage)
+            navigate('/talk/:room_id')
+          } else {
+            dispatch(modalActions.setSignInModal(true))
+          }
           break
         case 'ProfileOther':
           e.stopPropagation()
-          onClickProfileOther(e)
+          if (user?.uid) {
+            onClickProfileOther(e)
+          } else {
+            dispatch(modalActions.setSignInModal(true))
+          }
           break
       }
     },
