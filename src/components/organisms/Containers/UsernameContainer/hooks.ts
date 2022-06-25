@@ -1,6 +1,7 @@
 import { useCallback, useState, useEffect } from 'react'
 import { auth, db } from 'libs/firebase'
 import { actions } from 'components/redux/User'
+import { actions as modalActions } from 'components/redux/Modal'
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { RootState } from 'components/redux'
@@ -15,15 +16,16 @@ export function useInjection({ checkedIds }: Props) {
   const [name, setName] = useState<string>('')
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const { user, userData } = useSelector(({ user }: RootState) => user)
+  const { user } = useSelector(({ user }: RootState) => user)
+  const { isOpenAttr } = useSelector(({ modal }: RootState) => modal)
   const [disabled, setDisabled] = useState<boolean>(true)
   const showAlert = useAlert()
 
   const maxLen = 20
 
   useEffect(() => {
-    if (!user?.emailVerified) {
-      showAlert({ text: '確認用メールを送信しました', animationTime: 5 })
+    if (isOpenAttr && user?.uid && !user.emailVerified) {
+      showAlert({ text: 'アカウント認証メールを送信しました。', animationTime: 5 })
     }
   }, [])
 
@@ -49,7 +51,8 @@ export function useInjection({ checkedIds }: Props) {
               platforms: checkedIds,
             }),
           )
-          navigate('/')
+          dispatch(modalActions.setAttrModal(false))
+          showAlert({ text: 'ようこそ！', animationTime: 8 })
         })
         .catch(e => {
           console.log(e.code)
@@ -58,11 +61,9 @@ export function useInjection({ checkedIds }: Props) {
     }
   }, [name, checkedIds])
 
-  useEffect(() => {
-    if (user?.displayName && userData.platforms) {
-      navigate('/')
-    }
-  }, [user])
+  const onCloseModal = useCallback(() => {
+    dispatch(modalActions.setAttrModal(false))
+  }, [])
 
   return {
     name,
@@ -72,5 +73,7 @@ export function useInjection({ checkedIds }: Props) {
     navigate,
     maxLen,
     disabled,
+    isOpenAttr,
+    onCloseModal,
   }
 }

@@ -7,7 +7,6 @@ import {
   setPersistence,
   signInWithRedirect,
 } from 'firebase/auth'
-import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { actions } from 'components/redux/User'
 import { actions as modalActions } from 'components/redux/Modal'
@@ -21,7 +20,6 @@ export function useInjection() {
   const [validation, setValidation] = useState<ValidationType>('blank')
   const [password, setPassword] = useState<string>('')
   const [errorText, setErrorText] = useState<string>('')
-  const navigate = useNavigate()
   const dispatch = useDispatch()
   const { isOpenSignup } = useSelector(({ modal }: RootState) => modal)
 
@@ -61,9 +59,10 @@ export function useInjection() {
           setDoc(doc(db, 'users', user.uid), data)
           sendEmailVerification(user)
           if (user.displayName) {
-            navigate('/')
+            dispatch(modalActions.setSignUpModal(false))
           } else {
-            navigate('/attr/username')
+            dispatch(modalActions.setSignUpModal(false))
+            dispatch(modalActions.setAttrModal(true))
           }
         })
         .catch(error => {

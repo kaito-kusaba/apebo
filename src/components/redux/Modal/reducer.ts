@@ -5,6 +5,7 @@ const initialState = {
   isOpenSignin: false,
   isOpenSignup: false,
   isOpenPasswordReset: false,
+  isOpenAttr: false,
 }
 
 export type ModalStore = {
@@ -12,6 +13,7 @@ export type ModalStore = {
   isOpenSignin: boolean
   isOpenSignup: boolean
   isOpenPasswordReset: boolean
+  isOpenAttr: boolean
 }
 
 /* reducer */
@@ -39,6 +41,12 @@ export const modalReducer = (state = initialState, action: any) => {
       return {
         ...state,
         isOpenPasswordReset: action.payload,
+      }
+    }
+    case ActionTypes.SET_ATTR_MODAL: {
+      return {
+        ...state,
+        isOpenAttr: action.payload,
       }
     }
     default: {

@@ -110,7 +110,7 @@ export default React.memo(function NavigationButton({ type, style }: Props) {
       default:
         break
     }
-  }, [])
+  }, [user])
 
   const onMouseToggle = useCallback(() => {
     setIsHovered(!isHovered)

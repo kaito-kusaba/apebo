@@ -3,6 +3,7 @@ export const ActionTypes = {
   SET_SIGN_IN_MODAL: 'MODAL/SET_SIGN_IN_MODAL',
   SET_SIGN_UP_MODAL: 'MODAL/SET_SIGN_UP_MODAL',
   SET_PASSWORD_RESET_MODAL: 'MODAL/SET_PASSWORD_RESET_MODAL',
+  SET_ATTR_MODAL: 'MODAL/SET_ATTR_MODAL',
 } as const
 
 export const setModal = (isOpen: boolean) => {
@@ -19,4 +20,8 @@ export const setSignUpModal = (isOpen: boolean) => {
 
 export const setPasswordResetModal = (isOpen: boolean) => {
   return { type: ActionTypes.SET_PASSWORD_RESET_MODAL, payload: isOpen }
+}
+
+export const setAttrModal = (isOpen: boolean) => {
+  return { type: ActionTypes.SET_ATTR_MODAL, payload: isOpen }
 }
