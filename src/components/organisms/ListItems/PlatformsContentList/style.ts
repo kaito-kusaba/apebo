@@ -28,26 +28,31 @@ export function getStyles({ index, checked }: GetStyleProps) {
           return css`
             ${baseButton}
             background-color: ${Colors.SKY_BLUE};
+            color: ${Colors.WHITE};
           `
         case 1:
           return css`
             ${baseButton}
             background-color: ${Colors.APNEA_DIVE};
+            color: ${Colors.WHITE};
           `
         case 2:
           return css`
             ${baseButton}
             background-color: ${Colors.KIWI_GREEN};
+            color: ${Colors.WHITE};
           `
         case 3:
           return css`
             ${baseButton}
             background-color: ${Colors.RED};
+            color: ${Colors.WHITE};
           `
         case 4:
           return css`
             ${baseButton}
             background-color: ${Colors.GREEN};
+            color: ${Colors.WHITE};
           `
       }
     } else {

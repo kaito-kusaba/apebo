@@ -53,16 +53,19 @@ export function getStyles({ index, checked }: GetStyleProps) {
           return css`
             ${baseButton}
             background-color: ${Colors.SKY_BLUE};
+            color: ${Colors.WHITE};
           `
         case 1:
           return css`
             ${baseButton}
             background-color: ${Colors.PINK};
+            color: ${Colors.WHITE};
           `
         case 2:
           return css`
             ${baseButton}
             background-color: ${Colors.ORANGE};
+            color: ${Colors.WHITE};
           `
       }
     } else {
