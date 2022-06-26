@@ -49,6 +49,7 @@ export function useStyles({ checked }: Props) {
     padding: 8px 16px;
     cursor: pointer;
     margin-right: 16px;
+    transition: all 0.2s;
   `
 
   const button = () => {
@@ -62,6 +63,9 @@ export function useStyles({ checked }: Props) {
       return css`
         ${baseButton}
         background-color: ${Colors.EERIE_BLACK};
+        &:hover {
+          background-color: ${Colors.JET};
+        }
       `
     }
   }
