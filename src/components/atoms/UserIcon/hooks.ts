@@ -1,19 +1,21 @@
 import type { UserIconSize } from 'types/UserIconSize'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'components/redux'
 import { useCallback, useEffect, useState } from 'react'
 import { doc, getDoc } from 'firebase/firestore'
 import { db } from 'libs/firebase'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { CUSTOMICON, ENJOYICON, HEAVYICON, UNSET40, UNSET46, UNSET72 } from '../Icon'
+import { actions } from 'components/redux/Modal'
 
 type Props = {
   size: UserIconSize
   uid: string
   hasPlayStyle?: boolean
+  spread?: boolean
 }
 
-export function useInjection({ size, uid, hasPlayStyle }: Props) {
+export function useInjection({ size, uid, hasPlayStyle, spread }: Props) {
   const [defaultSrc, setDefaultSrc] = useState<string>('')
   const [src, setSrc] = useState<string>('')
   const { user, userData } = useSelector(({ user }: RootState) => user)
@@ -22,6 +24,7 @@ export function useInjection({ size, uid, hasPlayStyle }: Props) {
   const [disable, setDisable] = useState<boolean>(false)
   const [isNotPostScreen, setIsNotPostScreen] = useState<boolean>(false)
   const location = useLocation()
+  const dispatch = useDispatch()
 
   useEffect(() => {
     switch (size) {
@@ -108,9 +111,13 @@ export function useInjection({ size, uid, hasPlayStyle }: Props) {
   const onClick = useCallback(
     e => {
       e.stopPropagation()
-      navigate(`/account/${uid}`)
+      if (spread) {
+        dispatch(actions.setSpreadIconModal(true, src))
+      } else {
+        navigate(`/account/${uid}`)
+      }
     },
-    [uid],
+    [uid, src],
   )
 
   return {

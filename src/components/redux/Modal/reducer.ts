@@ -6,6 +6,8 @@ const initialState = {
   isOpenSignup: false,
   isOpenPasswordReset: false,
   isOpenAttr: false,
+  isOpenSpreadIcon: false,
+  spreadIconSrc: '',
 }
 
 export type ModalStore = {
@@ -14,6 +16,8 @@ export type ModalStore = {
   isOpenSignup: boolean
   isOpenPasswordReset: boolean
   isOpenAttr: boolean
+  isOpenSpreadIcon: boolean
+  spreadIconSrc: string
 }
 
 /* reducer */
@@ -47,6 +51,13 @@ export const modalReducer = (state = initialState, action: any) => {
       return {
         ...state,
         isOpenAttr: action.payload,
+      }
+    }
+    case ActionTypes.SET_SPREAD_ICON_MODAL: {
+      return {
+        ...state,
+        isOpenSpreadIcon: action.payload.isOpen,
+        spreadIconSrc: action.payload.icon,
       }
     }
     default: {
