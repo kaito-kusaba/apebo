@@ -24,7 +24,7 @@ export default function PostDetailProfileContainer() {
       <AlertProvider>
         <div className={styles.profileContainer}>
           <ActionButtons uid={uid} />
-          <UserIcon uid={uid} size={72} style={styles.icon} disabled hasPlayStyle />
+          <UserIcon uid={uid} size={72} style={styles.icon} hasPlayStyle spread />
           <UserName uid={uid} hasGender />
           <PlatformLabel containerStyle={styles.PlatformContainer} uid={uid} />
           <BioDisplay uid={uid} />

@@ -1,5 +1,6 @@
 import ActionSheet from 'components/molecules/ActionSheet'
 import PostModal from 'components/molecules/Modal/Post'
+import SpreadIcon from 'components/molecules/Modal/SpreadIcon'
 import ForgotPasswordModal from 'components/organisms/Containers/ForgotPasswordContainer'
 import AttrModal from 'components/organisms/Containers/UsernameContainer'
 import SigninModal from 'components/organisms/Forms/SigninForm'
@@ -21,6 +22,7 @@ export default React.memo(function SafeView({ children, style }: Props) {
       <SignupModal />
       <ForgotPasswordModal />
       <AttrModal />
+      <SpreadIcon />
       <ActionSheet />
       {children}
     </div>
