@@ -85,6 +85,7 @@ export default React.memo(function NavigationButton({ type, style }: Props) {
     switch (type) {
       case 'Home':
         navigate('/')
+        window.scroll({ top: 0 })
         break
       case 'Account':
         if (user?.uid) {
