@@ -20,7 +20,7 @@ export default function ActionButtons({ uid }: Props) {
   } else {
     return (
       <div className={styles.container}>
-        <ActionButton type="ProfileMessage" imgStyle={styles.img} buttonStyle={styles.messageButton} />
+        <ActionButton type="ProfileMessage" imgStyle={styles.img} buttonStyle={styles.messageButton} uid={uid} />
         <ActionButton type="ProfileOther" buttonStyle={styles.otherButton} imgStyle={styles.img} uid={uid} />
       </div>
     )

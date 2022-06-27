@@ -7,16 +7,18 @@ type Props = {
 }
 
 export default function FollowButton({ uid }: Props) {
-  const { onClick, followed } = useInjection({ uid })
-  const styles = useStyles()
+  const { onClick, followed, label, onMouseToggle } = useInjection({ uid })
+  const styles = useStyles({ followed })
 
   return (
     <div className={styles.container}>
-      {!followed && (
-        <button className={styles.followButton} onClick={onClick}>
-          フォローする
-        </button>
-      )}
+      <button
+        className={styles.followButton()}
+        onClick={onClick}
+        onMouseEnter={onMouseToggle}
+        onMouseLeave={onMouseToggle}>
+        {label}
+      </button>
     </div>
   )
 }
