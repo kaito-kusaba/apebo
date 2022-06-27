@@ -21,7 +21,6 @@ export default React.memo(function CheckButton({ label, src, onClick, checked }:
   } else {
     return (
       <button className={styles.button()} onClick={onClick}>
-        {/* <span className={styles.text()}>{label}</span> */}
         <img src={src} className={styles.img()} alt="" />
       </button>
     )
