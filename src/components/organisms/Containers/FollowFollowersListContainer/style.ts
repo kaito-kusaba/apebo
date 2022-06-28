@@ -22,9 +22,10 @@ export function useStyles() {
   const baseButton = css`
     font-size: 14px;
     font-weight: 700;
-    color: ${Colors.WHITE};
+    color: ${Colors.GREY};
+    background-color: ${Colors.EERIE_BLACK};
     width: calc(100% / 2);
-    padding: 16px 0;
+    padding: 18px 0;
     text-align: center;
     cursor: pointer;
   `
@@ -33,7 +34,8 @@ export function useStyles() {
     if (location.pathname.match(/follows/)) {
       return css`
         ${baseButton}
-        border-bottom: 1px solid ${Colors.YELLOW};
+        color: ${Colors.WHITE};
+        background-color: ${Colors.BLACK_WASH};
       `
     } else {
       return css`
@@ -46,7 +48,8 @@ export function useStyles() {
     if (location.pathname.match(/followers/)) {
       return css`
         ${baseButton}
-        border-bottom: 1px solid ${Colors.YELLOW};
+        color: ${Colors.WHITE};
+        background-color: ${Colors.BLACK_WASH};
       `
     } else {
       return css`
@@ -55,10 +58,34 @@ export function useStyles() {
     }
   }
 
+  const followerLabel = () => {
+    if (location.pathname.match(/followers/)) {
+      return css`
+        padding-bottom: 15px;
+        border-bottom: 3px solid ${Colors.YELLOW};
+      `
+    } else {
+      return css``
+    }
+  }
+
+  const followLabel = () => {
+    if (location.pathname.match(/follows/)) {
+      return css`
+        padding-bottom: 15px;
+        border-bottom: 3px solid ${Colors.YELLOW};
+      `
+    } else {
+      return css``
+    }
+  }
+
   return {
     container,
     selectButton,
     followButton,
     followerButton,
+    followerLabel,
+    followLabel,
   }
 }

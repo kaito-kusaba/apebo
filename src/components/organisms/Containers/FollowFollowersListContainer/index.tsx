@@ -15,10 +15,10 @@ export default function FollowFollowersListContainer() {
       <BackButtonLabel label={label} />
       <div className={styles.selectButton}>
         <span className={styles.followerButton()} onClick={onClickFollower}>
-          フォロワー
+          <span className={styles.followerLabel()}>フォロワー</span>
         </span>
         <span className={styles.followButton()} onClick={onClickFollow}>
-          フォロー中
+          <span className={styles.followLabel()}>フォロー中</span>
         </span>
       </div>
       {location.pathname.match(/follows/) ? (

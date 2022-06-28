@@ -18,7 +18,11 @@ export function useInjection() {
     const followsCollectionRef = query(ref, where('follow_id', '==', params.uid))
     onSnapshot(followsCollectionRef, querySnapshot => {
       querySnapshot.forEach(follow => {
-        followTemp.push(follow.data()?.follower_id)
+        //INFO:フォロー欄に変更が入るともともとfollowTempに入ってる人もpushされていたのでif文で条件分岐
+        if (followTemp.find(item => item === follow.data()?.follower_id)) {
+        } else {
+          followTemp.push(follow.data()?.follower_id)
+        }
       })
       setFollowList(followTemp)
     })
@@ -29,7 +33,11 @@ export function useInjection() {
     const followsCollectionRef = query(ref, where('follower_id', '==', params.uid))
     onSnapshot(followsCollectionRef, querySnapshot => {
       querySnapshot.forEach(follower => {
-        followerTemp.push(follower.data()?.follow_id)
+        //INFO:上記と同様 TODO:(リロードしないとフォロー中からフォロー外しても残ったままになってします)
+        if (followerTemp.find(item => item === follower.data()?.follow_id)) {
+        } else {
+          followerTemp.push(follower.data()?.follow_id)
+        }
       })
       setFollowerList(followerTemp)
     })
