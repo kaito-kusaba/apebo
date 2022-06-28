@@ -13,9 +13,10 @@ type Props = {
   uid: string
   textStyle?: string
   hasGender?: boolean
+  hasPlatform?: boolean
 }
 
-export default React.memo(function UserName({ style, uid, textStyle, hasGender }: Props) {
+export default React.memo(function UserName({ style, uid, textStyle, hasGender, hasPlatform }: Props) {
   const styles = useStyles()
   const { user, userData } = useSelector(({ user }: RootState) => user)
   const [username, setUsername] = useState<string>(user?.displayName!)
@@ -24,10 +25,9 @@ export default React.memo(function UserName({ style, uid, textStyle, hasGender }
   const [genders, setGenders] = useState<number[]>([])
 
   const fetchDatas = async () => {
-    const isUnAvailable = location.pathname.match(/account/) || location.pathname.match(/post/)
     if (uid === userData.uniqueId) {
       setUsername(userData.username!)
-      if (!isUnAvailable) {
+      if (hasPlatform) {
         setPlatforms(userData.platforms || [])
       }
       if (hasGender) {
@@ -38,7 +38,7 @@ export default React.memo(function UserName({ style, uid, textStyle, hasGender }
       const snap = await getDoc(ref)
       const data = snap.data()
       setUsername(data?.username)
-      if (!isUnAvailable) {
+      if (hasPlatform) {
         setPlatforms(data?.platforms || [])
       }
       if (hasGender) {
