@@ -22,7 +22,6 @@ export function useInjection({ uid }: Props) {
       const followsCollectionRef = query(ref, where('follow_id', '==', user!.uid), where('follower_id', '==', uid))
       const querySnapshot = await getDocs(followsCollectionRef)
       if (querySnapshot.docs.length) {
-        console.log(querySnapshot.docs.length)
         querySnapshot.forEach(async follow => {
           const followRef = doc(db, 'follows', follow.id)
           await deleteDoc(followRef)
