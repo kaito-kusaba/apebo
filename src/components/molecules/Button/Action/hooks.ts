@@ -36,6 +36,7 @@ export function useInjection({ type, uid, docId }: Props) {
     const ref = collection(db, 'follows')
     const followsCollectionRef = query(ref, where('follow_id', '==', user!.uid), where('follower_id', '==', uid))
     onSnapshot(followsCollectionRef, querySnapshot => {
+      //INFO:配列の中身を持ってきて存在する場合フォロー中、存在しない場合フォローしてない状態
       if (querySnapshot.docs.length) {
         setIsFollowed(true)
       } else {
