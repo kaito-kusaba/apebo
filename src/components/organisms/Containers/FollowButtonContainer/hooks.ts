@@ -4,14 +4,12 @@ import { addDoc, collection, deleteDoc, doc, getDocs, onSnapshot, query, where }
 import { db } from 'libs/firebase'
 import { useCallback, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useLocation } from 'react-router-dom'
 
 type Props = {
   uid: string
 }
 
 export function useInjection({ uid }: Props) {
-  const location = useLocation()
   const { user } = useSelector(({ user }: RootState) => user)
   const [followed, setFollowed] = useState<boolean>(false)
   const [label, setLabel] = useState<string>('')
@@ -24,6 +22,7 @@ export function useInjection({ uid }: Props) {
       const followsCollectionRef = query(ref, where('follow_id', '==', user!.uid), where('follower_id', '==', uid))
       const querySnapshot = await getDocs(followsCollectionRef)
       if (querySnapshot.docs.length) {
+        console.log(querySnapshot.docs.length)
         querySnapshot.forEach(async follow => {
           const followRef = doc(db, 'follows', follow.id)
           await deleteDoc(followRef)
@@ -62,7 +61,7 @@ export function useInjection({ uid }: Props) {
     } else {
       fetchUserData()
     }
-  }, [location, followed])
+  }, [])
 
   useEffect(() => {
     if (followed) {

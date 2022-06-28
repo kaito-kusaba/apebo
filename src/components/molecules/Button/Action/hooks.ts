@@ -28,7 +28,7 @@ export function useInjection({ type, uid, docId }: Props) {
   const [buttonImageSrc, setButtonImageSrc] = useState<string>('')
   const [isSelectedMessage, setIsSelectedMessage] = useState<boolean>(false)
   const [isSelectedLike, setIsSelectedLike] = useState<boolean>(false)
-  const [followed, setFollowed] = useState<boolean>(false)
+  const [isFollowed, setIsFollowed] = useState<boolean>(false)
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
@@ -37,9 +37,9 @@ export function useInjection({ type, uid, docId }: Props) {
     const followsCollectionRef = query(ref, where('follow_id', '==', user!.uid), where('follower_id', '==', uid))
     onSnapshot(followsCollectionRef, querySnapshot => {
       if (querySnapshot.docs.length) {
-        setFollowed(true)
+        setIsFollowed(true)
       } else {
-        setFollowed(false)
+        setIsFollowed(false)
       }
     })
   }
@@ -57,7 +57,7 @@ export function useInjection({ type, uid, docId }: Props) {
         isSelectedLike ? setButtonImageSrc(LIKE_ACTIVE) : setButtonImageSrc(LIKE_DEFAULT)
         break
       case 'Follow':
-        followed ? setButtonImageSrc(FOLLOW_ACTIVE) : setButtonImageSrc(FOLLOW_DEFAULT)
+        isFollowed ? setButtonImageSrc(FOLLOW_ACTIVE) : setButtonImageSrc(FOLLOW_DEFAULT)
         break
       case 'Other':
         setButtonImageSrc(DotsIconGray)
@@ -69,7 +69,7 @@ export function useInjection({ type, uid, docId }: Props) {
         setButtonImageSrc(MessageIconGray)
         break
     }
-  }, [isSelectedLike, followed])
+  }, [isSelectedLike, isFollowed])
 
   const onClickActionButton = useCallback(
     e => {
