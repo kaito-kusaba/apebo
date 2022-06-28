@@ -10,11 +10,11 @@ export default React.memo(function RecommendationUser() {
   return (
     <div className={styles.container}>
       <div className={styles.userContainer}>
-        <UserIcon uid={'iOq1QZovRKSty3QIWbbes45njdP2'} size={46} style={styles.userIcon} />
-        <UserName uid={'iOq1QZovRKSty3QIWbbes45njdP2'} textStyle={styles.userName} />
+        <UserIcon uid={'8pVon6Up3fagkiMNWjM8Z3bz19o1'} size={46} style={styles.userIcon} />
+        <UserName uid={'8pVon6Up3fagkiMNWjM8Z3bz19o1'} textStyle={styles.userName} />
       </div>
       <span className={styles.actionButton}>
-        <ActionButton type="Follow" uid={'iOq1QZovRKSty3QIWbbes45njdP2'} />
+        <ActionButton type="Follow" uid={'8pVon6Up3fagkiMNWjM8Z3bz19o1'} />
       </span>
     </div>
   )
