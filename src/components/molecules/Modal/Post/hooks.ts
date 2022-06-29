@@ -23,10 +23,7 @@ export function useInjection() {
   }, [])
 
   const onChangeText = useCallback(e => {
-    if (e.target.value === '\n') {
-    } else {
-      setText(e.target.value.replace(/(\r\n){3,}|\r{3,}|\n{3,}/, '\n\n'))
-    }
+    if (e.target.value !== '\n') setText(e.target.value.replace(/(\r\n){3,}|\r{3,}|\n{3,}/, '\n\n'))
   }, [])
 
   function useResizeTextArea(value: string | undefined) {
