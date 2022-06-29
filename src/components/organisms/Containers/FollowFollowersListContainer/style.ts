@@ -21,13 +21,17 @@ export function useStyles() {
 
   const baseButton = css`
     font-size: 14px;
-    font-weight: 700;
-    color: ${Colors.GREY};
-    background-color: ${Colors.EERIE_BLACK};
+    font-weight: 400;
+    color: ${Colors.PORPOISE};
+    background-color: ${Colors.BLACK_WASH};
     width: calc(100% / 2);
     padding: 18px 0;
     text-align: center;
+    transition: 0.3s;
     cursor: pointer;
+    &:hover {
+      background-color: ${Colors.EERIE_BLACK};
+    }
   `
 
   const followButton = () => {
@@ -40,6 +44,10 @@ export function useStyles() {
     } else {
       return css`
         ${baseButton}
+        &:hover {
+          color: ${Colors.GREY};
+          background-color: ${Colors.EERIE_BLACK};
+        }
       `
     }
   }
@@ -54,6 +62,10 @@ export function useStyles() {
     } else {
       return css`
         ${baseButton}
+        &:hover {
+          color: ${Colors.GREY};
+          background-color: ${Colors.EERIE_BLACK};
+        }
       `
     }
   }
@@ -63,6 +75,7 @@ export function useStyles() {
       return css`
         padding-bottom: 15px;
         border-bottom: 3px solid ${Colors.YELLOW};
+        font-weight: 700;
       `
     } else {
       return css``
@@ -74,6 +87,7 @@ export function useStyles() {
       return css`
         padding-bottom: 15px;
         border-bottom: 3px solid ${Colors.YELLOW};
+        font-weight: 700;
       `
     } else {
       return css``

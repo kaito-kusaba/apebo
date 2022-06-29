@@ -17,11 +17,10 @@ export function useStyles() {
   const followFollowerContainer = css`
     color: ${Colors.SQUANT};
     font-size: 12px;
-    margin-right: 22px;
+    margin-right: 32px;
     cursor: pointer;
     border-bottom: 1px solid ${Colors.BLACK_WASH};
     &:hover {
-      opacity: 0.6;
       border-bottom: 1px solid ${Colors.GREY};
     }
   `
