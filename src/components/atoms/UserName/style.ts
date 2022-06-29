@@ -6,6 +6,7 @@ export function useStyles() {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    cursor: pointer;
   `
   const userName = css`
     color: ${Colors.WHITE};
