@@ -13,17 +13,21 @@ import TermsScreen from 'pages/terms'
 import TalkScreen from 'pages/Talk'
 import AccountNotFoundScreen from 'pages/AccountNotFound'
 import PostDetailScreen from 'pages/Post/Detail'
+import FollowFollowersListScreen from 'pages/FollowFollowersList'
 
 export default function MainNavigator() {
   const location = useLocation()
   if (location.pathname === '/auth/signin' || location.pathname === '/auth/signup') {
     return <Navigate to="/" />
   }
+
   return (
     <Routes>
       <Route index element={<TopScreen />} />
       <Route path="/account/:uid" element={<AccountScreen />} />
       <Route path="/account/not-found" element={<AccountNotFoundScreen />} />
+      <Route path="/account/:uid/follows" element={<FollowFollowersListScreen />} />
+      <Route path="/account/:uid/followers" element={<FollowFollowersListScreen />} />
       <Route path="/auth/signout" element={<SignOutScreen />} />
       <Route path="/attr/username" element={<SetUserNameScreen />} />
       <Route path="/account/settings/profile" element={<UpdateProfileScreen />} />
