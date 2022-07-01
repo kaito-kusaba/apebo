@@ -63,7 +63,7 @@ const getRedirectWithGoogle = async () => {
         dispatch(userActions.setUser(user))
         await setDoc(doc(db, 'users', user.uid), data)
         if (!mySnap.data()?.platforms) {
-          window.location.href = '/attr/username'
+          dispatch(modalActions.setAttrModal(true))
         }
       }
     }
