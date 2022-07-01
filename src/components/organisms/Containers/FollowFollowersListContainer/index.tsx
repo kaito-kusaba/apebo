@@ -1,7 +1,7 @@
 import BackButtonLabel from 'components/molecules/Label/BackButtonLabel'
 import React from 'react'
-import FollowerListContainer from '../FollowerListContainer'
-import FollowListContainer from '../FollowListContainer'
+import FollowerListContainer from 'components/organisms/Containers/FollowerListContainer'
+import FollowListContainer from 'components/organisms/Containers/FollowListContainer'
 import { useInjection } from './hooks'
 import { useStyles } from './style'
 
