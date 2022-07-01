@@ -1,5 +1,5 @@
 import { css } from '@emotion/css'
-import { Colors } from 'constant'
+import { Colors, ViewPort } from 'constant'
 
 export function useStyles() {
   const container = css`
@@ -7,6 +7,7 @@ export function useStyles() {
     flex-direction: column;
     align-content: space-between;
     background-color: ${Colors.CHAOS_BLACK};
+    min-height: ${ViewPort.VIEWPORT_HEIGHT}px;
   `
 
   const searchButtonsListContainer = css`
