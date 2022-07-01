@@ -8,10 +8,9 @@ import { useStyles } from './style'
 
 type Props = {
   uid: string
-  style?: string
 }
 
-export default React.memo(function BioDisplay({ uid, style }: Props) {
+export default React.memo(function BioDisplay({ uid }: Props) {
   const styles = useStyles()
   const { user, userData } = useSelector(({ user }: RootState) => user)
   const location = useLocation()
@@ -32,7 +31,7 @@ export default React.memo(function BioDisplay({ uid, style }: Props) {
   }, [location.pathname])
 
   if (bio) {
-    return <pre className={`${styles.bioDisplay} ${style}`}>{bio}</pre>
+    return <pre className={styles.bioDisplay}>{bio}</pre>
   } else {
     return <></>
   }

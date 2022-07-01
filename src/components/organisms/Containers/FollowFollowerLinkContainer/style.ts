@@ -2,9 +2,8 @@ import { css } from '@emotion/css'
 import { Colors } from 'constant'
 
 export function useStyles() {
-  const container = css`
+  const followFollowerContainer = css`
     padding-bottom: 8px;
-    display: flex;
   `
   const followFollowerLink = css`
     text-decoration: none;
@@ -13,21 +12,20 @@ export function useStyles() {
     font-size: 14px;
     margin-right: 8px;
     transition: all 0.2s;
+    &:hover {
+      opacity: 0.6;
+      text-decoration: underline;
+    }
   `
-  const followFollowerContainer = css`
+  const followFollowerText = css`
     color: ${Colors.SQUANT};
     font-size: 12px;
-    margin-right: 32px;
-    cursor: pointer;
-    border-bottom: 1px solid ${Colors.BLACK_WASH};
-    &:hover {
-      border-bottom: 1px solid ${Colors.GREY};
-    }
+    margin-right: 22px;
   `
 
   return {
-    container,
-    followFollowerLink,
     followFollowerContainer,
+    followFollowerLink,
+    followFollowerText,
   }
 }

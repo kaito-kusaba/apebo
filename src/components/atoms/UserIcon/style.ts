@@ -2,14 +2,14 @@ import { css } from '@emotion/css'
 
 type Props = {
   size: number
-  disable: boolean
+  playStyleHidden: boolean
+  disabled?: boolean
   isNotPostScreen: boolean
 }
 
-export function useStyles({ size, disable, isNotPostScreen }: Props) {
-  const iconContainer = css`
+export function useStyles({ size, playStyleHidden, isNotPostScreen, disabled }: Props) {
+  const baseIconContainer = css`
     position: relative;
-    cursor: pointer;
     border: none;
     border-radius: 50%;
     transition: all 0.25s;
@@ -19,6 +19,20 @@ export function useStyles({ size, disable, isNotPostScreen }: Props) {
     width: ${size}px;
     height: ${size}px;
   `
+
+  const iconContainer = () => {
+    if (disabled) {
+      return css`
+        ${baseIconContainer}
+      `
+    } else {
+      return css`
+        ${baseIconContainer}
+        cursor: pointer;
+      `
+    }
+  }
+
   const icon = css`
     border: 0;
     border-radius: 50%;
@@ -28,7 +42,7 @@ export function useStyles({ size, disable, isNotPostScreen }: Props) {
 
   const playStyle = () => {
     if (isNotPostScreen) {
-      if (disable) {
+      if (playStyleHidden) {
         return css`
           display: none;
         `
@@ -42,7 +56,7 @@ export function useStyles({ size, disable, isNotPostScreen }: Props) {
         `
       }
     } else {
-      if (disable) {
+      if (playStyleHidden) {
         return css`
           display: none;
         `

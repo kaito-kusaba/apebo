@@ -1,11 +1,7 @@
-import { RootState } from 'components/redux'
 import { GenderImageArray } from 'constant/Genders'
 import { PlatformImageArray } from 'constant/Platforms'
-import { doc, getDoc } from 'firebase/firestore'
-import { db } from 'libs/firebase'
-import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
-import { useLocation } from 'react-router-dom'
+import React from 'react'
+import { useInjection } from './hooks'
 import { useStyles } from './style'
 
 type Props = {
@@ -13,47 +9,17 @@ type Props = {
   uid: string
   textStyle?: string
   hasGender?: boolean
+  disabled?: boolean
   hasPlatform?: boolean
 }
 
-export default React.memo(function UserName({ style, uid, textStyle, hasGender, hasPlatform }: Props) {
-  const styles = useStyles()
-  const { user, userData } = useSelector(({ user }: RootState) => user)
-  const [username, setUsername] = useState<string>(user?.displayName!)
-  const [platforms, setPlatforms] = useState<number[]>([])
-  const location = useLocation()
-  const [genders, setGenders] = useState<number[]>([])
-
-  const fetchDatas = async () => {
-    if (uid === userData.uniqueId) {
-      setUsername(userData.username!)
-      if (hasPlatform) {
-        setPlatforms(userData.platforms || [])
-      }
-      if (hasGender) {
-        setGenders(userData.genders || [])
-      }
-    } else {
-      const ref = doc(db, 'users', uid)
-      const snap = await getDoc(ref)
-      const data = snap.data()
-      setUsername(data?.username)
-      if (hasPlatform) {
-        setPlatforms(data?.platforms || [])
-      }
-      if (hasGender) {
-        setGenders(data?.genders || [])
-      }
-    }
-  }
-
-  useEffect(() => {
-    fetchDatas()
-  }, [uid, location.pathname])
+export default React.memo(function UserName({ style, uid, textStyle, hasGender, disabled }: Props) {
+  const styles = useStyles({ disabled })
+  const { username, platforms, genders, onClick } = useInjection({ uid, hasGender, disabled })
 
   return (
     <div className={`${styles.userNameContainerStyle} ${style}`}>
-      <div className={`${styles.userName} ${textStyle}`}>
+      <div className={`${styles.userName()} ${textStyle}`} onClick={onClick}>
         <span>{username ? username : '匿名さん'}</span>
         <div className={styles.genderImageContainer}>
           {genders.map(gender => {
