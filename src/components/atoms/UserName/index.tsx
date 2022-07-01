@@ -10,6 +10,7 @@ type Props = {
   textStyle?: string
   hasGender?: boolean
   disabled?: boolean
+  hasPlatform?: boolean
 }
 
 export default React.memo(function UserName({ style, uid, textStyle, hasGender, disabled }: Props) {
