@@ -2,26 +2,15 @@ import { css } from '@emotion/css'
 import { Colors } from 'constant'
 
 type Props = {
-  pointer?: boolean
+  disabled?: boolean
 }
 
-export function useStyles({ pointer }: Props) {
-  const userNameContainerStyle = () => {
-    if (pointer) {
-      return css`
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        cursor: pointer;
-      `
-    } else {
-      return css`
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-      `
-    }
-  }
+export function useStyles({ disabled }: Props) {
+  const userNameContainerStyle = css`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  `
 
   const baseUserName = css`
     color: ${Colors.WHITE};
@@ -32,9 +21,10 @@ export function useStyles({ pointer }: Props) {
   `
 
   const userName = () => {
-    if (pointer) {
+    if (!disabled) {
       return css`
         ${baseUserName}
+        cursor: pointer;
         &:hover {
           text-decoration: underline;
         }

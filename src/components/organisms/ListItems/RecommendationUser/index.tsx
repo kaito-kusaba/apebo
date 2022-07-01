@@ -11,7 +11,7 @@ export default React.memo(function RecommendationUser() {
     <div className={styles.container}>
       <div className={styles.userContainer}>
         <UserIcon uid={'InHeBfXrJuSNWtHRZtKJSlY0FTb2'} size={46} style={styles.userIcon} />
-        <UserName uid={'InHeBfXrJuSNWtHRZtKJSlY0FTb2'} textStyle={styles.userName} pointer />
+        <UserName uid={'InHeBfXrJuSNWtHRZtKJSlY0FTb2'} textStyle={styles.userName} />
       </div>
       <span className={styles.actionButton}>
         <ActionButton type="Follow" uid={'InHeBfXrJuSNWtHRZtKJSlY0FTb2'} />
