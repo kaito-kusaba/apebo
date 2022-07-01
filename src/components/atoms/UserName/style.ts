@@ -1,19 +1,39 @@
 import { css } from '@emotion/css'
 import { Colors } from 'constant'
 
-export function useStyles() {
+type Props = {
+  disabled?: boolean
+}
+
+export function useStyles({ disabled }: Props) {
   const userNameContainerStyle = css`
     display: flex;
     flex-direction: column;
     justify-content: center;
   `
-  const userName = css`
+  const baseUserName = css`
     color: ${Colors.WHITE};
     font-size: 16px;
     font-weight: bold;
     display: flex;
     align-items: center;
   `
+
+  const userName = () => {
+    if (disabled) {
+      return css`
+        ${baseUserName}
+      `
+    } else {
+      return css`
+        ${baseUserName}
+        cursor: pointer;
+        &:hover {
+          text-decoration: underline;
+        }
+      `
+    }
+  }
 
   const userId = css`
     color: ${Colors.SQUANT};
