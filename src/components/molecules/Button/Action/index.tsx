@@ -5,7 +5,7 @@ import { useStyles } from './style'
 
 type Props = {
   type: ActionButtonTypes
-  uid?: string
+  uid: string
   docId?: string
   imgStyle?: string
   buttonStyle?: string
@@ -13,18 +13,14 @@ type Props = {
 
 export default React.memo(function ActionButton({ type, imgStyle, uid, docId, buttonStyle }: Props) {
   const styles = useStyles()
-  const { buttonImageSrc, onMouseToggle, onClickActionButton } = useInjection({
+  const { buttonImageSrc, onClickActionButton } = useInjection({
     type,
     docId,
     uid,
   })
 
   return (
-    <button
-      onMouseEnter={onMouseToggle}
-      onMouseLeave={onMouseToggle}
-      onClick={onClickActionButton}
-      className={`${styles.actionButton} ${buttonStyle}`}>
+    <button onClick={onClickActionButton} className={`${styles.actionButton} ${buttonStyle}`}>
       <img src={buttonImageSrc} className={`${styles.actionButtonImageStyle}  ${imgStyle}`} alt="" />
     </button>
   )

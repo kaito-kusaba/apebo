@@ -26,6 +26,7 @@ export const provider = new GoogleAuthProvider()
 const dispatch = store.dispatch
 
 const fetchUserData = async (uid: string) => {
+  // Users Data
   const userRef = doc(db, 'users', uid)
   const userSnap = await getDoc(userRef)
   const data = userSnap.data()
@@ -38,8 +39,6 @@ const fetchUserData = async (uid: string) => {
         bio: data.bio,
         website: data.website,
         discordId: data.discord_id,
-        follows: data.follows,
-        followers: data.followers,
         platforms: data.platforms,
         playStyles: data.play_styles,
         genders: data.genders,
@@ -47,7 +46,6 @@ const fetchUserData = async (uid: string) => {
     )
   }
 }
-
 const getRedirectWithGoogle = async () => {
   getRedirectResult(auth).then(async res => {
     // INFO: ログイン・新規登録するたびにデータが上書きされてしまう。
