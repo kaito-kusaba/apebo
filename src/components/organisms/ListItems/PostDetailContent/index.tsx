@@ -38,7 +38,7 @@ export default function PostDetailContent({ docId, uid }: Props) {
             <div className={styles.postContentHeader}>
               <div className={styles.postContentUser}>
                 <UserIcon uid={uid} size={46} style={styles.postContentUserIcon} />
-                <UserName uid={uid} />
+                <UserName uid={uid} pointer />
               </div>
               <ActionButtonSet docId={docId} uid={uid} />
             </div>

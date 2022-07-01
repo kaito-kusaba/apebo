@@ -10,15 +10,16 @@ type Props = {
   textStyle?: string
   hasGender?: boolean
   disabled?: boolean
+  pointer?: boolean
 }
 
-export default React.memo(function UserName({ style, uid, textStyle, hasGender, disabled }: Props) {
-  const styles = useStyles()
+export default React.memo(function UserName({ style, uid, textStyle, hasGender, disabled, pointer }: Props) {
+  const styles = useStyles({ pointer })
   const { username, platforms, genders, onClick } = useInjection({ uid, hasGender, disabled })
 
   return (
-    <div className={`${styles.userNameContainerStyle} ${style}`} onClick={onClick}>
-      <div className={`${styles.userName} ${textStyle}`}>
+    <div className={`${styles.userNameContainerStyle()} ${style}`}>
+      <div className={`${styles.userName()} ${textStyle}`} onClick={onClick}>
         <span>{username ? username : '匿名さん'}</span>
         <div className={styles.genderImageContainer}>
           {genders.map(gender => {

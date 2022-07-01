@@ -1,20 +1,50 @@
 import { css } from '@emotion/css'
 import { Colors } from 'constant'
 
-export function useStyles() {
-  const userNameContainerStyle = css`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    cursor: pointer;
-  `
-  const userName = css`
+type Props = {
+  pointer?: boolean
+}
+
+export function useStyles({ pointer }: Props) {
+  const userNameContainerStyle = () => {
+    if (pointer) {
+      return css`
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        cursor: pointer;
+      `
+    } else {
+      return css`
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      `
+    }
+  }
+
+  const baseUserName = css`
     color: ${Colors.WHITE};
     font-size: 16px;
     font-weight: bold;
     display: flex;
     align-items: center;
   `
+
+  const userName = () => {
+    if (pointer) {
+      return css`
+        ${baseUserName}
+        &:hover {
+          text-decoration: underline;
+        }
+      `
+    } else {
+      return css`
+        ${baseUserName}
+      `
+    }
+  }
 
   const userId = css`
     color: ${Colors.SQUANT};
