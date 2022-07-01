@@ -25,7 +25,7 @@ export default function PostDetailProfileContainer() {
         <div className={styles.profileContainer}>
           <ActionButtons uid={uid} />
           <UserIcon uid={uid} size={72} style={styles.icon} hasPlayStyle spread />
-          <UserName uid={uid} hasGender disabled />
+          <UserName uid={uid} hasGender />
           <PlatformLabel containerStyle={styles.PlatformContainer} uid={uid} />
           <BioDisplay uid={uid} />
           <DiscordID uid={uid} />

@@ -23,8 +23,8 @@ export default function AccountPostContent({ uid, content, time, docId }: Props)
     <div onClick={onClick} className={styles.postContentContainerStyle}>
       <div className={styles.postContentHeader}>
         <div className={styles.postContentUser}>
-          <UserIcon uid={uid} size={46} style={styles.postContentUserIcon} disabled />
-          <UserName uid={uid} disabled />
+          <UserIcon uid={uid} size={46} style={styles.postContentUserIcon} />
+          <UserName uid={uid} />
         </div>
         <ActionButtonSet uid={uid} docId={docId} />
       </div>

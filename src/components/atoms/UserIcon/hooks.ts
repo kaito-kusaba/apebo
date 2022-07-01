@@ -21,7 +21,7 @@ export function useInjection({ size, uid, hasPlayStyle, spread }: Props) {
   const { user, userData } = useSelector(({ user }: RootState) => user)
   const navigate = useNavigate()
   const [playStyleImg, setPlayStyleImg] = useState<string>('')
-  const [playStyleHidden, setPlayStyleHidden] = useState<boolean>(false)
+  const [disable, setDisable] = useState<boolean>(false)
   const [isNotPostScreen, setIsNotPostScreen] = useState<boolean>(false)
   const location = useLocation()
   const dispatch = useDispatch()
@@ -80,7 +80,7 @@ export function useInjection({ size, uid, hasPlayStyle, spread }: Props) {
           setPlayStyleImg(CUSTOMICON)
           break
         default:
-          setPlayStyleHidden(true)
+          setDisable(true)
       }
     }
   }, [])
@@ -99,7 +99,7 @@ export function useInjection({ size, uid, hasPlayStyle, spread }: Props) {
             setPlayStyleImg(CUSTOMICON)
             break
           default:
-            setPlayStyleHidden(true)
+            setDisable(true)
         }
       }
     } else {
@@ -125,7 +125,7 @@ export function useInjection({ size, uid, hasPlayStyle, spread }: Props) {
     user,
     onClick,
     playStyleImg,
-    playStyleHidden,
+    disable,
     isNotPostScreen,
   }
 }

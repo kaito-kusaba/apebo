@@ -21,7 +21,7 @@ export default function ProfileContainer() {
       <div className={styles.profileContainer}>
         <ActionButtons uid={params.uid!} />
         <UserIcon uid={params.uid!} size={72} style={styles.icon} hasPlayStyle spread />
-        <UserName uid={params.uid!} hasGender disabled />
+        <UserName uid={params.uid!} hasGender />
         <PlatformLabel containerStyle={styles.PlatformContainer} uid={params.uid!} />
         <BioDisplay uid={params.uid!} />
         <DiscordID uid={params.uid!} />
