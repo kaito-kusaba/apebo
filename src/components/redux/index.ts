@@ -4,6 +4,7 @@ import { UserStore } from './User'
 import { AlertStore } from './Alert'
 import { AccountPostStore } from './AccountPost'
 import { ActionSheetStore } from './ActionSheet'
+import { SearchStore } from './Search'
 
 export type RootState = {
   user: UserStore
@@ -12,4 +13,5 @@ export type RootState = {
   alert: AlertStore
   accountPosts: AccountPostStore
   actionSheet: ActionSheetStore
+  search: SearchStore
 }
