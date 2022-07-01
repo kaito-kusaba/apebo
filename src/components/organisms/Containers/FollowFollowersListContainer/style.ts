@@ -1,9 +1,11 @@
 import { css } from '@emotion/css'
 import { Colors } from 'constant'
-import { useLocation } from 'react-router-dom'
 
-export function useStyles() {
-  const location = useLocation()
+type Props = {
+  pageIndex?: number
+}
+
+export function useStyles({ pageIndex }: Props) {
   const NAVIGATION_WIDTH = 78
   const PROFILE_WIDTH = 340
   const REDOMMENDATION_WIDTH = 340
@@ -35,7 +37,7 @@ export function useStyles() {
   `
 
   const followButton = () => {
-    if (location.pathname.match(/follows/)) {
+    if (pageIndex === 0) {
       return css`
         ${baseButton}
         color: ${Colors.WHITE};
@@ -53,7 +55,7 @@ export function useStyles() {
   }
 
   const followerButton = () => {
-    if (location.pathname.match(/followers/)) {
+    if (pageIndex === 1) {
       return css`
         ${baseButton}
         color: ${Colors.WHITE};
@@ -70,27 +72,23 @@ export function useStyles() {
     }
   }
 
-  const followerLabel = () => {
-    if (location.pathname.match(/followers/)) {
+  const followLabel = () => {
+    if (pageIndex === 0) {
       return css`
         padding-bottom: 15px;
         border-bottom: 3px solid ${Colors.YELLOW};
         font-weight: 700;
       `
-    } else {
-      return css``
     }
   }
 
-  const followLabel = () => {
-    if (location.pathname.match(/follows/)) {
+  const followerLabel = () => {
+    if (pageIndex === 1) {
       return css`
         padding-bottom: 15px;
         border-bottom: 3px solid ${Colors.YELLOW};
         font-weight: 700;
       `
-    } else {
-      return css``
     }
   }
 

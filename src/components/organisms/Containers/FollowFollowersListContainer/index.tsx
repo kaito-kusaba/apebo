@@ -6,8 +6,8 @@ import { useInjection } from './hooks'
 import { useStyles } from './style'
 
 export default function FollowFollowersListContainer() {
-  const styles = useStyles()
-  const { onClickFollow, onClickFollower, label, pageIndex } = useInjection()
+  const { onClickFollow, onClickFollower, onClickBackButton, label, pageIndex } = useInjection()
+  const styles = useStyles({ pageIndex })
 
   const ContentsList: React.VFC = () => {
     switch (pageIndex) {
@@ -22,7 +22,7 @@ export default function FollowFollowersListContainer() {
 
   return (
     <div className={styles.container}>
-      <BackButtonLabel label={label} />
+      <BackButtonLabel label={label} onClick={onClickBackButton} />
       <div className={styles.selectButton}>
         <div className={styles.followerButton()} onClick={onClickFollower}>
           <span className={styles.followerLabel()}>フォロワー</span>

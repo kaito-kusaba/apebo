@@ -29,9 +29,14 @@ export function useInjection() {
     navigate(`/account/${params.uid}/followers`)
   }, [])
 
+  const onClickBackButton = useCallback(() => {
+    navigate(`/account/${params.uid}`)
+  }, [])
+
   return {
     onClickFollower,
     onClickFollow,
+    onClickBackButton,
     label,
     location,
     params,
