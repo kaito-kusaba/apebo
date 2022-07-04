@@ -25,14 +25,18 @@ export default function TalkMessageContent({ message, uid, time }: Props) {
       <div className={styles.contentHeader}>
         <div className={styles.contentUser}>
           <UserIcon uid={uid} size={46} />
-          <UserName uid={uid} noDisplayUid style={styles.userName} />
-          <Time time={time} />
+          <div>
+            <span className={styles.userData}>
+              <UserName uid={uid} noDisplayUid style={styles.userName} />
+              <Time time={time} />
+            </span>
+            <pre className={styles.content}>{message}</pre>
+          </div>
         </div>
         <div className={styles.actionButton()}>
           <ActionButton type="Other" uid={uid} />
         </div>
       </div>
-      <pre className={styles.content}>{message}</pre>
     </div>
   )
 }

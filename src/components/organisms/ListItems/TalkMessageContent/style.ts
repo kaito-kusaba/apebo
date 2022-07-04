@@ -26,7 +26,11 @@ export function useStyles({ isHovered }: Props) {
 
   const contentUser = css`
     display: flex;
-    align-items: flex-start;
+  `
+
+  const userData = css`
+    display: flex;
+    align-items: flex-end;
   `
 
   const userName = css`
@@ -35,7 +39,7 @@ export function useStyles({ isHovered }: Props) {
 
   const content = css`
     margin-top: 8px;
-    margin-left: 62px;
+    margin-left: 16px;
   `
 
   const actionButton = () => {
@@ -57,5 +61,6 @@ export function useStyles({ isHovered }: Props) {
     userName,
     content,
     actionButton,
+    userData,
   }
 }
