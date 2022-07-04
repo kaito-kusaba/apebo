@@ -110,3 +110,11 @@ export { default as TALK_HOVER } from 'assets/images/icons/navigation/talk_hover
 export { default as FEMALE } from 'assets/images/icons/genders/female.png'
 export { default as MALE } from 'assets/images/icons/genders/male.png'
 export { default as CUSTOM } from 'assets/images/icons/genders/custom.png'
+// mono genders
+export { default as MONO_FEMALE } from 'assets/images/icons/genders/mono_female.png'
+export { default as MONO_MALE } from 'assets/images/icons/genders/mono_male.png'
+export { default as MONO_CUSTOM } from 'assets/images/icons/genders/mono_custom.png'
+
+export { default as WHITE_FEMALE } from 'assets/images/icons/genders/white_female.png'
+export { default as WHITE_MALE } from 'assets/images/icons/genders/white_male.png'
+export { default as WHITE_CUSTOM } from 'assets/images/icons/genders/white_custom.png'

@@ -5,6 +5,7 @@ import 'firebase/app'
 import { actions as userActions } from 'components/redux/User'
 import { actions as modalActions } from 'components/redux/Modal'
 import { actions as tabButtonActions } from 'components/redux/TimeLineTab'
+import { actions as searchActions } from 'components/redux/Search'
 import store from 'components/redux/store'
 
 const firebaseConfig = {
@@ -89,7 +90,7 @@ const getRedirectWithGoogle = async () => {
         dispatch(userActions.setUser(user))
         await setDoc(doc(db, 'users', user.uid), data)
         if (!mySnap.data()?.platforms) {
-          window.location.href = '/attr/username'
+          dispatch(modalActions.setAttrModal(true))
         }
       }
     }
@@ -109,5 +110,6 @@ onAuthStateChanged(auth, user => {
     dispatch(userActions.clearUser())
     dispatch(modalActions.setModal(false))
     dispatch(tabButtonActions.clearSelected())
+    dispatch(searchActions.clearSearchState())
   }
 })

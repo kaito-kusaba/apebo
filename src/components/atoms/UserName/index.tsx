@@ -2,7 +2,6 @@ import { GenderImageArray } from 'constant/Genders'
 import { PlatformImageArray } from 'constant/Platforms'
 import React from 'react'
 import { useInjection } from './hooks'
-
 import { useStyles } from './style'
 
 type Props = {
@@ -12,15 +11,24 @@ type Props = {
   hasGender?: boolean
   hasPlatform?: boolean
   noDisplayUid?: boolean
+  disabled?: boolean
 }
 
-export default React.memo(function UserName({ style, uid, textStyle, hasGender, hasPlatform, noDisplayUid }: Props) {
-  const styles = useStyles()
-  const { username, platforms, genders } = useInjection({ hasGender, hasPlatform, uid })
+export default React.memo(function UserName({
+  style,
+  uid,
+  textStyle,
+  hasGender,
+  hasPlatform,
+  noDisplayUid,
+  disabled,
+}: Props) {
+  const styles = useStyles({ disabled })
+  const { username, platforms, genders, onClick } = useInjection({ hasGender, hasPlatform, disabled, uid })
 
   return (
     <div className={`${styles.userNameContainerStyle} ${style}`}>
-      <div className={`${styles.userName} ${textStyle}`}>
+      <div className={`${styles.userName()} ${textStyle}`} onClick={onClick}>
         <span>{username ? username : '匿名さん'}</span>
         <div className={styles.genderImageContainer}>
           {genders.map(gender => {

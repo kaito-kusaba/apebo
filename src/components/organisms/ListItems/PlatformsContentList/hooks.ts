@@ -22,7 +22,7 @@ export function useInjection() {
     { id: 1, platform: 'PlayStation', icon: PlayStationIconPorpoise },
     { id: 2, platform: 'Xbox', icon: XboxIconPorpoise },
     { id: 3, platform: 'Switch', icon: SwitchIconPorpoise },
-    { id: 4, platform: 'Mobile', icon: MobileIconPorpoise },
+    { id: 4, platform: 'モバイル', icon: MobileIconPorpoise },
   ]
 
   return {

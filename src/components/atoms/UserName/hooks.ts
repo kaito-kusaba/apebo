@@ -1,22 +1,24 @@
 import { RootState } from 'components/redux'
 import { doc, getDoc } from 'firebase/firestore'
 import { db } from 'libs/firebase'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 type Props = {
   uid: string
   hasGender?: boolean
+  disabled?: boolean
   hasPlatform?: boolean
   noDisplayUid?: boolean
 }
 
-export function useInjection({ uid, hasPlatform, hasGender }: Props) {
+export function useInjection({ uid, disabled, hasPlatform, hasGender }: Props) {
   const { user, userData } = useSelector(({ user }: RootState) => user)
   const [username, setUsername] = useState<string>(user?.displayName!)
   const [platforms, setPlatforms] = useState<number[]>([])
   const location = useLocation()
+  const navigate = useNavigate()
   const [genders, setGenders] = useState<number[]>([])
 
   const fetchData = async () => {
@@ -46,9 +48,17 @@ export function useInjection({ uid, hasPlatform, hasGender }: Props) {
     fetchData()
   }, [uid, location.pathname])
 
+  const onClick = useCallback(e => {
+    if (!disabled) {
+      e.stopPropagation()
+      navigate(`/account/${uid}`)
+    }
+  }, [])
+
   return {
     username,
     platforms,
     genders,
+    onClick,
   }
 }
