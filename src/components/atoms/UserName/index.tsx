@@ -1,11 +1,8 @@
-import { RootState } from 'components/redux'
 import { GenderImageArray } from 'constant/Genders'
 import { PlatformImageArray } from 'constant/Platforms'
-import { doc, getDoc } from 'firebase/firestore'
-import { db } from 'libs/firebase'
-import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
-import { useLocation } from 'react-router-dom'
+import React from 'react'
+import { useInjection } from './hooks'
+
 import { useStyles } from './style'
 
 type Props = {
@@ -14,42 +11,12 @@ type Props = {
   textStyle?: string
   hasGender?: boolean
   hasPlatform?: boolean
+  noDisplayUid?: boolean
 }
 
-export default React.memo(function UserName({ style, uid, textStyle, hasGender, hasPlatform }: Props) {
+export default React.memo(function UserName({ style, uid, textStyle, hasGender, hasPlatform, noDisplayUid }: Props) {
   const styles = useStyles()
-  const { user, userData } = useSelector(({ user }: RootState) => user)
-  const [username, setUsername] = useState<string>(user?.displayName!)
-  const [platforms, setPlatforms] = useState<number[]>([])
-  const location = useLocation()
-  const [genders, setGenders] = useState<number[]>([])
-
-  const fetchDatas = async () => {
-    if (uid === userData.uniqueId) {
-      setUsername(userData.username!)
-      if (hasPlatform) {
-        setPlatforms(userData.platforms || [])
-      }
-      if (hasGender) {
-        setGenders(userData.genders || [])
-      }
-    } else {
-      const ref = doc(db, 'users', uid)
-      const snap = await getDoc(ref)
-      const data = snap.data()
-      setUsername(data?.username)
-      if (hasPlatform) {
-        setPlatforms(data?.platforms || [])
-      }
-      if (hasGender) {
-        setGenders(data?.genders || [])
-      }
-    }
-  }
-
-  useEffect(() => {
-    fetchDatas()
-  }, [uid, location.pathname])
+  const { username, platforms, genders } = useInjection({ hasGender, hasPlatform, uid })
 
   return (
     <div className={`${styles.userNameContainerStyle} ${style}`}>
@@ -66,7 +33,7 @@ export default React.memo(function UserName({ style, uid, textStyle, hasGender, 
           })}
         </div>
       </div>
-      <div className={`${styles.userId} ${textStyle}`}>@{uid ? uid : 'anonymous_user'}</div>
+      {noDisplayUid ? <></> : <div className={`${styles.userId} ${textStyle}`}>@{uid ? uid : 'anonymous_user'}</div>}
     </div>
   )
 })

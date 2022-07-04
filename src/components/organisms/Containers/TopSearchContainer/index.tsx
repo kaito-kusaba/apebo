@@ -13,7 +13,7 @@ export default React.memo(function TopSearchContainer() {
 
   return (
     <div className={styles.container}>
-      <ScreenLabel label="検索" />
+      <ScreenLabel label="検索" noAvailableUid />
       <Check label="PC" onClick={onClick} checked={checked} />
     </div>
   )

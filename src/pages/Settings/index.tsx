@@ -6,7 +6,7 @@ import React from 'react'
 export default React.memo(function SettingsScreen() {
   return (
     <SafeView>
-      <ScreenLabel label="設定" />
+      <ScreenLabel label="設定" noAvailableUid />
       <SettingsCardList />
     </SafeView>
   )

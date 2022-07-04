@@ -10,6 +10,7 @@ export default React.memo(function NavigationBar() {
     <div className={styles.navigationBarStyle()}>
       <NavigationButton type="Home" />
       <NavigationButton type="Account" />
+      <NavigationButton type="Talk" />
       <NavigationButton type="Post" />
       <Divider />
       <NavigationButton type="Settings" style={styles.settingsButton} />

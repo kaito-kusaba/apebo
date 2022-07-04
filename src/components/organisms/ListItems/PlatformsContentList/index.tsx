@@ -1,6 +1,6 @@
 import { CheckedMap } from 'components/contexts/useCheckedMap'
 import React, { useEffect } from 'react'
-import PlatformsContent from '../PlatformsContent'
+import PlatformsContent from 'components/organisms/ListItems/PlatformsContent'
 import { useInjection } from './hooks'
 import { useStyles, getStyles } from './style'
 

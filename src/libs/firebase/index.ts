@@ -1,6 +1,6 @@
 import { initializeApp } from 'firebase/app'
 import { getAuth, onAuthStateChanged, GoogleAuthProvider, getRedirectResult } from 'firebase/auth'
-import { doc, getDoc, getFirestore, setDoc } from 'firebase/firestore'
+import { addDoc, arrayUnion, collection, doc, getDoc, getFirestore, setDoc, updateDoc } from 'firebase/firestore'
 import 'firebase/app'
 import { actions as userActions } from 'components/redux/User'
 import { actions as modalActions } from 'components/redux/Modal'
@@ -41,10 +41,12 @@ const fetchUserData = async (uid: string) => {
         platforms: data.platforms,
         playStyles: data.play_styles,
         genders: data.genders,
+        talkRooms: data.talk_rooms,
       }),
     )
   }
 }
+
 const getRedirectWithGoogle = async () => {
   getRedirectResult(auth).then(async res => {
     // INFO: ログイン・新規登録するたびにデータが上書きされてしまう。
@@ -54,10 +56,35 @@ const getRedirectWithGoogle = async () => {
       const mySnap = await getDoc(myRef)
       if (!mySnap.data()?.unique_id) {
         const user = res.user
+        const adminRef = doc(db, 'users', '8pVon6Up3fagkiMNWjM8Z3bz19o1')
+        const welcomeMsg = await addDoc(collection(db, 'talks'), {
+          content: 'あぺ募公式です！よろしくね～',
+          created_at: new Date(),
+          user_id: '8pVon6Up3fagkiMNWjM8Z3bz19o1',
+          message_id: '0',
+        })
+        const welcomeMsgSnap = await getDoc(welcomeMsg)
+        const talkRef = await addDoc(collection(db, 'talk_rooms'), {
+          talk_users: ['8pVon6Up3fagkiMNWjM8Z3bz19o1', user.uid],
+          created_at: new Date(),
+          update_at: new Date(),
+          messages: [welcomeMsgSnap.data()],
+          created_user: user!.uid,
+        })
+        await updateDoc(talkRef, {
+          room_id: talkRef.id,
+        })
+        await updateDoc(myRef, {
+          talk_rooms: arrayUnion(talkRef.id),
+        })
+        await updateDoc(adminRef, {
+          talk_rooms: arrayUnion(talkRef.id),
+        })
         const data = {
           unique_id: user.uid,
           username: user.displayName,
           icon: user.photoURL,
+          talk_rooms: talkRef.id,
         }
         dispatch(userActions.setUser(user))
         await setDoc(doc(db, 'users', user.uid), data)

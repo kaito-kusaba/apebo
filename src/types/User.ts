@@ -12,4 +12,5 @@ export type UserData = {
   platforms?: number[]
   playStyles?: number[]
   genders?: number[]
+  talkRooms?: string[]
 }

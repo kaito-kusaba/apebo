@@ -5,7 +5,11 @@ import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useParams, useSearchParams } from 'react-router-dom'
 
-export function useInjection() {
+type Props = {
+  noAvailableUid?: boolean
+}
+
+export function useInjection({ noAvailableUid }: Props) {
   const { posts } = useSelector(({ accountPosts }: RootState) => accountPosts)
   const [username, setUsername] = useState<string>('')
   const [searchParams] = useSearchParams()
@@ -13,15 +17,15 @@ export function useInjection() {
   const params = useParams<{ uid: string }>()
 
   const fetchUserData = async () => {
-    if (uid || params.uid) {
-      const userRef = doc(db, 'users', uid ?? params.uid!)
-      const userSnap = await getDoc(userRef)
-      setUsername(userSnap.data()?.username || '匿名さん')
-    }
+    const userRef = doc(db, 'users', uid ?? params.uid!)
+    const userSnap = await getDoc(userRef)
+    setUsername(userSnap.data()?.username || '匿名さん')
   }
 
   useEffect(() => {
-    fetchUserData()
+    if (!noAvailableUid) {
+      fetchUserData()
+    }
   }, [])
 
   return {

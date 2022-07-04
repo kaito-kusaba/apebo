@@ -4,12 +4,12 @@ type Props = {
   size: number
   disable: boolean
   isNotPostScreen: boolean
+  disabled?: boolean
 }
 
-export function useStyles({ size, disable, isNotPostScreen }: Props) {
-  const iconContainer = css`
+export function useStyles({ size, disable, isNotPostScreen, disabled }: Props) {
+  const baseIconContainer = css`
     position: relative;
-    cursor: pointer;
     border: none;
     border-radius: 50%;
     transition: all 0.25s;
@@ -19,6 +19,20 @@ export function useStyles({ size, disable, isNotPostScreen }: Props) {
     width: ${size}px;
     height: ${size}px;
   `
+
+  const iconContainer = () => {
+    if (disabled) {
+      return css`
+        ${baseIconContainer}
+      `
+    } else {
+      return css`
+        ${baseIconContainer}
+        cursor: pointer;
+      `
+    }
+  }
+
   const icon = css`
     border: 0;
     border-radius: 50%;

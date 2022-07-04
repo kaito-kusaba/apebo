@@ -36,7 +36,8 @@ export default function MainNavigator() {
       <Route path="/app/support" element={<SupportPageScreen />} />
       <Route path="/app/terms" element={<TermsScreen />} />
       <Route path="/*" element={<NotFoundScreen />} />
-      <Route path="/talk/:roomId" element={<TalkScreen />} />
+      <Route path="talk" element={<TalkScreen />} />
+      <Route path="/talk/:room_id" element={<TalkScreen />} />
       <Route path="/post" element={<PostDetailScreen />} />
     </Routes>
   )

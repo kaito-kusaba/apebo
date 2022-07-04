@@ -15,18 +15,18 @@ type Props = {
 
 export default React.memo(function UserIcon({ size, disabled, style, uid, hasPlayStyle, spread }: Props) {
   const { src, onClick, playStyleImg, disable, isNotPostScreen } = useInjection({ size, uid, hasPlayStyle, spread })
-  const styles = useStyles({ size, disable, isNotPostScreen })
+  const styles = useStyles({ size, disable, isNotPostScreen, disabled })
 
   if (disabled) {
     return (
-      <div className={`${styles.iconContainer} ${style}`}>
+      <div className={`${styles.iconContainer()} ${style}`}>
         <img className={styles.icon} src={src} alt="" />
         {hasPlayStyle && <img className={styles.playStyle()} src={playStyleImg} alt="" />}
       </div>
     )
   } else {
     return (
-      <button onClick={onClick} className={`${styles.iconContainer} ${style}`}>
+      <button onClick={onClick} className={`${styles.iconContainer()} ${style}`}>
         <img className={styles.icon} src={src} alt="" />
         {hasPlayStyle && <img className={styles.playStyle()} src={playStyleImg} alt="" />}
       </button>
