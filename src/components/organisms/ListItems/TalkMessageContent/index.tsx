@@ -18,7 +18,7 @@ export default function TalkMessageContent({ message, uid, time }: Props) {
 
   const onMouseToggle = useCallback(() => {
     setIsHovered(!isHovered)
-  }, [isHovered, setIsHovered])
+  }, [isHovered])
 
   return (
     <div className={styles.container} onMouseEnter={onMouseToggle} onMouseLeave={onMouseToggle}>
