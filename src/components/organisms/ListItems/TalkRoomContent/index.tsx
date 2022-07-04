@@ -16,7 +16,7 @@ export default function TalkRoomContent({ uid, roomId }: Props) {
   return (
     <div className={styles.container()} onClick={onClick}>
       <UserIcon uid={uid} size={40} disabled />
-      <UserName uid={uid} style={styles.userName} noDisplayUid />
+      <UserName uid={uid} style={styles.userName} noDisplayUid disabled />
     </div>
   )
 }
