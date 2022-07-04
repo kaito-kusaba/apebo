@@ -9,9 +9,6 @@ export default React.memo(function TalkContainer() {
   const styles = useStyles()
   const { messages, data, text, onChangeText, onKeyDown, textAreaRef, onClickAddImage, onClickSend } = useInjection()
 
-  const ref = document.getElementById('messageContainer')
-  ref?.scrollIntoView(false)
-
   return (
     <div className={styles.container}>
       <div className={styles.label}>

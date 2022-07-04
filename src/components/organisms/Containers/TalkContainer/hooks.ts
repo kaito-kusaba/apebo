@@ -37,6 +37,11 @@ export function useInjection() {
     fetchUserData()
   }, [params.room_id])
 
+  useEffect(() => {
+    const ref = document.getElementById('messageContainer')
+    ref?.scrollIntoView(false)
+  }, [messages])
+
   function useResizeTextArea(value: string | undefined) {
     const ref = useRef<HTMLTextAreaElement>(null)
     useEffect(() => {
