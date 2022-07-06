@@ -27,7 +27,7 @@ export default function TalkMessageContent({ message, uid, time }: Props) {
           <UserIcon uid={uid} size={46} />
           <div>
             <span className={styles.userData}>
-              <UserName uid={uid} noDisplayUid style={styles.userName} />
+              <UserName uid={uid} style={styles.userName} />
               <Time time={time} />
             </span>
             <pre className={styles.content}>{message}</pre>

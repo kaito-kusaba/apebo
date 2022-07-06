@@ -32,7 +32,7 @@ export default React.memo(function PostModal() {
       onRequestClose={onClose}>
       <div className={styles.header}>
         <UserIcon uid={user!.uid} disabled size={46} style={styles.userIcon} />
-        <UserName uid={user!.uid} disabled />
+        <UserName uid={user!.uid} disabled isDisplayUid />
       </div>
       <textarea
         onChange={onChangeText}

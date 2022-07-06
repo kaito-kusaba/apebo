@@ -10,7 +10,7 @@ type Props = {
   textStyle?: string
   hasGender?: boolean
   hasPlatform?: boolean
-  noDisplayUid?: boolean
+  isDisplayUid?: boolean
   disabled?: boolean
 }
 
@@ -20,7 +20,7 @@ export default React.memo(function UserName({
   textStyle,
   hasGender,
   hasPlatform,
-  noDisplayUid,
+  isDisplayUid,
   disabled,
 }: Props) {
   const styles = useStyles({ disabled })
@@ -41,7 +41,7 @@ export default React.memo(function UserName({
           })}
         </div>
       </div>
-      {noDisplayUid ? <></> : <div className={`${styles.userId} ${textStyle}`}>@{uid ? uid : 'anonymous_user'}</div>}
+      {isDisplayUid ? <div className={`${styles.userId} ${textStyle}`}>@{uid ? uid : 'anonymous_user'}</div> : <></>}
     </div>
   )
 })

@@ -13,7 +13,7 @@ export default function TalkMessageContentList({ messages }: Props) {
   return (
     <div className={styles.container}>
       {/*TODO: 持ってくるデータは20個に制限*/}
-      {messages.slice(messages.length - 21, messages.length).map(message => {
+      {messages.map(message => {
         return (
           <TalkMessageContent
             uid={message.user_id}

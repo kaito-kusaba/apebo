@@ -24,7 +24,7 @@ export default function AccountPostContent({ uid, content, time, docId }: Props)
       <div className={styles.postContentHeader}>
         <div className={styles.postContentUser}>
           <UserIcon uid={uid} size={46} style={styles.postContentUserIcon} />
-          <UserName uid={uid} disabled />
+          <UserName uid={uid} disabled isDisplayUid />
         </div>
         <ActionButtonSet uid={uid} docId={docId} />
       </div>

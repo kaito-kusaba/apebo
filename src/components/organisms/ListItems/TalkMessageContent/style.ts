@@ -12,6 +12,7 @@ export function useStyles({ isHovered }: Props) {
     flex-direction: column;
     padding: 16px 24px;
     transition: 0.2s;
+    overflow-wrap: break-word;
     :hover {
       background-color: ${Colors.EERIE_BLACK};
     }
@@ -20,7 +21,6 @@ export function useStyles({ isHovered }: Props) {
   const contentHeader = css`
     display: flex;
     width: 100%;
-    align-items: flex-start;
     justify-content: space-between;
   `
 
@@ -40,6 +40,8 @@ export function useStyles({ isHovered }: Props) {
   const content = css`
     margin-top: 8px;
     margin-left: 16px;
+    max-width: 1042px;
+    white-space: pre-wrap;
   `
 
   const actionButton = () => {

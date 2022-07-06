@@ -34,7 +34,7 @@ export function useStyles() {
     width: 1074px;
     font-weight: 400;
     max-height: 96px;
-    padding: 12px 0 0 16px;
+    padding: 12px 16px 0 16px;
     font-size: 16px;
     color: ${Colors.WHITE};
     background-color: ${Colors.EERIE_BLACK};
@@ -43,6 +43,7 @@ export function useStyles() {
     border: none;
     resize: none;
     margin: 0 16px;
+    overflow-wrap: break-word;
   `
 
   const addImage = css`
