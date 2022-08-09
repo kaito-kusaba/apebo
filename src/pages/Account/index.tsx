@@ -29,7 +29,7 @@ export default React.memo(function AccoutScreen() {
   return (
     <AlertProvider>
       <SafeView>
-        <ScreenLabel />
+        <ScreenLabel availableUid />
         <AccountPageContainer
           left={<ProfileContainer />}
           center={<AccountPostContentList />}

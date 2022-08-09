@@ -41,7 +41,7 @@ export default React.memo(function UserName({
           })}
         </div>
       </div>
-      {isDisplayUid ? <div className={`${styles.userId} ${textStyle}`}>@{uid ? uid : 'anonymous_user'}</div> : <></>}
+      {isDisplayUid ? <div className={`${styles.userId} ${textStyle}`}>@{uid ?? 'anonymous_user'}</div> : <></>}
     </div>
   )
 })

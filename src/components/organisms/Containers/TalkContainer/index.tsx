@@ -12,7 +12,7 @@ export default React.memo(function TalkContainer() {
   return (
     <div className={styles.container}>
       <div className={styles.label}>
-        <ScreenLabel label={`${data?.username ?? '匿名'}さんとのトークルーム`} width={1202} noAvailableUid />
+        <ScreenLabel label={`${data?.username ?? '匿名'}さんとのトークルーム`} width={1202} />
       </div>
       <div id="messageContainer">
         <TalkMessageContentList messages={messages} />

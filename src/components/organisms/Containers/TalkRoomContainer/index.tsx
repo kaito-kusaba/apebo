@@ -11,7 +11,7 @@ export default function TalkRoomContainer() {
   return (
     <div className={styles.container}>
       <div className={styles.label}>
-        <ScreenLabel label="トークルーム" noAvailableUid width={340} />
+        <ScreenLabel label="トークルーム" width={340} />
       </div>
       <div className={styles.talkRoomList}>
         <TalkRoomContentList data={talkRooms} />

@@ -6,10 +6,10 @@ import { useSelector } from 'react-redux'
 import { useParams, useSearchParams } from 'react-router-dom'
 
 type Props = {
-  noAvailableUid?: boolean
+  availableUid?: boolean
 }
 
-export function useInjection({ noAvailableUid }: Props) {
+export function useInjection({ availableUid }: Props) {
   const { posts } = useSelector(({ accountPosts }: RootState) => accountPosts)
   const [username, setUsername] = useState<string>('')
   const [searchParams] = useSearchParams()
@@ -23,7 +23,7 @@ export function useInjection({ noAvailableUid }: Props) {
   }
 
   useEffect(() => {
-    if (!noAvailableUid) {
+    if (availableUid) {
       fetchUserData()
     }
   }, [])

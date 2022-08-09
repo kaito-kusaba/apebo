@@ -8,7 +8,7 @@ export default React.memo(function TimeLineContainer() {
   const styles = useStyles()
   return (
     <div className={styles.container}>
-      <ScreenLabel label="ホーム" noAvailableUid />
+      <ScreenLabel label="ホーム" />
       <TimeLineTabList />
       <PostContentList />
     </div>

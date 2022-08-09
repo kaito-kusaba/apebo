@@ -5,12 +5,12 @@ import { useStyles } from './style'
 type Props = {
   label?: string
   width?: number
-  noAvailableUid?: boolean
+  availableUid?: boolean
 }
 
-export default React.memo(function ScreenLabel({ label, noAvailableUid, width }: Props) {
+export default React.memo(function ScreenLabel({ label, availableUid, width }: Props) {
   const styles = useStyles({ width })
-  const { username, posts } = useInjection({ noAvailableUid })
+  const { username, posts } = useInjection({ availableUid })
 
   if (username) {
     return (
