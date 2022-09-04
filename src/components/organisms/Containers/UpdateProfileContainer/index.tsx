@@ -28,6 +28,7 @@ export default React.memo(function UpdateProfileScreen() {
     onChangeDiscordId,
     onChangeWebsite,
     disabled,
+    iconImg,
   } = useInjection({ platformCheckedIds, playStyleCheckedIds, genderCheckedIds })
   const styles = useStyles({ disabled })
   return (
@@ -37,11 +38,12 @@ export default React.memo(function UpdateProfileScreen() {
         <h3 className={styles.inputLabel}>アバター</h3>
         <span className={styles.buttonStyle}>
           <button onClick={onChangeAvater} className={styles.avatarChangeImg}>
-            <UserIcon uid={user!.uid} size={72} disabled />
+            <UserIcon uid={user!.uid} size={72} disabled img={iconImg} />
           </button>
-          <button className={styles.avatarChange} onClick={onChangeAvater}>
+          <label htmlFor="file_upload" className={styles.avatarChangeLabel}>
             アバター画像を変更
-          </button>
+            <input type="file" onChange={onChangeAvater} id="file_upload" className={styles.avatarChange} />
+          </label>
           <button className={styles.avatarDelete} onClick={onChangeDelete}>
             アバター画像を削除
           </button>

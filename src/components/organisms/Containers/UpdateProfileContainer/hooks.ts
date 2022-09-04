@@ -1,3 +1,4 @@
+import { UNSET72 } from 'components/atoms/Icon'
 import { RootState } from 'components/redux'
 import { actions } from 'components/redux/User'
 import { doc, DocumentData, getDoc, updateDoc } from 'firebase/firestore'
@@ -21,6 +22,7 @@ export function useInjection({ platformCheckedIds, playStyleCheckedIds, genderCh
   const [bio, setBio] = useState<string>(userData.bio || fetchData?.bio || '')
   const [website, setWebsite] = useState<string>(userData.website || fetchData?.website || '')
   const [disabled, setDisabled] = useState<boolean>(false)
+  const [iconImg, setIconImg] = useState<string | undefined>(userData.icon || fetchData?.icon || UNSET72)
   const navigate = useNavigate()
 
   const fetchUserData = async () => {
@@ -44,6 +46,7 @@ export function useInjection({ platformCheckedIds, playStyleCheckedIds, genderCh
       discord_id: discordId,
       website: website,
       bio: bio,
+      icon: iconImg,
       platforms: platformCheckedIds,
       play_styles: playStyleCheckedIds,
       genders: genderCheckedIds,
@@ -55,6 +58,7 @@ export function useInjection({ platformCheckedIds, playStyleCheckedIds, genderCh
             discordId: discordId,
             website: website,
             bio: bio,
+            icon: iconImg,
             platforms: platformCheckedIds,
             playStyles: playStyleCheckedIds,
             genders: genderCheckedIds,
@@ -65,14 +69,23 @@ export function useInjection({ platformCheckedIds, playStyleCheckedIds, genderCh
       .catch(error => {
         console.log(error)
       })
-  }, [newName, discordId, website, bio, platformCheckedIds, playStyleCheckedIds, genderCheckedIds])
+  }, [newName, discordId, website, bio, iconImg, platformCheckedIds, playStyleCheckedIds, genderCheckedIds])
 
-  const onChangeAvater = useCallback(() => {
-    alert('アバターを編集')
+  const onChangeAvater = useCallback(e => {
+    const files = e.target.files
+    let file = files[0]
+    let reader = new FileReader()
+    reader.onload = event => {
+      setIconImg(String(event.target?.result))
+    }
+    reader.readAsDataURL(file)
   }, [])
 
   const onChangeDelete = useCallback(() => {
-    alert('アバターを削除')
+    const deleteIcon = confirm('本当に削除しますか？')
+    if (deleteIcon) {
+      setIconImg(UNSET72)
+    }
   }, [])
 
   const onChangeUserName = useCallback(e => {
@@ -105,5 +118,6 @@ export function useInjection({ platformCheckedIds, playStyleCheckedIds, genderCh
     onChangeDiscordId,
     disabled,
     onChangeWebsite,
+    iconImg,
   }
 }
