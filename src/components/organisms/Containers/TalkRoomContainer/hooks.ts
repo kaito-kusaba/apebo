@@ -14,17 +14,15 @@ export function useInjection() {
     const talkRoomsCollectionRef = query(ref, orderBy('update_at', 'desc'))
     onSnapshot(talkRoomsCollectionRef, querySnapshot => {
       querySnapshot.forEach(room => {
-        if (room.data()?.talk_users.includes(user!.uid)) {
-          if (room.data()?.messages.length <= 0) {
-            if (room.data()?.created_user === user!.uid) {
-              if (!talkRoomsTemp.find(talk => talk.room_id === room.data()?.room_id)) {
-                talkRoomsTemp.push({ ...room.data() })
-              }
-            }
-          } else {
-            if (!talkRoomsTemp.find(talk => talk.room_id === room.data()?.room_id)) {
-              talkRoomsTemp.push({ ...room.data() })
-            }
+        if (!room.data()?.talk_users.includes(user!.uid)) return
+        if (room.data()?.messages.length <= 0) {
+          if (room.data()?.created_user !== user!.uid) return
+          if (!talkRoomsTemp.find(talk => talk.room_id === room.data()?.room_id)) {
+            talkRoomsTemp.push({ ...room.data() })
+          }
+        } else {
+          if (!talkRoomsTemp.find(talk => talk.room_id === room.data()?.room_id)) {
+            talkRoomsTemp.push({ ...room.data() })
           }
         }
       })

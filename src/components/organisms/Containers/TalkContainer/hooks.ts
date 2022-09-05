@@ -34,7 +34,9 @@ export function useInjection() {
   }
 
   useEffect(() => {
-    fetchUserData()
+    if (params.room_id) {
+      fetchUserData()
+    }
   }, [params.room_id])
 
   useEffect(() => {
