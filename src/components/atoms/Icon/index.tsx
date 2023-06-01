@@ -35,6 +35,9 @@ export { default as LinkIconGray } from 'assets/images/icons/GrayIcons/link.png'
 export { default as MessageIconGray } from 'assets/images/icons/GrayIcons/message.png'
 export { default as DotsIconGray } from 'assets/images/icons/GrayIcons/dots.png'
 export { default as InfoIconGray } from 'assets/images/icons/GrayIcons/info.png'
+export { default as AddImageIconGray } from 'assets/images/icons/GrayIcons/add_image.png'
+export { default as SmileIconGray } from 'assets/images/icons/GrayIcons/smile.png'
+export { default as SendIconGray } from 'assets/images/icons/GrayIcons/send.png'
 
 //SquantIcons
 export { default as WorldIconSquant } from 'assets/images/icons/SquantIcons/world.png'
@@ -99,6 +102,9 @@ export { default as SETTINGS_ACTIVE } from 'assets/images/icons/navigation/setti
 export { default as SETTINGS_DEFAULT } from 'assets/images/icons/navigation/settings_default.png'
 export { default as SETTINGS_HOVER } from 'assets/images/icons/navigation/settings_hover.png'
 export { default as DIVIDER } from 'assets/images/icons/navigation/divider.png'
+export { default as TALK_ACTIVE } from 'assets/images/icons/navigation/talk_active.png'
+export { default as TALK_DEFAULT } from 'assets/images/icons/navigation/talk_default.png'
+export { default as TALK_HOVER } from 'assets/images/icons/navigation/talk_hover.png'
 
 //genders
 export { default as FEMALE } from 'assets/images/icons/genders/female.png'

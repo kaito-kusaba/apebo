@@ -16,7 +16,7 @@ export default function FollowFollowerContent({ uid }: Props) {
       <div className={styles.contentHeader}>
         <div className={styles.userContainer}>
           <UserIcon uid={uid} size={46} />
-          <UserName uid={uid} style={styles.userName} hasPlatform />
+          <UserName uid={uid} style={styles.userName} hasPlatform isDisplayUid />
         </div>
         <span>
           <ActionButton type="Follow" uid={uid} />

@@ -10,10 +10,19 @@ type Props = {
   textStyle?: string
   hasGender?: boolean
   hasPlatform?: boolean
+  isDisplayUid?: boolean
   disabled?: boolean
 }
 
-export default React.memo(function UserName({ style, uid, textStyle, hasGender, hasPlatform, disabled }: Props) {
+export default React.memo(function UserName({
+  style,
+  uid,
+  textStyle,
+  hasGender,
+  hasPlatform,
+  isDisplayUid,
+  disabled,
+}: Props) {
   const styles = useStyles({ disabled })
   const { username, platforms, genders, onClick } = useInjection({ hasGender, hasPlatform, disabled, uid })
 
@@ -32,7 +41,7 @@ export default React.memo(function UserName({ style, uid, textStyle, hasGender, 
           })}
         </div>
       </div>
-      <div className={`${styles.userId} ${textStyle}`}>@{uid ? uid : 'anonymous_user'}</div>
+      {isDisplayUid ? <div className={`${styles.userId} ${textStyle}`}>@{uid ?? 'anonymous_user'}</div> : <></>}
     </div>
   )
 })

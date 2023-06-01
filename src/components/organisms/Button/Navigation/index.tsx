@@ -18,6 +18,9 @@ import {
   SETTINGS_ACTIVE,
   SETTINGS_DEFAULT,
   SETTINGS_HOVER,
+  TALK_ACTIVE,
+  TALK_DEFAULT,
+  TALK_HOVER,
 } from 'components/atoms/Icon'
 
 type Props = {
@@ -50,6 +53,7 @@ export default React.memo(function NavigationButton({ type, style }: Props) {
         setIsSelected('None')
         break
     }
+    if (location.pathname.match(/talk/)) setIsSelected('Talk')
   }, [location.pathname])
 
   useEffect(() => {
@@ -67,6 +71,13 @@ export default React.memo(function NavigationButton({ type, style }: Props) {
           : isHovered
           ? setButtonImageSrc(ACCOUNT_HOVER)
           : setButtonImageSrc(ACCOUNT_DEFAULT)
+        break
+      case 'Talk':
+        isSelected === 'Talk'
+          ? setButtonImageSrc(TALK_ACTIVE)
+          : isHovered
+          ? setButtonImageSrc(TALK_HOVER)
+          : setButtonImageSrc(TALK_DEFAULT)
         break
       case 'Post':
         isHovered ? setButtonImageSrc(POST_HOVER) : setButtonImageSrc(POST_DEFAULT)
@@ -90,6 +101,13 @@ export default React.memo(function NavigationButton({ type, style }: Props) {
       case 'Account':
         if (user?.uid) {
           navigate(`/account/${user!.uid}`)
+        } else {
+          dispatch(actions.setSignInModal(true))
+        }
+        break
+      case 'Talk':
+        if (user?.uid) {
+          navigate('/talk')
         } else {
           dispatch(actions.setSignInModal(true))
         }

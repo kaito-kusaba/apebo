@@ -1,18 +1,24 @@
 import SafeView from 'components/atoms/SafeView'
-import ScreenLabel from 'components/molecules/Label/ScreenLabel'
-import TalkPageContainer from 'components/organisms/ListItems/TalkPageContainer'
-import ProfileContainer from 'components/organisms/Containers/ProfileContainer/Account'
+import TalkPageContainer from 'components/organisms/Containers/TalkPageContainer'
 import TalkContainer from 'components/organisms/Containers/TalkContainer'
-import { useStyles } from './style'
+import React from 'react'
+import TalkRoomContainer from 'components/organisms/Containers/TalkRoomContainer'
+import { useParams } from 'react-router-dom'
 
 export default function TalkScreen() {
-  const styles = useStyles()
-  return (
-    <div className={styles.container}>
+  const params = useParams()
+
+  if (params.room_id) {
+    return (
       <SafeView>
-        <ScreenLabel label={'〇〇さんとのトークルーム'} />
-        <TalkPageContainer left={<ProfileContainer />} right={<TalkContainer />} />
+        <TalkPageContainer left={<TalkRoomContainer />} right={<TalkContainer />} />
       </SafeView>
-    </div>
-  )
+    )
+  } else {
+    return (
+      <SafeView>
+        <TalkPageContainer left={<TalkRoomContainer />} right={<></>} />
+      </SafeView>
+    )
+  }
 }

@@ -14,8 +14,21 @@ import {
   MESSAGE,
   FOLLOW_ACTIVE,
 } from 'components/atoms/Icon'
-import { addDoc, collection, deleteDoc, doc, getDocs, onSnapshot, query, where } from 'firebase/firestore'
+import {
+  addDoc,
+  arrayUnion,
+  collection,
+  deleteDoc,
+  doc,
+  getDoc,
+  getDocs,
+  onSnapshot,
+  query,
+  updateDoc,
+  where,
+} from 'firebase/firestore'
 import { db } from 'libs/firebase'
+import { actions } from 'components/redux/User'
 
 type Props = {
   uid: string
@@ -26,7 +39,6 @@ type Props = {
 export function useInjection({ type, uid, docId }: Props) {
   const { user, userData } = useSelector(({ user }: RootState) => user)
   const [buttonImageSrc, setButtonImageSrc] = useState<string>('')
-  const [isSelectedMessage, setIsSelectedMessage] = useState<boolean>(false)
   const [isSelectedLike, setIsSelectedLike] = useState<boolean>(false)
   const [isFollowed, setIsFollowed] = useState<boolean>(false)
   const dispatch = useDispatch()
@@ -78,8 +90,7 @@ export function useInjection({ type, uid, docId }: Props) {
         case 'Message':
           e.stopPropagation()
           if (user?.uid) {
-            setIsSelectedMessage(!isSelectedMessage)
-            navigate('/talk/:room_id')
+            onClickMessage()
           } else {
             dispatch(modalActions.setSignInModal(true))
           }
@@ -107,8 +118,7 @@ export function useInjection({ type, uid, docId }: Props) {
         case 'ProfileMessage':
           e.stopPropagation()
           if (user?.uid) {
-            setIsSelectedMessage(!isSelectedMessage)
-            navigate('/talk/:room_id')
+            onClickMessage()
           } else {
             dispatch(modalActions.setSignInModal(true))
           }
@@ -143,6 +153,57 @@ export function useInjection({ type, uid, docId }: Props) {
       })
     }
   }
+
+  const startAddDoc = async () => {
+    const myRef = doc(db, 'users', user!.uid)
+    const userRef = doc(db, 'users', uid)
+    try {
+      const docRef = await addDoc(collection(db, 'talk_rooms'), {
+        talk_users: [uid, user!.uid],
+        created_at: new Date(),
+        update_at: new Date(),
+        messages: [],
+        created_user: user!.uid,
+      })
+      await updateDoc(docRef, {
+        room_id: docRef.id,
+      })
+      await updateDoc(myRef, {
+        talk_rooms: arrayUnion(docRef.id),
+      })
+      await updateDoc(userRef, {
+        talk_rooms: arrayUnion(docRef.id),
+      })
+      dispatch(
+        actions.setUserData({
+          talkRooms: [...userData.talkRooms!, docRef.id],
+        }),
+      )
+      navigate(`/talk/${docRef.id}`)
+    } catch (e) {
+      console.error(e)
+    }
+  }
+
+  const onClickMessage = useCallback(async () => {
+    const userRef = doc(db, 'users', uid)
+    const userSnap = await getDoc(userRef)
+    //INFO: 既存のアカウントはtalk_roomsが存在しないのでここで判断する(talk_roomsが存在しないとfilterでエラーがでるため)
+    if (!userData.talkRooms || !userSnap.data()?.talk_rooms) {
+      startAddDoc()
+    } else {
+      const result = userData.talkRooms.filter(
+        (x: string) => userSnap.data()?.talk_rooms.filter((y: string) => y === x).length > 0,
+      )
+      if (result.length) {
+        result.map((id: string) => {
+          navigate(`/talk/${id}`)
+        })
+      } else {
+        startAddDoc()
+      }
+    }
+  }, [])
 
   const onClickOther = useCallback(e => {
     if (userData.uniqueId === uid) {

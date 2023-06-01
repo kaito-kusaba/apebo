@@ -16,7 +16,7 @@ export default React.memo(function PostDetailScreen() {
     <div className={styles.container}>
       <AlertProvider>
         <SafeView>
-          <ScreenLabel />
+          <ScreenLabel availableUid />
           <PostDetailPageContainer
             left={<PostDetailProfileContainer />}
             center={<PostDetailContainer />}

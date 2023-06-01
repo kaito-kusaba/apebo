@@ -11,7 +11,7 @@ export default function FollowFollowersListScreen() {
 
   return (
     <SafeView>
-      <ScreenLabel />
+      <ScreenLabel availableUid />
       <FollowFollowersListPageContainer
         left={<ProfileContainer />}
         center={<FollowFollowersListContainer />}

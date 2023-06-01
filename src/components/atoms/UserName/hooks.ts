@@ -7,20 +7,21 @@ import { useLocation, useNavigate } from 'react-router-dom'
 
 type Props = {
   uid: string
-  disabled?: boolean
   hasGender?: boolean
+  disabled?: boolean
   hasPlatform?: boolean
+  noDisplayUid?: boolean
 }
 
-export function useInjection({ uid, disabled, hasGender, hasPlatform }: Props) {
+export function useInjection({ uid, disabled, hasPlatform, hasGender }: Props) {
   const { user, userData } = useSelector(({ user }: RootState) => user)
   const [username, setUsername] = useState<string>(user?.displayName!)
   const [platforms, setPlatforms] = useState<number[]>([])
-  const [genders, setGenders] = useState<number[]>([])
   const location = useLocation()
   const navigate = useNavigate()
+  const [genders, setGenders] = useState<number[]>([])
 
-  const fetchDatas = async () => {
+  const fetchData = async () => {
     if (uid === userData.uniqueId) {
       setUsername(userData.username!)
       if (hasPlatform) {
@@ -44,7 +45,7 @@ export function useInjection({ uid, disabled, hasGender, hasPlatform }: Props) {
   }
 
   useEffect(() => {
-    fetchDatas()
+    fetchData()
   }, [uid, location.pathname])
 
   const onClick = useCallback(e => {

@@ -16,7 +16,7 @@ type Props = {
 
 export default React.memo(function UserIcon({ size, disabled, style, uid, hasPlayStyle, spread, img }: Props) {
   const { src, onClick, playStyleImg, disable, isNotPostScreen } = useInjection({ size, uid, hasPlayStyle, spread })
-  const styles = useStyles({ size, disable, isNotPostScreen })
+  const styles = useStyles({ size, disable, isNotPostScreen, disabled })
 
   if (disabled) {
     return (
