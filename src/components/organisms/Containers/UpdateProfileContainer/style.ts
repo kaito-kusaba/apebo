@@ -40,15 +40,20 @@ export function useStyles({ disabled }: Props) {
     border-radius: 100%;
   `
 
-  const avatarChange = css`
+  const avatarChangeLabel = css`
     padding: 10px 16px;
     border-radius: 8px;
     border: none;
     background-color: ${Colors.YELLOW};
     color: ${Colors.BLACK};
     margin-left: 24px;
+    font-size: 14px;
     font-weight: 700;
     cursor: pointer;
+  `
+
+  const avatarChange = css`
+    display: none;
   `
 
   const avatarDelete = css`
@@ -112,6 +117,7 @@ export function useStyles({ disabled }: Props) {
     label,
     avatar,
     avatarChangeImg,
+    avatarChangeLabel,
     inputLabel,
     avatarChange,
     avatarDelete,
