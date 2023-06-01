@@ -1375,12 +1375,12 @@
     "@firebase/util" "1.5.1"
     tslib "^2.1.0"
 
-"@firebase/component@0.5.17":
-  version "0.5.17"
-  resolved "https://registry.yarnpkg.com/@firebase/component/-/component-0.5.17.tgz#89291f378714df05d44430c524708669380d8ea6"
-  integrity sha512-mTM5CBSIlmI+i76qU4+DhuExnWtzcPS3cVgObA3VAjliPPr3GrUlTaaa8KBGfxsD27juQxMsYA0TvCR5X+GQ3Q==
+"@firebase/component@0.5.21":
+  version "0.5.21"
+  resolved "https://registry.npmjs.org/@firebase/component/-/component-0.5.21.tgz"
+  integrity sha512-12MMQ/ulfygKpEJpseYMR0HunJdlsLrwx2XcEs40M18jocy2+spyzHHEwegN3x/2/BLFBjR5247Etmz0G97Qpg==
   dependencies:
-    "@firebase/util" "1.6.3"
+    "@firebase/util" "1.7.3"
     tslib "^2.1.0"
 
 "@firebase/database-compat@0.1.7":
@@ -1608,12 +1608,12 @@
     tslib "^2.1.0"
 
 "@firebase/storage@^0.9.9":
-  version "0.9.9"
-  resolved "https://registry.yarnpkg.com/@firebase/storage/-/storage-0.9.9.tgz#3d0080dd130bc3315731483384a7ef7c00f76e22"
-  integrity sha512-Zch7srLT2SIh9y2nCVv/4Kne0HULn7OPkmreY70BJTUJ+g5WLRjggBq6x9fV5ls9V38iqMWfn4prxzX8yIc08A==
+  version "0.9.14"
+  resolved "https://registry.npmjs.org/@firebase/storage/-/storage-0.9.14.tgz"
+  integrity sha512-he8VAJ4BLkQdebnna15TI1/ymkwQTeKnjA/psKMAJ2+/UswD/68bCMKOlTrMvw6Flv3zc5YZk1xdL9DHR0i6wg==
   dependencies:
-    "@firebase/component" "0.5.17"
-    "@firebase/util" "1.6.3"
+    "@firebase/component" "0.5.21"
+    "@firebase/util" "1.7.3"
     node-fetch "2.6.7"
     tslib "^2.1.0"
 
@@ -1624,10 +1624,10 @@
   dependencies:
     tslib "^2.1.0"
 
-"@firebase/util@1.6.3":
-  version "1.6.3"
-  resolved "https://registry.yarnpkg.com/@firebase/util/-/util-1.6.3.tgz#76128c1b5684c031823e95f6c08a7fb8560655c6"
-  integrity sha512-FujteO6Zjv6v8A4HS+t7c+PjU0Kaxj+rOnka0BsI/twUaCC9t8EQPmXpWZdk7XfszfahJn2pqsflUWUhtUkRlg==
+"@firebase/util@1.7.3":
+  version "1.7.3"
+  resolved "https://registry.npmjs.org/@firebase/util/-/util-1.7.3.tgz"
+  integrity sha512-wxNqWbqokF551WrJ9BIFouU/V5SL1oYCGx1oudcirdhadnQRFH5v1sjgGL7cUV/UsekSycygphdrF2lxBxOYKg==
   dependencies:
     tslib "^2.1.0"
 
@@ -2379,10 +2379,10 @@
   resolved "https://registry.npmjs.org/@types/mime/-/mime-1.3.2.tgz"
   integrity sha512-YATxVxgRqNH6nHEIsvg6k2Boc1JHI9ZbH5iWFFv/MTkchz3b1ieGDa5T0a9RznNdI0KhVbdbWSN+KWWrQZRxTw==
 
-"@types/node@*", "@types/node@>=12.12.47", "@types/node@>=13.7.0", "@types/node@^16.11.26":
-  version "16.11.26"
-  resolved "https://registry.npmjs.org/@types/node/-/node-16.11.26.tgz"
-  integrity sha512-GZ7bu5A6+4DtG7q9GsoHXy3ALcgeIHP4NnL0Vv2wu0uUB/yQex26v0tf6/na1mm0+bS9Uw+0DFex7aaKr2qawQ==
+"@types/node@*", "@types/node@>=12.12.47", "@types/node@>=13.7.0", "@types/node@^20.2.5":
+  version "20.2.5"
+  resolved "https://registry.npmjs.org/@types/node/-/node-20.2.5.tgz"
+  integrity sha512-JJulVEQXmiY9Px5axXHeYGLSjhkZEnD+MDPDGbCbIAbMslkKwmygtZFy1X6s/075Yo94sf8GuSlFfPzysQrWZQ==
 
 "@types/parse-json@^4.0.0":
   version "4.0.0"

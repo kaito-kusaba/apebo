@@ -12,7 +12,6 @@
     "@testing-library/react": "^12.1.4",
     "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^27.4.1",
-    "@types/node": "^16.11.26",
     "@types/react": "^17.0.43",
     "@types/react-dom": "^17.0.14",
     "dotenv-webpack": "^7.1.0",
@@ -58,6 +57,7 @@
   },
   "devDependencies": {
     "@types/emoji-mart": "^3.0.9",
+    "@types/node": "^20.2.5",
     "@types/react-copy-to-clipboard": "^5.0.2",
     "@types/react-modal": "^3.13.1",
     "eslint-config-prettier": "^8.5.0"
